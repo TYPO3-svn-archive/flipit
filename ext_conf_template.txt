@@ -1,0 +1,4 @@
+  # cat=debugging/dev/100;              type=options[Disabled,Enabled (for debugging only!)]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
+drs_mode            = Disabled
+  # cat=debugging/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links
+debuggingExternalLinks = 0
