@@ -1,0 +1,21 @@
+<content width='826' 
+			height='1168' 
+			buttoncolor='0081C2' 
+			panelcolor='0081C2' 
+			textcolor='ffffff' 
+			backgroundcolor='cccccc' 
+			hcover='false' 
+			gotolabel='Go to'>
+<page src='data/pages/1.swf'/>
+<page src='data/pages/2.swf'/>
+<page src='data/pages/3.swf'/>
+<page src='data/pages/4.swf'/>
+<page src='data/pages/5.swf'/>
+<page src='data/pages/6.swf'/>
+<page src='data/pages/7.swf'/>
+<page src='data/pages/8.swf'/>
+<page src='data/pages/9.swf'/>
+<page src='data/pages/10.swf'/>
+<page src='data/pages/11.swf'/>
+<page src='data/pages/12.swf'/>
+</content>

@@ -1,0 +1,13 @@
+<content width='826' 
+			height='1168' 
+			buttoncolor='5d5d61' 
+			panelcolor='5d5d61' 
+			textcolor='ffffff' 
+			backgroundcolor='cccccc' 
+			hcover='false' 
+			gotolabel='Ir a'>
+<page src='data/pages/1.swf'/>
+<page src='data/pages/2.swf'/>
+<page src='data/pages/3.swf'/>
+<page src='data/pages/4.swf'/>
+</content>
