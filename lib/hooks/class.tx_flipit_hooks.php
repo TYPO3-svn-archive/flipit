@@ -118,7 +118,7 @@ class tx_flipit_hooks
   {
     $this->init( );
 
-    if ( $this->drsHooks )
+    if( $this->drsHooks || 1 )
     {
       $prompt = __METHOD__ . ' is called.';
       t3lib_div::devlog( '[INFO/HOOKS] ' . $prompt, $this->extKey, 0 );
