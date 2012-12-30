@@ -109,8 +109,8 @@ class tx_flipit_userfunc
       $prompt = null;
 
       $prompt = $prompt.'
-<div class="message-body">
-  <div class="message-warning">
+<div class="typo3-message message-warning">
+  <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOS'). '
   </div> 
 </div>';
@@ -138,8 +138,8 @@ class tx_flipit_userfunc
       $prompt = null;
 
       $prompt = $prompt.'
-<div class="message-body">
-  <div class="message-warning">
+<div class="typo3-message message-warning">
+  <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools'). '
   </div> 
 </div>';
