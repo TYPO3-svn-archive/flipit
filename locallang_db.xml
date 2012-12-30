@@ -8,16 +8,20 @@
     <languageKey index="default" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_enabled">tx_flipit_enabled</label>
+      <label index="tcaLabel_tx_flipit_enabled_item_0">tx_flipit_enabled_item_0</label>
+      <label index="tcaLabel_tx_flipit_lightbox">tx_flipit_lightbox</label>
+      <label index="tcaLabel_tx_flipit_lightbox_item_0">tx_flipit_lightbox_item_0</label>
       <label index="tcaLabel_tx_flipit_swf_tstamp">tx_flipit_swf_tstamp</label>
       <label index="tcaLabel_tx_flipit_swf_files">tx_flipit_swf_files</label>
-      <label index="tcaLabel_tx_flipit_lightbox">tx_flipit_lightbox</label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_enabled">tx_flipit_enabled</label>
+      <label index="tcaLabel_tx_flipit_enabled_item_0">tx_flipit_enabled_item_0</label>
+      <label index="tcaLabel_tx_flipit_lightbox">tx_flipit_lightbox</label>
+      <label index="tcaLabel_tx_flipit_lightbox_item_0">tx_flipit_lightbox_item_0</label>
       <label index="tcaLabel_tx_flipit_swf_tstamp">tx_flipit_swf_tstamp</label>
       <label index="tcaLabel_tx_flipit_swf_files">tx_flipit_swf_files</label>
-      <label index="tcaLabel_tx_flipit_lightbox">tx_flipit_lightbox</label>
     </languageKey>
   </data>
 </T3locallang>

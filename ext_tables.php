@@ -153,9 +153,12 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled',
   'config'  => array (
-    'type' => 'text',
-    'cols' => '30',
-    'rows' => '5',
+    'type' => 'check',
+    'items' => array (
+      '1' => array (
+        '0' => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_0',
+      ),
+    ),
   ),
 );
 $TCA['tt_content']['columns']['tx_flipit_swf_tstamp'] = array (
@@ -170,19 +173,29 @@ $TCA['tt_content']['columns']['tx_flipit_swf_tstamp'] = array (
 $TCA['tt_content']['columns']['tx_flipit_swf_files'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files',
-  'config'  => array (
-    'type' => 'text',
-    'cols' => '30',
-    'rows' => '5',
+  'config' => array(
+    'type'          => 'group',
+    'internal_type' => 'file',
+    'allowed'       => '',        // Must be empty for disallowed to work.
+    'disallowed'    => PHP_EXTENSIONS_DEFAULT,
+    'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
+    'uploadfolder'  => 'uploads/media',
+    'show_thumbs'   => '1',
+    'size'          => '10',
+    'maxitems'      => '10',
+    'minitems'      => '0',
   ),
 );
 $TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox',
   'config'  => array (
-    'type' => 'text',
-    'cols' => '30',
-    'rows' => '5',
+    'type' => 'check',
+    'items' => array (
+      '1' => array (
+        '0' => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_0',
+      ),
+    ),
   ),
 );
   // Add fields to columns
