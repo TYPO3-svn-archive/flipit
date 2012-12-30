@@ -126,7 +126,7 @@ class tx_flipit_hooks
     
       // Class var $pObj
     $this->pObj = $pObj;
-die( $pObj ); 
+var_dump( $params, $pObj ); 
       // Class var $conf
     $this->conf = $pObj->conf['extensions.']['flipit.'];
 
