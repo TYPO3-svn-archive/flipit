@@ -13,6 +13,6 @@ beLanguage = English
 beLanguageExternalLinks = 1
 
   # cat=debugging/enable/100;              type=options[Disabled,Enabled (for debugging only!)]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
-drs_mode            = Disabled
+debuggingDrs            = Disabled
   # cat=debugging/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
 debuggingExternalLinks = 1

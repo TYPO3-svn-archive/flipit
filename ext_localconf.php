@@ -6,11 +6,20 @@ if (!defined ('TYPO3_MODE'))  die ('Access denied.');
 
   ////////////////////////////////////////////////////
   //
-  // Extending TypoScript from static template uid=43 to set up userdefined tag
+  // Index
+  //
+  // Hooks
+
+
+
+  ////////////////////////////////////////////////////
+  //
+  // Hooks
   
-//t3lib_extMgm::addPItoST43($_EXTKEY,'pi1/class.tx_pdfcontroller_pi1.php','_pi1','list_type',1);
-//t3lib_extMgm::addPItoST43($_EXTKEY,'pi2/class.tx_pdfcontroller_pi2.php','_pi2','list_type',1);
-  // Extending TypoScript from static template uid=43 to set up userdefined tag
+require_once( t3lib_extMgm::extPath( $_EXTKEY ) . 'lib/hooks/class.tx_flipit_hooks.php' );
+
+$TYPO3_CONF_VARS ['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processUpload'][] = 'tx_flipit_hooks->processUpload';
+  // Hooks
 
 
 ?>
