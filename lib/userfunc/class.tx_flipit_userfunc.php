@@ -150,6 +150,35 @@ class tx_flipit_userfunc
   
   
   /**
+   * promptEvaluatorTYPO3version(): Displays the quick start message.
+   *
+   * @return  string    message wrapped in HTML
+   * @version 0.0.1
+   * @since   0.0.1
+   */
+  function promptEvaluatorTYPO3version()
+  {
+//.message-notice
+//.message-information
+//.message-ok
+//.message-warning
+//.message-error
+
+      $prompt = null;
+
+      $prompt = $prompt.'
+<div class="typo3-message message-warning">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version'). '
+  </div> 
+</div>';
+
+    return $prompt;
+  }
+
+  
+  
+  /**
    * promptExternalLinks(): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML
