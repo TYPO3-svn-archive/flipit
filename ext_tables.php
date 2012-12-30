@@ -57,7 +57,7 @@ if( $typo3Version < 3000000 )
   //
   // Configuration by the extension manager
 
-$confArr  = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['org']);
+$confArr  = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
 
   // Language for labels of static templates and page tsConfig
 $beLanguage = $confArr['beLanguage'];
@@ -197,7 +197,7 @@ foreach( $arr_showitem as $key => $value )
   {
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:org/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
       break;
     case($key < $int_div_position):
     case($key > $int_div_position):
