@@ -32,7 +32,7 @@ tt_content.uploads {
             <script type="text/javascript">
               var so = new SWFObject("typo3conf/ext/flipit/res/book.swf", "book", "100%", "100%", "8", "#cccccc");
               so.addVariable("xmlFile","uploads/media/1589_flipit.xml");
-              so.addVariable("fullscreen","true");
+              so.addVariable("fullscreen","false");
               so.write("flashcontent");
             </script>
 )
