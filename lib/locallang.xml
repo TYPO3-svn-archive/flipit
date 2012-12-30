@@ -7,7 +7,7 @@
   <data type="array">
     <languageKey index="default" type="array">
       <label index="promptEvaluatorOS">Sorry, the operating system isn't evaluated yet.</label>
-      <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't isn't evaluated yet.</label>
+      <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
