@@ -188,7 +188,7 @@ $TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
   // Add fields to columns
 
   // Insert div [flipit] at position $int_div_position
-$TCA['tt_content']['types']['uploads']['showitem'] = 'TEST';
+$TCA['tt_content']['types']['uploads']['showitem'] = 'TEST II';
 return;
 $str_showitem = $TCA['tt_content']['types']['uploads']['showitem'];
 $arr_showitem = explode( '--div--;', $str_showitem );
