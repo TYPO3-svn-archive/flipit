@@ -15,7 +15,8 @@
             <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
               width="130" 
               height="130" 
-              alt="Die Netzmacher - TYPO3 and nothing else." /></a>
+              alt="Die Netzmacher - TYPO3 and nothing else." /></a><br />
+          Die Netzmacher - developer of flip it!
         </div>
       ]]></label>
     </languageKey>

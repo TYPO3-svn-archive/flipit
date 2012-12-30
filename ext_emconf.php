@@ -11,7 +11,7 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'PDF Flip',
+	'title' => 'Flip it!',
 	'description' => 'Flip it! enables you to run over pages in PDF documents and magazines. Flip it! offers lovely and smooth page flip transitions. The visitor of your website does not need any PDF plugin but a Flash plugin. Flip it! converts PDF documents to SWF files automatically. BE AWARE: You have to install one software package on the web server (Linux and  Windows are supported). You must be root.',
 	'category' => 'plugin',
 	'shy' => 0,
