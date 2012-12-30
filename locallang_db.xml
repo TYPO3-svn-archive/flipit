@@ -7,21 +7,21 @@
   <data type="array">
     <languageKey index="default" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_enabled">tx_flipit_enabled</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_0">tx_flipit_enabled_item_0</label>
-      <label index="tcaLabel_tx_flipit_lightbox">tx_flipit_lightbox</label>
-      <label index="tcaLabel_tx_flipit_lightbox_item_0">tx_flipit_lightbox_item_0</label>
-      <label index="tcaLabel_tx_flipit_swf_tstamp">tx_flipit_swf_tstamp</label>
-      <label index="tcaLabel_tx_flipit_swf_files">tx_flipit_swf_files</label>
+      <label index="tcaLabel_tx_flipit_enabled">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_enabled_item_0">enabled</label>
+      <label index="tcaLabel_tx_flipit_lightbox">Lightbox</label>
+      <label index="tcaLabel_tx_flipit_lightbox_item_0">enabled</label>
+      <label index="tcaLabel_tx_flipit_swf_tstamp">timestamp</label>
+      <label index="tcaLabel_tx_flipit_swf_files">Files converted to SWF / Flash</label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_enabled">tx_flipit_enabled</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_0">tx_flipit_enabled_item_0</label>
-      <label index="tcaLabel_tx_flipit_lightbox">tx_flipit_lightbox</label>
-      <label index="tcaLabel_tx_flipit_lightbox_item_0">tx_flipit_lightbox_item_0</label>
-      <label index="tcaLabel_tx_flipit_swf_tstamp">tx_flipit_swf_tstamp</label>
-      <label index="tcaLabel_tx_flipit_swf_files">tx_flipit_swf_files</label>
+      <label index="tcaLabel_tx_flipit_enabled">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_enabled_item_0">aktiviert</label>
+      <label index="tcaLabel_tx_flipit_lightbox">Lightbox</label>
+      <label index="tcaLabel_tx_flipit_lightbox_item_0">aktiviert</label>
+      <label index="tcaLabel_tx_flipit_swf_tstamp">Zeitstempel</label>
+      <label index="tcaLabel_tx_flipit_swf_files">Dateien konvertiert zu SWF / Flash</label>
     </languageKey>
   </data>
 </T3locallang>
