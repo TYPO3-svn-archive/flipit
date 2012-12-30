@@ -200,7 +200,7 @@ $TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox',
   'config'  => array (
-    'type' => 'check',
+    'type' => 'select',
     'items' => array(
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_disabled',
