@@ -1,5 +1,7 @@
 tt_content.uploads {
   20 {
+        // Don't outerWrap the thumbnail with <table> by default
+    outerWrap = |
     itemRendering {
       wrap >
       10 >

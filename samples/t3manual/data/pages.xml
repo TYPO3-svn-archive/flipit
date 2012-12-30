@@ -1,12 +1,12 @@
 <content  
-  width           ='826' 
-  height          ='1168' 
-  buttoncolor     ='EC921A' 
-  panelcolor      ='EC921A' 
-  textcolor       ='ffffff' 
-  backgroundcolor ='EC921A' 
-  hcover          ='false' 
-  gotolabel       ='Gehe zu Seite'>
+  width           = '826' 
+  height          = '1168' 
+  buttoncolor     = 'EC921A' 
+  panelcolor      = 'EC921A' 
+  textcolor       = 'ffffff' 
+  backgroundcolor = 'EC921A' 
+  hcover          = 'false' 
+  gotolabel       = 'Gehe zu Seite'>
   <page src='data/pages/1.swf'/>
   <page src='data/pages/2.swf'/>
   <page src='data/pages/3.swf'/>
