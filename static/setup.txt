@@ -28,7 +28,7 @@ tt_content.uploads {
               <p>To view the book, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>.</p>
             </div>
             <script type="text/javascript">
-              var so = new SWFObject("book.swf", "book", "100%", "100%", "8", "#cccccc");
+              var so = new SWFObject("typo3conf/ext/flipit/res/book.swf", "book", "100%", "100%", "8", "#cccccc");
               so.addVariable("xmlFile","uploads/media/1589_flipit.xml");
               so.addVariable("fullscreen","true");
               so.write("flashcontent");
