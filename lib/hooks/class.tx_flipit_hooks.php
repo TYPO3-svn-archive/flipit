@@ -114,7 +114,7 @@ class tx_flipit_hooks
  * @version  0.0.1
  * @since    0.0.1
  */
-  public function processUpload( &$pObj )
+  public function processUpload( $params, &$pObj )
   {
     $this->init( );
 
@@ -126,7 +126,7 @@ class tx_flipit_hooks
     
       // Class var $pObj
     $this->pObj = $pObj;
-die( $pObj );
+die( $pObj ); 
       // Class var $conf
     $this->conf = $pObj->conf['extensions.']['flipit.'];
 
