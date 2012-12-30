@@ -105,7 +105,7 @@ class tx_flipit_hooks
 
   
 /**
- * processUpload( ): Handle the login form of the felogin extension
+ * processData( ): Handle the login form of the felogin extension
  *                             before sending. Replace and remove markers.
  *
  * @param    array        $params:  Given parameter
@@ -114,7 +114,7 @@ class tx_flipit_hooks
  * @version  0.0.1
  * @since    0.0.1
  */
-  public function processUpload( $params, &$pObj )
+  public function processData( $action, $cmdArr, $result, &$pObj )
   {
     $this->init( );
 
@@ -127,6 +127,7 @@ class tx_flipit_hooks
       // Class var $pObj
     $this->pObj = $pObj;
 var_dump( $params, $pObj ); 
+exit;
       // Class var $conf
     $this->conf = $pObj->conf['extensions.']['flipit.'];
 
