@@ -164,16 +164,6 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-      $prompt = null;
-
-      $prompt = $prompt.'
-<div class="typo3-message message-warning">
-  <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version'). '
-  </div> 
-</div>';
-
-    return $prompt;
     $prompt = null;
 
     $this->set_typo3Version( );
