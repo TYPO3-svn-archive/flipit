@@ -8,7 +8,10 @@
     <languageKey index="default" type="array">
       <label index="promptEvaluatorOS">Sorry, the operating system isn't evaluated yet.</label>
       <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
-      <label index="promptEvaluatorTYPO3version">Sorry, TYPO3 version isn't evaluated yet.</label>
+      <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
+      <label index="promptEvaluatorTYPO3version4006000greater">Your are using a TYPO3 version greater than 4.6. Flip it! isn't tested in this version. May be you will have unwanted effects. Try it!</label>
+      <label index="promptEvaluatorTYPO3version4006000smaller">Your are using a TYPO3 version smaller than 4.6. Flip it! isn't tested in this version. Try it!</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
@@ -30,7 +33,10 @@
     <languageKey index="de" type="array">
       <label index="promptEvaluatorOS">Pardon, das Betriebssystem wird nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
       <label index="promptEvaluatorSWFtools">Pardon, die SWF-Tools werden nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
-      <label index="promptEvaluatorTYPO3version">Pardon, die TYPO3-Version wird nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
+      <label index="promptEvaluatorTYPO3version4006000equal">Du verwendest TYPO3 4.6. Das ist perfekt!</label>
+      <label index="promptEvaluatorTYPO3version4006000equalTS">Du musst das Static Template einbinden ...</label>
+      <label index="promptEvaluatorTYPO3version4006000greater">Du verwendest eine TYPO3-Version, die groesser ist als 4.6. Flip it! ist fur diese Version nicht getestet. Moeglicherweise bekommst Du unerwartete Ergebnisse. Probier es einfach aus!</label>
+      <label index="promptEvaluatorTYPO3version4006000smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.6. Flip it! ist fur diese Version nicht getestet. Moeglicherweise bekommst Du unerwartete Ergebnisse. Probier es einfach aus!</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
