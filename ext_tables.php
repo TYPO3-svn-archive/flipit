@@ -202,7 +202,7 @@ foreach( $arr_showitem as $key => $value )
     case($key < $int_div_position):
     case($key > $int_div_position):
     default:
-      $arr_new_showitem[$key] = $value;
+//      $arr_new_showitem[$key] = $value;
       break;
   }
 }
