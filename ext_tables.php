@@ -197,7 +197,7 @@ foreach( $arr_showitem as $key => $value )
   {
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:org/locallang_db.xml:tt_content.div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
+        'LLL:EXT:org/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
       break;
     case($key < $int_div_position):
     case($key > $int_div_position):
