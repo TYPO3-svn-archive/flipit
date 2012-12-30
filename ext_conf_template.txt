@@ -2,6 +2,8 @@
 evaluatorOS            = Undefined error: Evaluation failed!
   # cat=evaluator/dev/101;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorSWFtools]; label= SWF tools: If PDF files should converted to SWF / Flash files automatically, you need SWF tools on your server.
 evaluatorSWFtools      = Undefined error: Evaluation failed!
+  # cat=evaluator/dev/103;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorTYPO3version]; label= TYPO3 version: Is your TYPO3 version supported?
+evaluatorTYPO3version  = Undefined error: Evaluation failed!
   # cat=evaluator/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
 evaluatorExternalLinks = 1
 

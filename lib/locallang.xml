@@ -8,6 +8,7 @@
     <languageKey index="default" type="array">
       <label index="promptEvaluatorOS">Sorry, the operating system isn't evaluated yet.</label>
       <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
+      <label index="promptEvaluatorTYPO3version">Sorry, TYPO3 version isn't evaluated yet.</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
@@ -29,6 +30,7 @@
     <languageKey index="de" type="array">
       <label index="promptEvaluatorOS">Pardon, das Betriebssystem wird nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
       <label index="promptEvaluatorSWFtools">Pardon, die SWF-Tools werden nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
+      <label index="promptEvaluatorTYPO3version">Pardon, die TYPO3-Version wird nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
