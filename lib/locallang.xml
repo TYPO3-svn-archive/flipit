@@ -16,7 +16,11 @@
               width="130" 
               height="130" 
               alt="Die Netzmacher - TYPO3 and nothing else." /></a><br />
-          Die Netzmacher - developer of flip it!
+          <a href="http://die-netzmacher.de/" 
+            alt="Die Netzmacher - TYPO3 and nothing else."
+            title="Die Netzmacher - TYPO3 and nothing else."
+            target="_blank">
+            Die Netzmacher - developer of flip it!</a>
         </div>
       ]]></label>
     </languageKey>
