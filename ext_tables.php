@@ -154,11 +154,6 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled',
   'config'  => array (
     'type' => 'select',
-    'items' => array (
-      '1' => array (
-        '0' => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_0',
-      ),
-    ),
     'items' => array(
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_disabled',
@@ -206,11 +201,21 @@ $TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox',
   'config'  => array (
     'type' => 'check',
-    'items' => array (
-      '1' => array (
-        '0' => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_0',
+    'items' => array(
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_disabled',
+        '0',
+      ),
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_enabled',
+        '1',
+      ),
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_ts',
+        '2',
       ),
     ),
+    'default' => '2',
   ),
 );
   // Add fields to columns
