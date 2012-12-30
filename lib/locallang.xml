@@ -9,13 +9,13 @@
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
-            alt="Die Netzmacher - Internet ist Handwerk"
-            title="Die Netzmacher - Internet ist Handwerk"
+            alt="Die Netzmacher - TYPO3 and nothing else."
+            title="Die Netzmacher - TYPO3 and nothing else."
             target="_blank">
-            <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher.de_200px.gif"
-              width="200" 
-              height="80" 
-              alt="Die Netzmacher - Internet ist Handwerk" /></a>
+            <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
+              width="130" 
+              height="130" 
+              alt="Die Netzmacher - TYPO3 and nothing else." /></a>
         </div>
       ]]></label>
     </languageKey>
@@ -23,13 +23,13 @@
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/"
-            alt="Die Netzmacher - Internet ist Handwerk"
-            title="Die Netzmacher - Internet ist Handwerk"
+            alt="Die Netzmacher - TYPO3, sonst nichts."
+            title="Die Netzmacher - TYPO3, sonst nichts."
             target="_blank">
-            <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher.de_200px.gif"
-              width="200"
-              height="80"
-              alt="Die Netzmacher - Internet ist Handwerk" /></a>
+            <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
+              width="130"
+              height="130"
+              alt="Die Netzmacher - TYPO3, sonst nichts." /></a>
         </div>
       ]]></label>
     </languageKey>
