@@ -191,24 +191,27 @@ $TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
 $str_showitem = $TCA['tt_content']['types']['uploads']['showitem'];
 $arr_showitem = explode( '--div--;', $str_showitem );
 $int_div_position = 1;
+$arr_new_showitem = array( );
 foreach( $arr_showitem as $key => $value )
 {
   switch( true )
   {
+    case($key < $int_div_position):
+      $arr_new_showitem[$key] = $value;
+      break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
+      $arr_new_showitem[$key + 1] = $value;
       break;
-    case($key < $int_div_position):
     case($key > $int_div_position):
     default:
-      $arr_new_showitem[$key] = $value;
+      $arr_new_showitem[$key + 1] = $value;
       break;
   }
 }
-$str_showitem = implode('--div--;', $arr_new_showitem);
+$str_showitem = implode( '--div--;', $arr_new_showitem );
 $TCA['tt_content']['types']['uploads']['showitem'] = $str_showitem;
-//$GLOBALS['TCA']['tt_content']['types']['uploads']['showitem'] = 'TEST II';
   // Insert div [flipit] at position $int_div_position
   // TCA for tt_content
 
