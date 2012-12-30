@@ -1,0 +1,11 @@
+tt_content.uploads {
+  20 {
+    itemRendering {
+      40 = TEXT
+      40 {
+        field = tx_flipit_swf_files
+        wrap = <td class="csc-uploads-flipit">|</td>
+      }
+    }
+  }
+}
