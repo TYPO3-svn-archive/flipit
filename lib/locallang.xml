@@ -9,32 +9,37 @@
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
-            alt="Die Netzmacher - TYPO3 and nothing else."
-            title="Die Netzmacher - TYPO3 and nothing else."
+            alt="die-netzmacher.de"
+            title="die-netzmacher.de"
             target="_blank">
             <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
               width="130" 
               height="130" 
-              alt="Die Netzmacher - TYPO3 and nothing else." /></a><br />
+              alt="die-netzmacher.de" /></a><br />
           <a href="http://die-netzmacher.de/" 
-            alt="Die Netzmacher - TYPO3 and nothing else."
-            title="Die Netzmacher - TYPO3 and nothing else."
+            alt="die-netzmacher.de"
+            title="die-netzmacher.de"
             target="_blank">
-            Die Netzmacher - developer of flip it!</a>
+            Die Netzmacher - the developers of Flip it!</a>
         </div>
       ]]></label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
-          <a href="http://die-netzmacher.de/"
-            alt="Die Netzmacher - TYPO3, sonst nichts."
-            title="Die Netzmacher - TYPO3, sonst nichts."
+          <a href="http://die-netzmacher.de/" 
+            alt="die-netzmacher.de"
+            title="die-netzmacher.de"
             target="_blank">
             <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
-              width="130"
-              height="130"
-              alt="Die Netzmacher - TYPO3, sonst nichts." /></a>
+              width="130" 
+              height="130" 
+              alt="die-netzmacher.de" /></a><br />
+          <a href="http://die-netzmacher.de/" 
+            alt="die-netzmacher.de"
+            title="die-netzmacher.de"
+            target="_blank">
+            Die Netzmacher - die Entwickler von Flip it!</a>
         </div>
       ]]></label>
     </languageKey>
