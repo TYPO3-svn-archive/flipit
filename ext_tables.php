@@ -153,12 +153,27 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled',
   'config'  => array (
-    'type' => 'check',
+    'type' => 'select',
     'items' => array (
       '1' => array (
         '0' => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_0',
       ),
     ),
+    'items' => array(
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_disabled',
+        '0',
+      ),
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_enabled',
+        '1',
+      ),
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_ts',
+        '2',
+      ),
+    ),
+    'default' => '2',
   ),
 );
 $TCA['tt_content']['columns']['tx_flipit_swf_tstamp'] = array (
