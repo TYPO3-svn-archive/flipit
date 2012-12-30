@@ -6,6 +6,8 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
+      <label index="promptEvaluatorOS">Sorry, the operating system isn't evaluated yet.</label>
+      <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't isn't evaluated yet.</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 
@@ -25,6 +27,8 @@
       ]]></label>
     </languageKey>
     <languageKey index="de" type="array">
+      <label index="promptEvaluatorOS">Pardon, das Betriebssystem wird nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
+      <label index="promptEvaluatorSWFtools">Pardon, die SWF-Tools werden nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
           <a href="http://die-netzmacher.de/" 

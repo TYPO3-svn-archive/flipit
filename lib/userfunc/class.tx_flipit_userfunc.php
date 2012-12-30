@@ -92,6 +92,64 @@ class tx_flipit_userfunc
   
   
   /**
+   * promptEvaluatorOS(): Displays the quick start message.
+   *
+   * @return  string    message wrapped in HTML
+   * @version 0.0.1
+   * @since   0.0.1
+   */
+  function promptEvaluatorOS()
+  {
+//.message-notice
+//.message-information
+//.message-ok
+//.message-warning
+//.message-error
+
+      $prompt = null;
+
+      $prompt = $prompt.'
+<div class="message-body">
+  <div class="message-warning">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOS'). '
+  </div> 
+</div>';
+
+    return $prompt;
+  }
+
+  
+  
+  /**
+   * promptEvaluatorSWFtools(): Displays the quick start message.
+   *
+   * @return  string    message wrapped in HTML
+   * @version 0.0.1
+   * @since   0.0.1
+   */
+  function promptEvaluatorSWFtools()
+  {
+//.message-notice
+//.message-information
+//.message-ok
+//.message-warning
+//.message-error
+
+      $prompt = null;
+
+      $prompt = $prompt.'
+<div class="message-body">
+  <div class="message-warning">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools'). '
+  </div> 
+</div>';
+
+    return $prompt;
+  }
+
+  
+  
+  /**
    * promptExternalLinks(): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML
