@@ -15,9 +15,7 @@ if( ! defined( 'TYPO3_MODE' ) )
   // Configuration by the extension manager
   //    Localization support
   // Enables the Include Static Templates
-  // Add pagetree icons
-  // Configure third party tables
-  // TCA tables
+  // TCA for tt_content
 
 
 
@@ -82,7 +80,7 @@ switch($beLanguage) {
   // Case $beLanguage
 switch( true ) 
 {
-  case($beLanguage == 'de'):
+  case( $beLanguage == 'de' ):
       // German
     t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (immer einbinden!)');
     switch( true )
@@ -111,4 +109,106 @@ switch( true )
 }
   // Case $beLanguage
   // Enables the Include Static Templates
+  
+
+
+  ////////////////////////////////////////////////////////////////////////////
+  //
+  // Add pagetree icons
+
+  // Case $beLanguage
+switch( true )
+{
+  case( $beLanguage == 'de' ):
+      // German
+    $TCA['pages']['columns']['module']['config']['items'][] =
+       array( 'Flip it!', 'flipit', t3lib_extMgm::extRelPath( $_EXTKEY ).'ext_icon.gif' );
+    break;
+  default:
+      // English
+    $TCA['pages']['columns']['module']['config']['items'][] =
+       array( 'Flip it!', 'flipit', t3lib_extMgm::extRelPath( $_EXTKEY ).'ext_icon.gif' );
+}
+  // Case $beLanguage
+
+t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-flipit', '../typo3conf/ext/flipit/ext_icon.gif');
+  // Add pagetree icons
+
+
+
+  ////////////////////////////////////////////////////////////////////////////
+  //
+  // TCA for tt_content
+
+t3lib_div::loadTCA( 'tt_content' );
+
+  // Add fields to interface
+$showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_enabled,tx_flipit_swf_tstamp,tx_flipit_swf_files,tx_flipit_lightbox';
+$TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
+  // Add fields to interface
+
+  // Add fields to columns
+$TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled',
+  'config'  => array (
+    'type' => 'text',
+    'cols' => '30',
+    'rows' => '5',
+  ),
+);
+$TCA['tt_content']['columns']['tx_flipit_swf_tstamp'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_tstamp',
+  'config'  => array (
+    'type' => 'text',
+    'cols' => '30',
+    'rows' => '5',
+  ),
+);
+$TCA['tt_content']['columns']['tx_flipit_swf_files'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files',
+  'config'  => array (
+    'type' => 'text',
+    'cols' => '30',
+    'rows' => '5',
+  ),
+);
+$TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox',
+  'config'  => array (
+    'type' => 'text',
+    'cols' => '30',
+    'rows' => '5',
+  ),
+);
+  // Add fields to columns
+
+  // Insert div [flipit] at position $int_div_position
+$str_showitem = $TCA['tt_content']['types']['uploads']['showitem'];
+$arr_showitem = explode( '--div--;', $str_showitem );
+$int_div_position = 1;
+foreach( $arr_showitem as $key => $value )
+{
+  switch( true )
+  {
+    case($key == $int_div_position):
+      $arr_new_showitem[$key] = '' . 
+        'LLL:EXT:org/locallang_db.xml:tt_content.div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
+      break;
+    case($key < $int_div_position):
+    case($key > $int_div_position):
+    default:
+      $arr_new_showitem[$key] = $value;
+      break;
+  }
+}
+$str_showitem = implode('--div--;', $arr_new_showitem);
+$TCA['fe_users']['types']['uploads']['showitem'] = $str_showitem;
+  // Insert div [flipit] at position $int_div_position
+  // TCA for tt_content
+
 ?>
