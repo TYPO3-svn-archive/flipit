@@ -25,14 +25,14 @@ tt_content.uploads {
         20 = TEXT
         20 {
           value ( 
-            <div id="flashcontent" style="width:100%; height:100%;">
+            <div id="flashcontent" style="width:100%; height:800px;">
               <h1><a href="http://www.codebox.es" title="Web programmers">by Codebox Web Coders</a></h1>
               <p>To view the book, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>.</p>
             </div>
             <script type="text/javascript">
               var so = new SWFObject("typo3conf/ext/flipit/res/book.swf", "book", "100%", "100%", "8", "#cccccc");
               so.addVariable("xmlFile","uploads/media/1589_flipit.xml");
-              so.addVariable("fullscreen","false");
+              so.addVariable("fullscreen","true");
               so.write("flashcontent");
             </script>
 )
