@@ -144,7 +144,7 @@ t3lib_div::loadTCA( 'tt_content' );
 
   // Add fields to interface
 $showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
-$showRecordFieldList = $showRecordFieldList.',tx_flipit_enabled,tx_flipit_swf_tstamp,tx_flipit_swf_files,tx_flipit_lightbox';
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_enabled,tx_flipit_swf_files,tx_flipit_lightbox';
 $TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to interface
 
@@ -171,23 +171,13 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
     'default' => '2',
   ),
 );
-$TCA['tt_content']['columns']['tx_flipit_swf_tstamp'] = array (
-  'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_tstamp',
-  'config'  => array (
-    'type' => 'text',
-    'cols' => '30',
-    'rows' => '5',
-  ),
-);
 $TCA['tt_content']['columns']['tx_flipit_swf_files'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files',
   'config' => array(
     'type'          => 'group',
     'internal_type' => 'file',
-    'allowed'       => 'swf',        // Must be empty for disallowed to work.
-    //'disallowed'    => PHP_EXTENSIONS_DEFAULT,
+    'allowed'       => 'swf',
     'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
     'uploadfolder'  => 'uploads/flipit',
     'show_thumbs'   => '1',
@@ -234,7 +224,7 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_tstamp, tx_flipit_swf_files, tx_flipit_lightbox,';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_files, tx_flipit_lightbox,';
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):

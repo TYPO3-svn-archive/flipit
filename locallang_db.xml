@@ -14,8 +14,7 @@
       <label index="tcaLabel_tx_flipit_lightbox">Lightbox</label>
       <label index="tcaLabel_tx_flipit_lightbox_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_lightbox_item_enabled">enabled</label>
-      <label index="tcaLabel_tx_flipit_lightbox_item_ts">Take value from TypoScript (default)!</label>
-      <label index="tcaLabel_tx_flipit_swf_tstamp">timestamp</label>
+      <label index="tcaLabel_tx_flipit_lightbox_item_ts">Take value from the TypoScript Constant-Editor (default)!</label>
       <label index="tcaLabel_tx_flipit_swf_files">Files converted to SWF / Flash</label>
     </languageKey>
     <languageKey index="de" type="array">
@@ -29,7 +28,6 @@
       <label index="tcaLabel_tx_flipit_lightbox_item_disabled">deaktiviert</label>
       <label index="tcaLabel_tx_flipit_lightbox_item_enabled">aktiviert</label>
       <label index="tcaLabel_tx_flipit_lightbox_item_ts">Nimm den Wert vom TypoScript-Konstanten-Editor (Standard)!</label>
-      <label index="tcaLabel_tx_flipit_swf_tstamp">Zeitstempel</label>
       <label index="tcaLabel_tx_flipit_swf_files">Dateien konvertiert zu SWF / Flash</label>
     </languageKey>
   </data>

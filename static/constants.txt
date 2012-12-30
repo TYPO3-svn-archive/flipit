@@ -1,0 +1,10 @@
+plugin.tx_flipit {
+
+  # cat=Flip it! - configuration/enable/100;   type=boolean;   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
+  configuration.enable.flipit = 0
+  # cat=Flip it! - configuration/enable/101;   type=boolean;   label= Lightbox: Disable it, if you don't want to use Flip it! in a lightbox by default.
+  configuration.enable.lightbox = 1
+  # cat=Flip it! - configuration/enable/199;   type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  configuration.externalLinks = 1
+
+}
