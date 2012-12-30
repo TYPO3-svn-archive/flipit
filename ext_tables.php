@@ -207,7 +207,7 @@ foreach( $arr_showitem as $key => $value )
   }
 }
 $str_showitem = implode('--div--;', $arr_new_showitem);
-$TCA['fe_users']['types']['uploads']['showitem'] = $str_showitem;
+$TCA['tt_content']['types']['uploads']['showitem'] = $str_showitem;
   // Insert div [flipit] at position $int_div_position
   // TCA for tt_content
 
