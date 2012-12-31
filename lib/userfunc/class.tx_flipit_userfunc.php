@@ -129,18 +129,11 @@ class tx_flipit_userfunc
 </div>';
         break;
       case( 'undefined' ):
+      default:
         $prompt = $prompt.'
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSundefined'). '
-  </div> 
-</div>';
-        break;
-      default:
-        $prompt = $prompt.'
-<div class="typo3-message message-error">
-  <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSerror'). '
   </div> 
 </div>';
         break;

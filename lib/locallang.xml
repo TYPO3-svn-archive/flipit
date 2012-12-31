@@ -70,29 +70,6 @@
           target="_blank">
           Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
-      <label index="promptEvaluatorOSerror"><![CDATA[
-        The operating system of your server is %OS%.
-        <ul>
-          <li style="margin-bottom:0;">
-            PDF files can't converted to SWF / Flash files automatically.
-          </li>
-          <li style="margin-bottom:0;">
-            But you can
-            <a href="http://wildt.at.die-netzmacher.de/" 
-              alt="Convert PDF files to SWF / Flash files manually"
-              title="Convert PDF files to SWF / Flash files manually"
-              target="_blank">
-              convert PDF files to SWF / Flash files manually</a>.
-          </li>
-        </ul>
-        <br />
-        If the detection of the operating system isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
-          alt="wildt.at.die-netzmacher.de"
-          title="wildt.at.die-netzmacher.de"
-          target="_blank">
-          Dirk Wildt (Die Netzmacher)</a>
-      ]]></label>
       <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
