@@ -106,14 +106,18 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-      $prompt = null;
+    $prompt = null;
 
-      $prompt = $prompt.'
+    $TYPO3_OS = $this->set_TYPO3Os( );
+
+    $prompt = $prompt.'
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOS'). '
   </div> 
 </div>';
+      
+    $prompt = str_replace( '%TYPO3_OS%', $TYPO3_OS, $prompt );  
 
     return $prompt;
   }
@@ -166,7 +170,7 @@ class tx_flipit_userfunc
 
     $prompt = null;
 
-    $this->set_typo3Version( );
+    $this->set_TYPO3Version( );
     
     switch( true )
     {
@@ -241,13 +245,27 @@ class tx_flipit_userfunc
   
   
 /**
- * set_typo3Version(): 
+ * set_TYPO3Os( ): 
  *
  * @return  void
  * @version 0.0.1
  * @since 0.0.1
  */
-  private function set_typo3Version( )
+  private function set_TYPO3Os( )
+  {
+    return TYPO3_OS;
+  }
+  
+  
+  
+/**
+ * set_TYPO3Version( ): 
+ *
+ * @return  void
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+  private function set_TYPO3Version( )
   {
       // RETURN : typo3Version is set
     if( $this->typo3Version !== null )

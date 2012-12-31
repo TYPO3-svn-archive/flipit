@@ -6,7 +6,7 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="promptEvaluatorOS">Sorry, the operating system isn't evaluated yet.</label>
+      <label index="promptEvaluatorOS">Sorry, the operating system %TYPO3_OS% isn't evaluated yet.</label>
       <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
