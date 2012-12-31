@@ -7,7 +7,15 @@
   <data type="array">
     <languageKey index="default" type="array">
       <label index="promptEvaluatorOSsupported"><![CDATA[
-        The operating system of your server is %OS%. It is supported.<br />
+        The operating system of your server is %OS%.
+        <ul>
+          <li>
+            You have full support.
+          </li>
+          <li>
+            PDF files can converted to SWF / Flash files automatically.
+          </li>
+        </ul>
         <br />
         If the detection of the operating system isn't proper, please send a mail to
         <a href="http://wildt.at.die-netzmacher.de/" 
