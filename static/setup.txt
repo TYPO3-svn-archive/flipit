@@ -1,3 +1,28 @@
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // INDEX
+  //
+  // includeLibs
+  // tt_content.uploads
+
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // includeLibs
+
+includeLibs {
+  tx_browser_cssstyledcontent = EXT:flipit/lib/typoscript/class.tx_flipit_typoscript.php
+}
+  // includeLibs
+
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // tt_content.uploads
+
 tt_content.uploads {
   20 {
         // Don't outerWrap the thumbnail with <table> by default
@@ -38,7 +63,18 @@ tt_content.uploads {
 )
         }
       }
+      50 = USER
+      50 {
+        userFunc = tx_flipit_typoscript->itemRendering
+        userFunc {
+            // Enable the DRS (you need devlog)
+          drs = TEXT
+          drs {
+            value = {$plugin.tx_flipit.debugging.drs}
+          }
+        }
+      }
     }
   }
 }
-
+  // tt_content.uploads

@@ -7,4 +7,9 @@ plugin.tx_flipit {
   # cat=Flip it! - configuration/enable/199;   type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   configuration.externalLinks = Click me!
 
+  # cat=Flip it! - debugging/enable/100;   type=boolean;   label= DRS: Enable it, if you want prompts for devLog. This is for debugging only!
+  debugging.drs = 0
+  # cat=Flip it! - debugging/enable/199;   type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  debugging.externalLinks = Click me!
+
 }
