@@ -86,7 +86,6 @@ class tx_flipit_typoscript
   {
 
       // Enable the DRS by TypoScript
-    $bool_drs = false;
     if( ! empty ( $conf['userFunc.']['drs'] ) )
     {
       $this->helper_init_drs( );
@@ -98,9 +97,38 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['enabled'];
     $coa_conf = $conf['userFunc.']['enabled.'];
     $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $enabled )
+    {
+      case( 'enabled' ):
+        if( $this->b_drs_flipit )
+        {
+          $prompt = 'Flip it! is enabled.';
+          t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+        }
+        break;
+      case( 'disabled' ):
+        if( $this->b_drs_flipit )
+        {
+          $prompt = 'Flip it! is disabled.';
+          t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+        }
+        return;
+        break;
+      case( 'error' ):
+      default:
+        if( $this->b_drs_flipit )
+        {
+          $prompt = 'The enabling mode of Flip it! isn\'t part of the list: disabled,enabled,ts';
+          t3lib_div::devlog( '[ERROR/DRS] ' . $prompt, $this->extKey, 3 );
+          $prompt = 'Flip it! won\'t run!';
+          t3lib_div::devlog( '[WARN/DRS] ' . $prompt, $this->extKey, 3 );
+        }
+        return $enabled;
+        break;
+    }
 
-    return $enabled;
-//    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
     
   }
   
@@ -117,6 +145,7 @@ class tx_flipit_typoscript
     $this->b_drs_error          = true;
     $this->b_drs_warn           = true;
     $this->b_drs_info           = true;
+    $this->b_drs_flipit         = true;
     $prompt_01 = 'The DRS - Development Reporting System is enabled by TypoScript.';
     $prompt_02 = 'Change it: Please look for userFunc = tx_browser_cssstyledcontent->render_uploads and for userFunc.drs.';
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt_01, $this->extKey, 0 );
