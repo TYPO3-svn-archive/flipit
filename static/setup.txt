@@ -69,9 +69,9 @@ tt_content.uploads {
         userFunc {
             // Enable the DRS (you need devlog)
           drs = {$plugin.tx_flipit.debugging.drs}
-          content = COA
-          content {
-              // Error prompt, if provider isn't in list of providers
+          enabled = COA
+          enabled {
+              // Error prompt, if enabled mode isn't an element of the list disabled,enabled,ts
             10 = TEXT
             10 {
               if {
@@ -104,6 +104,37 @@ tt_content.uploads {
                 </div>
 )
               insertData = 1
+            }
+            20 = COA
+            20 {
+              if {
+                value = disabled,enabled,ts
+                isInList {
+                  field = tx_flipit_enabled
+                }
+              }
+                // disabled || enabled
+              10 = TEXT
+              10 {
+                if {
+                  value = disabled,enabled
+                  isInList {
+                    field = tx_flipit_enabled
+                  }
+                }
+                field = tx_flipit_enabled
+              }
+                // ts
+              20 = TEXT
+              20 {
+                if {
+                  value = ts
+                  equals {
+                    field = tx_flipit_enabled
+                  }
+                }
+                value = {$plugin.tx_flipit.configuration.enable.flipit}
+              }
             }
           }
         }

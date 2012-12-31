@@ -95,11 +95,11 @@ class tx_flipit_typoscript
     
       // RETURN : Flip it! is disabled
 
-    $coa_name = $conf['userFunc.']['content'];
-    $coa_conf = $conf['userFunc.']['content.'];
-    $content  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    $coa_name = $conf['userFunc.']['enabled'];
+    $coa_conf = $conf['userFunc.']['enabled.'];
+    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
 
-    return $content;
+    return $enabled;
 //    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
     
   }
