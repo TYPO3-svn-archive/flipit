@@ -88,7 +88,7 @@ class tx_flipit_typoscript
   */
   public function renderFlipit( $content, $conf )
   {
-
+var_dump( $this->cObj );
       //////////////////////////////////////////////////////////////////////////
       //
       // Enable the DRS by TypoScript
