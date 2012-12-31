@@ -73,40 +73,27 @@ class tx_flipit_typoscript
   
   
  /**
-  * renderFlipit( ): The method enables to link to files of each language at the same time.
-  *                   The method is based on $this->render_uploads_per_language( ). See below.
-  *                   Conditions
-  *                   * userFunc.renderCurrentLanguageOnly has to be true
-  *                   * the table sys_language has to contain one record at least
+  * renderFlipit( ): 
   *
   * @param	string		Content input. Not used, ignore.
   * @param	array		TypoScript configuration
   * @return	string		HTML output.
   * @access public
-  * @version 3.9.8
-  * @since 3.9.3
+  * @version 0.0.1
+  * @since 0.0.1
   */
   public function renderFlipit( $content, $conf )
   {
-var_dump( $this->cObj );
-      //////////////////////////////////////////////////////////////////////////
-      //
-      // Enable the DRS by TypoScript
 
+      // Enable the DRS by TypoScript
     $bool_drs = false;
-    if( isset( $conf['userFunc.']['drs'] ) )
-    {
-      $coa_name               = $conf['userFunc.']['drs'];
-      $coa_conf_userFunc_drs  = $conf['userFunc.']['drs.'];
-      $bool_drs               = intval( $this->cObj->cObjGetSingle( $coa_name, $coa_conf_userFunc_drs, $TSkey='__' ) );
-    }
-    if( $bool_drs )
+    if( ! empty ( $conf['userFunc.']['drs'] ) )
     {
       $this->helper_init_drs( );
     }
       // Enable the DRS by TypoScript
 
-    return '<h1>X</h1>';
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
     
   }
   
