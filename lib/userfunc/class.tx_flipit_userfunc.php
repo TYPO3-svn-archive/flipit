@@ -108,22 +108,43 @@ class tx_flipit_userfunc
 
     $prompt = null;
 
-    $operatingSystem = $this->set_OS( );
-
-    $prompt = $prompt.'
-<div class="typo3-message message-information">
+    $this->set_osStatus( );
+    
+    switch( $this->osStatus )
+    {
+      case( 'supported' ):
+        $prompt = $prompt.'
+<div class="typo3-message message-ok">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOS'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
   </div> 
 </div>';
-      
-    $prompt = $prompt.'
+        break;
+      case( 'unsupported' ):
+        $prompt = $prompt.'
 <div class="typo3-message message-warning">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSnotSupported'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSunsupported'). '
   </div> 
 </div>';
-      
+        break;
+      case( 'undefined' ):
+        $prompt = $prompt.'
+<div class="typo3-message message-warning">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSundefined'). '
+  </div> 
+</div>';
+        break;
+      default:
+        $prompt = $prompt.'
+<div class="typo3-message message-error">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSerror'). '
+  </div> 
+</div>';
+        break;
+    }
     $prompt = str_replace( '%OS%', PHP_OS, $prompt );  
 
     return $prompt;
@@ -252,25 +273,37 @@ class tx_flipit_userfunc
   
   
 /**
- * set_OS( ): 
+ * set_osStatus( ): 
  *
  * @return  void
  * @version 0.0.1
  * @since 0.0.1
  */
-  private function set_OS( )
+  private function set_osStatus( )
   {
-    if ( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ) 
+    switch( true )
     {
-      $operatingSystem = 'Windows';
+      case( stristr( PHP_OS, 'amiga' ) ):
+      case( stristr( PHP_OS, 'android' ) ):
+      case( stristr( PHP_OS, 'chrome' ) ):
+        $this->osStatus = 'unsupported';
+        break;
+      case( stristr( PHP_OS, 'darwin' ) ):
+      case( stristr( PHP_OS, 'iOS' ) ):
+      case( stristr( PHP_OS, 'mac' ) ):
+        $this->osStatus = 'unsupported';
+        break;
+      case( stristr( PHP_OS, 'linux' ) ):
+      case( stristr( PHP_OS, 'unix' ) ):
+        $this->osStatus = 'supported';
+        break;
+      case( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ):
+        $this->osStatus = 'supported';
+        break;
+      default:
+        $this->osStatus = 'undefined';
+        break;
     }
-    
-    if( empty ( $operatingSystem ) )
-    {
-      $operatingSystem = 'Linux/Unix';
-    }
-    
-    return $operatingSystem;
   }
   
   

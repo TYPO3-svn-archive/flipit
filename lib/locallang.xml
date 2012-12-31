@@ -6,8 +6,46 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="promptEvaluatorOS">Your server is using the operatin system %OS%.</label>
-      <label index="promptEvaluatorOSnotSupported">Sorry, but Linux/Unix and Windows is supported. Probably yoi cant use SWF tools on your server. DF files can't converted automatically in this case.</label>
+      <label index="promptEvaluatorOSsupported"><![CDATA[
+        The operating system of your server is %OS%. It is supported.<br />
+        <br />
+        If the detection of the operating system isn't proper, please send a mail to
+        <a href="http://wildt.at.die-netzmacher.de/" 
+          alt="wildt.at.die-netzmacher.de"
+          title="wildt.at.die-netzmacher.de"
+          target="_blank">
+          Dirk Wildt (Die Netzmacher)</a>
+      ]]></label>
+      <label index="promptEvaluatorOSunsupported"><![CDATA[
+        The operating system of your server is %OS%. SWF Tools aren't supported (see prompt below)<br />
+        <br />
+        If the detection of the operating system isn't proper, please send a mail to
+        <a href="http://wildt.at.die-netzmacher.de/" 
+          alt="wildt.at.die-netzmacher.de"
+          title="wildt.at.die-netzmacher.de"
+          target="_blank">
+          Dirk Wildt (Die Netzmacher)</a>
+      ]]></label>
+      <label index="promptEvaluatorOSundefined"><![CDATA[
+        The operating system of your server is %OS%. SWF Tools aren't supported (see prompt below)<br />
+        <br />
+        If the detection of the operating system isn't proper, please send a mail to
+        <a href="http://wildt.at.die-netzmacher.de/" 
+          alt="wildt.at.die-netzmacher.de"
+          title="wildt.at.die-netzmacher.de"
+          target="_blank">
+          Dirk Wildt (Die Netzmacher)</a>
+      ]]></label>
+      <label index="promptEvaluatorOSerror"><![CDATA[
+        The operating system of your server is %OS%. SWF Tools aren't supported (see prompt below)<br />
+        <br />
+        If the detection of the operating system isn't proper, please send a mail to
+        <a href="http://wildt.at.die-netzmacher.de/" 
+          alt="wildt.at.die-netzmacher.de"
+          title="wildt.at.die-netzmacher.de"
+          target="_blank">
+          Dirk Wildt (Die Netzmacher)</a>
+      ]]></label>
       <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
