@@ -115,13 +115,11 @@ class tx_flipit_typoscript
   */
   private function init( $conf )
   {
-
-      // Enable the DRS by TypoScript
-    if( ! empty ( $conf['userFunc.']['drs'] ) )
-    {
-      $this->helper_init_drs( );
-    }
-      // Enable the DRS by TypoScript
+      // Init extension configuration array
+    $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
+    
+      // Init the DRS
+    $this->initDrs( );
     
       // RETURN : Flip it! is disabled or there is an error
     $arr_return = $this->initEnable( $conf );
@@ -232,21 +230,38 @@ class tx_flipit_typoscript
   
   
 /**
- * helper_init_drs( ): Init the DRS - Development Reportinmg System
+ * initDrs( ): Init the DRS - Development Reportinmg System
  *
  * @return	void
  * @access private
  */
-  private function helper_init_drs( )
+  private function initDrs( )
   {
-    $this->b_drs_error          = true;
-    $this->b_drs_warn           = true;
-    $this->b_drs_info           = true;
-    $this->b_drs_flipit         = true;
-    $prompt_01 = 'The DRS - Development Reporting System is enabled by TypoScript.';
-    $prompt_02 = 'Change it: Please look for userFunc = tx_flipit_typoscript->renderFlipit and for userFunc.drs.';
-    t3lib_div::devlog( '[INFO/DRS] ' . $prompt_01, $this->extKey, 0 );
-    t3lib_div::devlog( '[HELP/DRS] ' . $prompt_02, $this->extKey, 1 );
+    
+      // Enable the DRS by TypoScript
+    switch( $this->arr_extConf['debuggingDrs'] )
+    {
+      case( 'Disabled' ):
+        return;
+        break;
+      case( 'Enabled (for debugging only!)' ):
+          // Follow the workflow
+        break;
+      default:
+        $prompt = 'Error: debuggingDrs is undefined.<br />
+          value is ' . $this->arr_extConf['debuggingDrs'] . '<br />
+          <br />
+          ' . __METHOD__ . ' line(' . __LINE__. ')';
+        die( $prompt );
+    }
+
+    $this->b_drs_error  = true;
+    $this->b_drs_warn   = true;
+    $this->b_drs_info   = true;
+    $this->b_drs_ok     = true;
+    $this->b_drs_flipit = true;
+    $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
+    t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
 
 

@@ -36,8 +36,6 @@ tt_content.uploads {
       50 {
         userFunc = tx_flipit_typoscript->renderFlipit
         userFunc {
-            // Enable the DRS (you need devlog)
-          drs = {$plugin.tx_flipit.debugging.drs}
             // Checks, if Flip it! is enabled
           enabled = COA
           enabled {
