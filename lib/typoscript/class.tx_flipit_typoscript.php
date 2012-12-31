@@ -77,12 +77,44 @@ class tx_flipit_typoscript
   *
   * @param	string		Content input. Not used, ignore.
   * @param	array		TypoScript configuration
-  * @return	string		HTML output.
+  * @return	mixed		HTML output.
   * @access public
   * @version 0.0.1
   * @since 0.0.1
   */
   public function renderFlipit( $content, $conf )
+  {
+
+      // RETURN : Flip it! is disabled
+    $arr_return = $this->init( $conf );
+    switch( $arr_return['return'] )
+    {
+      case( true ):
+        return $arr_return['content'];
+        break;
+      case( false ):
+      default:
+          // Follow the workflow
+        break;
+      
+    }
+
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+    
+  }
+
+  
+  
+ /**
+  * init( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access public
+  * @version 0.0.1
+  * @since 0.0.1
+  */
+  private function init( $conf )
   {
 
       // Enable the DRS by TypoScript
@@ -93,7 +125,49 @@ class tx_flipit_typoscript
       // Enable the DRS by TypoScript
     
       // RETURN : Flip it! is disabled
+    $arr_return = $this->initEnable( $conf );
+    switch( $arr_return['return'] )
+    {
+      case( true ):
+        return $arr_return;
+        break;
+      case( false ):
+      default:
+          // Follow the workflow
+        break;
+      
+    }
 
+  }
+
+  
+  
+ /**
+  * initEnable( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access public
+  * @version 0.0.1
+  * @since 0.0.1
+  */
+  private function initEnable( $conf )
+  {
+
+    $arr_return = array( );
+    $arr_return['return'] = false;
+    
+    switch( $arr_return['return'] )
+    {
+      case( true ):
+        return $arr_return['content'];
+        break;
+      case( false ):
+      default:
+          // Follow the workflow
+        break;
+      
+    }
     $coa_name = $conf['userFunc.']['enabled'];
     $coa_conf = $conf['userFunc.']['enabled.'];
     $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
@@ -106,6 +180,7 @@ class tx_flipit_typoscript
           $prompt = 'Flip it! is enabled.';
           t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         }
+        $arr_return['return'] = false;
         break;
       case( 'disabled' ):
         if( $this->b_drs_flipit )
@@ -113,7 +188,7 @@ class tx_flipit_typoscript
           $prompt = 'Flip it! is disabled.';
           t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         }
-        return;
+        $arr_return['return'] = true;
         break;
       case( 'error' ):
       default:
@@ -124,11 +199,12 @@ class tx_flipit_typoscript
           $prompt = 'Flip it! won\'t run!';
           t3lib_div::devlog( '[WARN/DRS] ' . $prompt, $this->extKey, 3 );
         }
-        return $enabled;
+        $arr_return['return']   = true;
+        $arr_return['content']  = $enabled;
         break;
     }
 
-    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+    return $arr_return;
     
   }
   
@@ -147,7 +223,7 @@ class tx_flipit_typoscript
     $this->b_drs_info           = true;
     $this->b_drs_flipit         = true;
     $prompt_01 = 'The DRS - Development Reporting System is enabled by TypoScript.';
-    $prompt_02 = 'Change it: Please look for userFunc = tx_browser_cssstyledcontent->render_uploads and for userFunc.drs.';
+    $prompt_02 = 'Change it: Please look for userFunc = tx_flipit_typoscript->renderFlipit and for userFunc.drs.';
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt_01, $this->extKey, 0 );
     t3lib_div::devlog( '[HELP/DRS] ' . $prompt_02, $this->extKey, 1 );
   }
