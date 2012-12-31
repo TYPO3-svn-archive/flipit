@@ -9,10 +9,10 @@
       <label index="promptEvaluatorOSsupported"><![CDATA[
         The operating system of your server is %OS%.
         <ul>
-          <li>
+          <li style="margin-bottom:0;">
             You have full support.
           </li>
-          <li>
+          <li style="margin-bottom:0;">
             PDF files can converted to SWF / Flash files automatically.
           </li>
         </ul>
