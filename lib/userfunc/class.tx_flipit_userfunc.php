@@ -108,7 +108,7 @@ class tx_flipit_userfunc
 
     $prompt = null;
 
-    $TYPO3_OS = $this->set_TYPO3Os( );
+    $operatingSystem = $this->set_OS( );
 
     $prompt = $prompt.'
 <div class="typo3-message message-warning">
@@ -117,7 +117,7 @@ class tx_flipit_userfunc
   </div> 
 </div>';
       
-    $prompt = str_replace( '%TYPO3_OS%', $TYPO3_OS, $prompt );  
+    $prompt = str_replace( '%TYPO3_OS%', $operatingSystem, $prompt );  
 
     return $prompt;
   }
@@ -245,15 +245,25 @@ class tx_flipit_userfunc
   
   
 /**
- * set_TYPO3Os( ): 
+ * set_OS( ): 
  *
  * @return  void
  * @version 0.0.1
  * @since 0.0.1
  */
-  private function set_TYPO3Os( )
+  private function set_OS( )
   {
-    return TYPO3_OS;
+    if ( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ) 
+    {
+      $operatingSystem = 'Windows';
+    }
+    
+    if( empty ( $operatingSystem ) )
+    {
+      $operatingSystem = 'Linux/Unix';
+    }
+    
+    return $operatingSystem;
   }
   
   
