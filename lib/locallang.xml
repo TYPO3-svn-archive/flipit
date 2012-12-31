@@ -25,8 +25,20 @@
           Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorOSunsupported"><![CDATA[
-        The operating system of your server is %OS%. SWF Tools aren't supported (see prompt below)<br />
-        <br />
+        The operating system of your server is %OS%.
+        <ul>
+          <li style="margin-bottom:0;">
+            PDF files can't converted to SWF / Flash files automatically.
+          </li>
+          <li style="margin-bottom:0;">
+            You have to convert PDF files to SWF / Flash files manually. 
+            <a href="http://wildt.at.die-netzmacher.de/" 
+              alt="Convert PDF files to SWF / Flash files manually"
+              title="Convert PDF files to SWF / Flash files manually"
+              target="_blank">
+              More Information</a>
+          </li>
+        </ul>
         If the detection of the operating system isn't proper, please send a mail to
         <a href="http://wildt.at.die-netzmacher.de/" 
           alt="wildt.at.die-netzmacher.de"
@@ -35,7 +47,20 @@
           Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorOSundefined"><![CDATA[
-        The operating system of your server is %OS%. SWF Tools aren't supported (see prompt below)<br />
+        The operating system of your server is %OS%.
+        <ul>
+          <li style="margin-bottom:0;">
+            PDF files can't converted to SWF / Flash files automatically.
+          </li>
+          <li style="margin-bottom:0;">
+            You have to convert PDF files to SWF / Flash files manually. 
+            <a href="http://wildt.at.die-netzmacher.de/" 
+              alt="Convert PDF files to SWF / Flash files manually"
+              title="Convert PDF files to SWF / Flash files manually"
+              target="_blank">
+              More Information</a>
+          </li>
+        </ul>
         <br />
         If the detection of the operating system isn't proper, please send a mail to
         <a href="http://wildt.at.die-netzmacher.de/" 
@@ -45,7 +70,20 @@
           Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorOSerror"><![CDATA[
-        The operating system of your server is %OS%. SWF Tools aren't supported (see prompt below)<br />
+        The operating system of your server is %OS%.
+        <ul>
+          <li style="margin-bottom:0;">
+            PDF files can't converted to SWF / Flash files automatically.
+          </li>
+          <li style="margin-bottom:0;">
+            You have to convert PDF files to SWF / Flash files manually. 
+            <a href="http://wildt.at.die-netzmacher.de/" 
+              alt="Convert PDF files to SWF / Flash files manually"
+              title="Convert PDF files to SWF / Flash files manually"
+              target="_blank">
+              More Information</a>
+          </li>
+        </ul>
         <br />
         If the detection of the operating system isn't proper, please send a mail to
         <a href="http://wildt.at.die-netzmacher.de/" 
