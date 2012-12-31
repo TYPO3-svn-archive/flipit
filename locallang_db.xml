@@ -7,7 +7,7 @@
   <data type="array">
     <languageKey index="default" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_enabled">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_enabled">Use Flip it?</label>
       <label index="tcaLabel_tx_flipit_enabled_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_enabled_item_enabled">enabled</label>
       <label index="tcaLabel_tx_flipit_enabled_item_ts">Take value from the TypoScript Constant Editor (default)!</label>
@@ -19,7 +19,7 @@
     </languageKey>
     <languageKey index="de" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_enabled">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_enabled">Flip it! benutzen?</label>
       <label index="tcaLabel_tx_flipit_enabled_item_disabled">deaktiviert</label>
       <label index="tcaLabel_tx_flipit_enabled_item_enabled">aktiviert</label>
       <label index="tcaLabel_tx_flipit_enabled_item_ts">Nimm den Wert von TypoScript (Standard)!</label>
