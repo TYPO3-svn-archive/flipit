@@ -117,7 +117,7 @@ class tx_flipit_userfunc
   </div> 
 </div>';
       
-    $prompt = str_replace( '%TYPO3_OS%', $operatingSystem, $prompt );  
+    $prompt = str_replace( '%OS%', PHP_OS, $prompt );  
 
     return $prompt;
   }
