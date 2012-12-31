@@ -111,9 +111,16 @@ class tx_flipit_userfunc
     $operatingSystem = $this->set_OS( );
 
     $prompt = $prompt.'
-<div class="typo3-message message-warning">
+<div class="typo3-message message-info">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOS'). '
+  </div> 
+</div>';
+      
+    $prompt = $prompt.'
+<div class="typo3-message message-warning">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSnotSupported'). '
   </div> 
 </div>';
       

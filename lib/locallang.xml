@@ -6,7 +6,8 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="promptEvaluatorOS">Sorry, the operating system %OS% isn't evaluated yet.</label>
+      <label index="promptEvaluatorOS">Your server is using the operatin system %OS%.</label>
+      <label index="promptEvaluatorOSnotSupported">Sorry, but Linux/Unix and Windows is supported. Probably yoi cant use SWF tools on your server. DF files can't converted automatically in this case.</label>
       <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
