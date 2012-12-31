@@ -69,8 +69,42 @@ tt_content.uploads {
         userFunc {
             // Enable the DRS (you need devlog)
           drs = {$plugin.tx_flipit.debugging.drs}
-          enabled = COA
-          enabled {
+          flipit = COA
+          flipit {
+              // Error prompt, if provider isn't in list of providers
+            10 = TEXT
+            10 {
+              if {
+                value = disabled,enabled,ts
+                isInList {
+                  field = tx_flipit_enabled
+                }
+                negate = 1
+              }
+              value (
+                <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+                  <h1>TypoScript Error</h1>
+                  <p>
+                    '{field:tx_flipit_enabled}' isn't any element of the list: disabled,enabled,ts
+                  </p>
+                  <p>
+                    Browser - TYPO3 without PHP
+                  </p>
+                </div>
+)
+              lang.de (
+                <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+                  <h1>TypoScript Fehler</h1>
+                  <p>
+                    '{field:tx_flipit_enabled}' ist kein Element der Liste: disabled,enabled,ts
+                  </p>
+                  <p>
+                    Browser - TYPO3 ohne PHP
+                  </p>
+                </div>
+)
+              insertData = 1
+            }
           }
         }
       }
