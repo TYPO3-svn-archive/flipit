@@ -157,18 +157,18 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
     'items' => array(
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_disabled',
-        '0',
+        'disabled',
       ),
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_enabled',
-        '1',
+        'enabled',
       ),
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_ts',
-        '2',
+        'ts',
       ),
     ),
-    'default' => '2',
+    'default' => 'ts',
   ),
 );
 $TCA['tt_content']['columns']['tx_flipit_swf_files'] = array (
@@ -194,18 +194,18 @@ $TCA['tt_content']['columns']['tx_flipit_lightbox'] = array (
     'items' => array(
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_disabled',
-        '0',
+        'disabled',
       ),
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_enabled',
-        '1',
+        'enabled',
       ),
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_lightbox_item_ts',
-        '2',
+        'ts',
       ),
     ),
-    'default' => '2',
+    'default' => 'ts',
   ),
 );
   // Add fields to columns

@@ -92,6 +92,8 @@ class tx_flipit_typoscript
       $this->helper_init_drs( );
     }
       // Enable the DRS by TypoScript
+    
+      // RETURN : Flip it! is disabled
 
     return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
     
