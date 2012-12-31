@@ -94,6 +94,26 @@ class tx_flipit_typoscript
       return $arr_return['content'];
     }
       // IF return  : return with an error prompt
+    
+      // SWF
+    if( $this->b_drs_todo )
+    {
+      $prompt = 'If there isn\'t any SWF file: render it!';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+
+      $prompt = 'If there isn\'t any SWF file and any SWF tools, prompt a help message and return!';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+
+      $prompt = 'If there are SWF files: are they later than the PDF file? If not, render it!';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+
+      $prompt = 'If there are SWF files without the uid as prefix, prefix all SWF files with the uid!';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+
+      $prompt = 'If SWF files are rendered, render the XML file!';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+    }
+    
 
       // Content
     return $this->content( $conf );
@@ -260,6 +280,7 @@ class tx_flipit_typoscript
     $this->b_drs_info   = true;
     $this->b_drs_ok     = true;
     $this->b_drs_flipit = true;
+    $this->b_drs_todo   = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
