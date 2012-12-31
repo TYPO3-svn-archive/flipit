@@ -85,19 +85,18 @@ class tx_flipit_typoscript
   public function renderFlipit( $content, $conf )
   {
 
-      // RETURN : Flip it! is disabled
+      // Init
     $arr_return = $this->init( $conf );
-    switch( $arr_return['return'] )
+
+      // IF return  : return with an error prompt
+    if( $arr_return['return'] )
     {
-      case( true ):
-        return $arr_return['content'];
-        break;
-      case( false ):
-      default:
-          // Follow the workflow
-        break;
-      
+      return $arr_return['content'];
     }
+      // IF return  : return with an error prompt
+
+      // Content
+    return $this->content( $conf );
 
     return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
     
@@ -124,20 +123,15 @@ class tx_flipit_typoscript
     }
       // Enable the DRS by TypoScript
     
-      // RETURN : Flip it! is disabled
+      // RETURN : Flip it! is disabled or there is an error
     $arr_return = $this->initEnable( $conf );
-    switch( $arr_return['return'] )
+    if( $arr_return['return'] )
     {
-      case( true ):
-        return $arr_return;
-        break;
-      case( false ):
-      default:
-          // Follow the workflow
-        break;
-      
+      return $arr_return;
     }
+      // RETURN : Flip it! is disabled or there is an error
 
+    return;
   }
 
   
@@ -157,17 +151,6 @@ class tx_flipit_typoscript
     $arr_return = array( );
     $arr_return['return'] = false;
     
-    switch( $arr_return['return'] )
-    {
-      case( true ):
-        return $arr_return['content'];
-        break;
-      case( false ):
-      default:
-          // Follow the workflow
-        break;
-      
-    }
     $coa_name = $conf['userFunc.']['enabled'];
     $coa_conf = $conf['userFunc.']['enabled.'];
     $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
@@ -205,6 +188,44 @@ class tx_flipit_typoscript
     }
 
     return $arr_return;
+    
+  }
+
+  
+  
+ /**
+  * content( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access public
+  * @version 0.0.1
+  * @since 0.0.1
+  */
+  private function content( $conf )
+  {
+
+    $coa_name = $conf['userFunc.']['content'];
+    $coa_conf = $conf['userFunc.']['content.'];
+    $content  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    
+    if( $this->b_drs_flipit )
+    {
+      switch( $content )
+      {
+        case( false ):
+          $prompt = 'Flip it! is delivered without content.';
+          t3lib_div::devlog( '[WARN/DRS] ' . $prompt, $this->extKey, 2 );
+          break;
+        case( true ):
+        default:
+          $prompt = 'Flip it! is delivered with content.';
+          t3lib_div::devlog( '[OK/DRS] ' . $prompt, $this->extKey, -1 );
+          break;
+      }
+    }
+
+    return $content;
     
   }
   
