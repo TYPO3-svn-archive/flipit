@@ -10,6 +10,8 @@ pageflip_v213_dynamic_v2_source
   * not known
 + Download
   * http://...
++ Supported features
+  * Includes files while runtime
 + Non supported features
   * Navigation bar
 
@@ -24,6 +26,7 @@ pageflip_v225
   * http://pageflip.hu/pageflip2/pageflip_v225_source.zip
 + Non supported features
   * Navigation bar
+  * Doesn't include files while runtime
 
 
 FlashPageFlip_FreeVersion
@@ -36,3 +39,7 @@ FlashPageFlip_FreeVersion
   * http://flashpageflip.com/downloads/DownloadFree.asp
 + Features
   * Navigation bar among others
++ Non supported features
+  * Doesn't include files while runtime
++ Advertisement
+  * Visible URL flashpageflip.com
