@@ -71,27 +71,20 @@
           Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorPhpSystemIsFalse"><![CDATA[
-        The PHP function system doesn\'t exist.<br />
+        The PHP function system doesn't exist.<br />
         <br />
         Please check your PHP configuration (php.ini):
         <ul>
           <li style="margin-bottom:0;">
-            The function system doesn\'t be an element of the ini property disable_functions.
+            The function system must not be an element of the ini property disable_functions.
           </li>
           <li style="margin-bottom:0;">
-            If safe_mode is on, the safe_mode_exex_dir must contain the function system.
+            If safe_mode is on, the safe_mode_exec_dir must contain the function system.
           </li>
         </ul>
-        <br />
-        If the detection of the operating system isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
-          alt="wildt.at.die-netzmacher.de"
-          title="wildt.at.die-netzmacher.de"
-          target="_blank">
-          Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
-      <label index="promptEvaluatorSWFtools">Please fix the bug. SWFTOOLS won't run without fixing.</label>
-      <label index="promptEvaluatorSWFtoolsBugfix">Sorry, SWF tools aren't evaluated yet.</label>
+      <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
+      <label index="promptEvaluatorSWFtoolsBugfix">Please fix the bug. SWFTOOLS won't run without fixing.</label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
       <label index="promptEvaluatorTYPO3version4006000greater">Your are using a TYPO3 version greater than 4.6. Flip it! isn't tested in this version. May be you will have unwanted effects. Try it!</label>

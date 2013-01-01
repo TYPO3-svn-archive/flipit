@@ -170,7 +170,7 @@ class tx_flipit_userfunc
    * promptEvaluatorSWFtools(): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML
-   * @version 0.0.1
+   * @version 0.0.2
    * @since   0.0.1
    */
   function promptEvaluatorSWFtools()
@@ -190,7 +190,7 @@ class tx_flipit_userfunc
       $prompt = $prompt.'
 <div class="typo3-message message-error">
   <div class="message-body">
-    ' . $arr_return['error']['prompt'] . ' XXX
+    ' . $arr_return['error']['prompt'] . '
   </div> 
 </div>
 <div class="typo3-message message-warning">
