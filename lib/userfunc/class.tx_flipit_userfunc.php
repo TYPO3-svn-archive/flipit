@@ -274,6 +274,13 @@ class tx_flipit_userfunc
  */
   private function set_osStatus( )
   {
+      // RETUN  : $this->osStatus was set before
+    if( ! ( $this->osStatus === null ) )
+    {
+      return;
+    }
+      // RETUN  : $this->osStatus was set before
+      
     switch( true )
     {
       case( stristr( PHP_OS, 'amiga' ) ):
