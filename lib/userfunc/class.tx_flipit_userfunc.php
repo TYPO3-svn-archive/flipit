@@ -185,6 +185,8 @@ class tx_flipit_userfunc
 
     $prompt = null;
 
+    $this->set_osStatus( );
+    
     $arr_return = $this->set_swfToolsStatus( );
     
     if( $arr_return['error']['status'] )
@@ -405,11 +407,11 @@ class tx_flipit_userfunc
 
     $lines = $arr_return['data']['lines'];
     
-//    if( empty ( $lines ) )
-//    {
-//      $this->swfToolsStatus = 'notInstalled';
-//      return $arr_return;
-//    }
+    if( empty ( $lines ) )
+    {
+      $this->swfToolsStatus = 'notInstalled';
+      return $arr_return;
+    }
       
     $this->swfToolsStatus = 'installed';
     return $arr_return;
