@@ -64,11 +64,18 @@ class tx_flipit_typoscript
   public $prefixId = 'tx_flipit_typoscript';
  
  /**
-  * Configuration by the extension manager
+  * Path to this script
   *
   * @var string
   */
   public $scriptRelPath = 'lib/typoscript/class.tx_flipit_typoscript.php';
+  
+ /**
+  * Current TypoScript configuration
+  *
+  * @var array
+  */
+  private $conf;
 
   
   
@@ -84,6 +91,9 @@ class tx_flipit_typoscript
   */
   public function renderFlipit( $content, $conf )
   {
+      // Current TypoScript configuration
+    $this->conf = $conf;
+    
       // Init
     $arr_return = $this->init( $conf );
 
@@ -104,7 +114,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * renderFlipit( ): 
+  * flipit( ): 
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
@@ -112,24 +122,63 @@ class tx_flipit_typoscript
   * @version  0.0.2
   * @since    0.0.2
   */
-  public function flipit( $conf )
+  private function flipit( )
+  {
+      // Generate and check SWF
+    $this->flipitSwf( );   
+      // Generate and check XML
+    $this->flipitXml( );   
+  }
+
+  
+  
+ /**
+  * flipitSwf( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function flipitSwf( )
   {
     if( $this->b_drs_todo )
     {    
       $prompt = 'If there isn\'t any SWF file: render it!';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
 
       $prompt = 'If there isn\'t any SWF file and any SWF tools, prompt a help message and return!';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
 
       $prompt = 'If there are SWF files: are they later than the PDF file? If not, render it!';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
 
       $prompt = 'If there are SWF files without the uid as prefix, prefix all SWF files with the uid!';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
 
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+    
+  }
+
+  
+  
+ /**
+  * flipitXml( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function flipitXml( )
+  {
+    if( $this->b_drs_todo )
+    {    
       $prompt = 'If SWF files are rendered, render the XML file!';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
     }
 
     return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
@@ -141,13 +190,12 @@ class tx_flipit_typoscript
  /**
   * init( ): 
   *
-  * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
-  * @access public
+  * @access private
   * @version 0.0.1
   * @since 0.0.1
   */
-  private function init( $conf )
+  private function init( )
   {
       // Init extension configuration array
     $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
@@ -156,7 +204,7 @@ class tx_flipit_typoscript
     $this->initDrs( );
     
       // RETURN : Flip it! is disabled or there is an error
-    $arr_return = $this->initEnable( $conf );
+    $arr_return = $this->initEnable( );
     if( $arr_return['return'] )
     {
       return $arr_return;
@@ -176,12 +224,13 @@ class tx_flipit_typoscript
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
-  * @access public
+  * @access private
   * @version 0.0.1
   * @since 0.0.1
   */
-  private function initEnable( $conf )
+  private function initEnable( )
   {
+    $conf = $this->conf;
 
     $arr_return = array( );
     $arr_return['return'] = false;
@@ -233,12 +282,13 @@ class tx_flipit_typoscript
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
-  * @access public
+  * @access private
   * @version 0.0.1
   * @since 0.0.1
   */
-  private function content( $conf )
+  private function content( )
   {
+    $conf = $this->conf;
 
     $coa_name = $conf['userFunc.']['content'];
     $coa_conf = $conf['userFunc.']['content.'];
@@ -328,7 +378,9 @@ class tx_flipit_typoscript
     $this->b_drs_info   = true;
     $this->b_drs_ok     = true;
     $this->b_drs_flipit = true;
+    $this->b_drs_swf    = true;
     $this->b_drs_todo   = true;
+    $this->b_drs_xml    = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
