@@ -70,16 +70,16 @@
           target="_blank">
           Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
-      <label index="promptEvaluatorPhpSystemIsFalse"><![CDATA[
-        The PHP function system doesn't exist.<br />
+      <label index="promptEvaluatorPhpExecIsFalse"><![CDATA[
+        The PHP function exec doesn't exist.<br />
         <br />
         Please check your PHP configuration (php.ini):
         <ul>
           <li style="margin-bottom:0;">
-            The function system must not be an element of the ini property disable_functions.
+            The function exec must not be an element of the ini property disable_functions.
           </li>
           <li style="margin-bottom:0;">
-            If safe_mode is on, the safe_mode_exec_dir must contain the function system.
+            If safe_mode is on, the safe_mode_exec_dir must contain the function exec.
           </li>
         </ul>
       ]]></label>
