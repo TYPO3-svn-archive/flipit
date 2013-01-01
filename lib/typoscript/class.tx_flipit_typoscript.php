@@ -99,16 +99,7 @@ class tx_flipit_typoscript
     
       // SWF
     if( $this->b_drs_todo )
-    {
-      $prompt = 'OS: ' . $this->objUserfunc->os;
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
-      
-      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
-      
-      $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
-      
+    {    
       $prompt = 'If there isn\'t any SWF file: render it!';
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
 
@@ -190,7 +181,7 @@ class tx_flipit_typoscript
         if( $this->b_drs_flipit )
         {
           $prompt = 'Flip it! is enabled.';
-          t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+          t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
         $arr_return['return'] = false;
         break;
@@ -198,7 +189,7 @@ class tx_flipit_typoscript
         if( $this->b_drs_flipit )
         {
           $prompt = 'Flip it! is disabled.';
-          t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+          t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
         $arr_return['return'] = true;
         break;
@@ -207,9 +198,9 @@ class tx_flipit_typoscript
         if( $this->b_drs_flipit )
         {
           $prompt = 'The enabling mode of Flip it! isn\'t part of the list: disabled,enabled,ts';
-          t3lib_div::devlog( '[ERROR/DRS] ' . $prompt, $this->extKey, 3 );
+          t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
           $prompt = 'Flip it! won\'t run!';
-          t3lib_div::devlog( '[WARN/DRS] ' . $prompt, $this->extKey, 3 );
+          t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 3 );
         }
         $arr_return['return']   = true;
         $arr_return['content']  = $enabled;
@@ -244,12 +235,12 @@ class tx_flipit_typoscript
       {
         case( false ):
           $prompt = 'Flip it! is delivered without content.';
-          t3lib_div::devlog( '[WARN/DRS] ' . $prompt, $this->extKey, 2 );
+          t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
           break;
         case( true ):
         default:
           $prompt = 'Flip it! is delivered with content.';
-          t3lib_div::devlog( '[OK/DRS] ' . $prompt, $this->extKey, -1 );
+          t3lib_div::devlog( '[OK/FLIPIT] ' . $prompt, $this->extKey, -1 );
           break;
       }
     }
@@ -280,11 +271,11 @@ class tx_flipit_typoscript
     if( $this->b_drs_flipit )
     {
       $prompt = 'OS: ' . $this->objUserfunc->os;
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 0 );    
+      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );    
     }
       // DRS
   }
