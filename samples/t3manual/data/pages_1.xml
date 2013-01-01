@@ -1,0 +1,58 @@
+<content  
+  width           = '826' 
+  height          = '1168' 
+  buttoncolor     = 'EC921A' 
+  panelcolor      = 'EC921A' 
+  textcolor       = 'ffffff' 
+  backgroundcolor = 'EC921A' 
+  hcover          = 'false' 
+  gotolabel       = 'Gehe zu Seite'
+  
+  width="300" 
+  height="400" 
+  hcover="false" 
+  transparency="true" 
+  prepage="data/pages/23.swf"
+  >
+  <page src='data/pages/1.swf' preLoad = 'true'/>
+  <page src='data/pages/2.swf'/>
+  <page src='data/pages/3.swf'/>
+  <page src='data/pages/4.swf'/>
+  <page src='data/pages/5.swf'/>
+  <page src='data/pages/6.swf'/>
+  <page src='data/pages/7.swf'/>
+  <page src='data/pages/8.swf'/>
+  <page src='data/pages/9.swf'/>
+  <page src='data/pages/10.swf'/>
+  <page src='data/pages/11.swf'/>
+  <page src='data/pages/12.swf'/>
+  <page src='data/pages/13.swf'/>
+  <page src='data/pages/14.swf'/>
+  <page src='data/pages/15.swf'/>
+  <page src='data/pages/16.swf'/>
+  <page src='data/pages/17.swf'/>
+  <page src='data/pages/18.swf'/>
+  <page src='data/pages/19.swf'/>
+  <page src='data/pages/20.swf'/>
+  <page src='data/pages/21.swf'/>
+  <page src='data/pages/22.swf'/>
+  <page src='data/pages/23.swf'/>
+  <page src='data/pages/24.swf'/>
+  <page src='data/pages/25.swf'/>
+  <page src='data/pages/26.swf'/>
+  <page src='data/pages/27.swf'/>
+  <page src='data/pages/28.swf'/>
+  <page src='data/pages/29.swf'/>
+  <page src='data/pages/30.swf'/>
+  <page src='data/pages/31.swf'/>
+  <page src='data/pages/32.swf'/>
+  <page src='data/pages/33.swf'/>
+  <page src='data/pages/34.swf'/>
+  <page src='data/pages/35.swf'/>
+  <page src='data/pages/36.swf'/>
+  <page src='data/pages/37.swf'/>
+  <page src='data/pages/38.swf'/>
+  <page src='data/pages/39.swf'/>
+  <page src='data/pages/40.swf'/>
+  <page src='data/pages/41.swf'/>
+</content>
