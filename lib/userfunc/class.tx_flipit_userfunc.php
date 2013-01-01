@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
+*  (c) 2012-2013 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,7 +28,7 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    flipit
-* @version  0.0.1
+* @version  0.0.2
 * @since    0.0.1
 */
 
@@ -62,6 +62,27 @@ class tx_flipit_userfunc
   * @var boolean
   */
   private $bool_accessByIP;
+  
+ /**
+  * Status of operating system: supported, unsupported, undefined
+  *
+  * @var string
+  */
+  private $osStatus = null;
+
+ /**
+  * Status of SWFTOOLS
+  *
+  * @var string
+  */
+  private $swfToolsStatus = null;
+ /**
+  * Version of TYPO3 (sample: 4.7.7 -> 4007007)
+  *
+  * @var string
+  */
+  private $typo3Version = null;
+
 
 
 
@@ -106,10 +127,18 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
+    $prompt = $this->set_osStatus( );
+        $prompt = $prompt.'
+<div class="typo3-message message-ok">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
+  </div> 
+</div>';
+
+    return $prompt;
+    
     $prompt = null;
 
-    $this->set_osStatus( );
-    
     switch( $this->osStatus )
     {
       case( 'supported' ):
@@ -160,9 +189,11 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-      $prompt = null;
+    $this->set_swfToolsStatus( );
+    
+    $prompt = null;
 
-      $prompt = $prompt.'
+    $prompt = $prompt.'
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools'). '
@@ -269,13 +300,76 @@ class tx_flipit_userfunc
  * set_osStatus( ): 
  *
  * @return  void
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.0.2
+ * @since 0.0.2
  */
   private function set_osStatus( )
   {
       // RETUN  : $this->osStatus was set before
     if( ! ( $this->osStatus === null ) )
+    {
+      return;
+    }
+      // RETUN  : $this->osStatus was set before
+
+    $arr_return = zz_system( '/usr/local/bin/pdf2swf --version' );
+
+    if( $arr_return['error'] )
+    {
+      $prompt = '
+        <pre>
+          ' . $arr_return['error'] . '
+        </pre>
+        ';
+      return $prompt;
+    }
+    
+    $prompt = '
+      <pre>
+        ' . $arr_return['data']['retval'] . '
+      </pre>
+      ';
+    return $prompt;
+    
+    
+    switch( true )
+    {
+      case( stristr( PHP_OS, 'amiga' ) ):
+      case( stristr( PHP_OS, 'android' ) ):
+      case( stristr( PHP_OS, 'chrome' ) ):
+        $this->osStatus = 'unsupported';
+        break;
+      case( stristr( PHP_OS, 'darwin' ) ):
+      case( stristr( PHP_OS, 'iOS' ) ):
+      case( stristr( PHP_OS, 'mac' ) ):
+        $this->osStatus = 'unsupported';
+        break;
+      case( stristr( PHP_OS, 'linux' ) ):
+      case( stristr( PHP_OS, 'unix' ) ):
+        $this->osStatus = 'supported';
+        break;
+      case( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ):
+        $this->osStatus = 'supported';
+        break;
+      default:
+        $this->osStatus = 'undefined';
+        break;
+    }
+  }
+  
+  
+  
+/**
+ * set_swfToolsStatus( ): 
+ *
+ * @return  void
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+  private function set_swfToolsStatus( )
+  {
+      // RETUN  : $this->osStatus was set before
+    if( ! ( $this->swfToolsStatus === null ) )
     {
       return;
     }
@@ -350,6 +444,36 @@ class tx_flipit_userfunc
           ';
       die ( $prompt );
     }
+  }
+  
+  
+  
+/**
+ * zz_system( ): 
+ *
+ * @return  array
+ * @version 0.0.2
+ * @since 0.0.2
+ */
+  private function zz_system( $exec )
+  {
+    $arr_return = null;
+    
+      // RETURN : function system doesn't exist
+    if( ! ( function_exists('system') ) )
+    {
+      $arr_return['error'] = 'function system doesn\'t exist. Please check your PHP configuration (php.ini).
+        system doesn\'t be an element of the ini property disable_functions. If safe_mode is on, the
+        safe_mode_exex_dir must contain the function system.';
+      return $arr_return;
+    }
+      // RETURN : function system doesn't exist
+    
+    $last_line = system( $exec, $retval);
+    $arr_return['data']['last_line']  = $last_line;
+    $arr_return['data']['retval']     = $retval;
+    
+    return $arr_return;
   }
 
 
