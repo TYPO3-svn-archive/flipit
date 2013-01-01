@@ -127,15 +127,7 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-    $prompt = $this->set_osStatus( );
-        $prompt = $prompt.'
-<div class="typo3-message message-ok">
-  <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
-  </div> 
-</div>';
-
-    return $prompt;
+    $this->set_osStatus( );
     
     $prompt = null;
 
@@ -189,8 +181,25 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-    $this->set_swfToolsStatus( );
+    $arr_return = $this->set_swfToolsStatus( );
     
+    if( $arr_return['error'] )
+    {
+      $prompt = '
+        <pre>
+          ' . $arr_return['error'] . '
+        </pre>
+        ';
+      return $prompt;
+    }
+    
+    $prompt = '
+      <pre>
+        ' . $arr_return['data']['retval'] . '
+      </pre>
+      ';
+    return $prompt;
+
     $prompt = null;
 
     $prompt = $prompt.'
@@ -305,32 +314,12 @@ class tx_flipit_userfunc
  */
   private function set_osStatus( )
   {
-      // RETUN  : $this->osStatus was set before
+      // RETURN  : $this->osStatus was set before
     if( ! ( $this->osStatus === null ) )
     {
       return;
     }
-      // RETUN  : $this->osStatus was set before
-
-    $arr_return = zz_system( '/usr/local/bin/pdf2swf --version' );
-
-    if( $arr_return['error'] )
-    {
-      $prompt = '
-        <pre>
-          ' . $arr_return['error'] . '
-        </pre>
-        ';
-      return $prompt;
-    }
-    
-    $prompt = '
-      <pre>
-        ' . $arr_return['data']['retval'] . '
-      </pre>
-      ';
-    return $prompt;
-    
+      // RETURN  : $this->osStatus was set before
     
     switch( true )
     {
@@ -368,6 +357,10 @@ class tx_flipit_userfunc
  */
   private function set_swfToolsStatus( )
   {
+    $arr_return = $this->zz_system( '/usr/local/bin/pdf2swf --version' );
+
+    return $arr_return;
+
       // RETUN  : $this->osStatus was set before
     if( ! ( $this->swfToolsStatus === null ) )
     {
