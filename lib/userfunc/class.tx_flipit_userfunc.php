@@ -64,7 +64,7 @@ class tx_flipit_userfunc
   private $bool_accessByIP;
   
  /**
-  * Status of operating system: supported, unsupported, undefined
+  * Status of operating system: linux, unix, windows, unsupported, undefined
   *
   * @var string
   */
@@ -133,7 +133,9 @@ class tx_flipit_userfunc
 
     switch( $this->osStatus )
     {
-      case( 'supported' ):
+      case( 'linux' ):
+      case( 'unix' ):
+      case( 'windows' ):
         $prompt = $prompt.'
 <div class="typo3-message message-ok">
   <div class="message-body">
@@ -201,14 +203,26 @@ class tx_flipit_userfunc
       return $prompt;
     }
     
-    $prompt = null;
-
-    $prompt = $prompt.'
-<div class="typo3-message message-warning">
+    switch( $this->swfToolsStatus )
+    {
+      case( 'installed' ):
+        $prompt = $prompt.'
+<div class="typo3-message message-ok">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
   </div> 
 </div>';
+        break;
+      case( 'notInstalled' ):
+      default:
+        $prompt = $prompt.'
+<div class="typo3-message message-warning">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '
+  </div> 
+</div>';
+        break;
+    }
 
     return $prompt;
   }
@@ -335,11 +349,13 @@ class tx_flipit_userfunc
         $this->osStatus = 'unsupported';
         break;
       case( stristr( PHP_OS, 'linux' ) ):
+        $this->osStatus = 'linux';
+        break;
       case( stristr( PHP_OS, 'unix' ) ):
-        $this->osStatus = 'supported';
+        $this->osStatus = 'unix';
         break;
       case( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ):
-        $this->osStatus = 'supported';
+        $this->osStatus = 'windows';
         break;
       default:
         $this->osStatus = 'undefined';
@@ -353,24 +369,46 @@ class tx_flipit_userfunc
  * set_swfToolsStatus( ): 
  *
  * @return  void
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.0.2
+ * @since 0.0.2
  */
   private function set_swfToolsStatus( )
   {
-    $arr_return = $this->zz_system( '/usr/local/bin/pdf2swf --version' );
+      // RETURN  : $this->osStatus was set before
+    if( ! ( $this->swfToolsStatus === null ) )
+    {
+      return;
+    }
+      // RETURN  : $this->osStatus was set before
+
+    switch( $this->osStatus )
+    {
+      case( 'linux' ):
+      case( 'unix' ):
+        $arr_return = $this->zz_system( '/usr/local/bin/pdf2swf --version' );
+        break;
+      case( 'windows' ):
+        $arr_return['error']['status'] = true;
+        $arr_return['error']['prompt'] = 
+          $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsWindowsError');
+        break;
+      default:
+        break;
+      
+    }
     
     if( $arr_return['error']['status'] )
     {
       return $arr_return;
     }
 
-      // RETUN  : $this->osStatus was set before
-    if( ! ( $this->swfToolsStatus === null ) )
+    $last_line  = $arr_return['data']['last_line'];
+    $retval     = $arr_return['data']['retval'];
+    
+    if( $retval == 0 )
     {
-      return;
+      $this->swfToolsStatus = 'notInstalled';
     }
-      // RETUN  : $this->osStatus was set before
       
     return $arr_return;
   }
