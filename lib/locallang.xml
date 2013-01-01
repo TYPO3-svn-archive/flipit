@@ -89,8 +89,9 @@
           title="wildt.at.die-netzmacher.de"
           target="_blank">
           Dirk Wildt (Die Netzmacher)</a>
-      ]]></label
-      <label index="promptEvaluatorSWFtools">Sorry, SWF tools aren't evaluated yet.</label>
+      ]]></label>
+      <label index="promptEvaluatorSWFtools">Please fix the bug. SWFTOOLS won’t run< without fixing.</label>
+      <label index="promptEvaluatorSWFtoolsBugfix">Sorry, SWF tools aren't evaluated yet.</label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
       <label index="promptEvaluatorTYPO3version4006000greater">Your are using a TYPO3 version greater than 4.6. Flip it! isn't tested in this version. May be you will have unwanted effects. Try it!</label>

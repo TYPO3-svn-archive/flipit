@@ -181,15 +181,23 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
+    $prompt = null;
+
     $arr_return = $this->set_swfToolsStatus( );
     
     if( $arr_return['error']['status'] )
     {
-      $prompt = '
-        <pre>
-          ' . $arr_return['error']['prompt'] . '
-        </pre>
-        ';
+      $prompt = $prompt.'
+<div class="typo3-message message-error">
+  <div class="message-body">
+    ' . $arr_return['error']['prompt'] . '
+  </div> 
+</div>
+<div class="typo3-message message-warning">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsBugfix'). '
+  </div> 
+</div>';
       return $prompt;
     }
     
