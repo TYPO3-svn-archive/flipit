@@ -385,7 +385,7 @@ class tx_flipit_userfunc
     {
       case( 'linux' ):
       case( 'unix' ):
-        $arr_return = $this->zz_system( '/usr/local/bin/pdf2swf --version' );
+        $arr_return = $this->zz_exec( '/usr/local/bin/pdf2swf --version' );
         break;
       case( 'windows' ):
         $arr_return['error']['status'] = true;
@@ -462,27 +462,27 @@ class tx_flipit_userfunc
   
   
 /**
- * zz_system( ): 
+ * zz_exec( ): 
  *
  * @return  array
  * @version 0.0.2
  * @since 0.0.2
  */
-  private function zz_system( $exec )
+  private function zz_exec( $exec )
   {
     $arr_return = null;
     
-      // RETURN : function system doesn't exist
-    if( ! ( function_exists('system') ) )
+      // RETURN : function exec doesn't exist
+    if( function_exists('exec') === null )
     {
       $arr_return['error']['status'] = true;
       $arr_return['error']['prompt'] = 
-        $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpSystemIsFalse');
+        $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpExecIsFalse');
       return $arr_return;
     }
-      // RETURN : function system doesn't exist
+      // RETURN : function exec doesn't exist
     
-    $last_line = system( $exec, $retval);
+    $last_line = exec( $exec, $retval);
     $arr_return['data']['last_line']  = $last_line;
     $arr_return['data']['retval']     = $retval;
     
