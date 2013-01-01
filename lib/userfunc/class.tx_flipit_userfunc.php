@@ -238,7 +238,8 @@ class tx_flipit_userfunc
         $prompt = $prompt.'
 <div class="typo3-message message-ok">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '<br />
+    ' . $arr_return['data']['lines'][0] . '
   </div> 
 </div>';
         break;
@@ -248,7 +249,6 @@ class tx_flipit_userfunc
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '
-    ' . var_export( $arr_return['data']['lines'], true ) . '
   </div> 
 </div>';
         break;
