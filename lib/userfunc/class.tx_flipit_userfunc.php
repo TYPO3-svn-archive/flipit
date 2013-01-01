@@ -473,7 +473,7 @@ class tx_flipit_userfunc
     $arr_return = null;
     
       // RETURN : function exec doesn't exist
-    if( empty( function_exists('exec') ) )
+    if( ! function_exists('exec') )  
     {
       $arr_return['error']['status'] = true;
       $arr_return['error']['prompt'] = 
