@@ -94,10 +94,11 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
-    echo t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    
+    $typo3_document_root = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+    $pathToUserfunc = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
+
       // Class with methods for 
-    require_once('../userfunc/class.tx_flipit_userfunc.php');
+    require_once( $pathToUserfunc );
     $this->objUserfunc = new tx_flipit_userfunc( $this );
     $this->objUserfunc->set_allParams( );
 
