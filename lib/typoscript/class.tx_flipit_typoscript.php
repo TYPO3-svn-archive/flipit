@@ -169,15 +169,15 @@ class tx_flipit_typoscript
   {
     if( $this->b_drs_swf )
     {    
+      $prompt = var_export( $this->cObj->data, true );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+
       $prompt = 'If there isn\'t any SWF file: return true!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
 
       $prompt = 'If there isn\'t any SWF file and any SWF tools, prompt a help message and return!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
     }
-
-    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
-    
   }
 
   
