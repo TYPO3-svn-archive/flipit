@@ -190,7 +190,7 @@ class tx_flipit_userfunc
       $prompt = $prompt.'
 <div class="typo3-message message-error">
   <div class="message-body">
-    ' . $arr_return['error']['prompt'] . '
+    ' . $arr_return['error']['prompt'] . ' XXX
   </div> 
 </div>
 <div class="typo3-message message-warning">
