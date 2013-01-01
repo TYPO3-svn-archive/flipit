@@ -473,7 +473,7 @@ class tx_flipit_userfunc
     $arr_return = null;
     
       // RETURN : function exec doesn't exist
-    if( function_exists('exec') === null )
+    if( empty( function_exists('exec') ) )
     {
       $arr_return['error']['status'] = true;
       $arr_return['error']['prompt'] = 
@@ -482,9 +482,8 @@ class tx_flipit_userfunc
     }
       // RETURN : function exec doesn't exist
     
-    $last_line = exec( $exec, $retval);
-    $arr_return['data']['last_line']  = $last_line;
-    $arr_return['data']['retval']     = $retval;
+    exec( $exec, $lines);
+    $arr_return['data']['lines'] = $lines;
     
     return $arr_return;
   }
