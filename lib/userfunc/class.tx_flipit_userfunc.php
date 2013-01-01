@@ -201,13 +201,6 @@ class tx_flipit_userfunc
       return $prompt;
     }
     
-    $prompt = '
-      <pre>
-        ' . $arr_return['data']['retval'] . '
-      </pre>
-      ';
-    return $prompt;
-
     $prompt = null;
 
     $prompt = $prompt.'
@@ -372,8 +365,6 @@ class tx_flipit_userfunc
       return $arr_return;
     }
 
-    return $arr_return;
-
       // RETUN  : $this->osStatus was set before
     if( ! ( $this->swfToolsStatus === null ) )
     {
@@ -381,29 +372,7 @@ class tx_flipit_userfunc
     }
       // RETUN  : $this->osStatus was set before
       
-    switch( true )
-    {
-      case( stristr( PHP_OS, 'amiga' ) ):
-      case( stristr( PHP_OS, 'android' ) ):
-      case( stristr( PHP_OS, 'chrome' ) ):
-        $this->osStatus = 'unsupported';
-        break;
-      case( stristr( PHP_OS, 'darwin' ) ):
-      case( stristr( PHP_OS, 'iOS' ) ):
-      case( stristr( PHP_OS, 'mac' ) ):
-        $this->osStatus = 'unsupported';
-        break;
-      case( stristr( PHP_OS, 'linux' ) ):
-      case( stristr( PHP_OS, 'unix' ) ):
-        $this->osStatus = 'supported';
-        break;
-      case( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ):
-        $this->osStatus = 'supported';
-        break;
-      default:
-        $this->osStatus = 'undefined';
-        break;
-    }
+    return $arr_return;
   }
   
   
