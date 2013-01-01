@@ -144,7 +144,7 @@ t3lib_div::loadTCA( 'tt_content' );
 
   // Add fields to interface
 $showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
-$showRecordFieldList = $showRecordFieldList.',tx_flipit_enabled,tx_flipit_files,tx_flipit_lightbox';
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_enabled,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_lightbox';
 $TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to interface
 
@@ -171,9 +171,9 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
     'default' => 'ts',
   ),
 );
-$TCA['tt_content']['columns']['tx_flipit_files'] = array (
+$TCA['tt_content']['columns']['tx_flipit_swf_files'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_files',
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files',
   'config' => array(
     'type'          => 'group',
     'internal_type' => 'file',
@@ -183,6 +183,21 @@ $TCA['tt_content']['columns']['tx_flipit_files'] = array (
     'show_thumbs'   => '1',
     'size'          => '10',
     'maxitems'      => '100',
+    'minitems'      => '0',
+  ),
+);
+$TCA['tt_content']['columns']['tx_flipit_xml_file'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_xml_file',
+  'config' => array(
+    'type'          => 'group',
+    'internal_type' => 'file',
+    'allowed'       => 'swf',
+    'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
+    'uploadfolder'  => 'uploads/flipit',
+    'show_thumbs'   => '1',
+    'size'          => '1',
+    'maxitems'      => '1',
     'minitems'      => '0',
   ),
 );
@@ -224,7 +239,7 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_files, tx_flipit_lightbox,';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_files, tx_flipit_swf_files, tx_flipit_lightbox,';
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):
