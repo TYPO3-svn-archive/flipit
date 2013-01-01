@@ -219,6 +219,7 @@ class tx_flipit_userfunc
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '
+    ' . var_export( $arr_return['data']['lines'], true ) . '
   </div> 
 </div>';
         break;
@@ -402,14 +403,15 @@ class tx_flipit_userfunc
       return $arr_return;
     }
 
-    $last_line  = $arr_return['data']['last_line'];
-    $retval     = $arr_return['data']['retval'];
+    //$lines = $arr_return['data']['lines'];
     
-    if( $retval == 0 )
+    if( empty ( $lines ) )
     {
       $this->swfToolsStatus = 'notInstalled';
+      return $arr_return;
     }
       
+    $this->swfToolsStatus = 'installed';
     return $arr_return;
   }
   
