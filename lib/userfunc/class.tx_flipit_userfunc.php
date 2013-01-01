@@ -183,11 +183,11 @@ class tx_flipit_userfunc
 
     $arr_return = $this->set_swfToolsStatus( );
     
-    if( $arr_return['error'] )
+    if( $arr_return['error']['status'] )
     {
       $prompt = '
         <pre>
-          ' . $arr_return['error'] . '
+          ' . $arr_return['error']['prompt'] . '
         </pre>
         ';
       return $prompt;
@@ -297,7 +297,7 @@ class tx_flipit_userfunc
 
       $prompt = $prompt.'
 <div class="message-body">
-  ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptExternalLinksBody'). '
+  ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptExternalLinksBody') . '
 </div>';
 
     return $prompt;
@@ -358,6 +358,11 @@ class tx_flipit_userfunc
   private function set_swfToolsStatus( )
   {
     $arr_return = $this->zz_system( '/usr/local/bin/pdf2swf --version' );
+    
+    if( $arr_return['error']['status'] )
+    {
+      return $arr_return;
+    }
 
     return $arr_return;
 
@@ -455,9 +460,9 @@ class tx_flipit_userfunc
       // RETURN : function system doesn't exist
     if( ! ( function_exists('system') ) )
     {
-      $arr_return['error'] = 'function system doesn\'t exist. Please check your PHP configuration (php.ini).
-        system doesn\'t be an element of the ini property disable_functions. If safe_mode is on, the
-        safe_mode_exex_dir must contain the function system.';
+      $arr_return['error']['status'] = true;
+      $arr_return['error']['prompt'] = 
+        $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpSystemIsFalse');
       return $arr_return;
     }
       // RETURN : function system doesn't exist
