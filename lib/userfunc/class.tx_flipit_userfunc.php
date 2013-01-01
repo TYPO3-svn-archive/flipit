@@ -238,7 +238,7 @@ class tx_flipit_userfunc
         $prompt = $prompt.'
 <div class="typo3-message message-ok">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '
   </div> 
 </div>';
         break;
