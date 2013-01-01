@@ -12,7 +12,7 @@
   height="400" 
   hcover="false" 
   transparency="true" 
-  prepage="data/pages/23.swf"
+  XX_prepage="data/pages/23.swf"
   >
   <page src='data/pages/1.swf' preLoad = 'true'/>
   <page src='data/pages/2.swf'/>
