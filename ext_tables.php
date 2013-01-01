@@ -192,7 +192,7 @@ $TCA['tt_content']['columns']['tx_flipit_xml_file'] = array (
   'config' => array(
     'type'          => 'group',
     'internal_type' => 'file',
-    'allowed'       => 'swf',
+    'allowed'       => 'xml',
     'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
     'uploadfolder'  => 'uploads/flipit',
     'show_thumbs'   => '1',
@@ -239,7 +239,7 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_files, tx_flipit_swf_files, tx_flipit_lightbox,';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_swf_files, tx_flipit_xml_file, tx_flipit_lightbox,';
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):
