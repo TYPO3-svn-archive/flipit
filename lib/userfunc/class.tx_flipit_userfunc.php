@@ -471,9 +471,10 @@ class tx_flipit_userfunc
   private function zz_exec( $exec )
   {
     $arr_return = null;
+    $lines      = null;
     
       // RETURN : function exec doesn't exist
-    if( ! function_exists('exec') )  
+    if( ! ( function_exists('exec') ) )  
     {
       $arr_return['error']['status'] = true;
       $arr_return['error']['prompt'] = 
