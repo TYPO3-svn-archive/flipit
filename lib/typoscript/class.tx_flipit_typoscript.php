@@ -169,7 +169,7 @@ class tx_flipit_typoscript
   {
     if( $this->b_drs_swf )
     {    
-      $prompt = var_export( $this->cObj->data, true );
+      $prompt = var_export( $this->cObj->data['tx_flipit_swf_files'], true );
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
 
       $prompt = 'If there isn\'t any SWF file: return true!';
