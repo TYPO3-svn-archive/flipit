@@ -75,7 +75,7 @@
         Please fix the bug. SWFTOOLS won't run without fixing. You don't need SFWTOOLS, 
         but than you have to convert PDF files to SWF / Flash files manually.
       ]]></label>
-      <label index="promptEvaluatorSWFtoolsInstalled">SWFTOOLS are installed.</label>
+      <label index="promptEvaluatorSWFtoolsInstalled">SWFTOOLS are installed. PDF files will converted to SWF / Flash files automatically.</label>
       <label index="promptEvaluatorSWFtoolsNotInstalled"><![CDATA[
         SWFTOOLS aren't installed.<br />
         <br />
