@@ -216,12 +216,55 @@ class tx_flipit_typoscript
   */
   private function flipitXml( )
   {
+    $xmlFileAreDeprecated = false;
+    
+      // Render SWF files if they are deprecated or if there isn't any SWF file
+    $xmlFileAreDeprecated = $this->flipitXmlFileIsDeprecated( );
+    if( $xmlFileAreDeprecated )
+    {
+      $this->flipitXmlFileRenderIt( );
+    }
+      // Render SWF files if they are deprecated or if there isn't any SWF file
+  }
+
+  
+  
+ /**
+  * flipitXmlFileIsDeprecated( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function flipitXmlFileIsDeprecated( )
+  {
     if( $this->b_drs_xml )
     {    
-      $prompt = 'If there isn\'t an XML file, render it!';
+      $prompt = 'If there isn\'t any XML file: return true!';
       t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
+    }
 
-      $prompt = 'If the XML file is older than SWF files, render it!';
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+  }
+
+  
+  
+ /**
+  * flipitXmlFileRenderIt( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function flipitXmlFileRenderIt( )
+  {
+    if( $this->b_drs_xml )
+    {    
+      $prompt = 'Render XML file!';
       t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
     }
 
