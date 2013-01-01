@@ -79,7 +79,7 @@ class tx_flipit_typoscript
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
   * @access public
-  * @version 0.0.1
+  * @version 0.0.2
   * @since 0.0.1
   */
   public function renderFlipit( $content, $conf )
@@ -94,10 +94,26 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
-      // Require class userfunc
-    $this->initClasses( );
-    
-      // SWF
+      // Generate and check SWF and XML files
+    $this->flipit( );   
+
+      // Return the content
+    return $this->content( $conf );    
+  }
+
+  
+  
+ /**
+  * renderFlipit( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  public function flipit( $conf )
+  {
     if( $this->b_drs_todo )
     {    
       $prompt = 'If there isn\'t any SWF file: render it!';
@@ -115,10 +131,6 @@ class tx_flipit_typoscript
       $prompt = 'If SWF files are rendered, render the XML file!';
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
     }
-    
-
-      // Content
-    return $this->content( $conf );
 
     return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
     
@@ -150,6 +162,9 @@ class tx_flipit_typoscript
       return $arr_return;
     }
       // RETURN : Flip it! is disabled or there is an error
+
+      // Require class userfunc
+    $this->initClasses( );
 
     return;
   }
