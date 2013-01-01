@@ -218,7 +218,10 @@ class tx_flipit_typoscript
   {
     if( $this->b_drs_xml )
     {    
-      $prompt = 'If SWF files are rendered, render the XML file!';
+      $prompt = 'If there isn\'t an XML file, render it!';
+      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
+
+      $prompt = 'If the XML file is older than SWF files, render it!';
       t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
     }
 
