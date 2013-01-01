@@ -113,6 +113,33 @@ class tx_flipit_userfunc
   
   
   /**
+   * promptEvaluatorDetectionBug(): Displays the quick start message.
+   *
+   * @return  string    message wrapped in HTML
+   * @version 0.0.1
+   * @since   0.0.1
+   */
+  function promptEvaluatorDetectionBug()
+  {
+//.message-notice
+//.message-information
+//.message-ok
+//.message-warning
+//.message-error
+
+    $prompt = $prompt.'
+<div class="typo3-message message-notice">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorDetectionBug'). '
+  </div> 
+</div>';
+
+    return $prompt;
+  }
+
+  
+  
+  /**
    * promptEvaluatorOS(): Displays the quick start message.
    *
    * @return  string    message wrapped in HTML

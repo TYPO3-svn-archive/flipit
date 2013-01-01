@@ -6,6 +6,14 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
+      <label index="promptEvaluatorDetectionBug"><![CDATA[
+        If the detection of the operating system, SWFTOOLS or TYPO3 version isn't proper, please send a mail to
+        <a href="http://wildt.at.die-netzmacher.de/" 
+          alt="wildt.at.die-netzmacher.de"
+          title="wildt.at.die-netzmacher.de"
+          target="_blank">
+          Dirk Wildt (Die Netzmacher)</a>
+      ]]></label>
       <label index="promptEvaluatorOSsupported"><![CDATA[
         The operating system of your server is %OS%.
         <ul>
@@ -16,13 +24,6 @@
             PDF files can converted to SWF / Flash files automatically.
           </li>
         </ul>
-        <br />
-        If the detection of the operating system isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
-          alt="wildt.at.die-netzmacher.de"
-          title="wildt.at.die-netzmacher.de"
-          target="_blank">
-          Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorOSunsupported"><![CDATA[
         The operating system of your server is %OS%.
@@ -39,13 +40,6 @@
               convert PDF files to SWF / Flash files manually</a>.
           </li>
         </ul>
-        <br />
-        If the detection of the operating system isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
-          alt="wildt.at.die-netzmacher.de"
-          title="wildt.at.die-netzmacher.de"
-          target="_blank">
-          Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorOSundefined"><![CDATA[
         The operating system of your server is %OS%.
@@ -63,12 +57,6 @@
           </li>
         </ul>
         <br />
-        If the detection of the operating system isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
-          alt="wildt.at.die-netzmacher.de"
-          title="wildt.at.die-netzmacher.de"
-          target="_blank">
-          Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorPhpExecIsFalse"><![CDATA[
         The PHP function exec doesn't exist.<br />
@@ -87,18 +75,12 @@
         Please fix the bug. SWFTOOLS won't run without fixing. You don't need SFWTOOLS, 
         but than you have to convert PDF files to SWF / Flash files manually.
       ]]></label>
+      <label index="promptEvaluatorSWFtoolsInstalled">SWFTOOLS are installed.</label>
       <label index="promptEvaluatorSWFtoolsNotInstalled"><![CDATA[
         SWFTOOLS aren't installed.<br />
         <br />
         Please install SWFTOOLS. If you don't install SFWTOOLS, 
         you have to convert PDF files to SWF / Flash files manually.
-        <br />
-        If the detection of SWFTOOLS isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
-          alt="wildt.at.die-netzmacher.de"
-          title="wildt.at.die-netzmacher.de"
-          target="_blank">
-          Dirk Wildt (Die Netzmacher)</a>
       ]]></label>
       <label index="promptEvaluatorSWFtools4Linux"><![CDATA[
         Download SWFTOOLS for Linux from the TYPO3 TER. 
