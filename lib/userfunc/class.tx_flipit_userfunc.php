@@ -403,13 +403,13 @@ class tx_flipit_userfunc
       return $arr_return;
     }
 
-    //$lines = $arr_return['data']['lines'];
+    $lines = $arr_return['data']['lines'];
     
-    if( empty ( $lines ) )
-    {
-      $this->swfToolsStatus = 'notInstalled';
-      return $arr_return;
-    }
+//    if( empty ( $lines ) )
+//    {
+//      $this->swfToolsStatus = 'notInstalled';
+//      return $arr_return;
+//    }
       
     $this->swfToolsStatus = 'installed';
     return $arr_return;
