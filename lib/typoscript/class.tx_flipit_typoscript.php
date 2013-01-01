@@ -94,6 +94,8 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
+    echo t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+    
       // Class with methods for 
     require_once('../userfunc/class.tx_flipit_userfunc.php');
     $this->objUserfunc = new tx_flipit_userfunc( $this );
