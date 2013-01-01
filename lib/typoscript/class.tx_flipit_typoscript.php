@@ -94,14 +94,9 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
-    $typo3_document_root = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    $pathToUserfunc = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
-
-      // Class with methods for 
-    require_once( $pathToUserfunc );
-    $this->objUserfunc = new tx_flipit_userfunc( $this );
-    $this->objUserfunc->set_allParams( );
-
+      // Require class userfunc
+    $this->initClasses( );
+    
       // SWF
     if( $this->b_drs_todo )
     {
@@ -261,6 +256,37 @@ class tx_flipit_typoscript
 
     return $content;
     
+  }
+  
+  
+  
+/**
+ * initClasses( ): Init the DRS - Development Reportinmg System
+ *
+ * @return	void
+ * @access private
+ */
+  private function initClasses( )
+  {
+      // Include class userfunc
+    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+    $pathToUserfunc       = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
+    require_once( $pathToUserfunc );
+    $this->objUserfunc = new tx_flipit_userfunc( $this );
+    $this->objUserfunc->set_allParams( );
+      // Include class userfunc
+
+      // DRS
+    if( $this->b_drs_flipit )
+    {
+      $prompt = 'OS: ' . $this->objUserfunc->os;
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 0 );
+      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 0 );
+      $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 0 );    
+    }
+      // DRS
   }
   
   
