@@ -143,18 +143,59 @@ class tx_flipit_typoscript
   */
   private function flipitSwf( )
   {
+    $swfFilesAreDeprecated = false;
+    
+      // Render SWF files if they are deprecated or if there isn't any SWF file
+    $swfFilesAreDeprecated = $this->flipitSwfFilesAreDeprecated( );
+    if( $swfFilesAreDeprecated )
+    {
+      $this->flipitSwfFilesRenderIt( );
+    }
+      // Render SWF files if they are deprecated or if there isn't any SWF file
+  }
+
+  
+  
+ /**
+  * flipitSwfFilesAreDeprecated( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function flipitSwfFilesAreDeprecated( )
+  {
     if( $this->b_drs_swf )
     {    
-      $prompt = 'If there isn\'t any SWF file: render it!';
+      $prompt = 'If there isn\'t any SWF file: return true!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
 
       $prompt = 'If there isn\'t any SWF file and any SWF tools, prompt a help message and return!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
 
-      $prompt = 'If there are SWF files: are they later than the PDF file? If not, render it!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+    
+  }
 
-      $prompt = 'If there are SWF files without the uid as prefix, prefix all SWF files with the uid!';
+  
+  
+ /**
+  * flipitSwfFilesRenderIt( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function flipitSwfFilesRenderIt( )
+  {
+    if( $this->b_drs_swf )
+    {    
+      $prompt = 'Render SWF files!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
     }
 
