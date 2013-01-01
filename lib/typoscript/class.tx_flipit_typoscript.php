@@ -84,7 +84,6 @@ class tx_flipit_typoscript
   */
   public function renderFlipit( $content, $conf )
   {
-
       // Init
     $arr_return = $this->init( $conf );
 
@@ -95,9 +94,23 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
+      // Class with methods for 
+    require_once('../userfunc/class.tx_flipit_userfunc.php');
+    $this->objUserfunc = new tx_flipit_userfunc( $this );
+    $this->objUserfunc->set_allParams( );
+
       // SWF
     if( $this->b_drs_todo )
     {
+      $prompt = 'OS: ' . $this->objUserfunc->os;
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      
+      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      
+      $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      
       $prompt = 'If there isn\'t any SWF file: render it!';
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
 

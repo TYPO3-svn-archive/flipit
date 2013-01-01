@@ -50,65 +50,61 @@ class tx_flipit_userfunc
 {
   
  /**
-  * Configuration by the extension manager
-  *
-  * @var array
-  */
-  private $arr_extConf;
-  
- /**
-  * Current IP is met allowed IPs
-  *
-  * @var boolean
-  */
-  private $bool_accessByIP;
-  
- /**
   * Status of operating system: linux, unix, windows, unsupported, undefined
   *
   * @var string
   */
-  private $osStatus = null;
+  public $os = null;
 
  /**
   * Status of SWFTOOLS
   *
   * @var string
   */
-  private $swfToolsStatus = null;
+  public $swfTools = null;
+  
  /**
   * Version of TYPO3 (sample: 4.7.7 -> 4007007)
   *
   * @var string
   */
-  private $typo3Version = null;
+  public $typo3Version = null;
 
 
 
-
-
-
-
-  /**
-   * pageWizard( ): Builds an input form that also includes the link popup wizard.
-   * @param		array		Parameter array.  Contains fieldName and fieldValue.
-   * @return		string		HTML output for form widget.
-   * @version 0.0.1
-   * @since   0.0.1
-   */
-  function pageWizard( $params ) 
+/**
+ * Constructor. The method initiate the parent object
+ *
+ * @param	object		The parent object
+ * @return	void
+ */
+  function __construct( $pObj )
   {
-    /* Pull the current fieldname and value from constants */
-    $fieldName  = $params['fieldName'];
-    $fieldValue = $params['fieldValue'];
-    
-    $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
-
-    /* @todo 	Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */
-    $wizard = '<a href="#" onclick="this.blur(); vHWin=window.open(\'../../../../typo3/browse_links.php?mode=wizard&amp;P[field]='. $fieldName .'&amp;P[formName]=editForm&amp;P[itemName]='. $fieldName .'&amp;P[fieldChangeFunc][typo3form.fieldGet]=null&amp;P[fieldChangeFunc][TBE_EDITOR_fieldChanged]=null\',\'popUpID478be36b64\',\'height=300,width=500,status=0,menubar=0,scrollbars=1\'); vHWin.focus(); return false;"><img src="../../../../typo3/sysext/t3skin/icons/gfx/link_popup.gif" width="16" height="15" border="0" alt="Link" title="Link" /></a>';
-
-    return $input.$wizard;
+    $this->pObj = $pObj;
   }
+
+
+
+//  /**
+//   * pageWizard( ): Builds an input form that also includes the link popup wizard.
+//   * @param		array		Parameter array.  Contains fieldName and fieldValue.
+//   * @return		string		HTML output for form widget.
+//   * @version 0.0.1
+//   * @since   0.0.1
+//   */
+//  public function pageWizard( $params ) 
+//  {
+//    /* Pull the current fieldname and value from constants */
+//    $fieldName  = $params['fieldName'];
+//    $fieldValue = $params['fieldValue'];
+//    
+//    $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
+//
+//    /* @todo 	Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */
+//    $wizard = '<a href="#" onclick="this.blur(); vHWin=window.open(\'../../../../typo3/browse_links.php?mode=wizard&amp;P[field]='. $fieldName .'&amp;P[formName]=editForm&amp;P[itemName]='. $fieldName .'&amp;P[fieldChangeFunc][typo3form.fieldGet]=null&amp;P[fieldChangeFunc][TBE_EDITOR_fieldChanged]=null\',\'popUpID478be36b64\',\'height=300,width=500,status=0,menubar=0,scrollbars=1\'); vHWin.focus(); return false;"><img src="../../../../typo3/sysext/t3skin/icons/gfx/link_popup.gif" width="16" height="15" border="0" alt="Link" title="Link" /></a>';
+//
+//    return $input.$wizard;
+//  }
 
   
   
@@ -119,7 +115,7 @@ class tx_flipit_userfunc
    * @version 0.0.1
    * @since   0.0.1
    */
-  function promptEvaluatorDetectionBug()
+  public function promptEvaluatorDetectionBug()
   {
 //.message-notice
 //.message-information
@@ -146,7 +142,7 @@ class tx_flipit_userfunc
    * @version 0.0.1
    * @since   0.0.1
    */
-  function promptEvaluatorOS()
+  public function promptEvaluatorOS()
   {
 //.message-notice
 //.message-information
@@ -154,11 +150,11 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-    $this->set_osStatus( );
+    $this->set_os( );
     
     $prompt = null;
 
-    switch( $this->osStatus )
+    switch( $this->os )
     {
       case( 'linux' ):
       case( 'unix' ):
@@ -202,7 +198,7 @@ class tx_flipit_userfunc
    * @version 0.0.2
    * @since   0.0.1
    */
-  function promptEvaluatorSWFtools()
+  public function promptEvaluatorSWFtools()
   {
 //.message-notice
 //.message-information
@@ -212,9 +208,7 @@ class tx_flipit_userfunc
 
     $prompt = null;
 
-    $this->set_osStatus( );
-    
-    $arr_return = $this->set_swfToolsStatus( );
+    $arr_return = $this->set_swfTools( );
     
     if( $arr_return['error']['status'] )
     {
@@ -232,7 +226,7 @@ class tx_flipit_userfunc
       return $prompt;
     }
     
-    switch( $this->swfToolsStatus )
+    switch( $this->swfTools )
     {
       case( 'installed' ):
         $prompt = $prompt.'
@@ -266,7 +260,7 @@ class tx_flipit_userfunc
    * @version 0.0.1
    * @since   0.0.1
    */
-  function promptEvaluatorTYPO3version()
+  public function promptEvaluatorTYPO3version()
   {
 //.message-notice
 //.message-information
@@ -330,7 +324,7 @@ class tx_flipit_userfunc
    * @version 0.0.1
    * @since   0.0.1
    */
-  function promptExternalLinks()
+  public function promptExternalLinks()
   {
 //.message-notice
 //.message-information
@@ -351,67 +345,71 @@ class tx_flipit_userfunc
   
   
 /**
- * set_osStatus( ): 
+ * set_os( ): 
  *
  * @return  void
  * @version 0.0.2
  * @since 0.0.2
  */
-  private function set_osStatus( )
+  private function set_os( )
   {
-      // RETURN  : $this->osStatus was set before
-    if( ! ( $this->osStatus === null ) )
+      // RETURN  : $this->os was set before
+    if( ! ( $this->os === null ) )
     {
       return;
     }
-      // RETURN  : $this->osStatus was set before
+      // RETURN  : $this->os was set before
     
+      // SWITCH PHP_OS  : set os
     switch( true )
     {
       case( stristr( PHP_OS, 'amiga' ) ):
       case( stristr( PHP_OS, 'android' ) ):
       case( stristr( PHP_OS, 'chrome' ) ):
-        $this->osStatus = 'unsupported';
+        $this->os = 'unsupported';
         break;
       case( stristr( PHP_OS, 'darwin' ) ):
       case( stristr( PHP_OS, 'iOS' ) ):
       case( stristr( PHP_OS, 'mac' ) ):
-        $this->osStatus = 'unsupported';
+        $this->os = 'unsupported';
         break;
       case( stristr( PHP_OS, 'linux' ) ):
-        $this->osStatus = 'linux';
+        $this->os = 'linux';
         break;
       case( stristr( PHP_OS, 'unix' ) ):
-        $this->osStatus = 'unix';
+        $this->os = 'unix';
         break;
       case( stristr( PHP_OS, 'win' ) && ! stristr( PHP_OS, 'darwin' ) ):
-        $this->osStatus = 'windows';
+        $this->os = 'windows';
         break;
       default:
-        $this->osStatus = 'undefined';
+        $this->os = 'undefined';
         break;
     }
+      // SWITCH PHP_OS  : set os
   }
   
   
   
 /**
- * set_swfToolsStatus( ): 
+ * set_swfTools( ): 
  *
  * @return  void
  * @version 0.0.2
  * @since 0.0.2
  */
-  private function set_swfToolsStatus( )
+  private function set_swfTools( )
   {
-      // RETURN  : $this->osStatus was set before
-    if( ! ( $this->swfToolsStatus === null ) )
+      // RETURN  : $this->os was set before
+    if( ! ( $this->swfTools === null ) )
     {
       return;
     }
-      // RETURN  : $this->osStatus was set before
+      // RETURN  : $this->os was set before
 
-    switch( $this->osStatus )
+    $this->set_os( );
+    
+    switch( $this->os )
     {
       case( 'linux' ):
       case( 'unix' ):
@@ -436,11 +434,11 @@ class tx_flipit_userfunc
     
     if( empty ( $lines ) )
     {
-      $this->swfToolsStatus = 'notInstalled';
+      $this->swfTools = 'notInstalled';
       return $arr_return;
     }
       
-    $this->swfToolsStatus = 'installed';
+    $this->swfTools = 'installed';
     return $arr_return;
   }
   
@@ -488,6 +486,21 @@ class tx_flipit_userfunc
           ';
       die ( $prompt );
     }
+  }
+  
+  
+  
+/**
+ * set_allParams( ): 
+ *
+ * @return  void
+ * @version 0.0.2
+ * @since   0.0.2
+ */
+  public function set_allParams( )
+  {
+    $this->set_TYPO3Version( );
+    $this->set_swfTools( );     // set_swfTools sets os too
   }
   
   
