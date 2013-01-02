@@ -25,6 +25,27 @@ includeLibs {
   // plugin.tx_flipit
 
 plugin.tx_flipit {
+    // table
+  current =
+  current {
+    table = {$plugin.tx_flipit.configuration.table} 
+  }
+    // tt_content, tx_org_downloads
+  tables =
+  tables {
+      // media, tstamp
+    tt_content =
+    tt_content {
+      media   = media
+      tstamp  = tstamp
+    }
+      // media, tstamp
+    tx_org_downloads =
+    tx_org_downloads {
+      media   = tstamp
+      tstamp  = tstamp
+    }
+  }
   master_templates {
     flip_it = USER
     flip_it {

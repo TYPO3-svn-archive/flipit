@@ -226,6 +226,12 @@ class tx_flipit_typoscript
     }
       // RETURN true : there isn't any SWF file
 
+    if( $this->b_drs_todo )
+    {    
+      $prompt = 'Check tstamp of current record.';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+    }
+
       // Get timestamp of pdf file
     $tstampPdf = $this->tstampPdf( );
       // Get timestamp of last swf file
