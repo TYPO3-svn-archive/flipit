@@ -94,6 +94,10 @@ class tx_flipit_typoscript
       // Current TypoScript configuration
     $this->conf = $conf;
     
+      // Get the global TCA
+      /* BACKGROUND : t3lib_div::loadTCA($table) loads for the frontend
+       * only 'ctrl' and 'feInterface' parts.
+       */
     $GLOBALS['TSFE']->includeTCA( );
 
       // Init
@@ -633,9 +637,6 @@ class tx_flipit_typoscript
       {
         if( $this->b_drs_error )
         {
-//          $prompt = var_export( $GLOBALS['TCA'][$table]['columns'], true );
-//          $prompt = '<pre>' . $prompt . '</pre>';
-//          die( $prompt );
           $prompt = 'Does not exist: ' . $pathToFile;
           t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
         }
