@@ -613,7 +613,7 @@ class tx_flipit_typoscript
     foreach( ( array ) $arr_files as $file )
     {
       $pathToFile = $path . '/' . $file;
-      if( ! file_exists( $filename ) )
+      if( ! file_exists( $pathToFile ) )
       {
         if( $this->b_drs_error )
         {    
