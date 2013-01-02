@@ -159,25 +159,35 @@ class tx_flipit_typoscript
  /**
   * flipitSwfFilesAreDeprecated( ): 
   *
-  * @param	array		TypoScript configuration
-  * @return	mixed		HTML output.
+  * @return   boolean		
   * @access   private
   * @version  0.0.2
   * @since    0.0.2
   */
   private function flipitSwfFilesAreDeprecated( )
   {
-    if( $this->b_drs_swf )
-    {    
-      $prompt = var_export( $this->cObj->data['tx_flipit_swf_files'], true );
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
-
-      $prompt = 'If there isn\'t any SWF file: return true!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
-
-      $prompt = 'If there isn\'t any SWF file and any SWF tools, prompt a help message and return!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    $tx_flipit_swf_files  = $this->cObj->data['tx_flipit_swf_files'];
+    $arr_swfFiles         = explode( ',', $tx_flipit_swf_files );
+    
+      // RETURN true : there isn't any SWF file
+    if( empty ( $arr_swfFiles ) )
+    {
+      if( $this->b_drs_swf )
+      {    
+        $prompt = 'There isn\'t any SWF file.';
+        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+      }
+      return true;
     }
+      // RETURN true : there isn't any SWF file
+    
+    if( $this->b_drs_todo )
+    {    
+      $prompt = 'Check, if SWF files are older than PDF file.';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+    }
+    
+    return false;
   }
 
   
@@ -193,6 +203,17 @@ class tx_flipit_typoscript
   */
   private function flipitSwfFilesRenderIt( )
   {
+    if( $this->b_drs_swf )
+    {    
+      $prompt = 'There isn\'t any SWF file.';
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+
+      if( $this->objUserfunc->swfTools != 'installed' )
+      {
+
+      }
+    }
+
     if( $this->b_drs_swf )
     {    
       $prompt = 'Render SWF files!';
@@ -240,13 +261,27 @@ class tx_flipit_typoscript
   */
   private function flipitXmlFileIsDeprecated( )
   {
-    if( $this->b_drs_xml )
-    {    
-      $prompt = 'If there isn\'t any XML file: return true!';
-      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
+    $xmlFile = $this->cObj->data['tx_flipit_xml_file'];
+    
+      // RETURN true : there isn't any XML file
+    if( empty ( $xmlFile ) )
+    {
+      if( $this->b_drs_xml )
+      {    
+        $prompt = 'There isn\'t any XML file.';
+        t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+      }
+      return true;
     }
-
-    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+      // RETURN true : there isn't any XML file
+    
+    if( $this->b_drs_todo )
+    {    
+      $prompt = 'Check, if XML file is older than PDF file.';
+      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+    }
+    
+    return false;
   }
 
   
