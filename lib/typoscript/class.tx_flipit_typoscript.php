@@ -566,7 +566,7 @@ class tx_flipit_typoscript
     if ( $this->b_drs_init )
     {
       $prompt = '$GLOBALS[TCA]['.$table.'] is loaded.';
-      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->pObj->extKey, 0 );
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
 
