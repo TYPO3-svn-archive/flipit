@@ -632,7 +632,7 @@ class tx_flipit_typoscript
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function zz_tstampLatest( $field )
+  private function zz_tstampLatest( $field, $latest )
   {
     $conf = $this->conf;
     
@@ -663,6 +663,7 @@ class tx_flipit_typoscript
     $path                 = $typo3_document_root . '/' . $uploadFolder;
     
     $tstampLatest = null;
+    $tstampFirst  = null;
     foreach( ( array ) $files as $file )
     {
       $pathToFile = $path . '/' . $file;
@@ -676,19 +677,46 @@ class tx_flipit_typoscript
         continue;
       }
       $tstampCurrent = filemtime( $pathToFile );
-      if( $tstampCurrent > $tstampLatest )
+      switch( $latest )
       {
-        $tstampLatest = $tstampCurrent;
+        case( true ):
+          if( $tstampCurrent > $tstampLatest )
+          {
+            $tstampLatest = $tstampCurrent;
+          }
+          break;
+        case( false ):
+        default:
+          if( $tstampCurrent < $tstampFirst )
+          {
+            $tstampFirst = $tstampCurrent;
+          }
+          break;
       }
     }
     
-    if( $this->b_drs_flipit )
-    {    
-      $prompt = 'latest ' . $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
-      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+    switch( $latest )
+    {
+      case( true ):
+        if( $this->b_drs_flipit )
+        {    
+          $prompt = 'latest ' . $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
+          t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+        }
+
+        return $tstampLatest;
+        break;
+      case( false ):
+      default:
+        if( $this->b_drs_flipit )
+        {    
+          $prompt = 'first ' . $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
+          t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+        }
+
+        return $tstampFirst;
+        break;
     }
-    
-    return $tstampLatest;
   }
 
   
@@ -716,7 +744,8 @@ class tx_flipit_typoscript
       // Get table.field, where files are stored
 
       // Get latest timestamp of files in given field
-    $this->tstampMedia = $this->zz_tstampLatest( $field );
+    $latest = true;
+    $this->tstampMedia = $this->zz_tstampLatest( $field, $latest );
   }
 
   
@@ -772,7 +801,8 @@ class tx_flipit_typoscript
     }
     
       // Get latest timestamp of files in given field
-    $this->tstampSwf = $this->zz_tstampLatest( 'tx_flipit_swf_files' );
+    $latest = false;
+    $this->tstampSwf = $this->zz_tstampLatest( 'tx_flipit_swf_files', $latest );
   }
 
   
@@ -792,7 +822,8 @@ class tx_flipit_typoscript
       return; 
     }
       // Get latest timestamp of files in given field
-    $this->tstampXml = $this->zz_tstampLatest( 'tx_flipit_xml_file' );
+    $latest = true;
+    $this->tstampXml = $this->zz_tstampLatest( 'tx_flipit_xml_file', $latest );
   }
   
 
