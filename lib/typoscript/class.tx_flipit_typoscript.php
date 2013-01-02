@@ -364,6 +364,21 @@ class tx_flipit_typoscript
     }
       // RETURN true  : XML file is deprecated
     
+      // Set timestamp
+    $this->zz_tstampRecord( );
+    
+      // RETURN true  : XML file is deprecated
+    if( $this->tstampRecord >= $this->tstampXml )
+    {
+      if( $this->b_drs_xml )
+      {    
+        $prompt = 'Record is newer than the xml file.';
+        t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+      }
+      return true;
+    }
+      // RETURN true  : XML file is deprecated
+    
       // RETURN false : XML file is up to date
     if( $this->b_drs_xml )
     {    
@@ -688,6 +703,34 @@ class tx_flipit_typoscript
 
       // Get latest timestamp of files in given field
     $this->tstampPdf = $this->zz_tstampLatest( $field );
+  }
+
+  
+  
+ /**
+  * zz_tstampRecord( ): 
+  *
+  * @return	void
+  * @access     private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function zz_tstampRecord( )
+  {
+    $conf = $this->conf;
+    
+    if( ! ( $this->tstampRecord === null ) )
+    {
+      return; 
+    }
+    
+      // Get table.field, where files are stored
+    $table  = $conf['userFunc.']['configuration.']['currentTable'];
+    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+      // Get table.field, where files are stored
+
+      // Get latest timestamp of files in given field
+    $this->tstampRecord = $this->zz_tstampLatest( $field );
   }
 
   
