@@ -687,7 +687,7 @@ class tx_flipit_typoscript
           break;
         case( false ):
         default:
-          if( $tstampCurrent < $tstampFirst )
+          if( ( $tstampCurrent === null ) || ( $tstampCurrent < $tstampFirst ) )
           {
             $tstampFirst = $tstampCurrent;
           }
