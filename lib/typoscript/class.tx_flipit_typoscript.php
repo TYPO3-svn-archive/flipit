@@ -217,8 +217,10 @@ class tx_flipit_typoscript
   */
   private function flipitSwfFilesAreDeprecated( )
   {
+      // Get swf files
     $tx_flipit_swf_files  = $this->cObj->data['tx_flipit_swf_files'];
     $arr_swfFiles         = explode( ',', $tx_flipit_swf_files );
+      // Get swf files
     
       // RETURN true : there isn't any SWF file
     if( empty ( $arr_swfFiles ) )
@@ -232,18 +234,13 @@ class tx_flipit_typoscript
     }
       // RETURN true : there isn't any SWF file
 
-    if( $this->b_drs_todo )
-    {    
-      $prompt = 'Check tstamp of current record.';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
-    }
-
-      // Get timestamp of pdf file
-    $tstampPdf = $this->zz_tstampPdf( );
-      // Get timestamp of last swf file
-    $tstampSwf = $this->zz_tstampSwf( );
+      // Set timestamps
+    $this->zz_tstampPdf( );
+    $this->zz_tstampSwf( );
+      // Set timestamps
     
-    if( $tstampPdf >= $tstampSwf )
+      // RETURN true  : SWF files are deprecated
+    if( $this->tstampPdf >= $this->tstampSwf )
     {
       if( $this->b_drs_swf )
       {    
@@ -252,13 +249,16 @@ class tx_flipit_typoscript
       }
       return true;
     }
+      // RETURN true  : SWF files are deprecated
     
+      // RETURN false : SWF files are up to date
     if( $this->b_drs_swf )
     {    
       $prompt = 'SWF files are up to date.';
-      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
     }
     return false;
+      // RETURN false : SWF files are up to date
   }
 
   
@@ -332,32 +332,46 @@ class tx_flipit_typoscript
   */
   private function flipitXmlFileIsDeprecated( )
   {
-    $xmlFile = $this->cObj->data['tx_flipit_xml_file'];
+      // Get xml file
+    $arr_xmlFiles[0] = $this->cObj->data['tx_flipit_xml_file'];
     
       // RETURN true : there isn't any XML file
-    if( empty ( $xmlFile ) )
+    if( empty ( $arr_xmlFiles ) )
     {
       if( $this->b_drs_xml )
       {    
         $prompt = 'There isn\'t any XML file.';
-        t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
       // RETURN true : there isn't any XML file
+
+      // Set timestamps
+    $this->zz_tstampSwf( );
+    $this->zz_tstampXml( );
+      // Set timestamps
     
-    if( $this->b_drs_todo )
-    {    
-      $prompt = 'Check, if XML file is older than PDF file.';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      // RETURN true  : XML file is deprecated
+    if( $this->tstampSwf >= $this->tstampXml )
+    {
+      if( $this->b_drs_xml )
+      {    
+        $prompt = 'Swf files are newer than the xml file.';
+        t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+      }
+      return true;
     }
+      // RETURN true  : XML file is deprecated
     
+      // RETURN false : XML file is up to date
     if( $this->b_drs_xml )
     {    
       $prompt = 'XML file is up to date.';
       t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
     }
     return false;
+      // RETURN false : XML file is up to date
   }
 
   
@@ -653,7 +667,7 @@ class tx_flipit_typoscript
  /**
   * zz_tstampPdf( ): 
   *
-  * @return	integer
+  * @return	void
   * @access     private
   * @version  0.0.2
   * @since    0.0.2
@@ -662,14 +676,18 @@ class tx_flipit_typoscript
   {
     $conf = $this->conf;
     
+    if( ! ( $this->tstampPdf === null ) )
+    {
+      return; 
+    }
+    
       // Get table.field, where files are stored
     $table  = $conf['userFunc.']['configuration.']['currentTable'];
     $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
       // Get table.field, where files are stored
 
       // Get latest timestamp of files in given field
-    $tstampLatest = $this->zz_tstampLatest( $field );
-    return $tstampLatest;
+    $this->tstampPdf = $this->zz_tstampLatest( $field );
   }
 
   
@@ -677,16 +695,20 @@ class tx_flipit_typoscript
  /**
   * zz_tstampSwf( ): 
   *
-  * @return	integer
+  * @return	void
   * @access     private
   * @version  0.0.2
   * @since    0.0.2
   */
   private function zz_tstampSwf( )
   {
+    if( ! ( $this->tstampSwf === null ) )
+    {
+      return; 
+    }
+    
       // Get latest timestamp of files in given field
-    $tstampLatest = $this->zz_tstampLatest( 'tx_flipit_swf_files' );
-    return $tstampLatest;
+    $this->tstampSwf = $this->zz_tstampLatest( 'tx_flipit_swf_files' );
   }
 
   
@@ -694,16 +716,19 @@ class tx_flipit_typoscript
  /**
   * zz_tstampXml( ): 
   *
-  * @return	integer
+  * @return	void
   * @access     private
   * @version  0.0.2
   * @since    0.0.2
   */
   private function zz_tstampXml( )
   {
+    if( ! ( $this->tstampXml === null ) )
+    {
+      return; 
+    }
       // Get latest timestamp of files in given field
-    $tstampLatest = $this->zz_tstampLatest( 'tx_flipit_xml_file' );
-    return $tstampLatest;
+    $this->tstampXml = $this->zz_tstampLatest( 'tx_flipit_xml_file' );
   }
   
 
