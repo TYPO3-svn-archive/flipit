@@ -106,7 +106,7 @@ class tx_flipit_typoscript
     
     if( $this->b_drs_todo )
     {    
-      $prompt = 'Chweck if there is a PDF file. If not: return!';
+      $prompt = 'Check if there is a PDF file. If not: return!';
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
     }
 
@@ -609,16 +609,38 @@ class tx_flipit_typoscript
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
     
+    $tstampLatest = null;
     foreach( ( array ) $arr_files as $file )
     {
       $pathToFile = $path . '/' . $file;
-      if( $this->b_drs_flipit )
-      {    
-        $prompt = $pathToFile;
-        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+      if( ! file_exists( $filename ) )
+      {
+        if( $this->b_drs_error )
+        {    
+          $prompt = 'Does not exist: ' . $pathToFile;
+          t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
+        }
+        continue;
       }
+      $tstampCurrent = filemtime( $pathToFile );
+      if( $tstampCurrent > $tstampLatest )
+      {
+        $tstampCurrent = $tstampLatest;
+      }
+          echo "$filename wurde zuletzt modifiziert:: " . date ("F d Y H:i:s.", filemtime($filename));
+
+//      if( $this->b_drs_flipit )
+//      {    
+//        $prompt = $pathToFile;
+//        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+//      }
     }
     
+    if( $this->b_drs_error )
+    {    
+      $prompt = 'Datetime of latest file: ' . date ( 'F d Y H:i:s.', $tstampLatest );
+      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+    }
     
     
   }
