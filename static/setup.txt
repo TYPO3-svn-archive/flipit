@@ -47,8 +47,10 @@ plugin.tx_flipit {
     }
   }
   master_templates {
+      // Please copy to tt_content.uploads.20.itemRendering
     flip_it = USER
     flip_it {
+        // enabled, content
       userFunc = tx_flipit_typoscript->renderFlipit
       userFunc {
           // Checks, if Flip it! is enabled
@@ -120,7 +122,7 @@ plugin.tx_flipit {
             }
           }
         }
-          // Content will rendered, if enabled is true
+          // Content will rendered, if Flip it! is enabled
         content = COA
         content {
           //wrap = <td class="csc-uploads-flipit">|</td>
