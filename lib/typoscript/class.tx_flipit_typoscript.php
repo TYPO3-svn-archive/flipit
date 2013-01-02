@@ -625,9 +625,8 @@ class tx_flipit_typoscript
       $tstampCurrent = filemtime( $pathToFile );
       if( $tstampCurrent > $tstampLatest )
       {
-        $tstampCurrent = $tstampLatest;
+        $tstampLatest = $tstampCurrent;
       }
-          echo "$filename wurde zuletzt modifiziert:: " . date ("F d Y H:i:s.", filemtime($filename));
 
 //      if( $this->b_drs_flipit )
 //      {    
