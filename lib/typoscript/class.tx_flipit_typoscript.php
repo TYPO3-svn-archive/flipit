@@ -609,6 +609,7 @@ class tx_flipit_typoscript
     
       // Get path to PDF file
     $this->TCAload( $table, $field );
+t3lib_div::loadTCA( $table );
     $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
