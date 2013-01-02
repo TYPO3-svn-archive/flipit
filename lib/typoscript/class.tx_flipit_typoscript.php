@@ -633,9 +633,9 @@ class tx_flipit_typoscript
       {
         if( $this->b_drs_error )
         {
-          $prompt = var_export( $GLOBALS['TCA'][$table]['columns'], true );
-          $prompt = '<pre>' . $prompt . '</pre>';
-          die( $prompt );
+//          $prompt = var_export( $GLOBALS['TCA'][$table]['columns'], true );
+//          $prompt = '<pre>' . $prompt . '</pre>';
+//          die( $prompt );
           $prompt = 'Does not exist: ' . $pathToFile;
           t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
         }
