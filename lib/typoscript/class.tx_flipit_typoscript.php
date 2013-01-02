@@ -91,6 +91,8 @@ class tx_flipit_typoscript
   */
   public function renderFlipit( $content, $conf )
   {
+    unset( $content );
+    
       // Current TypoScript configuration
     $this->conf = $conf;
     
@@ -110,11 +112,22 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
-    if( $this->b_drs_todo )
-    {    
-      $prompt = 'Check if there are media files. If not: return!';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
+      // Get table.field, where media files are stored
+    $table  = $conf['userFunc.']['configuration.']['currentTable'];
+    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+      // Get table.field, where files are stored
+
+      // RETURN : no media files
+    if( empty ( $this->cObj->data[$field] ) )
+    {
+      if( $this->b_drs_flipit )
+      {    
+        $prompt = $table . '.' . $field . ' is empty. Nothing todo. Return!';
+        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+      }
+      return;
     }
+      // RETURN : no media files
 
       // Generate and check SWF and XML files
     $this->flipit( );   
@@ -333,6 +346,7 @@ class tx_flipit_typoscript
   private function flipitXmlFileIsDeprecated( )
   {
       // Get xml file
+    $arr_xmlFiles = array( );
     $arr_xmlFiles[0] = $this->cObj->data['tx_flipit_xml_file'];
     
       // RETURN true : there isn't any XML file

@@ -132,7 +132,7 @@ plugin.tx_flipit {
           10 {
             value (
               <script src="typo3conf/ext/flipit/res/jss/swfobjects_1.4.4/swfobject.js" type="text/javascript"></script>
-  )
+)
           }
           20 = TEXT
           20 {
@@ -148,7 +148,7 @@ plugin.tx_flipit {
                 so.addVariable("fullscreen","true");
                 so.write("flashcontent");
               </script>
-  )
+)
             insertData = 1
           }
         }
