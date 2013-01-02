@@ -550,10 +550,10 @@ class tx_flipit_typoscript
   * @version   0.0.2
   * @since     0.0.2
   */
-  private function TCAload( $table )
+  private function TCAload( $table, $field )
   {
       // RETURN : TCA is loaded
-    if( is_array( $GLOBALS['TCA'][$table]['columns'] ) )
+    if( is_array( $GLOBALS['TCA'][$table]['columns'][$field] ) )
     {
       return;
     }
@@ -608,7 +608,7 @@ class tx_flipit_typoscript
       // RETURN null : there isn't any file
     
       // Get path to PDF file
-    $this->TCAload( $table );
+    $this->TCAload( $table, $field );
     $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
