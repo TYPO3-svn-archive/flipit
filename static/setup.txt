@@ -46,6 +46,8 @@ plugin.tx_flipit {
       tstamp  = tstamp
     }
   }
+    // For tt_content.uploads
+  master_templates =
   master_templates {
       // Please copy to tt_content.uploads.20.itemRendering
     flip_it = USER
