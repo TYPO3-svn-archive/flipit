@@ -247,13 +247,7 @@ class tx_flipit_typoscript
       return true;
     }
     
-    if( $this->b_drs_todo )
-    {    
-      $prompt = 'Check, if SWF files are older than PDF file.';
-      t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
-    }
-    
-    if( $this->b_drs_xml )
+    if( $this->b_drs_swf )
     {    
       $prompt = 'SWF files are up to date.';
       t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
@@ -581,46 +575,46 @@ class tx_flipit_typoscript
   
   
  /**
-  * tstampPdf( ): 
+  * tstampLatest( ): Get the latest timestamp of the given files
   *
-  * @return	integer
-  * @access     private
+  * @param    string    $field        : name of the field, where files are stored
+  * @return   integer   $tstampLatest : timestamp of the latest file
+  * @access   private
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function tstampPdf( )
+  private function tstampLatest( $field )
   {
     $conf = $this->conf;
-      // Woher weiss ich, in welcher Tabelle und welchem Feld die Dateien abgelegt sind?
-        // Wenn CType, colPos und media -> tt_content? 
     
-    $table        = $conf['userFunc.']['configuration.']['currentTable'];
-    $filesField   = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
-    $tstampField  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+      // Get the current table
+    $table  = $conf['userFunc.']['configuration.']['currentTable'];
 
-    $files      = $this->cObj->data[$filesField];
-    $arr_files  = explode( ',', $files );
+      // Get files
+    $csvFiles = $this->cObj->data[$field];
+    $files    = explode( ',', $csvFiles );
+      // Get files
     
-      // RETURN 0 : there isn't any media file
-    if( empty ( $arr_files ) )
+      // RETURN null : there isn't any file
+    if( empty ( $files ) )
     {
-      if( $this->b_drs_error )
+      if( $this->b_drs_flipit )
       {    
-        $prompt = 'There isn\'t any media file.';
-        t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
+        $prompt = 'There isn\'t any file.';
+        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
-      return 0;
+      return null;
     }
-      // RETURN 0 : there isn't any XML file
+      // RETURN null : there isn't any file
     
       // Get path to PDF file
     $this->TCAload( $table );
-    $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$filesField]['config']['uploadfolder'];
+    $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
     
     $tstampLatest = null;
-    foreach( ( array ) $arr_files as $file )
+    foreach( ( array ) $files as $file )
     {
       $pathToFile = $path . '/' . $file;
       if( ! file_exists( $pathToFile ) )
@@ -637,21 +631,39 @@ class tx_flipit_typoscript
       {
         $tstampLatest = $tstampCurrent;
       }
-
-//      if( $this->b_drs_flipit )
-//      {    
-//        $prompt = $pathToFile;
-//        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
-//      }
     }
     
-    if( $this->b_drs_error )
+    if( $this->b_drs_flipit )
     {    
       $prompt = 'Datetime of latest file: ' . date ( 'F d Y H:i:s.', $tstampLatest );
       t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
     }
     
+    return $tstampLatest;
+  }
+
+  
+  
+ /**
+  * tstampPdf( ): 
+  *
+  * @return	integer
+  * @access     private
+  * @version  0.0.2
+  * @since    0.0.2
+  */
+  private function tstampPdf( )
+  {
+    $conf = $this->conf;
     
+      // Get table.field, where files are stored
+    $table  = $conf['userFunc.']['configuration.']['currentTable'];
+    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+      // Get table.field, where files are stored
+
+      // Get latest timestamp of files in given field
+    $tstampLatest = $this->tstampLatest( $field );
+    return $tstampLatest;
   }
 
   
@@ -666,6 +678,9 @@ class tx_flipit_typoscript
   */
   private function tstampSwf( )
   {
+      // Get latest timestamp of files in given field
+    $tstampLatest = $this->tstampLatest( 'tx_flipit_swf_files' );
+    return $tstampLatest;
   }
 
   
@@ -680,6 +695,9 @@ class tx_flipit_typoscript
   */
   private function tstampXml( )
   {
+      // Get latest timestamp of files in given field
+    $tstampLatest = $this->tstampLatest( 'tx_flipit_xml_file' );
+    return $tstampLatest;
   }
   
 
