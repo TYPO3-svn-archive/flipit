@@ -680,7 +680,7 @@ class tx_flipit_typoscript
       switch( $latest )
       {
         case( true ):
-          if( $tstampCurrent > $tstampLatest )
+          if( ( $tstampLatest === null ) || ( $tstampCurrent > $tstampLatest ) )
           {
             $tstampLatest = $tstampCurrent;
           }
