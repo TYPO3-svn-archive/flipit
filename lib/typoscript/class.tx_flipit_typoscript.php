@@ -641,7 +641,7 @@ class tx_flipit_typoscript
     
     if( $this->b_drs_flipit )
     {    
-      $prompt = 'Datetime of latest file: ' . date ( 'F d Y H:i:s.', $tstampLatest );
+      $prompt = 'datetime of latest ' . $field . '-file: ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
       t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
     }
     
