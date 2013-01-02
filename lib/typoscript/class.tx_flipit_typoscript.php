@@ -590,6 +590,7 @@ class tx_flipit_typoscript
   */
   private function tstampPdf( )
   {
+    $conf = $this->conf;
       // Woher weiss ich, in welcher Tabelle und welchem Feld die Dateien abgelegt sind?
         // Wenn CType, colPos und media -> tt_content? 
 
