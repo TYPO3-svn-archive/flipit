@@ -143,7 +143,7 @@ plugin.tx_flipit {
                 </p>
               </div>
               <script type="text/javascript">
-                var so = new SWFObject("typo3conf/ext/flipit/res/swf/book.swf", "book", "100%", "100%", "8", "#ffffff");
+                var so = new SWFObject("typo3conf/ext/flipit/res/swf/book.swf", "book", "100%", "100%", "8", "#EC921A");
                 so.addVariable("xmlFile","uploads/tx_flipit/{field:tx_flipit_xml_file}");
                 so.addVariable("fullscreen","true");
                 so.write("flashcontent");
