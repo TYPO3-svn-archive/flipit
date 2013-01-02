@@ -25,27 +25,6 @@ includeLibs {
   // plugin.tx_flipit
 
 plugin.tx_flipit {
-    // table
-  current =
-  current {
-    table = {$plugin.tx_flipit.configuration.table} 
-  }
-    // tt_content, tx_org_downloads
-  tables =
-  tables {
-      // media, tstamp
-    tt_content =
-    tt_content {
-      media   = media
-      tstamp  = tstamp
-    }
-      // media, tstamp
-    tx_org_downloads =
-    tx_org_downloads {
-      media   = tstamp
-      tstamp  = tstamp
-    }
-  }
     // For tt_content.uploads
   master_templates =
   master_templates {
@@ -55,10 +34,27 @@ plugin.tx_flipit {
         // enabled, content
       userFunc = tx_flipit_typoscript->renderFlipit
       userFunc {
+          // currentTable, tables
         configuration =
         configuration {
-          current < plugin.tx_flipit.current
-          tables  < plugin.tx_flipit.tables
+            // table
+          currentTable = {$plugin.tx_flipit.configuration.table} 
+            // tt_content, tx_org_downloads
+          tables =
+          tables {
+              // media, tstamp
+            tt_content =
+            tt_content {
+              media   = media
+              tstamp  = tstamp
+            }
+              // media, tstamp
+            tx_org_downloads =
+            tx_org_downloads {
+              media   = tstamp
+              tstamp  = tstamp
+            }
+          }
         }
           // Checks, if Flip it! is enabled
         enabled = COA
