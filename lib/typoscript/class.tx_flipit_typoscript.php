@@ -94,6 +94,8 @@ class tx_flipit_typoscript
       // Current TypoScript configuration
     $this->conf = $conf;
     
+    $GLOBALS['TSFE']->includeTCA( );
+
       // Init
     $arr_return = $this->init( $conf );
 
@@ -560,8 +562,7 @@ class tx_flipit_typoscript
       // RETURN : TCA is loaded
     
       // Load the TCA
-    $GLOBALS['TSFE']->includeTCA( );
-//    t3lib_div::loadTCA( $table );
+    t3lib_div::loadTCA( $table );
 
       // DRS
     if ( $this->b_drs_init )
