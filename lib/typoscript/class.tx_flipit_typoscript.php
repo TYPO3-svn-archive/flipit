@@ -187,6 +187,11 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
     }
     
+    if( $this->b_drs_xml )
+    {    
+      $prompt = 'SWF files are up to date.';
+      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+    }
     return false;
   }
 
@@ -281,6 +286,11 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
     }
     
+    if( $this->b_drs_xml )
+    {    
+      $prompt = 'XML file is up to date.';
+      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+    }
     return false;
   }
 
