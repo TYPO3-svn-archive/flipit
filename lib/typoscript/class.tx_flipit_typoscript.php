@@ -619,16 +619,6 @@ class tx_flipit_typoscript
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
     
-    if( $this->b_drs_error )
-    {    
-      $prompt = $table;
-      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 3 );
-      $prompt = $field;
-      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 3 );
-      $prompt = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
-      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 3 );
-    }
-
     $tstampLatest = null;
     foreach( ( array ) $files as $file )
     {
@@ -676,12 +666,6 @@ class tx_flipit_typoscript
     $table  = $conf['userFunc.']['configuration.']['currentTable'];
     $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
       // Get table.field, where files are stored
-
-    if( $this->b_drs_error )
-    {    
-      $prompt = $field;
-      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 3 );
-    }
 
       // Get latest timestamp of files in given field
     $tstampLatest = $this->tstampLatest( $field );
