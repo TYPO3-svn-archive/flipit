@@ -112,7 +112,7 @@ class tx_flipit_typoscript
     
     if( $this->b_drs_todo )
     {    
-      $prompt = 'Check if there is a PDF file. If not: return!';
+      $prompt = 'Check if there are media files. If not: return!';
       t3lib_div::devlog( '[INFO/TODO] ' . $prompt, $this->extKey, 2 );
     }
 
@@ -235,16 +235,16 @@ class tx_flipit_typoscript
       // RETURN true : there isn't any SWF file
 
       // Set timestamps
-    $this->zz_tstampPdf( );
+    $this->zz_tstampMedia( );
     $this->zz_tstampSwf( );
       // Set timestamps
     
       // RETURN true  : SWF files are deprecated
-    if( $this->tstampPdf >= $this->tstampSwf )
+    if( $this->tstampMedia >= $this->tstampSwf )
     {
       if( $this->b_drs_swf )
       {    
-        $prompt = 'Pdf file is newer than the last swf file.';
+        $prompt = 'A media file is newer than the last swf file.';
         t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
       }
       return true;
@@ -642,7 +642,7 @@ class tx_flipit_typoscript
     }
       // RETURN null : there isn't any file
     
-      // Get path to PDF file
+      // Get path to the file
     $this->zz_TCAload( $table );
     $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
@@ -680,18 +680,18 @@ class tx_flipit_typoscript
   
   
  /**
-  * zz_tstampPdf( ): 
+  * zz_tstampMedia( ): 
   *
   * @return	void
   * @access     private
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function zz_tstampPdf( )
+  private function zz_tstampMedia( )
   {
     $conf = $this->conf;
     
-    if( ! ( $this->tstampPdf === null ) )
+    if( ! ( $this->tstampMedia === null ) )
     {
       return; 
     }
@@ -702,7 +702,7 @@ class tx_flipit_typoscript
       // Get table.field, where files are stored
 
       // Get latest timestamp of files in given field
-    $this->tstampPdf = $this->zz_tstampLatest( $field );
+    $this->tstampMedia = $this->zz_tstampLatest( $field );
   }
 
   
