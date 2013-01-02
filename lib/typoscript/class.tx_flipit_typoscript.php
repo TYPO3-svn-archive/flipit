@@ -593,8 +593,12 @@ class tx_flipit_typoscript
     $conf = $this->conf;
       // Woher weiss ich, in welcher Tabelle und welchem Feld die Dateien abgelegt sind?
         // Wenn CType, colPos und media -> tt_content? 
+    
+    $table        = $conf['userFunc.']['configuration.']['currentTable'];
+    $filesField   = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+    $tstampField  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
 
-    $files      = $this->cObj->data['media'];
+    $files      = $this->cObj->data[$filesField];
     $arr_files  = explode( ',', $files );
     
       // RETURN 0 : there isn't any media file
@@ -610,9 +614,8 @@ class tx_flipit_typoscript
       // RETURN 0 : there isn't any XML file
     
       // Get path to PDF file
-    $table = 'tt_content';
     $this->TCAload( $table );
-    $uploadFolder         = $GLOBALS['TCA']['tt_content']['columns']['media']['config']['uploadfolder'];
+    $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$filesField]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
     
