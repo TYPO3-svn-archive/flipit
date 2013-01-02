@@ -724,13 +724,20 @@ class tx_flipit_typoscript
       return; 
     }
     
-      // Get table.field, where files are stored
+      // Get table.field, where tmstamp is stored
     $table  = $conf['userFunc.']['configuration.']['currentTable'];
     $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
       // Get table.field, where files are stored
 
-      // Get latest timestamp of files in given field
-    $this->tstampRecord = $this->zz_tstampLatest( $field );
+      // Get timestamp of current record
+    $this->tstampRecord = $this->cObj->data[$field];
+
+    if( $this->b_drs_flipit )
+    {    
+      $prompt = $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $this->tstampRecord );
+      t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
+    }
+    
   }
 
   
