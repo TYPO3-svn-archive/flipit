@@ -112,8 +112,6 @@ class tx_flipit_typoscript
       // Init
     $arr_return = $this->init( $conf );
 
-var_export( $this->files );
-    
       // IF return  : return with an error prompt
     if( $arr_return['return'] )
     {
@@ -653,6 +651,8 @@ var_export( $this->files );
   */
   private function initFiles( )
   {
+    $conf = $this->conf;
+
       // Get files from media
     $table    = $conf['userFunc.']['configuration.']['currentTable'];
     $field    = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
@@ -681,6 +681,8 @@ var_export( $this->files );
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_xml_file
 
+var_export( $this->files );
+        
     return;
   }
 
