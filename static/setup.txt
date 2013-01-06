@@ -39,6 +39,8 @@ plugin.tx_flipit {
         configuration {
             // table
           currentTable = {$plugin.tx_flipit.configuration.table} 
+            // Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
+          filetypes = {$plugin.tx_flipit.configuration.filetypes} 
             // tt_content, tx_org_downloads
           tables =
           tables {

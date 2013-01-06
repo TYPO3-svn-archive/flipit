@@ -297,30 +297,57 @@ class tx_flipit_typoscript
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
   * @access   private
-  * @version  0.0.2
+  * @version  0.0.3
   * @since    0.0.2
   */
   private function flipitSwfFilesRenderIt( )
   {
+    $this->flipitSwfFilesRenderItGetFiles( );
+    $this->flipitSwfFilesRenderItSetFiles( );
+  }
+
+  
+  
+ /**
+  * flipitSwfFilesRenderItGetFiles( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitSwfFilesRenderItGetFiles( )
+  {
     if( $this->b_drs_swf )
     {    
-      $prompt = 'There isn\'t any SWF file.';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
-
-      if( $this->objUserfunc->swfTools != 'installed' )
-      {
-
-      }
-    }
-
-    if( $this->b_drs_swf )
-    {    
-      $prompt = 'Render SWF files!';
+      $prompt = 'Get files!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
     }
-
     return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
-    
+  }
+
+  
+  
+ /**
+  * flipitSwfFilesRenderItSetFiles( ): 
+  *
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitSwfFilesRenderItSetFiles( )
+  {
+      // SWITCH : extension
+      // jpeg, pdf, png
+    if( $this->b_drs_swf )
+    {    
+      $prompt = 'Set SWF files!';
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
+    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
   }
 
   
