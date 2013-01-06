@@ -264,6 +264,21 @@ class tx_flipit_typoscript
     }
       // RETURN true  : SWF files are deprecated
     
+      // Set timestamp
+    $this->zz_tstampRecord( );
+    
+      // RETURN true  : SWF files are deprecated
+    if( $this->tstampRecord >= $this->tstampSwf )
+    {
+      if( $this->b_drs_swf )
+      {    
+        $prompt = 'Record is newer than the swf file.';
+        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+      }
+      return true;
+    }
+      // RETURN true  : SWF files are deprecated
+
       // RETURN false : SWF files are up to date
     if( $this->b_drs_swf )
     {    
