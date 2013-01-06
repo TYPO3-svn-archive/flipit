@@ -812,27 +812,20 @@ var_export( $this->files );
     }
       // RETURN null : there isn't any file
     
-      // Get path to the file
-    $this->zz_TCAload( $table );
-    $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
-    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    $path                 = $typo3_document_root . '/' . $uploadFolder;
-    
     $tstampLatest = null;
     $tstampFirst  = null;
     foreach( ( array ) $files as $file )
     {
-      $pathToFile = $path . '/' . $file;
-      if( ! file_exists( $pathToFile ) )
+      if( ! file_exists( $file ) )
       {
         if( $this->b_drs_error )
         {
-          $prompt = 'Does not exist: ' . $pathToFile;
+          $prompt = 'Does not exist: ' . $file;
           t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
         }
         continue;
       }
-      $tstampCurrent = filemtime( $pathToFile );
+      $tstampCurrent = filemtime( $file );
       switch( $latest )
       {
         case( true ):
