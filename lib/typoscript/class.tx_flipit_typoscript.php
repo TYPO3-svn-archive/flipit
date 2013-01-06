@@ -76,6 +76,13 @@ class tx_flipit_typoscript
   * @var array
   */
   private $conf;
+  
+ /**
+  * Array with current files from media, tx_flipit_swf_files, tx_flipit_xml_file
+  *
+  * @var array
+  */
+  private $files;
 
   
   
@@ -105,6 +112,8 @@ class tx_flipit_typoscript
       // Init
     $arr_return = $this->init( $conf );
 
+var_export( $this->files );
+    
       // IF return  : return with an error prompt
     if( $arr_return['return'] )
     {
@@ -497,6 +506,9 @@ class tx_flipit_typoscript
       // Require class userfunc
     $this->initClasses( );
 
+      // Init file lists
+    $this->initFiles( );
+
     return;
   }
   
@@ -629,6 +641,104 @@ class tx_flipit_typoscript
     
   }
 
+  
+  
+ /**
+  * initFiles( ): 
+  *
+  * @return	
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function initFiles( )
+  {
+      // Get files from media
+    $table    = $conf['userFunc.']['configuration.']['currentTable'];
+    $field    = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+    $csvFiles = $this->cObj->data[$field];
+    $files    = explode( ',', $csvFiles );
+    $path     = $this->zz_getPath( $table, $field );
+      // Set global var $files
+    $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
+      // Get files from media
+
+      // Get files from tx_flipit_swf_files
+    $field    = 'tx_flipit_swf_files';
+    $csvFiles = $this->cObj->data[$field];
+    $files    = explode( ',', $csvFiles );
+    $path     = $this->zz_getPath( $table, $field );
+      // Set global var $files
+    $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
+      // Get files from tx_flipit_swf_files
+
+      // Get files from tx_flipit_xml_file
+    $field    = 'tx_flipit_xml_file';
+    $csvFiles = $this->cObj->data[$field];
+    $files    = explode( ',', $csvFiles );
+    $path     = $this->zz_getPath( $table, $field );
+      // Set global var $files
+    $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
+      // Get files from tx_flipit_xml_file
+
+    return;
+  }
+
+  
+  
+ /**
+  * zz_getFilesWiPath( ): 
+  *
+  * @return	
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function zz_getFilesWiPath( $files, $path )
+  {
+    $arr_return = null; 
+    
+      // FOREACH  : files
+    foreach( ( array ) $files as $file )
+    {
+      $pathWiFile = $path . '/' . $file;
+      if( ! file_exists( $pathWiFile ) )
+      {
+        if( $this->b_drs_error )
+        {
+          $prompt = 'Does not exist: ' . $pathToFile;
+          t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
+        }
+        continue;
+      }
+      $arr_return[] = $pathWiFile;
+    }
+      // FOREACH  : files
+
+      // RETURN : filesWiPath
+    return $arr_return;
+  }
+  
+  
+ /**
+  * zz_getPath( ): 
+  *
+  * @return	
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function zz_getPath( $table, $field )
+  {
+      // Get path
+    $this->zz_TCAload( $table );
+    $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
+    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+    $path                 = $typo3_document_root . '/' . $uploadFolder;
+
+    return $path;
+  }
+
 
 
  /**
@@ -682,8 +792,10 @@ class tx_flipit_typoscript
     $table  = $conf['userFunc.']['configuration.']['currentTable'];
 
       // Get files
-    $csvFiles = $this->cObj->data[$field];
-    $files    = explode( ',', $csvFiles );
+//    $csvFiles = $this->cObj->data[$field];
+//    $files    = explode( ',', $csvFiles );
+    $files    = $this->files[$field];
+    
       // Get files
     
       // RETURN null : there isn't any file
