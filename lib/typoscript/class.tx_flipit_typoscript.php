@@ -565,7 +565,7 @@ class tx_flipit_typoscript
     $swfPath = $this->zz_getPath( $field );
 
       // Render PDF to SWF
-    $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . PATH_SEPARATOR . $swfFile;
+    $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . DIRECTORY_SEPARATOR . $swfFile;
     $lines  = $this->zz_exec( $exec );
       //    pdf2swf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/tx_flipit/tt_content_1589_%.swf
       // $lines:
@@ -594,7 +594,7 @@ class tx_flipit_typoscript
       // get list of rendered swf files
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
                 '_doc_' . $filesCounter . '_part_*.swf';
-    $exec   = 'ls -t ' . $swfPath . PATH_SEPARATOR . $swfFile;
+    $exec   = 'ls -t ' . $swfPath . DIRECTORY_SEPARATOR . $swfFile;
     $lines  = $this->zz_exec( $exec );
       // get list of rendered swf files
       
@@ -776,7 +776,7 @@ var_dump( $xml );
 
        
       // Write file
-var_dump( $xmlPath . PATH_SEPARATOR . $xmlFile );
+var_dump( $xmlPath . DIRECTORY_SEPARATOR . $xmlFile );
       
       // Update database
 
@@ -1148,7 +1148,7 @@ var_dump( $xmlPath . PATH_SEPARATOR . $xmlFile );
       // FOREACH  : files
     foreach( ( array ) $files as $file )
     {
-      $pathWiFile = $path . PATH_SEPARATOR . $file;
+      $pathWiFile = $path . DIRECTORY_SEPARATOR . $file;
       if( ! file_exists( $pathWiFile ) )
       {
         if( $this->b_drs_error )
@@ -1186,7 +1186,7 @@ var_dump( $xmlPath . PATH_SEPARATOR . $xmlFile );
     $this->zz_TCAload( $this->table );
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    $path                 = $typo3_document_root . PATH_SEPARATOR . $uploadFolder;
+    $path                 = $typo3_document_root . DIRECTORY_SEPARATOR . $uploadFolder;
 
     return $path;
   }
