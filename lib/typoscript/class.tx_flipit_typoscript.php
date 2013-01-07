@@ -1121,7 +1121,7 @@ class tx_flipit_typoscript
   private function zz_tstampLatest( $field, $latest )
   {
       // Get files
-    $files    = $this->files[$field];
+    $files = $this->files[$field];
     
       // Get files
     
@@ -1177,7 +1177,6 @@ class tx_flipit_typoscript
           $prompt = 'latest ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
-
         return $tstampLatest;
         break;
       case( false ):
@@ -1187,7 +1186,7 @@ class tx_flipit_typoscript
           $prompt = 'first ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
-
+var_dump( $this->files );
         return $tstampFirst;
         break;
     }
