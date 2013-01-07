@@ -919,7 +919,7 @@ class tx_flipit_typoscript
       {
         if( $this->b_drs_error )
         {
-          $prompt = 'Does not exist: ' . $pathToFile;
+          $prompt = 'Does not exist: ' . $pathWiFile;
           t3lib_div::devlog( '[ERROR/FLIPIT] ' . $prompt, $this->extKey, 3 );
         }
         continue;
