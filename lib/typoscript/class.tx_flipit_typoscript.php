@@ -823,7 +823,7 @@ class tx_flipit_typoscript
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_xml_file
 
-//var_export( $this->files );
+var_export( $this->files );
         
     return;
   }
