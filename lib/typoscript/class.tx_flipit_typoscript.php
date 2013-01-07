@@ -426,11 +426,12 @@ class tx_flipit_typoscript
           break;
         case('pdf'):
           $filesCounter = $filesCounter + 1;
-//          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter ) );
-          $swfFiles2 = ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter ) );
+//          $swfFiles2 = ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter );
           if( $filesCounter == 2 )
           {
-            var_dump( $swfFiles, $swfFiles2, $swfFiles + $swfFiles2, array_merge( $swfFiles, $swfFiles2 ) );
+//            var_dump( $swfFiles, $swfFiles2, $swfFiles + $swfFiles2, array_merge( $swfFiles, $swfFiles2 ) );
+            var_dump( $swfFiles );
           }
           $swfFiles = $swfFiles + $swfFiles2;
           break;
