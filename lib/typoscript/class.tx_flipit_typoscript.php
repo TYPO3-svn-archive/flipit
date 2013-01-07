@@ -422,15 +422,15 @@ class tx_flipit_typoscript
         case('jpg'):
         case('jpeg'):
           $filesCounter = $filesCounter + 1;
-          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderJpg( $fileWiPath, $filesCounter );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderJpg( $fileWiPath, $filesCounter ) );
           break;
         case('pdf'):
           $filesCounter = $filesCounter + 1;
-          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter ) );
           break;
         case('png'):
           $filesCounter = $filesCounter + 1;
-          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPng( $fileWiPath, $filesCounter );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPng( $fileWiPath, $filesCounter ) );
           break;
         default:
           if( $this->b_drs_swf )
