@@ -756,6 +756,8 @@ class tx_flipit_typoscript
       // Get pages
     $pages = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
     $pages = "  <page src='" . $pages . "'/>";
+    $pages = str_replace( t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' ), 'uploads', $pages );
+    
       // Get pages
   
       // Set xml content
@@ -767,7 +769,7 @@ class tx_flipit_typoscript
     $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
       // Set xml content
     
-//var_dump( __METHOD__, __LINE__, $xmlContent );    
+var_dump( __METHOD__, __LINE__, $xmlContent );    
 
     $xmlFile = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
 
@@ -1275,23 +1277,13 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function zz_getPath( $field, $absolute=true )
+  private function zz_getPath( $field)
   {
       // Get path
     $this->zz_TCAload( $this->table );
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    
-    switch( $absolute )
-    {
-      case( false ):
-        $path = 'uploads' . DIRECTORY_SEPARATOR . $uploadFolder;
-        break;
-      case( true ):
-      default:
-        $path = $typo3_document_root . DIRECTORY_SEPARATOR . $uploadFolder;
-        break;
-    }
+    $path                 = $typo3_document_root . DIRECTORY_SEPARATOR . $uploadFolder;
 
     return $path;
   }
