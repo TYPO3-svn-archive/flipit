@@ -1275,13 +1275,23 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function zz_getPath( $field )
+  private function zz_getPath( $field, $absolute=true )
   {
       // Get path
     $this->zz_TCAload( $this->table );
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    $path                 = $typo3_document_root . DIRECTORY_SEPARATOR . $uploadFolder;
+    
+    switch( $absolute )
+    {
+      case( false ):
+        $path = 'uploads' . DIRECTORY_SEPARATOR . $uploadFolder;
+        break;
+      case( true ):
+      default:
+        $path = $typo3_document_root . DIRECTORY_SEPARATOR . $uploadFolder;
+        break;
+    }
 
     return $path;
   }
