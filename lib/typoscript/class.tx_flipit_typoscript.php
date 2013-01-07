@@ -314,10 +314,10 @@ class tx_flipit_typoscript
   */
   private function flipitSwfFilesRemove( )
   {
-    $arrExec = array( );
+    $arrExec  = array( );
+    $field    = 'tx_flipit_swf_files';
     
       // FOREACH files  : get exec command
-    $field = 'tx_flipit_swf_files';
     foreach( $this->files[$field] as $swffileWiPath )
     {
       $arrExec[] = 'rm ' . $swffileWiPath;
@@ -347,7 +347,16 @@ class tx_flipit_typoscript
     }
 
       // Update database
-    
+    $where = "'uid' = " . $this->cObj->data['uid'];
+    $fields_values = array(
+      $field => null
+    );
+    if( $this->b_drs_sql || $this->b_drs_swf )
+    {    
+      $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $this->table, $where, $fields_values );
+      t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
+    }
+    //$GLOBALS['TYPO3_DB']->exec_UPDATEquery( $this->table, $where, $fields_values );
 
     return;
   }
@@ -778,6 +787,7 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
     $this->b_drs_init   = true;
     $this->b_drs_php    = true;
     $this->b_drs_pdf    = true;
+    $this->b_drs_sql    = true;
     $this->b_drs_swf    = true;
     $this->b_drs_todo   = true;
     $this->b_drs_xml    = true;
