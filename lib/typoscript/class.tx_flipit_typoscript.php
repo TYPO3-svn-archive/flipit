@@ -333,13 +333,13 @@ class tx_flipit_typoscript
       {
         case('jpg'):
         case('jpeg'):
-          $swfFiles[] = $this->flipitSwfFilesRenderJpg( $fileWiPath );
+          $swfFiles = $swfFiles + $this->flipitSwfFilesRenderJpg( $fileWiPath );
           break;
         case('pdf'):
-          $swfFiles[] = $this->flipitSwfFilesRenderPdf( $fileWiPath );
+          $swfFiles = $swfFiles + $this->flipitSwfFilesRenderPdf( $fileWiPath );
           break;
         case('png'):
-          $swfFiles[] = $this->flipitSwfFilesRenderPng( $fileWiPath );
+          $swfFiles = $swfFiles + $this->flipitSwfFilesRenderPng( $fileWiPath );
           break;
         default:
           if( $this->b_drs_swf )
@@ -467,13 +467,16 @@ class tx_flipit_typoscript
     $exec   = 'ls -t ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
     krsort( $lines );
-var_dump( __METHOD__, __LINE__, $lines );    
 
-    if( $this->b_drs_swf )
-    {    
-      $prompt = 'Render SWF files from PDF!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+      // FOREACH  : swfFile
+    foreach( $lines as $swfFileWiPath )
+    {
+      $pathParts = pathinfo( $swfFileWiPath );
+      $arrReturn = $pathParts['basename'];
+      
     }
+      // FOREACH  : swfFile
+
     return $arrReturn;
   }
 
