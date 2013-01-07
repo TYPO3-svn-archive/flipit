@@ -829,7 +829,7 @@ class tx_flipit_typoscript
     $lines = null;
     
       // DIE  : function exec doesn't exist
-    if( ! ( function_exists('exec') ) )  
+    if( ! ( function_exists('exXXXec') ) )  
     {
       $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpExecIsFalse');
       die( $prompt );
