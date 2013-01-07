@@ -329,19 +329,16 @@ class tx_flipit_typoscript
     }
       // FOREACH files  : get exec command
     
-      // RETURN : there is no SWF file
+      // DRS
     if( empty ( $arrExec ) ) 
     {
-        // DRS
       if( $this->b_drs_error )
       {    
         $prompt = 'Unexpected result: no SWF file!';
         t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
       }
-        // DRS
-      return;
     }
-      // RETURN : there is no SWF file
+      // DRS
     
       // Remove swf files
     $exec = implode( ';' . PHP_EOL, ( array ) $arrExec );
