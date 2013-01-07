@@ -305,6 +305,56 @@ class tx_flipit_typoscript
   
   
  /**
+  * flipitSwfFilesRemove( ): 
+  *
+  * @return
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitSwfFilesRemove( )
+  {
+    $arrExec = array( );
+    
+      // FOREACH files  : get exec command
+    $field = 'tx_flipit_swf_files';
+    foreach( $this->files[$field] as $swffileWiPath )
+    {
+      $arrExec[] = 'rm ' . $swffileWiPath;
+      
+    }
+      // FOREACH files  : get exec command
+    
+      // RETURN : there is no SWF file
+    if( empty ( $arrExec ) ) 
+    {
+        // DRS
+      if( $this->b_drs_error )
+      {    
+        $prompt = 'Unexpected result: no SWF file!';
+        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+      }
+        // DRS
+      return;
+    }
+      // RETURN : there is no SWF file
+    
+    $exec = implode( ';' . PHP_EOL, ( array ) $arrExec );
+    if( $this->b_drs_swf )
+    {    
+      $prompt = $exec;
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 3 );
+    }
+
+      // Update database
+    
+
+    return;
+  }
+
+  
+  
+ /**
   * flipitSwfFilesRenderAll( ): 
   *
   * @return
@@ -314,12 +364,11 @@ class tx_flipit_typoscript
   */
   private function flipitSwfFilesRenderAll( )
   {
-    // TODO: REMOVE all files
-    if( $this->b_drs_swf )
-    {    
-      $prompt = 'Remove all SWF files!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
-    }
+      // Update tstamp for the current record
+    $updateTstamp = time( );
+    
+      // Remove all swfFiles
+    $this->flipitSwfFilesRemove( );
     
       // SWITCH : extension
       // jpeg, pdf, png
