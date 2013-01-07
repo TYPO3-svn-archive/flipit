@@ -757,6 +757,14 @@ class tx_flipit_typoscript
     $this->initClasses( );
     $this->table = $conf['userFunc.']['configuration.']['currentTable'];
 
+      // DRS
+    if( $this->b_drs_flipit )
+    {    
+      $prompt =  $this->table. '.uid: ' . $this->cObj->data['uid'];
+      t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+
       // Init file lists
     $this->initFiles( );
     
