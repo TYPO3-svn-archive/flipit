@@ -540,7 +540,7 @@ class tx_flipit_typoscript
     
       // SWF output file
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
-                '_doc_' . $filesCounter . '_part_ %.swf';
+                '_doc_' . $filesCounter . '_part_%.swf';
     $field   = 'tx_flipit_swf_files';
     $swfPath = $this->zz_getPath( $field );
 
@@ -573,7 +573,7 @@ class tx_flipit_typoscript
     
       // get list of rendered swf files
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
-                '_doc_' . $filesCounter . '_part_ *.swf';
+                '_doc_' . $filesCounter . '_part_*.swf';
     $exec   = 'ls -t ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
       // get list of rendered swf files
