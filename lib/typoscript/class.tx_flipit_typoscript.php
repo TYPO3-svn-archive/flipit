@@ -446,7 +446,7 @@ class tx_flipit_typoscript
       // DRS  : PDF info
     
       // SWF output file
-    $swfFile = $this->table . '_' . $this->cObj->data['tx_flipit_xml_file'] . '_%.swf';
+    $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_%.swf';
     $field   = 'tx_flipit_swf_files';
     $swfPath = $this->zz_getPath( $field );
 
