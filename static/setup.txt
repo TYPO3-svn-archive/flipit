@@ -139,7 +139,7 @@ plugin.tx_flipit {
           20 = TEXT
           20 {
             value ( 
-              <div id="flashcontent" style="width:{$plugin.tx_flipit.configuration.width}; height:{$plugin.tx_flipit.configuration.height};">
+              <div id="flashcontent" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};">
                 <p>
                   To view the book, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
                 </p>
