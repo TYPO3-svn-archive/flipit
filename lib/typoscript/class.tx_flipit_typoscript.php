@@ -312,13 +312,14 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRemove( )
+  private function flipitSwfFilesRemove( $tstamp )
   {
-    $arrExec  = array( );
-    $field    = 'tx_flipit_swf_files';
+    $arrExec      = array( );
+    $fieldFiles   = 'tx_flipit_swf_files';
+    $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['tstamp'];
     
       // FOREACH files  : get exec command
-    foreach( $this->files[$field] as $swffileWiPath )
+    foreach( $this->files[$fieldFiles] as $swffileWiPath )
     {
       $arrExec[] = 'rm ' . $swffileWiPath;
       
@@ -349,7 +350,8 @@ class tx_flipit_typoscript
       // Update database
     $where = "'uid' = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $field => null
+      $fieldTstamp => $tstamp,
+      $fieldFiles => null
     );
     if( $this->b_drs_sql || $this->b_drs_swf )
     {    
@@ -377,7 +379,7 @@ class tx_flipit_typoscript
     $updateTstamp = time( );
     
       // Remove all swfFiles
-    $this->flipitSwfFilesRemove( );
+    $this->flipitSwfFilesRemove( $updateTstamp );
     
       // SWITCH : extension
       // jpeg, pdf, png
