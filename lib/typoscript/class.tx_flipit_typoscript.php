@@ -745,6 +745,11 @@ class tx_flipit_typoscript
   */
   private function flipitXmlFileRenderIt( )
   {
+    $conf         = $this->conf;
+    $table        = $this->table;
+    $fieldFiles   = 'tx_flipit_xml_file';
+    $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+
       // Get content parameters
     $contentParams = $this->flipitXmlFileRenderItParams( );
 
@@ -762,11 +767,30 @@ class tx_flipit_typoscript
     $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
       // Set xml content
     
-var_dump( $xmlContent );    
+//var_dump( __METHOD__, __LINE__, $xmlContent );    
 
-    $this->flipitXmlFileRenderItWriteFile( $xmlContent );
+    $xmlFileWiPath = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
 
       // Update database
+    $where = "uid = " . $this->cObj->data['uid'];
+    $fields_values = array(
+      $fieldTstamp  => $this->tstamp,
+      $fieldFiles   => $xmlFileWiPath
+    );
+      // DRS
+    if( $this->b_drs_sql || $this->b_drs_xml )
+    {    
+      $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
+      t3lib_div::devlog( '[INFO/SQL+XML] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+    $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
+      // Update database
+
+      // Update cObj->data
+    $this->cObj->data[$fieldTstamp] = $this->tstamp;
+    $this->cObj->data[$fieldFiles]  = $xmlFileWiPath;
+
     return;
     
   }
@@ -824,7 +848,7 @@ var_dump( $xmlContent );
  /**
   * flipitXmlFileRenderItWriteFile( ): 
   *
-  * @return	void
+  * @return	string          $xmlFileWiPath  : full path of xml file
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -899,7 +923,8 @@ var_dump( $xmlContent );
     }
       // DRS
 
-    return;
+      // RETURN : full path
+    return $xmlFileWiPath;
   }
 
   
