@@ -477,6 +477,9 @@ class tx_flipit_typoscript
       // DRS
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
       // Update database
+    
+      // Init files again
+    $this->initFiles( );
 
 
     return;
@@ -537,7 +540,7 @@ class tx_flipit_typoscript
     
       // SWF output file
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
-                '_' . $filesCounter . '_%.swf';
+                '_doc_' . $filesCounter . '_part_ %.swf';
     $field   = 'tx_flipit_swf_files';
     $swfPath = $this->zz_getPath( $field );
 
@@ -570,7 +573,7 @@ class tx_flipit_typoscript
     
       // get list of rendered swf files
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
-                '_' . $filesCounter . '_*.swf';
+                '_doc_' . $filesCounter . '_part_ *.swf';
     $exec   = 'ls -t ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
       // get list of rendered swf files
