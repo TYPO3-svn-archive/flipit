@@ -321,6 +321,25 @@ class tx_flipit_typoscript
     
     $arrExec      = array( );
 
+      // RETURN : no swf files, any swf file can't remove
+    if( empty ( $this->files[$fieldFiles] ) ) 
+    {
+//        // DRS
+//      if( $this->b_drs_swf )
+//      {    
+//        $prompt = 'Unexpected result: no SWF file!';
+//        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 3 );
+//      }
+//        // DRS
+      return;
+//      if( $this->b_drs_error )
+//      {    
+//        $prompt = 'Unexpected result: no SWF file!';
+//        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+//      }
+    }
+      // RETURN : no swf files, any swf file can't remove
+    
       // FOREACH files  : get exec command
     foreach( $this->files[$fieldFiles] as $swffileWiPath )
     {
@@ -328,17 +347,6 @@ class tx_flipit_typoscript
       
     }
       // FOREACH files  : get exec command
-    
-      // DRS
-    if( empty ( $arrExec ) ) 
-    {
-      if( $this->b_drs_error )
-      {    
-        $prompt = 'Unexpected result: no SWF file!';
-        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
-      }
-    }
-      // DRS
     
       // Remove swf files
     $exec = implode( ';' . PHP_EOL, ( array ) $arrExec );
