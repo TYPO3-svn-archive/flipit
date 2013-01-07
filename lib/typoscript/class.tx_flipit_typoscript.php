@@ -83,6 +83,13 @@ class tx_flipit_typoscript
   * @var array
   */
   private $files;
+  
+ /**
+  * Current table: tt_content, tx_org_downloads
+  *
+  * @var string
+  */
+  private $table;
 
   
   
@@ -119,9 +126,8 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
-      // Get table.field, where media files are stored
-    $table  = $conf['userFunc.']['configuration.']['currentTable'];
-    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+      // Get field, where media files are stored
+    $field  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
       // Get table.field, where files are stored
 
       // RETURN : no media files
@@ -129,7 +135,7 @@ class tx_flipit_typoscript
     {
       if( $this->b_drs_flipit )
       {    
-        $prompt = $table . '.' . $field . ' is empty. Nothing todo. Return!';
+        $prompt = $this->table . '.' . $field . ' is empty. Nothing todo. Return!';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
       return;
@@ -421,29 +427,33 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderPdf( $fileWiPath )
+  private function flipitSwfFilesRenderPdf( $pdffileWiPath )
   {
     $arrReturn = null;
     
-    $exec   = 'pdf2swf -I ' . $fileWiPath;
-    $lines  = $this->zz_exec( $exec );
+      // DRS  : PDF info
+    if( $this->b_drs_pdf )
+    {    
+      $exec   = 'pdf2swf -I ' . $pdffileWiPath;
+      $lines  = $this->zz_exec( $exec );
+        //    pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf
+        // $lines:
+        //    page = 1 width = 595.00 height = 842.00
+        //    page = 2 width = 595.00 height = 842.00
+        //    ...
+        //    page = 14 width = 595.00 height = 842.00
+    }
+      // DRS  : PDF info
+    
+      // SWF output file
+    $swfFile = $this->table . '_' . $this->cObj->data['tx_flipit_xml_file'] . '_%.swf';
+    $field   = 'tx_flipit_swf_files';
+    $swfPath = $this->zz_getPath( $this->table, $field );
 
-//    pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf
-//    page = 1 width = 595.00 height = 842.00
-//    page = 2 width = 595.00 height = 842.00
-//    page = 3 width = 595.00 height = 842.00
-//    page = 4 width = 595.00 height = 842.00
-//    page = 5 width = 595.00 height = 842.00
-//    page = 6 width = 595.00 height = 842.00
-//    page = 7 width = 595.00 height = 842.00
-//    page = 8 width = 595.00 height = 842.00
-//    page = 9 width = 595.00 height = 842.00
-//    page = 10 width = 595.00 height = 842.00
-//    page = 11 width = 595.00 height = 842.00
-//    page = 12 width = 595.00 height = 842.00
-//    page = 13 width = 595.00 height = 842.00
-//    page = 14 width = 595.00 height = 842.00
-              
+      // Render PDF to SWF
+    $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . '/' . $swfFile;
+    $lines  = $this->zz_exec( $exec );
+ 
 //    pdf2swf manual.pdf 1589_%.swf
 //    NOTICE outputting one file per page
 //    NOTICE File contains links
@@ -454,8 +464,6 @@ class tx_flipit_typoscript
 
     if( $this->b_drs_swf )
     {    
-      $prompt = var_export( $lines, true );
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
       $prompt = 'Render SWF files from PDF!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
     }
@@ -635,6 +643,9 @@ class tx_flipit_typoscript
 
       // Init file lists
     $this->initFiles( );
+    
+    $this->table  = $conf['userFunc.']['configuration.']['currentTable'];
+
 
     return;
   }
@@ -704,6 +715,8 @@ class tx_flipit_typoscript
     $this->b_drs_ok     = true;
     $this->b_drs_flipit = true;
     $this->b_drs_init   = true;
+    $this->b_drs_php    = true;
+    $this->b_drs_pdf    = true;
     $this->b_drs_swf    = true;
     $this->b_drs_todo   = true;
     $this->b_drs_xml    = true;
@@ -783,11 +796,10 @@ class tx_flipit_typoscript
     $conf = $this->conf;
 
       // Get files from media
-    $table    = $conf['userFunc.']['configuration.']['currentTable'];
-    $field    = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+    $field    = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( $table, $field );
+    $path     = $this->zz_getPath( $this->table, $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from media
@@ -796,7 +808,7 @@ class tx_flipit_typoscript
     $field    = 'tx_flipit_swf_files';
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( $table, $field );
+    $path     = $this->zz_getPath( $this->table, $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_swf_files
@@ -805,7 +817,7 @@ class tx_flipit_typoscript
     $field    = 'tx_flipit_xml_file';
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( $table, $field );
+    $path     = $this->zz_getPath( $this->table, $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_xml_file
@@ -835,6 +847,12 @@ class tx_flipit_typoscript
         <h1>
           PHP ERROR
         </h1>
+        <h1>
+          ' . $exec . '
+        </h1>
+        <p>
+          exec( ' . $exec . ', $lines ) can\'t executed!
+        </p>
         <p>
           The PHP function exec doesn\'t exist.<br />
           <br />
@@ -858,8 +876,26 @@ class tx_flipit_typoscript
     }
       // DIE  : function exec doesn't exist
     
+      // DRS
+    if( $this->b_drs_php )
+    {
+      $prompt = $exec;
+      t3lib_div::devlog( '[INFO/PHP] exec: ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+
+      // Execute!
     exec( $exec, $lines);
+    
+      // DRS
+    if( $this->b_drs_php )
+    {
+      $prompt = var_export( $lines, true );
+      t3lib_div::devlog( '[INFO/PHP] lines: ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
    
+      // RETURN : lines
     return $lines;
   }
 
@@ -907,11 +943,11 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function zz_getPath( $table, $field )
+  private function zz_getPath( $field )
   {
       // Get path
-    $this->zz_TCAload( $table );
-    $uploadFolder         = $GLOBALS['TCA'][$table]['columns'][$field]['config']['uploadfolder'];
+    $this->zz_TCAload( $this->table );
+    $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
 
@@ -923,29 +959,28 @@ class tx_flipit_typoscript
  /**
   * zz_TCAload( ): Load the TCA, if we don't have an table.columns array
   *
-  * @param	string		$table: name of table
   * @return	void
   * @access     private
   * 
   * @version   0.0.2
   * @since     0.0.2
   */
-  private function zz_TCAload( $table )
+  private function zz_TCAload( )
   {
       // RETURN : TCA is loaded
-    if( is_array( $GLOBALS['TCA'][$table]['columns'] ) )
+    if( is_array( $GLOBALS['TCA'][$this->table]['columns'] ) )
     {
       return;
     }
       // RETURN : TCA is loaded
     
       // Load the TCA
-    t3lib_div::loadTCA( $table );
+    t3lib_div::loadTCA( $this->table );
 
       // DRS
     if ( $this->b_drs_init )
     {
-      $prompt = '$GLOBALS[TCA]['.$table.'] is loaded.';
+      $prompt = '$GLOBALS[TCA]['.$this->table.'] is loaded.';
       t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
@@ -965,14 +1000,7 @@ class tx_flipit_typoscript
   */
   private function zz_tstampLatest( $field, $latest )
   {
-    $conf = $this->conf;
-    
-      // Get the current table
-    $table  = $conf['userFunc.']['configuration.']['currentTable'];
-
       // Get files
-//    $csvFiles = $this->cObj->data[$field];
-//    $files    = explode( ',', $csvFiles );
     $files    = $this->files[$field];
     
       // Get files
@@ -1026,7 +1054,7 @@ class tx_flipit_typoscript
       case( true ):
         if( $this->b_drs_flipit )
         {    
-          $prompt = 'latest ' . $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
+          $prompt = 'latest ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
 
@@ -1036,7 +1064,7 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_flipit )
         {    
-          $prompt = 'first ' . $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
+          $prompt = 'first ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
 
@@ -1065,8 +1093,7 @@ class tx_flipit_typoscript
     }
     
       // Get table.field, where files are stored
-    $table  = $conf['userFunc.']['configuration.']['currentTable'];
-    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['media'];
+    $field  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
       // Get table.field, where files are stored
 
       // Get latest timestamp of files in given field
@@ -1094,8 +1121,7 @@ class tx_flipit_typoscript
     }
     
       // Get table.field, where tmstamp is stored
-    $table  = $conf['userFunc.']['configuration.']['currentTable'];
-    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+    $field  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['tstamp'];
       // Get table.field, where files are stored
 
       // Get timestamp of current record
@@ -1103,7 +1129,7 @@ class tx_flipit_typoscript
 
     if( $this->b_drs_flipit )
     {    
-      $prompt = $table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $this->tstampRecord );
+      $prompt = $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $this->tstampRecord );
       t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
     }
     
