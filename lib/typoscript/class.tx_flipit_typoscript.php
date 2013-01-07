@@ -478,6 +478,8 @@ class tx_flipit_typoscript
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
       // Update database
     
+      // Reset tstamp for swf files
+    $this->tstampSwf = null;
       // Init files again
     $this->initFiles( );
 
