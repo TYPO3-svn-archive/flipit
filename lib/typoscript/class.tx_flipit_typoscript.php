@@ -746,31 +746,45 @@ class tx_flipit_typoscript
   */
   private function flipitXmlFileRenderIt( )
   {
-    $contentParams = array(
-      'width'           => $width, 
-      'height'          => $width, 
-      'buttoncolor'     => $width, 
-      'panelcolor'      => $width, 
-      'textcolor'       => $width, 
-      'backgroundcolor' => $width, 
-      'hcover'          => $width, 
-      'gotolabel'       => $width
-    );
+    $conf = $this->conf;
+    
+    $contentParams    = null;
+    $arrContentParams = array( );
+    
+      // Content parameters 
+    $confXml = $conf['userFunc.']['configuration.']['xml.'];
+      // LOOP each filter
+    foreach( array_keys ( ( array ) $confXml ) as $param )
+    {
+        // CONTINUE : param has an dot
+      if( rtrim( $param, '.' ) != $param )
+      {
+        continue;
+      }
+        // CONTINUE : param has an dot
+
+      $cObj_name  = $conf['userFunc.']['configuration.']['xml.'][$param];
+      $cObj_conf  = $conf['userFunc.']['configuration.']['xml.'][$param . '.'];
+      $value      = $this->pObj->cObj->cObjGetSingle($cObj_name, $cObj_conf);
+      
+      $arrContentParams[] = $param . " = '" . $value . "'"; 
+      
+    }
+    $contentParams = implode( PHP_EOL . '  ', $arrContentParams );
+    $contentParams = PHP_EOL . '  ' . $contentParams;
+
     $pages = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
     $pages = "  <page src='" . $pages . "'/>";
   
-    $xml = "<content  
-%contentParams%
-  width           = '%width%' 
-  height          = '%height%' 
-  buttoncolor     = '%buttoncolor%' 
-  panelcolor      = '%panelcolor%' 
-  textcolor       = '%textcolor%' 
-  backgroundcolor = '%backgroundcolor%' 
-  hcover          = '%hcover%' 
-  gotolabel       = '%gotolabel%'>
+    $xml = '' .
+'<content %contentParams%>
 %pages%
-</content>";
+</content>';
+    
+    $xml = str_replace( '%contentParams%',  $contentParams, $xml );
+    $xml = str_replace( '%pages%',          $pages,         $xml );
+    
+var_dump( $xml );    
     if( $this->b_drs_xml )
     {    
       $prompt = 'Render XML file!';

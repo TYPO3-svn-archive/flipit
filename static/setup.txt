@@ -65,7 +65,7 @@ plugin.tx_flipit {
             width {
               value = {$plugin.tx_flipit.xml.width}
             }
-              // Document height: Height in pixel, (if autodetection failes)
+              // Document height: Height in pixel (if autodetection failes)
             height = TEXT
             height {
               value = {$plugin.tx_flipit.xml.height}
