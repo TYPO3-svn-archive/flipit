@@ -642,7 +642,7 @@ class tx_flipit_typoscript
 
       // Require class userfunc
     $this->initClasses( );
-
+var_dump( $conf );
     $this->table = $conf['userFunc.']['configuration.']['currentTable'];
 
       // Init file lists
