@@ -448,7 +448,7 @@ class tx_flipit_typoscript
       // SWF output file
     $swfFile = $this->table . '_' . $this->cObj->data['tx_flipit_xml_file'] . '_%.swf';
     $field   = 'tx_flipit_swf_files';
-    $swfPath = $this->zz_getPath( $this->table, $field );
+    $swfPath = $this->zz_getPath( $field );
 
       // Render PDF to SWF
     $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . '/' . $swfFile;
@@ -800,7 +800,7 @@ var_dump( $this->table );
     $field    = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( $this->table, $field );
+    $path     = $this->zz_getPath( $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from media
@@ -809,7 +809,7 @@ var_dump( $this->table );
     $field    = 'tx_flipit_swf_files';
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( $this->table, $field );
+    $path     = $this->zz_getPath( table, $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_swf_files
@@ -818,7 +818,7 @@ var_dump( $this->table );
     $field    = 'tx_flipit_xml_file';
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( $this->table, $field );
+    $path     = $this->zz_getPath( $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_xml_file
@@ -971,7 +971,6 @@ var_export( $this->files );
       // RETURN : TCA is loaded
     if( is_array( $GLOBALS['TCA'][$this->table]['columns'] ) )
     {
-var_dump( $GLOBALS['TCA'][$this->table]['columns'] );      
       return;
     }
       // RETURN : TCA is loaded
