@@ -769,13 +769,13 @@ class tx_flipit_typoscript
     
 //var_dump( __METHOD__, __LINE__, $xmlContent );    
 
-    $xmlFileWiPath = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
+    $xmlFile = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
 
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
       $fieldTstamp  => $this->tstamp,
-      $fieldFiles   => $xmlFileWiPath
+      $fieldFiles   => $xmlFile
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_xml )
@@ -789,7 +789,7 @@ class tx_flipit_typoscript
 
       // Update cObj->data
     $this->cObj->data[$fieldTstamp] = $this->tstamp;
-    $this->cObj->data[$fieldFiles]  = $xmlFileWiPath;
+    $this->cObj->data[$fieldFiles]  = $xmlFile;
 
     return;
     
@@ -848,7 +848,7 @@ class tx_flipit_typoscript
  /**
   * flipitXmlFileRenderItWriteFile( ): 
   *
-  * @return	string          $xmlFileWiPath  : full path of xml file
+  * @return	string          $xmlFile  : xml file
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -918,13 +918,13 @@ class tx_flipit_typoscript
       // DRS
     if( $this->b_drs_xml )
     {    
-      $prompt = '$xmlFileWiPath is written.';
+      $prompt = $xmlFileWiPath . ' is written.';
       t3lib_div::devlog( '[OK/XML] ' . $prompt, $this->extKey, 1 );
     }
       // DRS
 
-      // RETURN : full path
-    return $xmlFileWiPath;
+      // RETURN
+    return $xmlFile;
   }
 
   
