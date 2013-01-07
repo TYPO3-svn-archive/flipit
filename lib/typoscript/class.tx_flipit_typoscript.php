@@ -90,6 +90,15 @@ class tx_flipit_typoscript
   * @var string
   */
   private $table;
+  
+ /**
+  * Global tstamp for updates. It muts be older than the tstamp of generated files
+  *
+  * @var integer
+  */
+
+  private $tstamp;
+  
 
   
   
@@ -312,7 +321,7 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRemove( $tstamp )
+  private function flipitSwfFilesRemove( )
   {
     $conf         = $this->conf;
     $table        = $this->table;
@@ -357,7 +366,7 @@ class tx_flipit_typoscript
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $fieldTstamp  => $tstamp,
+      $fieldTstamp  => $this->tstamp,
       $fieldFiles   => null
     );
       // DRS
@@ -390,13 +399,11 @@ class tx_flipit_typoscript
     $fieldFiles   = 'tx_flipit_swf_files';
     $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
 
-      // Update tstamp for the current record
-    $tstamp = time( );
       // filesCounter is needed for unique filenames
     $filesCounter = 0;
     
       // Remove all swfFiles
-    $this->flipitSwfFilesRemove( $tstamp );
+    $this->flipitSwfFilesRemove( );
     
       // SWITCH : extension
       // jpeg, pdf, png
@@ -465,7 +472,7 @@ class tx_flipit_typoscript
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $fieldTstamp  => $tstamp,
+      $fieldTstamp  => $this->tstamp,
       $fieldFiles   => implode( ',', $swfFiles )
     );
       // DRS
@@ -480,6 +487,8 @@ class tx_flipit_typoscript
     
       // Reset tstamp for swf files
     $this->tstampSwf = null;
+    
+    $this->cObj->data[$fieldFiles] = implode( ',', $swfFiles );
       // Init files again
     $this->initFiles( );
 
@@ -768,7 +777,12 @@ class tx_flipit_typoscript
 
       // Require class userfunc
     $this->initClasses( );
+
+      // Init global vars
     $this->table = $conf['userFunc.']['configuration.']['currentTable'];
+      // Global tstamp for updates. It muts be older than the tstamp of generated files
+    $this->tstamp = time( );
+
 
       // DRS
     if( $this->b_drs_flipit )
