@@ -619,9 +619,6 @@ class tx_flipit_typoscript
       // Init extension configuration array
     $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
     
-      // Init localisation
-    $this->pi_loadLL();
-
       // Init the DRS
     $this->initDrs( );
     
