@@ -463,7 +463,7 @@ class tx_flipit_typoscript
       //    FATAL Could not create "1589_1.swf".
     
       // get list of rendered swf files
-    $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_%.swf';
+    $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_*.swf';
     $exec   = 'ls ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
     
