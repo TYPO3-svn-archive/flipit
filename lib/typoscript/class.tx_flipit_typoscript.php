@@ -1046,7 +1046,12 @@ class tx_flipit_typoscript
         }
         continue;
       }
-      $arr_return[] = $pathWiFile;
+        // Get files only not paths
+      if( is_file( $pathWiFile ) )
+      {
+        $arr_return[] = $pathWiFile;
+      }
+        // Get files only not paths
     }
       // FOREACH  : files
 
