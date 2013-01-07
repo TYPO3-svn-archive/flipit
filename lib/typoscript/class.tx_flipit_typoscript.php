@@ -565,7 +565,7 @@ class tx_flipit_typoscript
     $swfPath = $this->zz_getPath( $field );
 
       // Render PDF to SWF
-    $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . '/' . $swfFile;
+    $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . PATH_SEPARATOR . $swfFile;
     $lines  = $this->zz_exec( $exec );
       //    pdf2swf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/tx_flipit/tt_content_1589_%.swf
       // $lines:
@@ -594,7 +594,7 @@ class tx_flipit_typoscript
       // get list of rendered swf files
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
                 '_doc_' . $filesCounter . '_part_*.swf';
-    $exec   = 'ls -t ' . $swfPath . '/' . $swfFile;
+    $exec   = 'ls -t ' . $swfPath . PATH_SEPARATOR . $swfFile;
     $lines  = $this->zz_exec( $exec );
       // get list of rendered swf files
       
@@ -738,22 +738,73 @@ class tx_flipit_typoscript
  /**
   * flipitXmlFileRenderIt( ): 
   *
-  * @param	array		TypoScript configuration
-  * @return	mixed		HTML output.
+  * @return	void
   * @access   private
-  * @version  0.0.2
+  * @version  0.0.3
   * @since    0.0.2
   */
   private function flipitXmlFileRenderIt( )
+  {
+      // Get content parameters
+    $contentParams = $this->flipitXmlFileRenderItParams( );
+
+      // Get pages
+    $pages = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
+    $pages = "  <page src='" . $pages . "'/>";
+      // Get pages
+  
+      // Default xml frame
+    $xml = '' .
+'<content %contentParams%>
+%pages%
+</content>';
+      // Default xml frame
+    
+      // Replace placeholders with params and pages
+    $xml = str_replace( '%contentParams%',  $contentParams, $xml );
+    $xml = str_replace( '%pages%',          $pages,         $xml );
+      // Replace placeholders with params and pages
+    
+var_dump( $xml );    
+
+      // xml output file
+    $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '.xml';
+      
+      // xml output path
+    $field   = 'tx_flipit_xml_file';
+    $xmlPath = $this->zz_getPath( $field );
+
+       
+      // Write file
+var_dump( $xmlPath . PATH_SEPARATOR . $xmlFile );
+      
+      // Update database
+
+    return;
+    
+  }
+
+  
+  
+ /**
+  * flipitXmlFileRenderIt( ): 
+  *
+  * @return	string		$contentParams  : Contente parameters
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.2
+  */
+  private function flipitXmlFileRenderItParams( )
   {
     $conf = $this->conf;
     
     $contentParams    = null;
     $arrContentParams = array( );
     
-      // Content parameters 
+      // Content parameters from TypoScript 
     $confXml = $conf['userFunc.']['configuration.']['xml.'];
-      // LOOP each filter
+    
+      // FOREACH :  content param from TypoScript
     foreach( array_keys ( ( array ) $confXml ) as $param )
     {
         // CONTINUE : param has an dot
@@ -770,29 +821,15 @@ class tx_flipit_typoscript
       $arrContentParams[] = $param . " = '" . $value . "'"; 
       
     }
+      // FOREACH :  content param from TypoScript
+
+      // Move array to string
     $contentParams = implode( PHP_EOL . '  ', $arrContentParams );
     $contentParams = PHP_EOL . '  ' . $contentParams;
+      // Move array to string
 
-    $pages = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
-    $pages = "  <page src='" . $pages . "'/>";
-  
-    $xml = '' .
-'<content %contentParams%>
-%pages%
-</content>';
-    
-    $xml = str_replace( '%contentParams%',  $contentParams, $xml );
-    $xml = str_replace( '%pages%',          $pages,         $xml );
-    
-var_dump( $xml );    
-    if( $this->b_drs_xml )
-    {    
-      $prompt = 'Render XML file!';
-      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 2 );
-    }
-
-    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
-    
+      // RETURN : Content parameters as string
+    return $contentParams;
   }
 
   
@@ -1111,7 +1148,7 @@ var_dump( $xml );
       // FOREACH  : files
     foreach( ( array ) $files as $file )
     {
-      $pathWiFile = $path . '/' . $file;
+      $pathWiFile = $path . PATH_SEPARATOR . $file;
       if( ! file_exists( $pathWiFile ) )
       {
         if( $this->b_drs_error )
@@ -1149,7 +1186,7 @@ var_dump( $xml );
     $this->zz_TCAload( $this->table );
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    $path                 = $typo3_document_root . '/' . $uploadFolder;
+    $path                 = $typo3_document_root . PATH_SEPARATOR . $uploadFolder;
 
     return $path;
   }
