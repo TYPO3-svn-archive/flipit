@@ -753,33 +753,20 @@ class tx_flipit_typoscript
     $pages = "  <page src='" . $pages . "'/>";
       // Get pages
   
-      // Default xml frame
-    $xml = '' .
+      // Set xml content
+    $xmlContent = '' .
 '<content %contentParams%>
 %pages%
 </content>';
-      // Default xml frame
+    $xmlContent = str_replace( '%contentParams%',  $contentParams, $xmlContent );
+    $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
+      // Set xml content
     
-      // Replace placeholders with params and pages
-    $xml = str_replace( '%contentParams%',  $contentParams, $xml );
-    $xml = str_replace( '%pages%',          $pages,         $xml );
-      // Replace placeholders with params and pages
-    
-var_dump( $xml );    
+var_dump( $xmlContent );    
 
-      // xml output file
-    $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '.xml';
-      
-      // xml output path
-    $field   = 'tx_flipit_xml_file';
-    $xmlPath = $this->zz_getPath( $field );
+    $this->flipitXmlFileRenderItWriteFile( $xmlContent );
 
-       
-      // Write file
-var_dump( $xmlPath . DIRECTORY_SEPARATOR . $xmlFile );
-      
       // Update database
-
     return;
     
   }
@@ -830,6 +817,89 @@ var_dump( $xmlPath . DIRECTORY_SEPARATOR . $xmlFile );
 
       // RETURN : Content parameters as string
     return $contentParams;
+  }
+
+  
+  
+ /**
+  * flipitXmlFileRenderItWriteFile( ): 
+  *
+  * @return	void
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitXmlFileRenderItWriteFile( $xmlContent )
+  {
+      // xml output file
+    $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '.xml';
+      
+      // xml output path
+    $field   = 'tx_flipit_xml_file';
+    $xmlPath = $this->zz_getPath( $field );
+
+      // xml file with path
+    $xmlFileWiPath =  $xmlPath . DIRECTORY_SEPARATOR . $xmlFile;
+    
+      // DIE  : file isn't writeable
+    if( ! ( is_writable( $xmlFileWiPath ) ) )
+    {
+      $prompt = '
+        <p>
+          ACCESS ERROR: ' . $xmlFileWiPath . ' is not writeable.<br />
+          Please fix the bug!<br />
+          TYPO3 extension Flip it!<br />
+          Method: ' . __METHOD__ . ' <br />
+          Line: ' . __LINE__ . ' 
+        </p>
+';
+      die( $prompt ); 
+    }
+      // DIE  : file isn't writeable
+
+      // DIE  : file can't open
+    if( ! ( $handle = fopen( $xmlFileWiPath, 'wb' ) ) )
+    {
+      $prompt = '
+        <p>
+          ACCESS ERROR: ' . $xmlFileWiPath . ' can not open.<br />
+          Please fix the bug!<br />
+          TYPO3 extension Flip it!<br />
+          Method: ' . __METHOD__ . ' <br />
+          Line: ' . __LINE__ . ' 
+        </p>
+';
+      die( $prompt ); 
+    }
+      // DIE  : file can't open
+
+      // DIE  : file isn't writeable
+    if( ! fwrite( $handle, $xmlContent ) )
+    {
+      $prompt = '
+        <p>
+          ACCESS ERROR: ' . $xmlFileWiPath . ' is not writeable.<br />
+          Please fix the bug!<br />
+          TYPO3 extension Flip it!<br />
+          Method: ' . __METHOD__ . ' <br />
+          Line: ' . __LINE__ . ' 
+        </p>
+';
+      die( $prompt ); 
+    }
+      // DIE  : file isn't writeable
+
+    fclose( $handle );
+
+      // DRS
+    if( $this->b_drs_xml )
+    {    
+      $prompt = '$xmlFileWiPath is written.';
+      t3lib_div::devlog( '[OK/XML] ' . $prompt, $this->extKey, 1 );
+    }
+      // DRS
+
+    return;
   }
 
   
@@ -1079,9 +1149,9 @@ var_dump( $xmlPath . DIRECTORY_SEPARATOR . $xmlFile );
         <h1>
           PHP ERROR
         </h1>
-        <h1>
+        <h2>
           ' . $exec . '
-        </h1>
+        </h2>
         <p>
           exec( ' . $exec . ', $lines ) can\'t executed!
         </p>
