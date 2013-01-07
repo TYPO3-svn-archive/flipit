@@ -619,6 +619,9 @@ class tx_flipit_typoscript
       // Init extension configuration array
     $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
     
+      // Init localisation
+    $this->pi_loadLL();
+
       // Init the DRS
     $this->initDrs( );
     
@@ -831,7 +834,28 @@ class tx_flipit_typoscript
       // DIE  : function exec doesn't exist
     if( ! ( function_exists('exXXXec') ) )  
     {
-      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpExecIsFalse');
+      $prompt = '
+        <h1>
+          PHP ERROR
+        </h1>
+        <p>
+          The PHP function exec doesn\'t exist.<br />
+          <br />
+          Please check your PHP configuration (php.ini):
+        </p>
+        <ul>
+          <li style="margin-bottom:0;">
+            The function exec must not be an element of the ini property disable_functions.
+          </li>
+          <li style="margin-bottom:0;">
+            If safe_mode is on, the safe_mode_exec_dir must contain the function exec.
+          </li>
+        </ul>
+        <p>
+          Method: ' . __METHOD__ . ' <br />
+          Line: ' . __LINE__ . ' 
+        </p>
+';
       die( $prompt );
     }
       // DIE  : function exec doesn't exist
