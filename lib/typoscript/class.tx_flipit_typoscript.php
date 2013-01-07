@@ -277,7 +277,7 @@ class tx_flipit_typoscript
     }
       // RETURN true  : SWF files are deprecated
     
-      // Set timestamp
+      // Set timestamp for the current record
     $this->zz_tstampRecord( );
     
       // RETURN true  : SWF files are deprecated
@@ -760,8 +760,8 @@ class tx_flipit_typoscript
       // DRS
     if( $this->b_drs_flipit )
     {    
-      $prompt =  $this->table. '.uid: ' . $this->cObj->data['uid'];
-      t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
+      $prompt =  'current record is ' . $this->table. ' ( uid = ' . $this->cObj->data['uid'] . ')';
+      t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
 
