@@ -1135,7 +1135,7 @@ class tx_flipit_typoscript
     {
       if( $this->b_drs_flipit )
       {    
-        $prompt = 'There isn\'t any file.';
+        $prompt = $this->table. '.' . $field . ' doesn\'t contain any file.';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
       return null;
@@ -1191,7 +1191,6 @@ class tx_flipit_typoscript
           $prompt = 'first ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
-var_dump( $this->files );
         return $tstampFirst;
         break;
     }
