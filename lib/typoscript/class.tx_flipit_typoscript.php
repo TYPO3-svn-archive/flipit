@@ -333,13 +333,13 @@ class tx_flipit_typoscript
       {
         case('jpg'):
         case('jpeg'):
-          $swfFiles = $swfFiles + $this->flipitSwfFilesRenderJpg( $fileWiPath );
+          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderJpg( $fileWiPath );
           break;
         case('pdf'):
-          $swfFiles = $swfFiles + $this->flipitSwfFilesRenderPdf( $fileWiPath );
+          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath );
           break;
         case('png'):
-          $swfFiles = $swfFiles + $this->flipitSwfFilesRenderPng( $fileWiPath );
+          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPng( $fileWiPath );
           break;
         default:
           if( $this->b_drs_swf )
