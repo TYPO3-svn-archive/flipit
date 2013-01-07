@@ -1,17 +1,20 @@
 plugin.tx_flipit {
 
-  # cat=Flip it! - configuration/enable/100;    type=options[disabled,enabled];   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
+  # cat=Flip it! - configuration/enable/101;    type=options[disabled,enabled];   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
   configuration.enable = disabled
-  # cat=Flip it! - configuration/enable/101;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
+  # cat=Flip it! - configuration/enable/102;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
   configuration.filetypes = jpg,pdf,png
-  # cat=Flip it! - configuration/dims/301;      type=integer;  label= Height
-  configuration.height = 100%
-  # cat=Flip it! - configuration/dims/302;      type=integer;  label= Width
-  configuration.width = 100%
-  # cat=Flip it! - configuration/dims/303;      type=string;   label= Background colour
-  configuration.color.background = #cccccc
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   configuration.externalLinks = Click me!
+
+  # cat=Flip it! - html/dims/101;      type=integer;  label= Height
+  html.height = 100%
+  # cat=Flip it! - html/dims/102;      type=integer;  label= Width
+  html.width = 100%
+  # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
+  html.color.background = #cccccc
+  # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  html.externalLinks = Click me!
 
   # cat=Flip it! - database/enable/101;    type=string;   label= Table: Current table. Example: tt_content, tx_org_downloads
   database.table = tt_content
