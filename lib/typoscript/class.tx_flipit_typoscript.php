@@ -275,7 +275,7 @@ class tx_flipit_typoscript
       // Set timestamps
     
       // RETURN true  : SWF files are deprecated
-    if( $this->tstampMedia >= $this->tstampSwf )
+    if( $this->tstampMedia > $this->tstampSwf )
     {
       if( $this->b_drs_swf )
       {    
@@ -290,7 +290,7 @@ class tx_flipit_typoscript
     $this->zz_tstampRecord( );
     
       // RETURN true  : SWF files are deprecated
-    if( $this->tstampRecord >= $this->tstampSwf )
+    if( $this->tstampRecord > $this->tstampSwf )
     {
       if( $this->b_drs_swf )
       {    
