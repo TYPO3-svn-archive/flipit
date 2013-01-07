@@ -377,8 +377,14 @@ class tx_flipit_typoscript
   */
   private function flipitSwfFilesRenderAll( )
   {
+    $conf         = $this->conf;
+    $table        = $this->table;
+    $fieldFiles   = 'tx_flipit_swf_files';
+    $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+
       // Update tstamp for the current record
     $updateTstamp = time( );
+      // filesCounter is needed for unique filenames
     $filesCounter = 0;
     
       // Remove all swfFiles
@@ -436,8 +442,6 @@ class tx_flipit_typoscript
     }
       // DRS
     
-var_dump( __METHOD__, __LINE__, $swfFiles );    
-
       // RETURN : there isn't any SWF file
     if( empty ( $swfFiles ) )
     {
@@ -451,11 +455,21 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
       // RETURN : there isn't any SWF file
 
       // Update database
-    if( $this->b_drs_error )
+    $where = "uid = " . $this->cObj->data['uid'];
+    $fields_values = array(
+      $fieldTstamp  => $tstamp,
+      $fieldFiles   => implode( ',', $swfFiles )
+    );
+      // DRS
+    if( $this->b_drs_sql || $this->b_drs_swf )
     {    
-      $prompt = 'Update database!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+      $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
+      t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
     }
+      // DRS
+    //$GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
+      // Update database
+
 
     return;
   }
