@@ -971,6 +971,7 @@ var_export( $this->files );
       // RETURN : TCA is loaded
     if( is_array( $GLOBALS['TCA'][$this->table]['columns'] ) )
     {
+var_dump( $GLOBALS['TCA'][$this->table]['columns'] );      
       return;
     }
       // RETURN : TCA is loaded
