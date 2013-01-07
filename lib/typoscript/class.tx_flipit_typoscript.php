@@ -369,6 +369,8 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
+    
+var_dump( __METHOD__, __LINE__, $swfFiles );    
 
       // RETURN : there isn't any SWF file
     if( empty ( $swfFiles ) )
@@ -471,8 +473,8 @@ class tx_flipit_typoscript
       // FOREACH  : swfFile
     foreach( $lines as $swfFileWiPath )
     {
-      $pathParts = pathinfo( $swfFileWiPath );
-      $arrReturn = $pathParts['basename'];
+      $pathParts    = pathinfo( $swfFileWiPath );
+      $arrReturn[]  = $pathParts['basename'];
       
     }
       // FOREACH  : swfFile
