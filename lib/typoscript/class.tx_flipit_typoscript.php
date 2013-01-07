@@ -379,6 +379,10 @@ class tx_flipit_typoscript
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
       // Update database
 
+      // Update cObj->data
+    $this->cObj->data[$fieldTstamp] = $this->tstamp;
+    $this->cObj->data[$fieldFiles]  = null;
+
     return;
   }
 
@@ -485,7 +489,11 @@ class tx_flipit_typoscript
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
       // Update database
     
-      // Reset tstamp for swf files
+      // Update cObj->data
+    $this->cObj->data[$fieldTstamp] = $this->tstamp;
+    $this->cObj->data[$fieldFiles]  = implode( ',', $swfFiles );
+
+    // Reset tstamp for swf files
     $this->tstampSwf = null;
     
     $this->cObj->data[$fieldFiles] = implode( ',', $swfFiles );
