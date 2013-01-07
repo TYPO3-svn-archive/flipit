@@ -849,6 +849,7 @@ class tx_flipit_typoscript
           </li>
         </ul>
         <p>
+          TYPO3 extension Flip it!<br />
           Method: ' . __METHOD__ . ' <br />
           Line: ' . __LINE__ . ' 
         </p>
