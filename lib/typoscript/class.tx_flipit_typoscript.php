@@ -841,21 +841,21 @@ var_dump( $xmlContent );
       // xml file with path
     $xmlFileWiPath =  $xmlPath . DIRECTORY_SEPARATOR . $xmlFile;
     
-      // DIE  : file isn't writeable
-    if( ! ( is_writable( $xmlFileWiPath ) ) )
-    {
-      $prompt = '
-        <p>
-          ACCESS ERROR: ' . $xmlFileWiPath . ' is not writeable.<br />
-          Please fix the bug!<br />
-          TYPO3 extension Flip it!<br />
-          Method: ' . __METHOD__ . ' <br />
-          Line: ' . __LINE__ . ' 
-        </p>
-';
-      die( $prompt ); 
-    }
-      // DIE  : file isn't writeable
+//      // DIE  : file isn't writeable
+//    if( ! ( is_writable( $xmlFileWiPath ) ) )
+//    {
+//      $prompt = '
+//        <p>
+//          ACCESS ERROR: ' . $xmlFileWiPath . ' is not writeable.<br />
+//          Please fix the bug!<br />
+//          TYPO3 extension Flip it!<br />
+//          Method: ' . __METHOD__ . ' <br />
+//          Line: ' . __LINE__ . ' 
+//        </p>
+//';
+//      die( $prompt ); 
+//    }
+//      // DIE  : file isn't writeable
 
       // DIE  : file can't open
     if( ! ( $handle = fopen( $xmlFileWiPath, 'wb' ) ) )
