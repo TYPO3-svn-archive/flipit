@@ -643,7 +643,6 @@ class tx_flipit_typoscript
       // Require class userfunc
     $this->initClasses( );
     $this->table = $conf['userFunc.']['configuration.']['currentTable'];
-var_dump( $this->table );
 
       // Init file lists
     $this->initFiles( );
@@ -823,8 +822,6 @@ var_dump( $this->table );
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_xml_file
 
-var_export( $this->files );
-        
     return;
   }
   
