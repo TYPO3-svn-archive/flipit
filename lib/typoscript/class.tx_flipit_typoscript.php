@@ -453,14 +453,20 @@ class tx_flipit_typoscript
       // Render PDF to SWF
     $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
- 
-//    pdf2swf manual.pdf 1589_%.swf
-//    NOTICE outputting one file per page
-//    NOTICE File contains links
-//    NOTICE processing PDF page 1 (595x842:0:0)
-//    NOTICE File contains jpeg pictures
-//    NOTICE File contains pbm pictures
-//    FATAL Could not create "1589_1.swf".
+      //    pdf2swf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/tx_flipit/tt_content_1589_%.swf
+      // $lines:
+      //    NOTICE outputting one file per page
+      //    NOTICE File contains links
+      //    NOTICE processing PDF page 1 (595x842:0:0)
+      //    NOTICE File contains jpeg pictures
+      //    NOTICE File contains pbm pictures
+      //    FATAL Could not create "1589_1.swf".
+    
+      // get list of rendered swf files
+    $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_%.swf';
+    $exec   = 'ls ' . $swfPath . '/' . $swfFile;
+    $lines  = $this->zz_exec( $exec );
+    
 
     if( $this->b_drs_swf )
     {    
