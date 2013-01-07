@@ -433,7 +433,7 @@ class tx_flipit_typoscript
 //            var_dump( $swfFiles, $swfFiles2, $swfFiles + $swfFiles2, array_merge( $swfFiles, $swfFiles2 ) );
             var_dump( $swfFiles );
           }
-          $swfFiles = $swfFiles + $swfFiles2;
+//          $swfFiles = $swfFiles + $swfFiles2;
           break;
         case('png'):
           $filesCounter = $filesCounter + 1;
