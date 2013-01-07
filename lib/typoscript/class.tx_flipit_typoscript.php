@@ -464,11 +464,10 @@ class tx_flipit_typoscript
     
       // get list of rendered swf files
     $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_*.swf';
-    $exec   = 'ls -t' . $swfPath . '/' . $swfFile;
+    $exec   = 'ls -t ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
+    $lines  = krsort( $lines );
 var_dump( __METHOD__, __LINE__, $lines );    
-    $lines2  = krsort( $lines );
-var_dump( __METHOD__, __LINE__, $lines2 );    
 
     if( $this->b_drs_swf )
     {    
@@ -891,7 +890,7 @@ var_dump( __METHOD__, __LINE__, $lines2 );
       // DRS
 
       // Execute!
-    exec( $exec, $lines);
+    exec( $exec, $lines );
     
       // DRS
     if( $this->b_drs_php )
