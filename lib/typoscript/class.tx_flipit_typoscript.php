@@ -756,7 +756,7 @@ class tx_flipit_typoscript
       // Get pages
     $pages    = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
     $pages    = "  <page src='" . $pages . "'/>";
-    $uploads  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' . DIRECTORY_SEPARATOR );
+    $uploads  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' ) . DIRECTORY_SEPARATOR;
     $pages    = str_replace( $uploads, null, $pages );
     
       // Get pages
