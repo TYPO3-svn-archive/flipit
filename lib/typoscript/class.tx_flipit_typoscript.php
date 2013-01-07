@@ -309,46 +309,32 @@ class tx_flipit_typoscript
   */
   private function flipitSwfFilesRenderIt( )
   {
-    $this->flipitSwfFilesRenderItGetFiles( );
-    $this->flipitSwfFilesRenderItSetFiles( );
-  }
-
-  
-  
- /**
-  * flipitSwfFilesRenderItGetFiles( ): 
-  *
-  * @param	array		TypoScript configuration
-  * @return	mixed		HTML output.
-  * @access   private
-  * @version  0.0.3
-  * @since    0.0.3
-  */
-  private function flipitSwfFilesRenderItGetFiles( )
-  {
-    if( $this->b_drs_swf )
-    {    
-      $prompt = 'Get files!';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
-    }
-    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
-  }
-
-  
-  
- /**
-  * flipitSwfFilesRenderItSetFiles( ): 
-  *
-  * @param	array		TypoScript configuration
-  * @return	mixed		HTML output.
-  * @access   private
-  * @version  0.0.3
-  * @since    0.0.3
-  */
-  private function flipitSwfFilesRenderItSetFiles( )
-  {
       // SWITCH : extension
       // jpeg, pdf, png
+    
+//    pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf
+//    page = 1 width = 595.00 height = 842.00
+//    page = 2 width = 595.00 height = 842.00
+//    page = 3 width = 595.00 height = 842.00
+//    page = 4 width = 595.00 height = 842.00
+//    page = 5 width = 595.00 height = 842.00
+//    page = 6 width = 595.00 height = 842.00
+//    page = 7 width = 595.00 height = 842.00
+//    page = 8 width = 595.00 height = 842.00
+//    page = 9 width = 595.00 height = 842.00
+//    page = 10 width = 595.00 height = 842.00
+//    page = 11 width = 595.00 height = 842.00
+//    page = 12 width = 595.00 height = 842.00
+//    page = 13 width = 595.00 height = 842.00
+//    page = 14 width = 595.00 height = 842.00
+              
+//    pdf2swf manual.pdf 1589_%.swf
+//    NOTICE outputting one file per page
+//    NOTICE File contains links
+//    NOTICE processing PDF page 1 (595x842:0:0)
+//    NOTICE File contains jpeg pictures
+//    NOTICE File contains pbm pictures
+//    FATAL Could not create "1589_1.swf".
     if( $this->b_drs_swf )
     {    
       $prompt = 'Set SWF files!';

@@ -1,13 +1,9 @@
 plugin.tx_flipit {
 
   # cat=Flip it! - configuration/enable/100;    type=options[disabled,enabled];   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
-  configuration.enable.flipit = disabled
+  configuration.enable = disabled
   # cat=Flip it! - configuration/enable/101;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
   configuration.filetypes = jpg,pdf,png
-  # cat=Flip it! - configuration/enable/201;    type=options[disabled,enabled];   label= Lightbox: Disable it, if you don't want to use Flip it! in a lightbox by default.
-  configuration.enable.lightbox = enabled
-  # cat=Flip it! - configuration/enable/202;    type=string;   label= Table: Current table. Example: tt_content, tx_org_downloads
-  configuration.table = tt_content
   # cat=Flip it! - configuration/dims/301;      type=integer;  label= Height
   configuration.height = 100%
   # cat=Flip it! - configuration/dims/302;      type=integer;  label= Width
@@ -17,4 +13,13 @@ plugin.tx_flipit {
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   configuration.externalLinks = Click me!
 
+  # cat=Flip it! - database/enable/101;    type=string;   label= Table: Current table. Example: tt_content, tx_org_downloads
+  database.table = tt_content
+  # cat=Flip it! - database/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  database.externalLinks = Click me!
+
+  # cat=Flip it! - lightbox/enable/101;    type=options[disabled,enabled];   label= Lightbox: Disable it, if you don't want to use Flip it! in a lightbox by default.
+  lightbox.enable = enabled
+  # cat=Flip it! - lightbox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  lightbox.externalLinks = Click me!
 }
