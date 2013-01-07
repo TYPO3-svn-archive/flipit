@@ -808,7 +808,7 @@ class tx_flipit_typoscript
     $field    = 'tx_flipit_swf_files';
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
-    $path     = $this->zz_getPath( table, $field );
+    $path     = $this->zz_getPath( $field );
       // Set global var $files
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_swf_files
