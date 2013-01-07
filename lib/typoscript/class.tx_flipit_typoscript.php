@@ -643,12 +643,11 @@ class tx_flipit_typoscript
       // Require class userfunc
     $this->initClasses( );
 
+    $this->table = $conf['userFunc.']['configuration.']['currentTable'];
+
       // Init file lists
     $this->initFiles( );
     
-    $this->table = $conf['userFunc.']['configuration.']['currentTable'];
-
-
     return;
   }
   
