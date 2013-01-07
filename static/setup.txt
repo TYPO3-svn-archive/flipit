@@ -32,7 +32,7 @@ plugin.tx_flipit {
     flip_it = USER
     flip_it {
         // enabled, content
-      userFunc = tx_flipit_typoscript->renderFlipit
+      userFunc = tx_flipit_typoscript->main
       userFunc {
           // currentTable, tables
         configuration =

@@ -87,7 +87,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * renderFlipit( ): 
+  * main( ): 
   *
   * @param	string		Content input. Not used, ignore.
   * @param	array		TypoScript configuration
@@ -96,7 +96,7 @@ class tx_flipit_typoscript
   * @version 0.0.2
   * @since 0.0.1
   */
-  public function renderFlipit( $content, $conf )
+  public function main( $content, $conf )
   {
     unset( $content );
     
@@ -220,7 +220,7 @@ class tx_flipit_typoscript
     $swfFilesAreDeprecated = $this->flipitSwfFilesAreDeprecated( );
     if( $swfFilesAreDeprecated )
     {
-      $this->flipitSwfFilesRenderIt( );
+      $this->flipitSwfFilesRenderAll( );
     }
       // Render SWF files if they are deprecated or if there isn't any SWF file
   }
@@ -299,19 +299,139 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesRenderIt( ): 
+  * flipitSwfFilesRenderAll( ): 
   *
-  * @param	array		TypoScript configuration
-  * @return	mixed		HTML output.
+  * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.2
   */
-  private function flipitSwfFilesRenderIt( )
+  private function flipitSwfFilesRenderAll( )
   {
+    // TODO: REMOVE all files
+    if( $this->b_drs_swf )
+    {    
+      $prompt = 'Remove all SWF files!';
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
+    
       // SWITCH : extension
       // jpeg, pdf, png
+    $swfFiles = array( );
     
+      // FOREACH  : file
+    foreach( $this->files['media'] as $fileWiPath )
+    {
+      $pathParts = pathinfo( $fileWiPath );
+      switch( $pathParts['extension'] )
+      {
+        case('jpg'):
+        case('jpeg'):
+          $swfFiles[] = $this->renderJpg( $fileWiPath );
+          break;
+        case('pdf'):
+          $swfFiles[] = $this->renderPdf( $fileWiPath );
+          break;
+        case('png'):
+          if( $this->b_drs_swf )
+          {    
+            $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
+            t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+          }
+          break;
+        default:
+          if( $this->b_drs_swf )
+          {    
+            $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' can not converted to SWF.';
+            t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+          }
+          break;
+      }
+    }
+      // FOREACH  : file
+    
+      // FOREACH  : remove empty swfFile
+    foreach( $swfFiles as $key => $value )
+    {
+      if( empty ( $value ) )
+      {
+        unset( $swfFiles[$key] );
+      }
+    }
+      // FOREACH  : remove empty swfFile
+
+      // DRS
+    if( $this->b_drs_swf )
+    {    
+      $prompt = 'Rendered SWF files: ' . var_export( $swfFiles, true );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+
+      // RETURN : there isn't any SWF file
+    if( empty ( $swfFiles ) )
+    {
+      if( $this->b_drs_error )
+      {    
+        $prompt = 'There isn\'t any SWF file!';
+        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+      }
+      return;
+    }
+      // RETURN : there isn't any SWF file
+
+      // Update database
+    if( $this->b_drs_error )
+    {    
+      $prompt = 'Update database!';
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
+
+    return;
+  }
+
+  
+  
+ /**
+  * flipitSwfFilesRenderJpg( ): 
+  *
+  * @param    string    $fileWiPath : full path
+  * @return   array     $arrReturn  : rendered swf files
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitSwfFilesRenderJpg( $fileWiPath )
+  {
+    $arrReturn = null;
+    
+    if( $this->b_drs_swf )
+    {    
+      $pathParts = pathinfo( $fileWiPath );
+      $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
+    return $arrReturn;
+  }
+
+  
+  
+ /**
+  * flipitSwfFilesRenderPdf( ): 
+  *
+  * @param    string    $fileWiPath : full path
+  * @return   array     $arrReturn  : rendered swf files
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitSwfFilesRenderPdf( $fileWiPath )
+  {
+    $arrReturn = null;
+    
+    $exec   = 'pdf2swf -I ' . $fileWiPath;
+    $lines  = $this->zz_exec( $exec );
+
 //    pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf
 //    page = 1 width = 595.00 height = 842.00
 //    page = 2 width = 595.00 height = 842.00
@@ -335,12 +455,39 @@ class tx_flipit_typoscript
 //    NOTICE File contains jpeg pictures
 //    NOTICE File contains pbm pictures
 //    FATAL Could not create "1589_1.swf".
+
     if( $this->b_drs_swf )
     {    
-      $prompt = 'Set SWF files!';
+      $prompt = var_export( $lines, true );
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+      $prompt = 'Render SWF files from PDF!';
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
     }
-    return '<p>' . var_export( $this->cObj->data, true ) . ' </p>';
+    return $arrReturn;
+  }
+
+  
+  
+ /**
+  * flipitSwfFilesRenderPng( ): 
+  *
+  * @param    string    $fileWiPath : full path
+  * @return   array     $arrReturn  : rendered swf files
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function flipitSwfFilesRenderPng( $fileWiPath )
+  {
+    $arrReturn = null;
+    
+    if( $this->b_drs_swf )
+    {    
+      $pathParts = pathinfo( $fileWiPath );
+      $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
+      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+    }
+    return $arrReturn;
   }
 
   
@@ -667,9 +814,35 @@ class tx_flipit_typoscript
     $this->files[$field] = $this->zz_getFilesWiPath( $files, $path );
       // Get files from tx_flipit_xml_file
 
-var_export( $this->files );
+//var_export( $this->files );
         
     return;
+  }
+  
+  
+  
+/**
+ * zz_exec( ): 
+ *
+ * @return  array   $lines
+ * @version 0.0.3
+ * @since   0.0.3
+ */
+  private function zz_exec( $exec )
+  {
+    $lines = null;
+    
+      // DIE  : function exec doesn't exist
+    if( ! ( function_exists('exec') ) )  
+    {
+      $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpExecIsFalse');
+      die( $prompt );
+    }
+      // DIE  : function exec doesn't exist
+    
+    exec( $exec, $lines);
+   
+    return $lines;
   }
 
   
