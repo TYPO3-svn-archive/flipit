@@ -765,7 +765,7 @@ class tx_flipit_typoscript
 
       $cObj_name  = $conf['userFunc.']['configuration.']['xml.'][$param];
       $cObj_conf  = $conf['userFunc.']['configuration.']['xml.'][$param . '.'];
-      $value      = $this->pObj->cObj->cObjGetSingle($cObj_name, $cObj_conf);
+      $value      = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
       
       $arrContentParams[] = $param . " = '" . $value . "'"; 
       
