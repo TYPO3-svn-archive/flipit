@@ -340,25 +340,36 @@ class tx_flipit_typoscript
     }
       // RETURN : there is no SWF file
     
+      // Remove swf files
+      // Get exec command
     $exec = implode( ';' . PHP_EOL, ( array ) $arrExec );
+      // DRS
     if( $this->b_drs_swf )
     {    
       $prompt = $exec;
       t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 3 );
     }
-
+      // DRS
+      // Exec command
+    $lines = $this->zz_exec( $exec );
+    unset( $lines );
+      // Remove swf files
+    
       // Update database
     $where = "'uid' = " . $this->cObj->data['uid'];
     $fields_values = array(
       $fieldTstamp => $tstamp,
       $fieldFiles => null
     );
+      // DRS
     if( $this->b_drs_sql || $this->b_drs_swf )
     {    
       $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $this->table, $where, $fields_values );
       t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
     }
-    //$GLOBALS['TYPO3_DB']->exec_UPDATEquery( $this->table, $where, $fields_values );
+      // DRS
+    $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $this->table, $where, $fields_values );
+      // Update database
 
     return;
   }
