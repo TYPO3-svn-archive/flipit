@@ -746,6 +746,31 @@ class tx_flipit_typoscript
   */
   private function flipitXmlFileRenderIt( )
   {
+    $contentParams = array(
+      'width'           => $width, 
+      'height'          => $width, 
+      'buttoncolor'     => $width, 
+      'panelcolor'      => $width, 
+      'textcolor'       => $width, 
+      'backgroundcolor' => $width, 
+      'hcover'          => $width, 
+      'gotolabel'       => $width
+    );
+    $pages = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
+    $pages = "  <page src='" . $pages . "'/>";
+  
+    $xml = "<content  
+%contentParams%
+  width           = '%width%' 
+  height          = '%height%' 
+  buttoncolor     = '%buttoncolor%' 
+  panelcolor      = '%panelcolor%' 
+  textcolor       = '%textcolor%' 
+  backgroundcolor = '%backgroundcolor%' 
+  hcover          = '%hcover%' 
+  gotolabel       = '%gotolabel%'>
+%pages%
+</content>";
     if( $this->b_drs_xml )
     {    
       $prompt = 'Render XML file!';

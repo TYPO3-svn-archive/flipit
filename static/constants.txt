@@ -25,4 +25,25 @@ plugin.tx_flipit {
   lightbox.enable = enabled
   # cat=Flip it! - lightbox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   lightbox.externalLinks = Click me!
+
+  # cat=Flip it! - xml/dims/101;            type=int+;   label= Document width: Width in pixel (if autodetection failes)
+  xml.width             = 826
+  # cat=Flip it! - xml/dims/102;            type=int+;   label= Document height: Height in pixel, (if autodetection failes)
+  xml.height            = 1168
+  # cat=Flip it! - xml/dims/103;            type=string; label= Colour of buttons:
+  xml.buttoncolor       = EC921A
+  # cat=Flip it! - xml/dims/104;            type=string; label= Colour of the panel:
+  xml.panelcolor        = EC921A
+  # cat=Flip it! - xml/dims/105;            type=string; label= Colour of the font:
+  xml.textcolor         = FFFFFF
+  # cat=Flip it! - xml/dims/106;            type=string; label= Colour of the background:
+  xml.backgroundcolor   = EC921A
+  # cat=Flip it! - xml/dims/107;            type=options[false,true]; label= Hardcorver: If set to ture, fist and last page are hard covered.
+  xml.hcover            = false
+  # cat=Flip it! - xml/dims/108;            type=string; label= Goto label: default language (English)
+  xml.gotolabel.default = Goto
+  # cat=Flip it! - xml/dims/108;            type=string; label= Goto label: German language
+  xml.gotolabel.de      = Gehe zu
+  # cat=Flip it! - xml/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  xml.externalLinks = Click me!
 }
