@@ -347,10 +347,10 @@ class tx_flipit_typoscript
       // Remove swf files
     
       // Update database
-    $where = "'uid' = " . $this->cObj->data['uid'];
+    $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $fieldTstamp => $tstamp,
-      $fieldFiles => null
+      $fieldTstamp  => $tstamp,
+      $fieldFiles   => null
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_swf )
