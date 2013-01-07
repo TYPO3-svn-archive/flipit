@@ -829,7 +829,7 @@ class tx_flipit_typoscript
     $lines = null;
     
       // DIE  : function exec doesn't exist
-    if( ! ( function_exists('exXXXec') ) )  
+    if( ! ( function_exists('exec') ) )  
     {
       $prompt = '
         <h1>
