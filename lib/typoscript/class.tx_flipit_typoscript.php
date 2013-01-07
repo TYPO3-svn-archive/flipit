@@ -391,12 +391,12 @@ class tx_flipit_typoscript
     $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
 
       // Update tstamp for the current record
-    $updateTstamp = time( );
+    $tstamp = time( );
       // filesCounter is needed for unique filenames
     $filesCounter = 0;
     
       // Remove all swfFiles
-    $this->flipitSwfFilesRemove( $updateTstamp );
+    $this->flipitSwfFilesRemove( $tstamp );
     
       // SWITCH : extension
       // jpeg, pdf, png
