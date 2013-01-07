@@ -379,6 +379,7 @@ class tx_flipit_typoscript
   {
       // Update tstamp for the current record
     $updateTstamp = time( );
+    $filesCounter = 0;
     
       // Remove all swfFiles
     $this->flipitSwfFilesRemove( $updateTstamp );
@@ -395,13 +396,16 @@ class tx_flipit_typoscript
       {
         case('jpg'):
         case('jpeg'):
-          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderJpg( $fileWiPath );
+          $filesCounter = $filesCounter + 1;
+          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderJpg( $fileWiPath, $filesCounter );
           break;
         case('pdf'):
-          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath );
+          $filesCounter = $filesCounter + 1;
+          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter );
           break;
         case('png'):
-          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPng( $fileWiPath );
+          $filesCounter = $filesCounter + 1;
+          $swfFiles = $swfFiles + ( array ) $this->flipitSwfFilesRenderPng( $fileWiPath, $filesCounter );
           break;
         default:
           if( $this->b_drs_swf )
@@ -414,7 +418,7 @@ class tx_flipit_typoscript
     }
       // FOREACH  : file
     
-      // FOREACH  : remove empty swfFile
+      // FOREACH  : remove empty element
     foreach( $swfFiles as $key => $value )
     {
       if( empty ( $value ) )
@@ -422,7 +426,7 @@ class tx_flipit_typoscript
         unset( $swfFiles[$key] );
       }
     }
-      // FOREACH  : remove empty swfFile
+      // FOREACH  : remove empty element
 
       // DRS
     if( $this->b_drs_swf )
@@ -467,7 +471,7 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderJpg( $fileWiPath )
+  private function flipitSwfFilesRenderJpg( $fileWiPath, $filesCounter )
   {
     $arrReturn = null;
     
@@ -491,7 +495,7 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderPdf( $pdffileWiPath )
+  private function flipitSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
   {
     $arrReturn = null;
     
@@ -510,7 +514,8 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
       // DRS  : PDF info
     
       // SWF output file
-    $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_%.swf';
+    $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
+                '_' . $filesCounter . '_%.swf';
     $field   = 'tx_flipit_swf_files';
     $swfPath = $this->zz_getPath( $field );
 
@@ -526,10 +531,29 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
       //    NOTICE File contains pbm pictures
       //    FATAL Could not create "1589_1.swf".
     
+      // DRS
+    if( $this->b_drs_error )
+    {
+      $csvLines = implode( ', ' . PHP_EOL, $lines );
+      $pos = strpos( $csvLines, 'FATAL' );
+      if( ! ( $pos === false ) )
+      {
+        $prompt = $csvLines;
+        t3lib_div::devlog( '[WARN/SWF] ' . $prompt, $this->extKey, 2 );
+        $prompt = 'There is an error in the prompt before. Please search for FATAL.';
+        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+      }
+    }
+      // DRS
+    
       // get list of rendered swf files
-    $swfFile = $this->table . '_' . $this->cObj->data['uid'] . '_*.swf';
+    $swfFile =  $this->table . '_' . $this->cObj->data['uid'] . 
+                '_' . $filesCounter . '_*.swf';
     $exec   = 'ls -t ' . $swfPath . '/' . $swfFile;
     $lines  = $this->zz_exec( $exec );
+      // get list of rendered swf files
+      
+      // list of swf files ordered by time ascending
     krsort( $lines );
 
       // FOREACH  : swfFile
@@ -541,6 +565,7 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
     }
       // FOREACH  : swfFile
 
+      // RETURN : swf files without path
     return $arrReturn;
   }
 
@@ -555,7 +580,7 @@ var_dump( __METHOD__, __LINE__, $swfFiles );
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderPng( $fileWiPath )
+  private function flipitSwfFilesRenderPng( $fileWiPath, $filesCounter )
   {
     $arrReturn = null;
     
