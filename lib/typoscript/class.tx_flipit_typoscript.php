@@ -427,13 +427,6 @@ class tx_flipit_typoscript
         case('pdf'):
           $filesCounter = $filesCounter + 1;
           $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter ) );
-//          $swfFiles2 = ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter );
-          if( $filesCounter == 2 )
-          {
-//            var_dump( $swfFiles, $swfFiles2, $swfFiles + $swfFiles2, array_merge( $swfFiles, $swfFiles2 ) );
-            var_dump( $swfFiles );
-          }
-//          $swfFiles = $swfFiles + $swfFiles2;
           break;
         case('png'):
           $filesCounter = $filesCounter + 1;
@@ -489,7 +482,8 @@ class tx_flipit_typoscript
       // DRS
     if( $this->b_drs_sql || $this->b_drs_swf )
     {    
-      $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
+      $fields_valuesWiSpace = str_replace(',', ', ', $fields_values );
+      $prompt = '"," is replaced with ", " for prompting only! ' . $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_valuesWiSpace );
       t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
@@ -707,7 +701,7 @@ class tx_flipit_typoscript
     {
       if( $this->b_drs_xml )
       {    
-        $prompt = 'Swf files are newer than the xml file.';
+        $prompt = 'Swf files are newer than the xml file or there isn\'t any xml file.';
         t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
