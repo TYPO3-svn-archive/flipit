@@ -327,17 +327,13 @@ class tx_flipit_typoscript
       {
         case('jpg'):
         case('jpeg'):
-          $swfFiles[] = $this->renderJpg( $fileWiPath );
+          $swfFiles[] = $this->flipitSwfFilesRenderJpg( $fileWiPath );
           break;
         case('pdf'):
-          $swfFiles[] = $this->renderPdf( $fileWiPath );
+          $swfFiles[] = $this->flipitSwfFilesRenderPdf( $fileWiPath );
           break;
         case('png'):
-          if( $this->b_drs_swf )
-          {    
-            $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
-            t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
-          }
+          $swfFiles[] = $this->flipitSwfFilesRenderPng( $fileWiPath );
           break;
         default:
           if( $this->b_drs_swf )
