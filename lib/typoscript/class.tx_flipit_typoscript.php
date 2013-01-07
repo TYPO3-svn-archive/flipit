@@ -475,7 +475,7 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
-    //$GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
+    $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
       // Update database
 
 
