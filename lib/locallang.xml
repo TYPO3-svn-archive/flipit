@@ -83,6 +83,14 @@
         you have to convert PDF files to SWF / Flash files manually.
       ]]></label>
       <label index="promptEvaluatorSWFtools4Linux"><![CDATA[
+        Download SWFTOOLS for Windows from the TYPO3 TER. 
+        <a href="http://typo3.org/extensions/repository/view/swftools4windows" 
+          alt="SWFTOOLS for Windows"
+          title="SWFTOOLS for Windows"
+          target="_blank">
+          SWFTOOLS for Windows</a>
+      ]]></label>
+      <label index="promptEvaluatorSWFtools4Windows"><![CDATA[
         Download SWFTOOLS for Linux from the TYPO3 TER. 
         <a href="http://typo3.org/extensions/repository/view/swftools4linux" 
           alt="SWFTOOLS for Linux"
@@ -91,12 +99,7 @@
           SWFTOOLS for Linux</a>
       ]]></label>
       <label index="promptEvaluatorSWFtoolsWindowsError"><![CDATA[
-        Download SWFTOOLS for Windows from the TYPO3 TER. 
-        <a href="http://typo3.org/extensions/repository/view/swftools4windows" 
-          alt="SWFTOOLS for Windows"
-          title="SWFTOOLS for Windows"
-          target="_blank">
-          SWFTOOLS for Windows</a>
+        SWFTOOLS for Windows aren't supported now.
       ]]></label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>

@@ -439,9 +439,12 @@ class tx_flipit_userfunc
         $arr_return = $this->zz_exec( 'pdf2swf --version' );
         break;
       case( 'windows' ):
-        $arr_return['error']['status'] = true;
-        $arr_return['error']['prompt'] = 
-          $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsWindowsError');
+          // 130109, dwildt, 3-
+//        $arr_return['error']['status'] = true;
+//        $arr_return['error']['prompt'] = 
+//          $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsWindowsError');
+          // 130109, dwildt, 1+
+        $arr_return = $this->zz_exec( 'pdf2swf --version' );
         break;
       default:
         break;
