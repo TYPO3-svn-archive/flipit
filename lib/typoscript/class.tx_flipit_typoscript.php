@@ -756,24 +756,23 @@ class tx_flipit_typoscript
       // Get pages
     $pages    = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
     $pages    = "  <page src='" . $pages . "'/>";
+      // Get pages
+    
+      // pages: replace absolute path with relative path
     $uploads  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' ) . DIRECTORY_SEPARATOR;
     $pages    = str_replace( $uploads, null, $pages );
+      // pages: replace absolute path with relative path
     
-      // Get pages
-  
-      // Set xml content
+      // Set xml content and write xml file
     $xmlContent = '' .
 '<content %contentParams%>
 %pages%
 </content>';
     $xmlContent = str_replace( '%contentParams%',  $contentParams, $xmlContent );
     $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
-      // Set xml content
+    $xmlFile    = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
+      // Set xml content and write xml file
     
-//var_dump( __METHOD__, __LINE__, $xmlContent );    
-
-    $xmlFile = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
-
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
@@ -795,7 +794,6 @@ class tx_flipit_typoscript
     $this->cObj->data[$fieldFiles]  = $xmlFile;
 
     return;
-    
   }
 
   
@@ -868,22 +866,6 @@ class tx_flipit_typoscript
       // xml file with path
     $xmlFileWiPath =  $xmlPath . DIRECTORY_SEPARATOR . $xmlFile;
     
-//      // DIE  : file isn't writeable
-//    if( ! ( is_writable( $xmlFileWiPath ) ) )
-//    {
-//      $prompt = '
-//        <p>
-//          ACCESS ERROR: ' . $xmlFileWiPath . ' is not writeable.<br />
-//          Please fix the bug!<br />
-//          TYPO3 extension Flip it!<br />
-//          Method: ' . __METHOD__ . ' <br />
-//          Line: ' . __LINE__ . ' 
-//        </p>
-//';
-//      die( $prompt ); 
-//    }
-//      // DIE  : file isn't writeable
-
       // DIE  : file can't open
     if( ! ( $handle = fopen( $xmlFileWiPath, 'wb' ) ) )
     {
