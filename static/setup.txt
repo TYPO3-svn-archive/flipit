@@ -188,16 +188,16 @@ plugin.tx_flipit {
           20 = TEXT
           20 {
             value ( 
-              <div id="flashcontent_{field:uid}" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};">
+              <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};">
                 <p>
-                  To view the book, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
+                  To view flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
                 </p>
               </div>
               <script type="text/javascript">
                 var so = new SWFObject("typo3conf/ext/flipit/res/swf/book.swf", "book", "100%", "100%", "8", "{$plugin.tx_flipit.html.color.background}");
                 so.addVariable("xmlFile","uploads/tx_flipit/{field:tx_flipit_xml_file}");
                 so.addVariable("fullscreen","true");
-                so.write("flashcontent_{field:uid}");
+                so.write("c{field:uid}_flipit");
               </script>
 )
             insertData = 1
