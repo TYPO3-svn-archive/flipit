@@ -457,7 +457,7 @@ class tx_flipit_typoscript
     if( $this->b_drs_swf )
     {    
       $prompt = 'Rendered SWF files: ' . var_export( $swfFiles, true );
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[OK/SWF] ' . $prompt, $this->extKey, -1 );
     }
       // DRS
     
@@ -922,7 +922,7 @@ var_dump( __METHOD__, __LINE__, $xmlContent );
     if( $this->b_drs_xml )
     {    
       $prompt = $xmlFileWiPath . ' is written.';
-      t3lib_div::devlog( '[OK/XML] ' . $prompt, $this->extKey, 1 );
+      t3lib_div::devlog( '[OK/XML] ' . $prompt, $this->extKey, -1 );
     }
       // DRS
 
@@ -970,7 +970,7 @@ var_dump( __METHOD__, __LINE__, $xmlContent );
       // DRS
     if( $this->b_drs_flipit )
     {    
-      $prompt =  'current record is ' . $this->table. ' ( uid = ' . $this->cObj->data['uid'] . ')';
+      $prompt =  'current record is ' . $this->table. ' ( uid = ' . $this->cObj->data['uid'] . ' )';
       t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
     }
       // DRS

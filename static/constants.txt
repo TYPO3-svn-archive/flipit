@@ -27,9 +27,9 @@ plugin.tx_flipit {
   lightbox.externalLinks = Click me!
 
   # cat=Flip it! - xml/dims/101;            type=int+;   label= Document width: Width in pixel (if autodetection failes)
-  xml.width             = 826
+  xml.width             = 592
   # cat=Flip it! - xml/dims/102;            type=int+;   label= Document height: Height in pixel (if autodetection failes)
-  xml.height            = 1168
+  xml.height            = 842
   # cat=Flip it! - xml/dims/103;            type=string; label= Colour of buttons:
   xml.buttoncolor       = EC921A
   # cat=Flip it! - xml/dims/104;            type=string; label= Colour of the panel:
