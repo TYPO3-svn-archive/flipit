@@ -37,9 +37,9 @@ plugin.tx_flipit {
           // currentTable, tables
         configuration =
         configuration {
-            // table
+            // [String] table
           currentTable = {$plugin.tx_flipit.database.table} 
-            // Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
+            // [String/CSV] Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
           filetypes = {$plugin.tx_flipit.configuration.filetypes} 
             // tt_content, tx_org_downloads
           tables =
@@ -57,8 +57,39 @@ plugin.tx_flipit {
               tstamp  = tstamp
             }
           }
-            // table
-          updateSwfXml = {$plugin.tx_flipit.configuration.updateswfxml} 
+            // [String] disabled, enabled
+          updateSwfXml = COA
+          updateSwfXml {
+            if {
+              value = disabled,enabled,ts
+              isInList {
+                field = tx_flipit_updateswfxml
+              }
+            }
+              // disabled || enabled
+            10 = TEXT
+            10 {
+              if {
+                value = disabled,enabled
+                isInList {
+                  field = tx_flipit_updateswfxml
+                }
+              }
+              field = tx_flipit_updateswfxml
+            }
+              // ts
+            20 = TEXT
+            20 {
+              if {
+                value = ts
+                equals {
+                  field = tx_flipit_updateswfxml
+                }
+              }
+              value = {$plugin.tx_flipit.configuration.updateswfxml} 
+            }
+          }
+
             // Configuration of the XML file, which controls the flash output
           xml =
           xml {
