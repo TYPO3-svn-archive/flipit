@@ -236,7 +236,6 @@ class tx_flipit_typoscript
 
     $coa_name = $conf['userFunc.']['configuration.']['updateSwfXml'];
     $coa_conf = $conf['userFunc.']['configuration.']['updateSwfXml.'];
-var_dump( __METHOD__, __LINE__, $coa_conf, $this->cObj->data['tx_flipit_updateswfxml'] );
     $updateSwfXml  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $updateSwfXml )
@@ -249,6 +248,7 @@ var_dump( __METHOD__, __LINE__, $coa_conf, $this->cObj->data['tx_flipit_updatesw
         }
         return true;
         break;
+      case( null ):
       case( 'disabled' ):
         if( $this->b_drs_init )
         {
