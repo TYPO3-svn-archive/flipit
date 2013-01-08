@@ -171,22 +171,22 @@ $TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
     'default' => 'ts',
   ),
 );
-$TCA['tt_content']['columns'][',tx_flipit_updateswfxml'] = array (
+$TCA['tt_content']['columns']['tx_flipit_updateswfxml'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_,tx_flipit_updateswfxml',
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml',
   'config'  => array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_,tx_flipit_updateswfxml_item_disabled',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml_item_disabled',
         'disabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_,tx_flipit_updateswfxml_item_enabled',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml_item_enabled',
         'enabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_,tx_flipit_updateswfxml_item_ts',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml_item_ts',
         'ts',
       ),
     ),
@@ -272,6 +272,7 @@ foreach( $arr_showitem as $key => $value )
 }
 $str_showitem = implode( '--div--;', $arr_new_showitem );
 $TCA['tt_content']['types']['uploads']['showitem'] = $str_showitem;
+unset( $int_div_position );
   // Insert div [flipit] at position $int_div_position
   // TCA for tt_content
 
