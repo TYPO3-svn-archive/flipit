@@ -770,7 +770,7 @@ class tx_flipit_typoscript
     $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
       // Set xml content
     
-var_dump( __METHOD__, __LINE__, $xmlContent );    
+//var_dump( __METHOD__, __LINE__, $xmlContent );    
 
     $xmlFile = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
 
