@@ -92,7 +92,7 @@ class tx_flipit_typoscript
   private $table;
   
  /**
-  * Global tstamp for updates. It muts be older than the tstamp of generated files
+  * Global tstamp for updates. It must be older than the tstamp of generated files
   *
   * @var integer
   */
@@ -1005,7 +1005,7 @@ class tx_flipit_typoscript
 
       // Init global vars
     $this->table = $conf['userFunc.']['configuration.']['currentTable'];
-      // Global tstamp for updates. It muts be older than the tstamp of generated files
+      // Global tstamp for updates. It must be older than the tstamp of generated files
     $this->tstamp = time( );
 
 

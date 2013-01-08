@@ -245,6 +245,26 @@ class tx_flipit_userfunc
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '
   </div> 
 </div>';
+        switch( $this->os )
+        {
+          case( 'linux'):
+          case( 'unix'):
+            $prompt = $prompt.'
+<div class="typo3-message message-information">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools4Linux'). '
+  </div> 
+</div>';
+            break;
+          case( 'windows'):
+            $prompt = $prompt.'
+<div class="typo3-message message-information">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools4Windows'). '
+  </div> 
+</div>';
+            break;
+        }
         break;
     }
 
@@ -413,7 +433,10 @@ class tx_flipit_userfunc
     {
       case( 'linux' ):
       case( 'unix' ):
-        $arr_return = $this->zz_exec( '/usr/local/bin/pdf2swf --version' );
+          // 130109, dwildt, 1-
+        //$arr_return = $this->zz_exec( '/usr/local/bin/pdf2swf --version' );
+          // 130109, dwildt, 1+
+        $arr_return = $this->zz_exec( 'pdf2swf --version' );
         break;
       case( 'windows' ):
         $arr_return['error']['status'] = true;

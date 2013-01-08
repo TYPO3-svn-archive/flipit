@@ -91,7 +91,12 @@
           SWFTOOLS for Linux</a>
       ]]></label>
       <label index="promptEvaluatorSWFtoolsWindowsError"><![CDATA[
-        SWFTOOLS for Windows aren't supported now.
+        Download SWFTOOLS for Windows from the TYPO3 TER. 
+        <a href="http://typo3.org/extensions/repository/view/swftools4windows" 
+          alt="SWFTOOLS for Windows"
+          title="SWFTOOLS for Windows"
+          target="_blank">
+          SWFTOOLS for Windows</a>
       ]]></label>
       <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
