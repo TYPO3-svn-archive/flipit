@@ -152,7 +152,7 @@ class tx_flipit_typoscript
       // RETURN : no media files
 
       // Generate and check SWF and XML files
-    $this->flipit( );   
+    $this->update( );   
 
       // Return the content
     return $this->content( $conf );    
@@ -200,7 +200,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipit( ): 
+  * update( ): 
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
@@ -208,18 +208,77 @@ class tx_flipit_typoscript
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function flipit( )
+  private function update( )
   {
+    if( ! $this->updateEnabled( ) )
+    {
+      return;
+    }
       // Generate and check SWF
-    $this->flipitSwf( );   
+    $this->updateSwf( );   
       // Generate and check XML
-    $this->flipitXml( );   
+    $this->updateXml( );   
   }
 
   
   
  /**
-  * flipitSwf( ): 
+  * updateEnabled( ): 
+  *
+  * @return	boolean		
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function updateEnabled( )
+  {
+    $conf = $this->conf;
+
+    $coa_name = $conf['userFunc.']['configuration.']['updateSwfXml'];
+    $coa_conf = $conf['userFunc.']['configuration.']['updateSwfXml.'];
+    $updateSwfXml  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $updateSwfXml )
+    {
+      case( 'enabled' ):
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Auto-update of SWF files and XML file is enabled.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        return true;
+        break;
+      case( 'disabled' ):
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Auto-update of SWF files and XML files is disabled.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        return false;
+        break;
+      case( 'error' ):
+      default:
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Undefined: ' . "['userFunc.']['configuration.']['updateSwfXml']" . ' ' .
+                    'is ' . $updateSwfXml;
+          t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
+          $prompt = 'Auto-update of SWF files and XML files is disabled.';
+          t3lib_div::devlog( '[WARN/INIT] ' . $prompt, $this->extKey, 3 );
+        }
+        return false;
+        break;
+    }
+
+      // RETURN : default is false;
+    return false;
+    
+  }
+
+  
+  
+ /**
+  * updateSwf( ): 
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
@@ -227,15 +286,15 @@ class tx_flipit_typoscript
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function flipitSwf( )
+  private function updateSwf( )
   {
     $swfFilesAreDeprecated = false;
     
       // Render SWF files if they are deprecated or if there isn't any SWF file
-    $swfFilesAreDeprecated = $this->flipitSwfFilesAreDeprecated( );
+    $swfFilesAreDeprecated = $this->updateSwfFilesAreDeprecated( );
     if( $swfFilesAreDeprecated )
     {
-      $this->flipitSwfFilesRenderAll( );
+      $this->updateSwfFilesRenderAll( );
     }
       // Render SWF files if they are deprecated or if there isn't any SWF file
   }
@@ -243,14 +302,14 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesAreDeprecated( ): 
+  * updateSwfFilesAreDeprecated( ): 
   *
   * @return   boolean		
   * @access   private
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function flipitSwfFilesAreDeprecated( )
+  private function updateSwfFilesAreDeprecated( )
   {
       // Get swf files
     $tx_flipit_swf_files  = $this->cObj->data['tx_flipit_swf_files'];
@@ -260,10 +319,10 @@ class tx_flipit_typoscript
       // RETURN true : there isn't any SWF file
     if( empty ( $arr_swfFiles ) )
     {
-      if( $this->b_drs_swf )
+      if( $this->b_drs_updateSwfXml )
       {    
         $prompt = 'There isn\'t any SWF file.';
-        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
@@ -277,10 +336,10 @@ class tx_flipit_typoscript
       // RETURN true  : SWF files are deprecated
     if( $this->tstampMedia > $this->tstampSwf )
     {
-      if( $this->b_drs_swf )
+      if( $this->b_drs_updateSwfXml )
       {    
         $prompt = 'A media file is newer than the last swf file.';
-        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
@@ -292,20 +351,20 @@ class tx_flipit_typoscript
       // RETURN true  : SWF files are deprecated
     if( $this->tstampRecord > $this->tstampSwf )
     {
-      if( $this->b_drs_swf )
+      if( $this->b_drs_updateSwfXml )
       {    
         $prompt = 'Record is newer than the swf file.';
-        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
       // RETURN true  : SWF files are deprecated
 
       // RETURN false : SWF files are up to date
-    if( $this->b_drs_swf )
+    if( $this->b_drs_updateSwfXml )
     {    
       $prompt = 'SWF files are up to date.';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
     return false;
       // RETURN false : SWF files are up to date
@@ -314,14 +373,14 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesRemove( ): 
+  * updateSwfFilesRemove( ): 
   *
   * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRemove( )
+  private function updateSwfFilesRemove( )
   {
     $conf         = $this->conf;
     $table        = $this->table;
@@ -334,17 +393,17 @@ class tx_flipit_typoscript
     if( empty ( $this->files[$fieldFiles] ) ) 
     {
 //        // DRS
-//      if( $this->b_drs_swf )
+//      if( $this->b_drs_updateSwfXml )
 //      {    
 //        $prompt = 'Unexpected result: no SWF file!';
-//        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 3 );
+//        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 3 );
 //      }
 //        // DRS
       return;
 //      if( $this->b_drs_error )
 //      {    
 //        $prompt = 'Unexpected result: no SWF file!';
-//        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+//        t3lib_div::devlog( '[ERROR/SWF+XML] ' . $prompt, $this->extKey, 3 );
 //      }
     }
       // RETURN : no swf files, any swf file can't remove
@@ -370,10 +429,10 @@ class tx_flipit_typoscript
       $fieldFiles   => null
     );
       // DRS
-    if( $this->b_drs_sql || $this->b_drs_swf )
+    if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
     {    
       $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
-      t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/SQL+SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
@@ -389,14 +448,14 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesRenderAll( ): 
+  * updateSwfFilesRenderAll( ): 
   *
   * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.2
   */
-  private function flipitSwfFilesRenderAll( )
+  private function updateSwfFilesRenderAll( )
   {
     $conf         = $this->conf;
     $table        = $this->table;
@@ -407,7 +466,7 @@ class tx_flipit_typoscript
     $filesCounter = 0;
     
       // Remove all swfFiles
-    $this->flipitSwfFilesRemove( );
+    $this->updateSwfFilesRemove( );
     
       // SWITCH : extension
       // jpeg, pdf, png
@@ -422,21 +481,21 @@ class tx_flipit_typoscript
         case('jpg'):
         case('jpeg'):
           $filesCounter = $filesCounter + 1;
-          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderJpg( $fileWiPath, $filesCounter ) );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->updateSwfFilesRenderJpg( $fileWiPath, $filesCounter ) );
           break;
         case('pdf'):
           $filesCounter = $filesCounter + 1;
-          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPdf( $fileWiPath, $filesCounter ) );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->updateSwfFilesRenderPdf( $fileWiPath, $filesCounter ) );
           break;
         case('png'):
           $filesCounter = $filesCounter + 1;
-          $swfFiles = array_merge( $swfFiles, ( array ) $this->flipitSwfFilesRenderPng( $fileWiPath, $filesCounter ) );
+          $swfFiles = array_merge( $swfFiles, ( array ) $this->updateSwfFilesRenderPng( $fileWiPath, $filesCounter ) );
           break;
         default:
-          if( $this->b_drs_swf )
+          if( $this->b_drs_updateSwfXml )
           {    
             $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' can not converted to SWF.';
-            t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+            t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
           }
           break;
       }
@@ -454,10 +513,10 @@ class tx_flipit_typoscript
       // FOREACH  : remove empty element
 
       // DRS
-    if( $this->b_drs_swf )
+    if( $this->b_drs_updateSwfXml )
     {    
       $prompt = 'Rendered SWF files: ' . var_export( $swfFiles, true );
-      t3lib_div::devlog( '[OK/SWF] ' . $prompt, $this->extKey, -1 );
+      t3lib_div::devlog( '[OK/SWF+XML] ' . $prompt, $this->extKey, -1 );
     }
       // DRS
     
@@ -467,7 +526,7 @@ class tx_flipit_typoscript
       if( $this->b_drs_error )
       {    
         $prompt = 'There isn\'t any SWF file!';
-        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+        t3lib_div::devlog( '[ERROR/SWF+XML] ' . $prompt, $this->extKey, 3 );
       }
       return;
     }
@@ -480,11 +539,11 @@ class tx_flipit_typoscript
       $fieldFiles   => implode( ',', $swfFiles )
     );
       // DRS
-    if( $this->b_drs_sql || $this->b_drs_swf )
+    if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
     {    
       $fields_valuesWiSpace = str_replace(',', ', ', $fields_values );
       $prompt = '"," is replaced with ", " for prompting only! ' . $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_valuesWiSpace );
-      t3lib_div::devlog( '[INFO/SQL+SWF] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/SQL+SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
@@ -508,7 +567,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesRenderJpg( ): 
+  * updateSwfFilesRenderJpg( ): 
   *
   * @param    string    $fileWiPath : full path
   * @return   array     $arrReturn  : rendered swf files
@@ -516,15 +575,15 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderJpg( $fileWiPath, $filesCounter )
+  private function updateSwfFilesRenderJpg( $fileWiPath, $filesCounter )
   {
     $arrReturn = null;
     
-    if( $this->b_drs_swf )
+    if( $this->b_drs_updateSwfXml )
     {    
       $pathParts = pathinfo( $fileWiPath );
       $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
     }
     return $arrReturn;
   }
@@ -532,7 +591,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesRenderPdf( ): 
+  * updateSwfFilesRenderPdf( ): 
   *
   * @param    string    $fileWiPath : full path
   * @return   array     $arrReturn  : rendered swf files
@@ -540,7 +599,7 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
+  private function updateSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
   {
     $arrReturn = null;
     
@@ -584,9 +643,9 @@ class tx_flipit_typoscript
       if( ! ( $pos === false ) )
       {
         $prompt = $csvLines;
-        t3lib_div::devlog( '[WARN/SWF] ' . $prompt, $this->extKey, 2 );
+        t3lib_div::devlog( '[WARN/SWF+XML] ' . $prompt, $this->extKey, 2 );
         $prompt = 'There is an error in the prompt before. Please search for FATAL.';
-        t3lib_div::devlog( '[ERROR/SWF] ' . $prompt, $this->extKey, 3 );
+        t3lib_div::devlog( '[ERROR/SWF+XML] ' . $prompt, $this->extKey, 3 );
       }
     }
       // DRS
@@ -617,7 +676,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitSwfFilesRenderPng( ): 
+  * updateSwfFilesRenderPng( ): 
   *
   * @param    string    $fileWiPath : full path
   * @return   array     $arrReturn  : rendered swf files
@@ -625,15 +684,15 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitSwfFilesRenderPng( $fileWiPath, $filesCounter )
+  private function updateSwfFilesRenderPng( $fileWiPath, $filesCounter )
   {
     $arrReturn = null;
     
-    if( $this->b_drs_swf )
+    if( $this->b_drs_updateSwfXml )
     {    
       $pathParts = pathinfo( $fileWiPath );
       $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
-      t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
     }
     return $arrReturn;
   }
@@ -641,7 +700,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitXml( ): 
+  * updateXml( ): 
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
@@ -649,15 +708,15 @@ class tx_flipit_typoscript
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function flipitXml( )
+  private function updateXml( )
   {
     $xmlFileAreDeprecated = false;
     
       // Render SWF files if they are deprecated or if there isn't any SWF file
-    $xmlFileAreDeprecated = $this->flipitXmlFileIsDeprecated( );
+    $xmlFileAreDeprecated = $this->updateXmlFileIsDeprecated( );
     if( $xmlFileAreDeprecated )
     {
-      $this->flipitXmlFileRenderIt( );
+      $this->updateXmlFileRenderIt( );
     }
       // Render SWF files if they are deprecated or if there isn't any SWF file
   }
@@ -665,7 +724,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitXmlFileIsDeprecated( ): 
+  * updateXmlFileIsDeprecated( ): 
   *
   * @param	array		TypoScript configuration
   * @return	mixed		HTML output.
@@ -673,7 +732,7 @@ class tx_flipit_typoscript
   * @version  0.0.2
   * @since    0.0.2
   */
-  private function flipitXmlFileIsDeprecated( )
+  private function updateXmlFileIsDeprecated( )
   {
       // Get xml file
     $arr_xmlFiles = array( );
@@ -682,10 +741,10 @@ class tx_flipit_typoscript
       // RETURN true : there isn't any XML file
     if( empty ( $arr_xmlFiles ) )
     {
-      if( $this->b_drs_xml )
+      if( $this->b_drs_updateSwfXml )
       {    
         $prompt = 'There isn\'t any XML file.';
-        t3lib_div::devlog( '[INFO/SWF] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
@@ -699,10 +758,10 @@ class tx_flipit_typoscript
       // RETURN true  : XML file is deprecated
     if( $this->tstampSwf >= $this->tstampXml )
     {
-      if( $this->b_drs_xml )
+      if( $this->b_drs_updateSwfXml )
       {    
         $prompt = 'Swf files are newer than the xml file or there isn\'t any xml file.';
-        t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
@@ -714,20 +773,20 @@ class tx_flipit_typoscript
       // RETURN true  : XML file is deprecated
     if( $this->tstampRecord >= $this->tstampXml )
     {
-      if( $this->b_drs_xml )
+      if( $this->b_drs_updateSwfXml )
       {    
         $prompt = 'Record is newer than the xml file.';
-        t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
       // RETURN true  : XML file is deprecated
     
       // RETURN false : XML file is up to date
-    if( $this->b_drs_xml )
+    if( $this->b_drs_updateSwfXml )
     {    
       $prompt = 'XML file is up to date.';
-      t3lib_div::devlog( '[INFO/XML] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
     return false;
       // RETURN false : XML file is up to date
@@ -736,14 +795,14 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitXmlFileRenderIt( ): 
+  * updateXmlFileRenderIt( ): 
   *
   * @return	void
   * @access   private
   * @version  0.0.3
   * @since    0.0.2
   */
-  private function flipitXmlFileRenderIt( )
+  private function updateXmlFileRenderIt( )
   {
     $conf         = $this->conf;
     $table        = $this->table;
@@ -751,7 +810,7 @@ class tx_flipit_typoscript
     $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
 
       // Get content parameters
-    $contentParams = $this->flipitXmlFileRenderItParams( );
+    $contentParams = $this->updateXmlFileRenderItParams( );
 
       // Get pages
     $pages    = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
@@ -770,7 +829,7 @@ class tx_flipit_typoscript
 </content>';
     $xmlContent = str_replace( '%contentParams%',  $contentParams, $xmlContent );
     $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
-    $xmlFile    = $this->flipitXmlFileRenderItWriteFile( $xmlContent );
+    $xmlFile    = $this->updateXmlFileRenderItWriteFile( $xmlContent );
       // Set xml content and write xml file
     
       // Update database
@@ -780,10 +839,10 @@ class tx_flipit_typoscript
       $fieldFiles   => $xmlFile
     );
       // DRS
-    if( $this->b_drs_sql || $this->b_drs_xml )
+    if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
     {    
       $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
-      t3lib_div::devlog( '[INFO/SQL+XML] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/SQL+SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
@@ -799,14 +858,14 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitXmlFileRenderIt( ): 
+  * updateXmlFileRenderIt( ): 
   *
   * @return	string		$contentParams  : Contente parameters
   * @access   private
   * @version  0.0.3
   * @since    0.0.2
   */
-  private function flipitXmlFileRenderItParams( )
+  private function updateXmlFileRenderItParams( )
   {
     $conf = $this->conf;
     
@@ -847,14 +906,14 @@ class tx_flipit_typoscript
   
   
  /**
-  * flipitXmlFileRenderItWriteFile( ): 
+  * updateXmlFileRenderItWriteFile( ): 
   *
   * @return	string          $xmlFile  : xml file
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function flipitXmlFileRenderItWriteFile( $xmlContent )
+  private function updateXmlFileRenderItWriteFile( $xmlContent )
   {
       // xml output file
     $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '.xml';
@@ -901,10 +960,10 @@ class tx_flipit_typoscript
     fclose( $handle );
 
       // DRS
-    if( $this->b_drs_xml )
+    if( $this->b_drs_updateSwfXml )
     {    
       $prompt = $xmlFileWiPath . ' is written.';
-      t3lib_div::devlog( '[OK/XML] ' . $prompt, $this->extKey, -1 );
+      t3lib_div::devlog( '[OK/SWF+XML] ' . $prompt, $this->extKey, -1 );
     }
       // DRS
 
@@ -1039,9 +1098,8 @@ class tx_flipit_typoscript
     $this->b_drs_php    = true;
     $this->b_drs_pdf    = true;
     $this->b_drs_sql    = true;
-    $this->b_drs_swf    = true;
+    $this->b_drs_updateSwfXml    = true;
     $this->b_drs_todo   = true;
-    $this->b_drs_xml    = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
