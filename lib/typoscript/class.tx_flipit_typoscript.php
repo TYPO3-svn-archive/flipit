@@ -1190,8 +1190,8 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. Flip it! won\'t run.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 2 );
+          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. Flip it! won\'t run. This is OK.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
         }
         $arr_return['return']   = true;
         $arr_return['content']  = null;

@@ -195,7 +195,7 @@ plugin.tx_flipit {
               </div>
               <script type="text/javascript">
                 var so = new SWFObject("typo3conf/ext/flipit/res/swf/book.swf", "book", "100%", "100%", "8", "{$plugin.tx_flipit.html.color.background}");
-                so.addVariable("xmlFile","uploads/tx_flipit/{field:tx_flipit_xml_file}");
+                so.addVariable("xmlFile","uploads/tx_flipit/{field:tx_flipit_xml_file}?{field:tstamp}");
                 so.addVariable("fullscreen","true");
                 so.write("c{field:uid}_flipit");
               </script>
