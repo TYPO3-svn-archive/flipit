@@ -1175,7 +1175,7 @@ class tx_flipit_typoscript
       // Get current file
     $currentFile = $GLOBALS['TSFE']->register['filename'];
     
-var_dump( __METHOD__, __LINE__, $this->files[$field], $firstkey, $firstFileWiPath, $firstFile );    
+var_dump( __METHOD__, __LINE__, $this->files[$field], $firstkey, $firstFileWiPath, pathinfo( $firstFileWiPath ), $firstFile );    
       // SWITCH : $firstFile == $currentFile
     switch( true )
     {
