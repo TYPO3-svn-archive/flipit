@@ -1167,7 +1167,7 @@ class tx_flipit_typoscript
       // Get first file from media
     $field            = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
     $firstkey         = key( ( array ) $this->files[$field] );
-    $firstFileWiPath  = ( array ) $this->files[$field][$firstkey];
+    $firstFileWiPath  = $this->files[$field][$firstkey];
     $pathParts        = pathinfo( $firstFileWiPath );
     $firstFile        = $pathParts['basename'];
       // Get first file from media
