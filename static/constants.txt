@@ -2,7 +2,9 @@ plugin.tx_flipit {
 
   # cat=Flip it! - configuration/enable/101;    type=options[disabled,enabled];   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
   configuration.enable = disabled
-  # cat=Flip it! - configuration/enable/102;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
+  # cat=Flip it! - configuration/enable/102;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
+  configuration.updateswfxml = enabled
+  # cat=Flip it! - configuration/enable/103;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
   configuration.filetypes = jpg,pdf,png
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   configuration.externalLinks = Click me!

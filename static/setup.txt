@@ -57,6 +57,8 @@ plugin.tx_flipit {
               tstamp  = tstamp
             }
           }
+            // table
+          updateSwfXml = {$plugin.tx_flipit.configuration.updateswfxml} 
             // Configuration of the XML file, which controls the flash output
           xml =
           xml {
