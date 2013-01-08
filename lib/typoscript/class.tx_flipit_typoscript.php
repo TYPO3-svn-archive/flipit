@@ -1161,6 +1161,9 @@ class tx_flipit_typoscript
   {
     $conf = $this->conf;
 
+    $arr_return = array( );
+    $arr_return['return'] = false;
+
       // Get first file from media
     $field            = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
     $firstkey         = key( ( array ) $this->files[$field] );
@@ -1172,9 +1175,7 @@ class tx_flipit_typoscript
       // Get current file
     $currentFile = $GLOBALS['TSFE']->register['filename'];
     
-    $arr_return = array( );
-    $arr_return['return'] = false;
-    
+//var_dump( __METHOD__, __LINE__, );    
       // SWITCH : $firstFile == $currentFile
     switch( true )
     {
@@ -1190,7 +1191,7 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'The current file isn\'t the first file. Flip it! won\'t run.';
+          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. Flip it! won\'t run.';
           t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 2 );
         }
         $arr_return['return']   = true;
@@ -1199,6 +1200,7 @@ class tx_flipit_typoscript
     }
       // SWITCH : $firstFile == $currentFile
     
+    unset( $firstFile );
     unset( $currentFile );
 
     return $arr_return;
