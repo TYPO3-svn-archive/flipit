@@ -960,13 +960,13 @@ class tx_flipit_typoscript
       // Init file lists
     $this->initFiles( );
     
-      // RETURN : Flip it! is disabled or there is an error
+      // RETURN : $firstFile != $currentFile
     $arr_return = $this->initIfFirstFileOnly( );
     if( $arr_return['return'] )
     {
       return $arr_return;
     }
-      // RETURN : Flip it! is disabled or there is an error
+      // RETURN : $firstFile != $currentFile
 
     return;
   }
@@ -1159,57 +1159,47 @@ class tx_flipit_typoscript
   */
   private function initIfFirstFileOnly( )
   {
-var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register['filename'] );
-
     $conf = $this->conf;
 
-      // Get files from media
-    $field    = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
-    $firstkey = key( ( array ) $this->files[$field] );
-    $firstFile = ( array ) $this->files[$field][$firstkey];
-
-var_dump( __METHOD__, __LINE__,  $this->files[$field], $firstkey, $firstFile );
-    
-    
+      // Get first file from media
+    $field            = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
+    $firstkey         = key( ( array ) $this->files[$field] );
+    $firstFileWiPath  = ( array ) $this->files[$field][$firstkey];
+    $pathParts        = pathinfo( $firstFileWiPath );
+    $firstFile        = $pathParts['basename'];
+      // Get first file from media
+  
+      // Get current file
+    $currentFile = $GLOBALS['TSFE']->register['filename'];
     
     $arr_return = array( );
     $arr_return['return'] = false;
     
-    $coa_name = $conf['userFunc.']['enabled'];
-    $coa_conf = $conf['userFunc.']['enabled.'];
-    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
-    
-    switch( $enabled )
+      // SWITCH : $firstFile == $currentFile
+    switch( true )
     {
-      case( 'enabled' ):
+      case( $firstFile == $currentFile ):
         if( $this->b_drs_init )
         {
-          $prompt = 'Flip it! is enabled.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+          $prompt = 'The current file is the first file. Flip it! will run.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, -1 );
         }
         $arr_return['return'] = false;
         break;
-      case( 'disabled' ):
-        if( $this->b_drs_init )
-        {
-          $prompt = 'Flip it! is disabled.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-        }
-        $arr_return['return'] = true;
-        break;
-      case( 'error' ):
+      case( $firstFile != $currentFile ):
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'The enabling mode of Flip it! isn\'t part of the list: disabled,enabled,ts';
-          t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
-          $prompt = 'Flip it! won\'t run!';
-          t3lib_div::devlog( '[WARN/INIT] ' . $prompt, $this->extKey, 3 );
+          $prompt = 'The current file isn\'t the first file. Flip it! won\'t run.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 2 );
         }
         $arr_return['return']   = true;
-        $arr_return['content']  = $enabled;
+        $arr_return['content']  = null;
         break;
     }
+      // SWITCH : $firstFile == $currentFile
+    
+    unset( $currentFile );
 
     return $arr_return;
     
