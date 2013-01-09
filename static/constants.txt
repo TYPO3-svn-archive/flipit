@@ -14,7 +14,7 @@ plugin.tx_flipit {
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   database.externalLinks = Click me!
 
-  # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox: Disable it, if you don't want to use Flip it! in a fancybox by default.
+  # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
   fancybox.enable = enabled
   # cat=Flip it! - fancybox/dims/201;       type=int+;                  label= padding:Space between FancyBox wrapper and content
   fancybox.padding = 10
@@ -69,7 +69,7 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/dims/226;       type=options[true,false];   label= enableEscapeButton:Toggle if pressing Esc button closes FancyBox
   fancybox.enableEscapeButton = true
   # cat=Flip it! - fancybox/dims/227;       type=options[,ajax,iframe,image,inline,swf];   label= type:Forces content type. Can be set to 'image', 'ajax', 'iframe', 'swf' or 'inline'
-  fancybox.enableEscapeButton = 
+  fancybox.type = 
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   fancybox.externalLinks = Click me!
 

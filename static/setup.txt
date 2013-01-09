@@ -26,8 +26,10 @@ includeLibs {
   // plugin.tx_flipit
 
 plugin.tx_flipit {
+    // Configuration by the Constant Editor (extended)
   constant_editor =
   constant_editor {
+      // Category configuration
     configuration =
     configuration {
         // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
@@ -138,7 +140,91 @@ plugin.tx_flipit {
           value = {$plugin.tx_flipit.configuration.updateswfxml} 
         }
       }
-
+    }
+      // Category database
+    database = 
+    database {
+      table = {$plugin.tx_flipit.database.table} 
+    }
+      // Category fancybox
+    fancybox = 
+    fancybox {
+        // Fancybox : Disable it, if you don't want to use Flip it! in a fancybox by default.
+      enable = {$plugin.tx_flipit.fancybox.enable}
+        // padding : Space between FancyBox wrapper and content
+      padding = {$plugin.tx_flipit.fancybox.padding}
+        // margin : Space between viewport and FancyBox wrapper
+      margin = {$plugin.tx_flipit.fancybox.margin}
+        // opacity : When true, transparency of content is changed for elastic transitions
+      opacity = {$plugin.tx_flipit.fancybox.opacity}
+        // modal : When true, 'overlayShow' is set to 'true' and 'hideOnOverlayClick', 'hideOnContentClick', 'enableEscapeButton', 'showCloseButton' are set to 'false'
+      modal = {$plugin.tx_flipit.fancybox.modal}
+        // cyclic : When true, galleries will be cyclic, allowing you to keep pressing next/back.
+      cyclic = {$plugin.tx_flipit.fancybox.cyclic}
+        // scrolling : Set the overflow CSS property to create or hide scrollbars. Can be set to 'auto', 'yes', or 'no'
+      scrolling = TEXT
+      scrolling {
+        value = {$plugin.tx_flipit.fancybox.scrolling}
+        wrap  = '|'
+      }
+        // width : Width for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
+      width = {$plugin.tx_flipit.fancybox.width}
+        // height : Height for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
+      height = {$plugin.tx_flipit.fancybox.height}
+        // autoScale : If true, FancyBox is scaled to fit in viewport 
+      autoScale = {$plugin.tx_flipit.fancybox.autoScale}
+        // autoDimensions : For inline and ajax views, resizes the view to the element recieves. Make sure it has dimensions otherwise this will give unexpected results
+      autoDimensions = {$plugin.tx_flipit.fancybox.autoDimensions}
+        // centerOnScroll : When true, FancyBox is centered while scrolling page
+      centerOnScroll = {$plugin.tx_flipit.fancybox.centerOnScroll}
+        // hideOnOverlayClick : Toggle if clicking the overlay should close FancyBox
+      hideOnOverlayClick = {$plugin.tx_flipit.fancybox.hideOnOverlayClick}
+        // hideOnContentClick : Toggle if clicking the content should close FancyBox
+      hideOnContentClick = {$plugin.tx_flipit.fancybox.hideOnContentClick}
+        // overlayShow : Toggle overlay
+      overlayShow = {$plugin.tx_flipit.fancybox.overlayShow}
+        // overlayOpacity : Opacity of the overlay (from 0 to 1; default - 0.3)
+      overlayOpacity = {$plugin.tx_flipit.fancybox.overlayOpacity}
+        // overlayColor : Color of the overlay
+      overlayColor = {$plugin.tx_flipit.fancybox.overlayColor}
+        // title : Forces title
+      title = {$plugin.tx_flipit.fancybox.title}
+        // titleShow : Toggle title
+      titleShow = {$plugin.tx_flipit.fancybox.titleShow}
+        // titlePosition : The position of title. Can be set to 'outside', 'inside' or 'over'
+      titlePosition = TEXT
+      titlePosition {
+        value = {$plugin.tx_flipit.fancybox.titlePosition}
+        wrap  = '|'
+      }
+        // transitionIn : The transition type. Can be set to 'elastic', 'fade' or 'none'
+      transitionIn = TEXT
+      transitionIn {
+        value = {$plugin.tx_flipit.fancybox.transitionIn}
+        wrap  = '|'
+      }
+        // transitionOut : The transition type. Can be set to 'elastic', 'fade' or 'none'
+      transitionOut = TEXT
+      transitionOut {
+        value = {$plugin.tx_flipit.fancybox.transitionOut}
+        wrap  = '|'
+      }
+        // speedIn : Speed of the fade and elastic transitions, in milliseconds
+      speedIn = {$plugin.tx_flipit.fancybox.speedIn}
+        // speedOut : Speed of the fade and elastic transitions, in milliseconds
+      speedOut = {$plugin.tx_flipit.fancybox.speedOut}
+        // showCloseButton : Toggle close button
+      showCloseButton = {$plugin.tx_flipit.fancybox.showCloseButton}
+        // showNavArrows : Toggle navigation arrows
+      showNavArrows = {$plugin.tx_flipit.fancybox.showNavArrows}
+        // enableEscapeButton : Toggle if pressing Esc button closes FancyBox
+      enableEscapeButton = {$plugin.tx_flipit.fancybox.enableEscapeButton}
+        // type : Forces content type. Can be set to 'image', 'ajax', 'iframe', 'swf' or 'inline'
+      type = TEXT
+      type {
+        value = {$plugin.tx_flipit.fancybox.type}
+        wrap  = '|'
+      }
     }
   }
     // For tt_content.uploads
