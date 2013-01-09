@@ -6,6 +6,7 @@
   // includeLibs
   // plugin.tx_flipit
   // tt_content.uploads
+  // flipit_ajax
 
 
 
@@ -239,6 +240,38 @@ plugin.tx_flipit {
       }
     } 
   }
+  pageObjects {
+    page = PAGE
+    page {
+      typeNum = {$plugin.tx_flipit.typeNum.ajaxPageObj}
+      config {
+        disableAllHeaderCode  = 1
+        xhtml_cleaning        = 0
+        admPanel              = 0
+      }
+      10 = CONTENT
+      10 {
+        table = tt_content
+        select {
+            // use current language
+          languageField = sys_language_uid
+          andWhere {
+            cObject = COA
+            cObject {
+                // choose all Browser plugins...
+              10 = TEXT
+              10 {
+                value = list_type = 'browser_pi1'
+              }
+            }
+          }
+        }
+      }
+    }
+    typeNums {
+      {$plugin.tx_flipit.typeNum.ajaxPageObj} = page
+    }
+  }
 }
   // plugin.tx_flipit
 
@@ -257,3 +290,18 @@ tt_content.uploads {
   }
 }
   // tt_content.uploads
+
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // pages: Flipt it! Ajax
+
+  // Flip it! ajax page object. In case of localisation: Configure the id of sys_languagein the Constant Editor. Move in this line ...jQuery.default to ...jQuery.de (i.e.)
+flipit_ajax < plugin.tx_flipit.javascript.ajax.jQuery.default
+
+[globalVar = GP:type = {$plugin.tx_flipit.pageObjects.page}]
+    // Don't handle header of content element
+  lib.stdheader >
+[global]
+  // pages: Flipt it! Ajax

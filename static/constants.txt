@@ -28,6 +28,11 @@ plugin.tx_flipit {
   # cat=Flip it! - lightbox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   lightbox.externalLinks = Click me!
 
+  # cat=Browser - Page Objects//100;       type=int+;    label= AJAX page object: Type number (typenum) of the AJAX page object.
+  typeNum.ajaxPageObj = 44395
+  # cat=Flip it! - lightbox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  typeNum.externalLinks = Click me!
+
   # cat=Flip it! - xml/dims/101;            type=int+;   label= Document width: Width in pixel (if autodetection failes)
   xml.width             = 592
   # cat=Flip it! - xml/dims/102;            type=int+;   label= Document height: Height in pixel (if autodetection failes)
