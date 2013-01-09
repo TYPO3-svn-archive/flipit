@@ -237,6 +237,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml.'];
     $updateSwfXml  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+var_dump( __METHOD__, __LINE__, $coa_name, $coa_conf, $updateSwfXml );
     
     switch( $updateSwfXml )
     {
