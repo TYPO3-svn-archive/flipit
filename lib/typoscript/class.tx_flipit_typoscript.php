@@ -893,7 +893,7 @@ class tx_flipit_typoscript
       $cObj_name  = $conf['userFunc.']['constant_editor.']['xml.'][$param];
       $cObj_conf  = $conf['userFunc.']['constant_editor.']['xml.'][$param . '.'];
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
-      $value      = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
+      //$value      = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
       
       $arrContentParams[] = $param . " = '" . $value . "'"; 
       
