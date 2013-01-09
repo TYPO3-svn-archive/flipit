@@ -50,8 +50,8 @@ plugin.tx_flipit {
   fancybox.overlayOpacity = 0.3
   # cat=Flip it! - fancybox/dims/216;       type=string;                label= overlayColor:Color of the overlay
   fancybox.overlayColor = #666
-  # cat=Flip it! - fancybox/dims/217;       type=string;                label= title:Forces title
-  fancybox.title = {field:header}
+  # cat=Flip it! - fancybox/dims/217;       type=string;                label= title:Forces title. Take a field of the current record.
+  fancybox.title = header
   # cat=Flip it! - fancybox/dims/218;       type=options[true,false];   label= titleShow:Toggle title
   fancybox.titleShow = true
   # cat=Flip it! - fancybox/dims/219;       type=options[outside,inside,over];   label= titlePosition:The position of title. Can be set to 'outside', 'inside' or 'over'

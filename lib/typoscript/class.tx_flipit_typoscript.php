@@ -1329,7 +1329,6 @@ class tx_flipit_typoscript
 
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox.'];
-//    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $fancybox )
@@ -1380,10 +1379,24 @@ class tx_flipit_typoscript
   {
     $conf = $this->conf;
 
+    $coa_name = $conf['userFunc.']['htmlSnippets.']['css.']['fancybox'];
+    $coa_conf = $conf['userFunc.']['htmlSnippets.']['css.']['fancybox.'];
+    $fancyboxCss = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    if( $this->b_drs_jquery )
+    {
+      $prompt = 'Fancybox CSS is included at the top of the page (HTML head).';
+      t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+    }
+    $GLOBALS['TSFE']->additionalHeaderData['flipit.fancybox.css'] = $fancyboxCss;
+    
+
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
-//    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    $coa_name = $conf['userFunc.']['htmlSnippets.']['js.']['fancyboxLibrary'];
+    $coa_conf = $conf['userFunc.']['htmlSnippets.']['js.']['fancyboxLibrary.'];
+    $fancyboxLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $fancyboxPosition )
     {
@@ -1393,7 +1406,7 @@ class tx_flipit_typoscript
           $prompt = 'Fancybox is included at the top of the page (HTML head).';
           t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
         }
-        $GLOBALS['TSFE']->additionalHeaderData['t3jquery.lib'] = $block;
+        $GLOBALS['TSFE']->additionalHeaderData['flipit.fancybox.lib'] = $fancyboxLibrary;
         break;
       case( 'bottom' ):
         if( $this->b_drs_jquery )
@@ -1401,7 +1414,7 @@ class tx_flipit_typoscript
           $prompt = 'Fancybox is included at the bottom of the page.';
           t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
         }
-        $GLOBALS['TSFE']->additionalFooterData['t3jquery.lib'] = $block;
+        $GLOBALS['TSFE']->additionalFooterData['flipit.fancybox.lib'] = $fancyboxLibrary;
         break;
       default:
         $prompt = '
