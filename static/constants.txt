@@ -14,15 +14,6 @@ plugin.tx_flipit {
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   database.externalLinks = Click me!
 
-  # cat=Flip it! - html/dims/101;      type=string;  label= Height: Height with em, per cent or pixel
-  html.height = 100%
-  # cat=Flip it! - html/dims/102;      type=string;  label= Width: Width with em, per cent or pixel
-  html.width = 100%
-  # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
-  html.color.background = #cccccc
-  # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
-  html.externalLinks = Click me!
-
   # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox: Disable it, if you don't want to use Flip it! in a fancybox by default.
   fancybox.enable = enabled
   # cat=Flip it! - fancybox/dims/201;       type=int+;   label= padding:Space between FancyBox wrapper and content
@@ -33,6 +24,15 @@ plugin.tx_flipit {
   fancybox.opacity = false
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   fancybox.externalLinks = Click me!
+
+  # cat=Flip it! - html/dims/101;      type=string;  label= Height: Height with em, per cent or pixel
+  html.height = 100%
+  # cat=Flip it! - html/dims/102;      type=string;  label= Width: Width with em, per cent or pixel
+  html.width = 100%
+  # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
+  html.color.background = #cccccc
+  # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  html.externalLinks = Click me!
 
   # cat=Flip it! - jquery/enable/102;    type=options[Use it,Don't use it];   label= Library: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
   jquery.fancybox = Use it
