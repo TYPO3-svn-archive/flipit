@@ -14,9 +14,9 @@ plugin.tx_flipit {
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   database.externalLinks = Click me!
 
-  # cat=Flip it! - html/dims/101;      type=integer;  label= Height: Height with em, per cent or pixel
+  # cat=Flip it! - html/dims/101;      type=string;  label= Height: Height with em, per cent or pixel
   html.height = 100%
-  # cat=Flip it! - html/dims/102;      type=integer;  label= Width: Width with em, per cent or pixel
+  # cat=Flip it! - html/dims/102;      type=string;  label= Width: Width with em, per cent or pixel
   html.width = 100%
   # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
   html.color.background = #cccccc
@@ -25,12 +25,18 @@ plugin.tx_flipit {
 
   # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox: Disable it, if you don't want to use Flip it! in a fancybox by default.
   fancybox.enable = enabled
+  # cat=Flip it! - fancybox/dims/201;       type=int+;   label= padding:Space between FancyBox wrapper and content
+  fancybox.padding = 10
+  # cat=Flip it! - fancybox/dims/202;       type=int+;   label= margin:Space between viewport and FancyBox wrapper
+  fancybox.margin = 20
+  # cat=Flip it! - fancybox/dims/202;       type=options[true,false];   label= opacity:When true, transparency of content is changed for elastic transitions
+  fancybox.opacity = false
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   fancybox.externalLinks = Click me!
 
-  # cat=Browser - Page Objects//100;       type=int+;    label= AJAX page object: Type number (typenum) of the AJAX page object.
+  # cat=Flip it! - Page Objects//100;       type=int+;    label= AJAX page object: Type number (typenum) of the AJAX page object.
   typeNum.ajaxPageObj = 44395
-  # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  # cat=Flip it! - Page Objects/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   typeNum.externalLinks = Click me!
 
   # cat=Flip it! - xml/dims/101;            type=int+;   label= Document width: Width in pixel (if autodetection failes)
