@@ -222,17 +222,19 @@ plugin.tx_flipit {
           20 = TEXT
           20 {
             value ( 
-              <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};">
-                <p>
-                  To view Flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
-                </p>
+              <div style="display: none;">
+                <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};overflow:auto;">
+                  <p>
+                    To view Flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
+                  </p>
+                </div>
+                <script type="text/javascript">
+                  var so = new SWFObject("typo3conf/ext/flipit/res/swf/book.swf", "book", "100%", "100%", "8", "{$plugin.tx_flipit.html.color.background}");
+                  so.addVariable("xmlFile","uploads/tx_flipit/{field:tx_flipit_xml_file}?{field:tstamp}");
+                  so.addVariable("fullscreen","true");
+                  so.write("c{field:uid}_flipit");
+                </script>
               </div>
-              <script type="text/javascript">
-                var so = new SWFObject("typo3conf/ext/flipit/res/swf/book.swf", "book", "100%", "100%", "8", "{$plugin.tx_flipit.html.color.background}");
-                so.addVariable("xmlFile","uploads/tx_flipit/{field:tx_flipit_xml_file}?{field:tstamp}");
-                so.addVariable("fullscreen","true");
-                so.write("c{field:uid}_flipit");
-              </script>
 )
             insertData = 1
           }
