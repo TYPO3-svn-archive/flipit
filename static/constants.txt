@@ -25,8 +25,6 @@ plugin.tx_flipit {
 
   # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox: Disable it, if you don't want to use Flip it! in a fancybox by default.
   fancybox.enable = enabled
-  # cat=Flip it! - fancybox/enable/102;    type=options[Use it,Don't use it];   label= Library: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
-  fancybox.library = Use it
   # cat=Flip it! - fancybox/dims/201;       type=int+;   label= padding:Space between FancyBox wrapper and content
   fancybox.padding = 10
   # cat=Flip it! - fancybox/dims/202;       type=int+;   label= margin:Space between viewport and FancyBox wrapper
@@ -35,6 +33,13 @@ plugin.tx_flipit {
   fancybox.opacity = false
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   fancybox.externalLinks = Click me!
+
+  # cat=Flip it! - jquery/enable/102;    type=options[Use it,Don't use it];   label= Library: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
+  jquery.fancybox = Use it
+  # cat=Flip it! - jquery/enable/102;    type=options[Use it,Don't use it];   label= Library: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
+  jquery.source = Use it
+  # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  jquery.externalLinks = Click me!
 
   # cat=Flip it! - Page Objects//100;       type=int+;    label= AJAX page object: Type number (typenum) of the AJAX page object.
   typeNum.ajaxPageObj = 44395
