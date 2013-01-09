@@ -251,7 +251,7 @@ plugin.tx_flipit {
       }
       10 = CONTENT
       10 {
-        table = tt_content
+        table = {$plugin.tx_flipit.database.table}
         select {
             // use current language
           languageField = sys_language_uid
@@ -261,15 +261,12 @@ plugin.tx_flipit {
                 // choose all Browser plugins...
               10 = TEXT
               10 {
-                value = list_type = 'browser_pi1'
+                value = uid = tx_flipit[uid]
               }
             }
           }
         }
       }
-    }
-    typeNums {
-      page = {$plugin.tx_flipit.typeNum.ajaxPageObj}
     }
   }
 }
