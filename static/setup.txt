@@ -14,6 +14,7 @@
   //
   // includeLibs
 
+includeLibs =
 includeLibs {
   tx_browser_cssstyledcontent = EXT:flipit/lib/typoscript/class.tx_flipit_typoscript.php
 }
