@@ -299,109 +299,14 @@ plugin.tx_flipit {
       userFunc = tx_flipit_typoscript->main
       userFunc {
         constant_editor < plugin.tx_flipit.constant_editor
-          // currentTable, tables
-        configuration =
         configuration {
-            // [String] table
-          currentTable = {$plugin.tx_flipit.database.table} 
-            // [String/CSV] Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
-          filetypes = {$plugin.tx_flipit.configuration.filetypes} 
             // tt_content, tx_org_downloads
           tables =
           tables {
               // media, tstamp
             tt_content =
             tt_content {
-              media   = media
               tstamp  = tstamp
-            }
-              // media, tstamp
-            tx_org_downloads =
-            tx_org_downloads {
-              media   = tstamp
-              tstamp  = tstamp
-            }
-          }
-            // [String] disabled, enabled
-          updateSwfXml = COA
-          updateSwfXml {
-            if {
-              value = disabled,enabled,ts
-              isInList {
-                field = tx_flipit_updateswfxml
-              }
-            }
-              // disabled || enabled
-            10 = TEXT
-            10 {
-              if {
-                value = disabled,enabled
-                isInList {
-                  field = tx_flipit_updateswfxml
-                }
-              }
-              field = tx_flipit_updateswfxml
-            }
-              // ts
-            20 = TEXT
-            20 {
-              if {
-                value = ts
-                equals {
-                  field = tx_flipit_updateswfxml
-                }
-              }
-              value = {$plugin.tx_flipit.configuration.updateswfxml} 
-            }
-          }
-
-            // Configuration of the XML file, which controls the flash output
-          xml =
-          xml {
-              // Document width: Width in pixel (if autodetection failes)
-            width = TEXT
-            width {
-              value = {$plugin.tx_flipit.xml.width}
-            }
-              // Document height: Height in pixel (if autodetection failes)
-            height = TEXT
-            height {
-              value = {$plugin.tx_flipit.xml.height}
-            }
-              // Colour of buttons:
-            buttoncolor = TEXT
-            buttoncolor {
-              value = {$plugin.tx_flipit.xml.buttoncolor}
-            }
-              // Colour of the panel:
-            panelcolor = TEXT
-            panelcolor {
-              value = {$plugin.tx_flipit.xml.panelcolor}
-            }
-              // Colour of the font:
-            textcolor = TEXT
-            textcolor {
-              value = {$plugin.tx_flipit.xml.textcolor}
-            }
-              // Colour of the background:
-            backgroundcolor = TEXT
-            backgroundcolor {
-              value = {$plugin.tx_flipit.xml.backgroundcolor}
-            }
-              // Hardcorver: If set to true, fist and last page are hard covered.
-            hcover = TEXT
-            hcover {
-              value = {$plugin.tx_flipit.xml.hcover}
-            }
-              // Goto label: default language (English)
-              // Goto label: German language
-            gotolabel = TEXT
-            gotolabel {
-              value = {$plugin.tx_flipit.xml.gotolabel.default}
-              lang {
-                de = {$plugin.tx_flipit.xml.gotolabel.de}
-                en = {$plugin.tx_flipit.xml.gotolabel.default}
-              }
             }
           }
         }

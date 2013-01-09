@@ -136,7 +136,7 @@ class tx_flipit_typoscript
       // IF return  : return with an error prompt
     
       // Get field, where media files are stored
-    $field  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
+    $field  = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
       // Get table.field, where files are stored
 
       // RETURN : no media files
@@ -234,8 +234,8 @@ class tx_flipit_typoscript
   {
     $conf = $this->conf;
 
-    $coa_name = $conf['userFunc.']['configuration.']['updateSwfXml'];
-    $coa_conf = $conf['userFunc.']['configuration.']['updateSwfXml.'];
+    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml'];
     $updateSwfXml  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $updateSwfXml )
@@ -261,8 +261,8 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'Undefined: ' . "['userFunc.']['configuration.']['updateSwfXml']" . ' ' .
-                    'is ' . $updateSwfXml;
+          $prompt = 'Undefined: ' . "['userFunc.']['constant_editor.']['configuration.']['updateSwfXml']" .
+                    ' is ' . $updateSwfXml;
           t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
           $prompt = 'Auto-update of SWF files and XML files is disabled.';
           t3lib_div::devlog( '[WARN/INIT] ' . $prompt, $this->extKey, 3 );
@@ -586,6 +586,8 @@ class tx_flipit_typoscript
       $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
       t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
     }
+    
+    unset( $filesCounter ); 
     return $arrReturn;
   }
 
@@ -695,6 +697,8 @@ class tx_flipit_typoscript
       $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
       t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
     }
+
+    unset( $filesCounter ); 
     return $arrReturn;
   }
 
@@ -874,7 +878,7 @@ class tx_flipit_typoscript
     $arrContentParams = array( );
     
       // Content parameters from TypoScript 
-    $confXml = $conf['userFunc.']['configuration.']['xml.'];
+    $confXml = $conf['userFunc.']['constant_editor.']['xml.'];
     
       // FOREACH :  content param from TypoScript
     foreach( array_keys ( ( array ) $confXml ) as $param )
@@ -886,8 +890,9 @@ class tx_flipit_typoscript
       }
         // CONTINUE : param has an dot
 
-      $cObj_name  = $conf['userFunc.']['configuration.']['xml.'][$param];
-      $cObj_conf  = $conf['userFunc.']['configuration.']['xml.'][$param . '.'];
+      $cObj_name  = $conf['userFunc.']['constant_editor.']['xml.'][$param];
+      $cObj_conf  = $conf['userFunc.']['constant_editor.']['xml.'][$param . '.'];
+      $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
       $value      = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
       
       $arrContentParams[] = $param . " = '" . $value . "'"; 
@@ -1004,7 +1009,7 @@ class tx_flipit_typoscript
     $this->initClasses( );
 
       // Init global vars
-    $this->table = $conf['userFunc.']['configuration.']['currentTable'];
+    $this->table = $conf['userFunc.']['constant_editor.']['database.']['table'];
       // Global tstamp for updates. It must be older than the tstamp of generated files
     $this->tstamp = time( );
 
@@ -1122,8 +1127,8 @@ class tx_flipit_typoscript
     $arr_return = array( );
     $arr_return['return'] = false;
     
-    $coa_name = $conf['userFunc.']['enabled'];
-    $coa_conf = $conf['userFunc.']['enabled.'];
+    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['enabled'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['enabled.'];
     $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $enabled )
@@ -1177,7 +1182,7 @@ class tx_flipit_typoscript
     $conf = $this->conf;
 
       // Get files from media
-    $field    = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
+    $field    = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
     $path     = $this->zz_getPath( $field );
@@ -1224,7 +1229,7 @@ class tx_flipit_typoscript
     $arr_return['return'] = false;
 
       // Get first file from media
-    $field            = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
+    $field            = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
     $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
     $pathParts        = pathinfo( $firstFileWiPath );
@@ -1263,6 +1268,32 @@ class tx_flipit_typoscript
 
     return $arr_return;
     
+  }
+
+  
+  
+ /**
+  * zz_cObjGetSingle( ): 
+  *
+  * @return	string		$value  : ....
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function zz_cObjGetSingle( $cObj_name, $cObj_conf )
+  {
+    switch( true )
+    {
+      case( is_array( $cObj_conf ) ):
+        $value = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
+        break;
+      case( ! ( is_array( $cObj_conf ) ) ):
+      default:
+        $value = $cObj_name; 
+        break;
+    }
+      
+    return $value;
   }
   
   
@@ -1534,7 +1565,7 @@ class tx_flipit_typoscript
     }
     
       // Get table.field, where files are stored
-    $field  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['media'];
+    $field  = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
       // Get table.field, where files are stored
 
       // Get latest timestamp of files in given field
