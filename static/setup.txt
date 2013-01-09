@@ -148,22 +148,6 @@ plugin.tx_flipit {
       table = {$plugin.tx_flipit.database.table} 
         // Media field : Label of the field, which contains the files for converting to SWF / Flash
       fieldMedia = {$plugin.tx_flipit.database.fieldMedia} 
-        // EXTENDED: tt_content, tx_org_downloads
-      tables =
-      tables {
-          // media, tstamp
-        tt_content =
-        tt_content {
-          media   = media
-          tstamp  = tstamp
-        }
-          // media, tstamp
-        tx_org_downloads =
-        tx_org_downloads {
-          media   = tstamp
-          tstamp  = tstamp
-        }
-      }
     }
       // Category fancybox
     fancybox = 
@@ -258,8 +242,6 @@ plugin.tx_flipit {
       // Category jquery
     jquery = 
     jquery {
-        // Height : Height with em, per cent or pixel
-      height = {$plugin.tx_flipit.jquery.height}
         // Fancybox : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
       fancybox = {$plugin.tx_flipit.jquery.fancybox}
         // jQuery : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
@@ -280,10 +262,9 @@ plugin.tx_flipit {
       textcolor = {$plugin.tx_flipit.xml.textcolor}
         // Colour of the background:
       backgroundcolor = {$plugin.tx_flipit.xml.backgroundcolor}
-        // Hardcorver : If set to ture, fist and last page are hard covered.
+        // Hardcorver : If set to true, fist and last page are hard covered.
       hcover =  {$plugin.tx_flipit.xml.hcover}
-        // Goto label : default language (English)
-        // Goto label : German language
+        // Goto label
       gotolabel = TEXT
       gotolabel {
         value = {$plugin.tx_flipit.xml.gotolabel.default}
@@ -392,7 +373,7 @@ plugin.tx_flipit {
             backgroundcolor {
               value = {$plugin.tx_flipit.xml.backgroundcolor}
             }
-              // Hardcorver: If set to ture, fist and last page are hard covered.
+              // Hardcorver: If set to true, fist and last page are hard covered.
             hcover = TEXT
             hcover {
               value = {$plugin.tx_flipit.xml.hcover}
