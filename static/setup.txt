@@ -267,7 +267,8 @@ plugin.tx_flipit {
                 // pid = 
               20 = TEXT
               20 {
-                dataWrap = pid={page:uid}
+                dataWrap    = AND pid={page:uid}
+                noTrimWrap  = | ||
               }
             }
           }
@@ -284,7 +285,8 @@ plugin.tx_flipit {
           // pid = 
         20 = TEXT
         20 {
-          dataWrap = pid={page:uid}
+          dataWrap    = AND pid={page:uid}
+          noTrimWrap  = | ||
         }
       }
     }
