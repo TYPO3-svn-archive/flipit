@@ -261,14 +261,13 @@ plugin.tx_flipit {
                 // uid = GP:tx_flipit|uid
               10 = TEXT
               10 {
-                dataWrap = uid=GP:tx_flipit|uid
-                //wrap = uid= |
+                data = GP:tx_flipit|uid
+                wrap = uid= |
               }
                 // pid = 
               20 = TEXT
               20 {
-                //data = GP:tx_flipit|uid
-                //wrap = uid= |
+                dataWrap = pid={page:uid}
               }
             }
           }
