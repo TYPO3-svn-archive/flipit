@@ -4,7 +4,9 @@
   // INDEX
   //
   // includeLibs
-  // plugin.tx_flipit
+  // plugin.tx_flipit.constant_editor
+  // plugin.tx_flipit.master_templates
+  // plugin.tx_flipit.pageObjects
   // tt_content.uploads
   // flipit_ajax
 
@@ -14,7 +16,6 @@
   //
   // includeLibs
 
-includeLibs =
 includeLibs {
   tx_browser_cssstyledcontent = EXT:flipit/lib/typoscript/class.tx_flipit_typoscript.php
 }
@@ -24,7 +25,7 @@ includeLibs {
 
   ///////////////////////////////////////////////////////////////
   //
-  // plugin.tx_flipit
+  // plugin.tx_flipit.constant_editor
 
 plugin.tx_flipit =
 plugin.tx_flipit {
@@ -277,6 +278,17 @@ plugin.tx_flipit {
       }
     }
   }
+}
+  // plugin.tx_flipit.constant_editor
+
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_flipit.master_templates
+
+plugin.tx_flipit =
+plugin.tx_flipit {
     // For tt_content.uploads
   master_templates =
   master_templates {
@@ -286,6 +298,7 @@ plugin.tx_flipit {
         // enabled, content
       userFunc = tx_flipit_typoscript->main
       userFunc {
+        constant_editor < plugin.tx_flipit.constant_editor
           // currentTable, tables
         configuration =
         configuration {
@@ -425,6 +438,17 @@ plugin.tx_flipit {
       }
     } 
   }
+}
+  // plugin.tx_flipit.master_templates
+
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_flipit.pageObjects
+
+plugin.tx_flipit =
+plugin.tx_flipit {
   pageObjects {
     page = PAGE
     page {
@@ -487,7 +511,7 @@ plugin.tx_flipit {
     }
   }
 }
-  // plugin.tx_flipit
+  // plugin.tx_flipit.pageObjects
 
 
 
