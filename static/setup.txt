@@ -26,6 +26,121 @@ includeLibs {
   // plugin.tx_flipit
 
 plugin.tx_flipit {
+  constant_editor =
+  constant_editor {
+    configuration =
+    configuration {
+        // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
+      enabled = COA
+      enabled {
+          // Error prompt, if enabled mode isn't an element of the list disabled,enabled,ts
+        10 = TEXT
+        10 {
+            // IF field:tx_flipit_enabled is not in list of 'disabled,enabled,ts'
+          if = 
+          if {
+            value = disabled,enabled,ts
+            isInList {
+              field = tx_flipit_enabled
+            }
+            negate = 1
+          }
+          value (
+            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>TypoScript Error</h1>
+              <p>
+                '{field:tx_flipit_enabled}' isn't any element of the list: disabled,enabled,ts
+              </p>
+              <p>
+                Browser - TYPO3 without PHP
+              </p>
+            </div>
+)
+          lang.de (
+            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>TypoScript Fehler</h1>
+              <p>
+                '{field:tx_flipit_enabled}' ist kein Element der Liste: disabled,enabled,ts
+              </p>
+              <p>
+                Browser - TYPO3 ohne PHP
+              </p>
+            </div>
+)
+          insertData = 1
+        }
+          // RETURNS disabled or enabled
+        20 = COA
+        20 {
+            // IF field:tx_flipit_enabled is in list of 'disabled,enabled,ts'
+          if = 
+          if {
+            value = disabled,enabled,ts
+            isInList {
+              field = tx_flipit_enabled
+            }
+          }
+            // disabled || enabled
+          10 = TEXT
+          10 {
+            if {
+              value = disabled,enabled
+              isInList {
+                field = tx_flipit_enabled
+              }
+            }
+            field = tx_flipit_enabled
+          }
+            // ts
+          20 = TEXT
+          20 {
+            if {
+              value = ts
+              equals {
+                field = tx_flipit_enabled
+              }
+            }
+            value = {$plugin.tx_flipit.configuration.enable}
+          }
+        }
+      }
+        // RETURNS disabled or enabled
+      updateSwfXml = COA
+      updateSwfXml {
+            // IF field:tx_flipit_updateswfxml is in list of 'disabled,enabled,ts'
+          if = 
+        if {
+          value = disabled,enabled,ts
+          isInList {
+            field = tx_flipit_updateswfxml
+          }
+        }
+          // disabled || enabled
+        10 = TEXT
+        10 {
+          if {
+            value = disabled,enabled
+            isInList {
+              field = tx_flipit_updateswfxml
+            }
+          }
+          field = tx_flipit_updateswfxml
+        }
+          // ts
+        20 = TEXT
+        20 {
+          if {
+            value = ts
+            equals {
+              field = tx_flipit_updateswfxml
+            }
+          }
+          value = {$plugin.tx_flipit.configuration.updateswfxml} 
+        }
+      }
+
+    }
+  }
     // For tt_content.uploads
   master_templates =
   master_templates {
@@ -138,75 +253,6 @@ plugin.tx_flipit {
                 de = {$plugin.tx_flipit.xml.gotolabel.de}
                 en = {$plugin.tx_flipit.xml.gotolabel.default}
               }
-            }
-          }
-        }
-          // Checks, if Flip it! is enabled
-        enabled = COA
-        enabled {
-            // Error prompt, if enabled mode isn't an element of the list disabled,enabled,ts
-          10 = TEXT
-          10 {
-            if {
-              value = disabled,enabled,ts
-              isInList {
-                field = tx_flipit_enabled
-              }
-              negate = 1
-            }
-            value (
-              <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-                <h1>TypoScript Error</h1>
-                <p>
-                  '{field:tx_flipit_enabled}' isn't any element of the list: disabled,enabled,ts
-                </p>
-                <p>
-                  Browser - TYPO3 without PHP
-                </p>
-              </div>
-)
-            lang.de (
-              <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-                <h1>TypoScript Fehler</h1>
-                <p>
-                  '{field:tx_flipit_enabled}' ist kein Element der Liste: disabled,enabled,ts
-                </p>
-                <p>
-                  Browser - TYPO3 ohne PHP
-                </p>
-              </div>
-)
-            insertData = 1
-          }
-          20 = COA
-          20 {
-            if {
-              value = disabled,enabled,ts
-              isInList {
-                field = tx_flipit_enabled
-              }
-            }
-              // disabled || enabled
-            10 = TEXT
-            10 {
-              if {
-                value = disabled,enabled
-                isInList {
-                  field = tx_flipit_enabled
-                }
-              }
-              field = tx_flipit_enabled
-            }
-              // ts
-            20 = TEXT
-            20 {
-              if {
-                value = ts
-                equals {
-                  field = tx_flipit_enabled
-                }
-              }
-              value = {$plugin.tx_flipit.configuration.enable}
             }
           }
         }
