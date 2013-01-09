@@ -175,7 +175,8 @@ class tx_flipit_typoscript
 
     $coa_name = $conf['userFunc.']['content'];
     $coa_conf = $conf['userFunc.']['content.'];
-    $content  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+//    $content  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     if( $this->b_drs_flipit )
     {
@@ -1130,7 +1131,8 @@ class tx_flipit_typoscript
     
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['enabled'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['enabled.'];
-    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+//    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    $enabled  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $enabled )
     {
@@ -1286,7 +1288,7 @@ class tx_flipit_typoscript
     switch( true )
     {
       case( is_array( $cObj_conf ) ):
-        $value = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
+        $value = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
         break;
       case( ! ( is_array( $cObj_conf ) ) ):
       default:
