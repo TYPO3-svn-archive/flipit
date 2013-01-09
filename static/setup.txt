@@ -298,9 +298,9 @@ tt_content.uploads {
   // pages: Flipt it! Ajax
 
   // Flip it! ajax page object. In case of localisation: Configure the id of sys_languagein the Constant Editor. Move in this line ...jQuery.default to ...jQuery.de (i.e.)
-flipit_ajax < plugin.tx_flipit.javascript.ajax.jQuery.default
+flipit_ajax < plugin.tx_flipit.pageObjects.page
 
-[globalVar = GP:type = {$plugin.tx_flipit.pageObjects.page}]
+[globalVar = GP:type = {$plugin.tx_flipit.typeNum.ajaxPageObj}]
     // Don't handle header of content element
   lib.stdheader >
 [global]
