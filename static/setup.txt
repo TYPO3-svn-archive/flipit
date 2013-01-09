@@ -25,6 +25,7 @@ includeLibs {
   //
   // plugin.tx_flipit
 
+plugin.tx_flipit =
 plugin.tx_flipit {
     // Configuration by the Constant Editor (extended)
   constant_editor =
@@ -242,7 +243,7 @@ plugin.tx_flipit {
       // Category jquery
     jquery = 
     jquery {
-        // Fancybox : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
+        // Fancybox : Use it || Don't use it. Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
       fancybox = {$plugin.tx_flipit.jquery.fancybox}
         // jQuery : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
       source = {$plugin.tx_flipit.jquery.source}
