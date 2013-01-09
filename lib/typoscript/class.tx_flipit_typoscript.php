@@ -386,7 +386,7 @@ class tx_flipit_typoscript
     $conf         = $this->conf;
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
-    $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+    $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
     
     $arrExec      = array( );
 
@@ -461,7 +461,7 @@ class tx_flipit_typoscript
     $conf         = $this->conf;
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
-    $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+    $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
 
       // filesCounter is needed for unique filenames
     $filesCounter = 0;
@@ -812,7 +812,7 @@ class tx_flipit_typoscript
     $conf         = $this->conf;
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_xml_file';
-    $fieldTstamp  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+    $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
 
       // Get content parameters
     $contentParams = $this->updateXmlFileRenderItParams( );
@@ -1585,7 +1585,8 @@ class tx_flipit_typoscript
   */
   private function zz_tstampRecord( )
   {
-    $conf = $this->conf;
+    $conf   = $this->conf;
+    $table  = $this->table;
     
     if( ! ( $this->tstampRecord === null ) )
     {
@@ -1593,7 +1594,8 @@ class tx_flipit_typoscript
     }
     
       // Get table.field, where tmstamp is stored
-    $field  = $conf['userFunc.']['configuration.']['tables.'][$this->table . '.']['tstamp'];
+//    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
+    $field  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];   
       // Get table.field, where files are stored
 
       // Get timestamp of current record
