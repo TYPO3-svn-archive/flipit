@@ -1,0 +1,4 @@
+
+  // res/js/tx_browser_pi1.js
+script=res/jss/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js
+//components=jQuery,Core,BootstrapButton,BootstrapCollapse,Cookie,Easing,EffectsCore,EffectsSlide
