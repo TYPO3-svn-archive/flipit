@@ -222,6 +222,7 @@ plugin.tx_flipit {
           20 = TEXT
           20 {
             value ( 
+              <a id="various2" href="#c{field:uid}_flipit" title="{field:title}">Online bl&auml;ttern</a>              
               <div style="display: none;">
                 <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};overflow:auto;">
                   <p>
