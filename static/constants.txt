@@ -11,6 +11,8 @@ plugin.tx_flipit {
 
   # cat=Flip it! - database/others/101;     type=string;   label= Table: Current table. Example: tt_content, tx_org_downloads
   database.table = tt_content
+  # cat=Flip it! - database/others/102;     type=string;   label= Media field : Label of the field, which contains the files for converting to SWF / Flash
+  database.fieldMedia = media
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   database.externalLinks = Click me!
 

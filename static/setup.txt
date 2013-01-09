@@ -144,7 +144,26 @@ plugin.tx_flipit {
       // Category database
     database = 
     database {
+        // Table : Current table. Example: tt_content, tx_org_downloads
       table = {$plugin.tx_flipit.database.table} 
+        // Media field : Label of the field, which contains the files for converting to SWF / Flash
+      fieldMedia = {$plugin.tx_flipit.database.fieldMedia} 
+        // EXTENDED: tt_content, tx_org_downloads
+      tables =
+      tables {
+          // media, tstamp
+        tt_content =
+        tt_content {
+          media   = media
+          tstamp  = tstamp
+        }
+          // media, tstamp
+        tx_org_downloads =
+        tx_org_downloads {
+          media   = tstamp
+          tstamp  = tstamp
+        }
+      }
     }
       // Category fancybox
     fancybox = 
@@ -224,6 +243,54 @@ plugin.tx_flipit {
       type {
         value = {$plugin.tx_flipit.fancybox.type}
         wrap  = '|'
+      }
+    }
+      // Category html
+    html = 
+    html {
+        // Height : Height with em, per cent or pixel
+      height = {$plugin.tx_flipit.html.height}
+        // Width : Width with em, per cent or pixel
+      width = {$plugin.tx_flipit.html.width}
+        // Background colour
+      background = {$plugin.tx_flipit.html.color.background}
+    }
+      // Category jquery
+    jquery = 
+    jquery {
+        // Height : Height with em, per cent or pixel
+      height = {$plugin.tx_flipit.jquery.height}
+        // Fancybox : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
+      fancybox = {$plugin.tx_flipit.jquery.fancybox}
+        // jQuery : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "Don't use it"
+      source = {$plugin.tx_flipit.jquery.source}
+    }
+      // Category xml
+    xml =
+    xml {
+        // Document width : Width in pixel (if autodetection failes)
+      width = {$plugin.tx_flipit.xml.width}
+        // Document height : Height in pixel (if autodetection failes)
+      height = {$plugin.tx_flipit.xml.height}
+        // Colour of buttons:
+      buttoncolor = {$plugin.tx_flipit.xml.buttoncolor}
+        // Colour of the panel:
+      panelcolor = {$plugin.tx_flipit.xml.panelcolor}
+        // Colour of the font:
+      textcolor = {$plugin.tx_flipit.xml.textcolor}
+        // Colour of the background:
+      backgroundcolor = {$plugin.tx_flipit.xml.backgroundcolor}
+        // Hardcorver : If set to ture, fist and last page are hard covered.
+      hcover =  {$plugin.tx_flipit.xml.hcover}
+        // Goto label : default language (English)
+        // Goto label : German language
+      gotolabel = TEXT
+      gotolabel {
+        value = {$plugin.tx_flipit.xml.gotolabel.default}
+        lang {
+          de = {$plugin.tx_flipit.xml.gotolabel.de}
+          en = {$plugin.tx_flipit.xml.gotolabel.default}
+        }
       }
     }
   }
