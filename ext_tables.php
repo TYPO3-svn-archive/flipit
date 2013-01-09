@@ -261,7 +261,7 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_updateswfxml, tx_flipit_swf_files, tx_flipit_xml_file, tx_flipit_fancybox';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_updateswfxml, tx_flipit_swf_files, tx_flipit_xml_file, tx_flipit_fancybox,';
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):
