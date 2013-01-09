@@ -269,7 +269,7 @@ plugin.tx_flipit {
       }
     }
     typeNums {
-      {$plugin.tx_flipit.typeNum.ajaxPageObj} = page
+      page = {$plugin.tx_flipit.typeNum.ajaxPageObj}
     }
   }
 }
