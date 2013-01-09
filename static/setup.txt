@@ -299,23 +299,13 @@ plugin.tx_flipit {
       userFunc = tx_flipit_typoscript->main
       userFunc {
         constant_editor < plugin.tx_flipit.constant_editor
-        configuration {
-            // tt_content, tx_org_downloads
-          tables =
-          tables {
-              // media, tstamp
-            tt_content =
-            tt_content {
-              tstamp  = tstamp
-            }
-          }
-        }
-          // Content will rendered, if Flip it! is enabled
+          // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enabled ...
         content = COA
         content {
           10 = TEXT
           10 {
             value (
+
               <script src="typo3conf/ext/flipit/res/jss/swfobjects_1.4.4/swfobject.js" type="text/javascript"></script>
 )
           }
