@@ -261,8 +261,8 @@ plugin.tx_flipit {
                 // choose all Browser plugins...
               10 = TEXT
               10 {
-                value = uid = GP:tx_flipit|uid
-                insertData  = 1
+                data = GP:tx_flipit|uid
+                wrap = uid= |
               }
             }
           }
