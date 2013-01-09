@@ -273,6 +273,20 @@ plugin.tx_flipit {
           }
         }
       }
+      20 = COA
+      20 {
+          // uid = GP:tx_flipit|uid
+        10 = TEXT
+        10 {
+          data = GP:tx_flipit|uid
+          wrap = uid= |
+        }
+          // pid = 
+        20 = TEXT
+        20 {
+          dataWrap = pid={page:uid}
+        }
+      }
     }
   }
 }
