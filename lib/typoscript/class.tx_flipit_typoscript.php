@@ -151,6 +151,9 @@ class tx_flipit_typoscript
     }
       // RETURN : no media files
 
+      // ...
+    $this->jquery( );   
+
       // Generate and check SWF and XML files
     $this->update( );   
 
@@ -1103,6 +1106,7 @@ class tx_flipit_typoscript
     $this->b_drs_ok     = true;
     $this->b_drs_flipit = true;
     $this->b_drs_init   = true;
+    $this->b_drs_jquery = true;
     $this->b_drs_php    = true;
     $this->b_drs_pdf    = true;
     $this->b_drs_sql    = true;
@@ -1271,6 +1275,149 @@ class tx_flipit_typoscript
 
     return $arr_return;
     
+  }
+
+  
+  
+ /**
+  * jquery( ): 
+  *
+  * @return	void
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function jquery( )
+  {
+    $this->jquerySource( );   
+    $this->jqueryFancybox( );   
+  }
+
+  
+  
+ /**
+  * jquerySource( ): 
+  *
+  * @return	void
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function jquerySource( )
+  {
+    if( $this->b_drs_jquery )
+    {
+      $prompt = 'Code is missing';
+      t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 3 );
+    }
+    return;
+  }
+
+  
+  
+ /**
+  * jqueryFancybox( ): 
+  *
+  * @return	void
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function jqueryFancybox( )
+  {
+    $conf = $this->conf;
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox.'];
+//    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $fancybox )
+    {
+      case( 'Use it' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'Fancybox is enabled.';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        $this->jqueryFancyboxInclude( );
+        break;
+      case( 'Don\'t use it' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'Fancybox is disabled.';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        break;
+      default:
+        $prompt = '
+          <p>
+            Undefined value: $fancybox = ' . $fancybox . '<br />
+            Please fix the bug!<br />
+            TYPO3 extension Flip it!<br />
+            Method: ' . __METHOD__ . ' <br />
+            Line: ' . __LINE__ . ' 
+          </p>
+';
+        die( $prompt ); 
+        break;
+    }
+
+    return;
+  }
+
+  
+  
+ /**
+  * jqueryFancyboxInclude( ): 
+  *
+  * @return	void
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function jqueryFancyboxInclude( )
+  {
+    $conf = $this->conf;
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
+//    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+    $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $fancyboxPosition )
+    {
+      case( 'top' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'Fancybox is included at the top of the page (HTML head).';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        $GLOBALS['TSFE']->additionalHeaderData['t3jquery.lib'] = $block;
+        break;
+      case( 'bottom' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'Fancybox is included at the bottom of the page.';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        $GLOBALS['TSFE']->additionalFooterData['t3jquery.lib'] = $block;
+        break;
+      default:
+        $prompt = '
+          <p>
+            Undefined value: fancyboxPosition = ' . fancyboxPosition . '<br />
+            Please fix the bug!<br />
+            TYPO3 extension Flip it!<br />
+            Method: ' . __METHOD__ . ' <br />
+            Line: ' . __LINE__ . ' 
+          </p>
+';
+        die( $prompt ); 
+        break;
+    }
+
+    return;
   }
 
   
