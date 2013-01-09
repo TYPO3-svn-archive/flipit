@@ -23,7 +23,7 @@ plugin.tx_flipit {
   # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   html.externalLinks = Click me!
 
-  # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Lightbox: Disable it, if you don't want to use Flip it! in a fancybox by default.
+  # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox: Disable it, if you don't want to use Flip it! in a fancybox by default.
   fancybox.enable = enabled
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
   fancybox.externalLinks = Click me!
