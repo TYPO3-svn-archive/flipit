@@ -262,13 +262,18 @@ plugin.tx_flipit {
               10 = TEXT
               10 {
                 data = GP:tx_flipit|uid
-                wrap = uid= |
+                wrap = uid = |
               }
-                // pid = 
+                // AND 
               20 = TEXT
               20 {
-                dataWrap    = AND pid={page:uid}
-                noTrimWrap  = | ||
+                value       = AND
+                noTrimWrap  = | | |
+              }
+                // pid = {page:uid}
+              21 = TEXT
+              21 {
+                dataWrap = pid = {page:uid}
               }
             }
           }
@@ -280,17 +285,18 @@ plugin.tx_flipit {
         10 = TEXT
         10 {
           data = GP:tx_flipit|uid
-          wrap = uid= |
+          wrap = uid = |
         }
-          // pid = 
+          // AND 
         20 = TEXT
         20 {
           value       = AND
           noTrimWrap  = | | |
         }
+          // pid = {page:uid}
         21 = TEXT
         21 {
-          dataWrap = pid={page:uid}
+          dataWrap = pid = {page:uid}
         }
       }
     }
