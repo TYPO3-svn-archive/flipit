@@ -224,7 +224,7 @@ plugin.tx_flipit {
             value ( 
               <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};">
                 <p>
-                  To view flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
+                  To view Flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
                 </p>
               </div>
               <script type="text/javascript">
@@ -258,11 +258,17 @@ plugin.tx_flipit {
           andWhere {
             cObject = COA
             cObject {
-                // choose all Browser plugins...
+                // uid = GP:tx_flipit|uid
               10 = TEXT
               10 {
-                data = GP:tx_flipit|uid
-                wrap = uid= |
+                dataWrap = uid=GP:tx_flipit|uid
+                //wrap = uid= |
+              }
+                // pid = 
+              20 = TEXT
+              20 {
+                //data = GP:tx_flipit|uid
+                //wrap = uid= |
               }
             }
           }
