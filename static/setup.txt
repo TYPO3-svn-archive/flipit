@@ -320,8 +320,8 @@ plugin.tx_flipit {
           }
           20 = COA
           20 {
-            20 = TEXT
-            20 {
+            10 = TEXT
+            10 {
               fancyboxScript = TEXT
               fancyboxScript {
                 value (
