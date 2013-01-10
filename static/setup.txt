@@ -346,16 +346,14 @@ plugin.tx_flipit {
           css {
             fancybox = TEXT
             fancybox {
-              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}?{field:tstamp}" media="screen" />
-              insertData = 1
+              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
             }
           }
           js = 
           js {
             fancyboxLibrary = TEXT
             fancyboxLibrary {
-              value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}?{field:tstamp}" type="text/javascript"></script>
-              insertData = 1
+              value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
             }
           }
         }
