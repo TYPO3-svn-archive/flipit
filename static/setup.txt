@@ -346,7 +346,7 @@ plugin.tx_flipit {
           css {
             fancybox = TEXT
             fancybox {
-              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxLibrary}?{field:tstamp}" media="screen" />
+              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}?{field:tstamp}" media="screen" />
               insertData = 1
             }
           }
