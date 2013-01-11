@@ -1333,7 +1333,7 @@ class tx_flipit_typoscript
     
     switch( $fancybox )
     {
-      case( 'Use it' ):
+      case( 'enabled' ):
         if( $this->b_drs_jquery )
         {
           $prompt = 'Fancybox is enabled.';
@@ -1341,7 +1341,7 @@ class tx_flipit_typoscript
         }
         $this->jqueryFancyboxInclude( );
         break;
-      case( 'Don\'t use it' ):
+      case( 'disabled' ):
         if( $this->b_drs_jquery )
         {
           $prompt = 'Fancybox is disabled.';
