@@ -1424,7 +1424,7 @@ class tx_flipit_typoscript
   {
     if( $this->b_drs_jquery )
     {
-      $prompt = 'Code is missing';
+      $prompt = 'jquerySource( ): Code is missing';
       t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 3 );
     }
     return;
