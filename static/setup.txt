@@ -515,6 +515,7 @@ plugin.tx_flipit {
           // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enableFlipit ...
         content = COA
         content {
+            // Fancybox enabled 1/2: begin
           10 < plugin.tx_flipit.master_templates.fancybox.begin
             // Content
           20 = TEXT
@@ -536,6 +537,7 @@ plugin.tx_flipit {
 )
             insertData = 1
           }
+            // Fancybox enabled 2/2: end
           30 < plugin.tx_flipit.master_templates.fancybox.begin
         }
         fancyboxCss = TEXT
