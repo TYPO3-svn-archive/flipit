@@ -179,7 +179,7 @@ plugin.tx_flipit {
                 field = tx_flipit_fancybox
               }
             }
-            value = {$plugin.tx_flipit.jquery.fancybox}
+            value = {$plugin.tx_flipit.configuration.enableFancybox}
           }
         }
       }
@@ -230,7 +230,7 @@ plugin.tx_flipit {
     fancybox = 
     fancybox {
         // Fancybox : Disable it, if you don't want to use Flip it! in a fancybox by default.
-      enable = {$plugin.tx_flipit.configuration.enableFanybox}
+      enable = {$plugin.tx_flipit.configuration.enableFancybox}
         // padding : Space between FancyBox wrapper and content
       padding = {$plugin.tx_flipit.fancybox.padding}
         // margin : Space between viewport and FancyBox wrapper
@@ -439,12 +439,12 @@ plugin.tx_flipit {
               // Fancybox enabled 1/2
             20 = COA
             20 {
-                // IF constant_editor.jquery.fancybox = enabled
+                // IF constant_editor.configuration.enableFancybox = enabled
               if = 
               if {
                 value = enabled
                 equals {
-                  cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
+                  cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
                 }
               }
                 // Javascript
@@ -522,12 +522,12 @@ plugin.tx_flipit {
             // Fancybox enabled 2/2: DIV "display:none" 2/2: end
           30 = TEXT
           30 {
-              // IF constant_editor.jquery.fancybox = enabled
+              // IF constant_editor.configuration.enableFancybox = enabled
             if = 
             if {
               value = enabled
               equals {
-                cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
+                cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
               }
             }
             value ( 

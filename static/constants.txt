@@ -3,7 +3,7 @@ plugin.tx_flipit {
   # cat=Flip it! - configuration/enable/101;    type=options[disabled,enabled];   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
   configuration.enableFlipit = disabled
   # cat=Flip it! - configuration/enable/102;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
-  configuration.enableFanybox = enabled
+  configuration.enableFancybox = enabled
   # cat=Flip it! - configuration/enable/103;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
   configuration.updateswfxml = enabled
   # cat=Flip it! - configuration/enable/104;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
@@ -85,7 +85,7 @@ plugin.tx_flipit {
   html.externalLinks = Click me!
 
   # cat=Flip it! - jquery/enable/101;    type=options[enabled,disabled];   label= Fancybox: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
-  jquery.fancybox = enabled
+  configuration.enableFancybox = enabled
   # cat=Flip it! - jquery/enable/102;    type=options[top,bottom];            label= Fancybox position: Place the jQuery fancybox library at the top of the page (HTML head) or at the bottom
   jquery.fancyboxPosition = top
   # cat=Flip it! - jquery/enable/103;    type=string;                         label= Fancybox library
