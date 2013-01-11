@@ -384,6 +384,126 @@ plugin.tx_flipit {
     // For tt_content.uploads
   master_templates =
   master_templates {
+    fancybox =
+    fancybox {
+        // Fancybox enabled 1/2: begin
+      begin = COA
+      begin {
+          // Fancybox: ERROR
+        10 = TEXT
+        10 {
+            // IF field:tx_flipit_fancybox is not in list of 'enabled,disabeld,ts'
+          if = 
+          if {
+            value = enabled,disabled,ts
+            isInList {
+              field = tx_flipit_fancybox
+            }
+            negate = 1
+          }
+          value (
+            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>TypoScript Error</h1>
+              <p>
+                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
+              </p>
+              <p>
+                Flip it!
+              </p>
+            </div>
+)
+          lang.de (
+            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>TypoScript Fehler</h1>
+              <p>
+                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
+              </p>
+              <p>
+                Flip it!
+              </p>
+            </div>
+)
+          insertData = 1
+        }
+          // Fancybox enabled 1/2
+        20 = COA
+        20 {
+            // IF constant_editor.configuration.enableFancybox = enabled
+          if = 
+          if {
+            value = enabled
+            equals {
+              cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
+            }
+          }
+            // Javascript
+          10 = USER
+          10 {
+              // params, variables, javascript
+            userFunc = tx_flipit_typoscript->javascriptFancyboxScript
+            userFunc {
+                // Parameter from constant editor for the javascript
+              params < plugin.tx_flipit.constant_editor.fancybox
+                // Parameter from constant editor for the javascript
+              paramsSpaceLeft = 22
+                // Variables for the javascript
+              variables = 
+              variables {
+                  // field:uid
+                uid = TEXT
+                uid {
+                  value       = {field:uid}
+                  insertData  = 1
+                }
+              } 
+                // Script
+              javascript (
+
+                <script type="text/javascript">
+                  $(document).ready(function() {
+                    $("#c%uid%_flipit_link").fancybox({
+                      %params%                         
+                    });
+                  });
+                </script>
+)
+            }
+          }
+            // A tag
+          30 = TEXT
+          30 {
+            value (
+
+              <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
+)
+            insertData = 1
+          }
+            // DIV "display:none" 1/2: begin
+          40 = TEXT
+          40 {
+            value (
+
+              <div style="display: none;">
+)
+          }
+        }
+      }
+        // Fancybox enabled 2/2: DIV "display:none" 2/2: end
+      end = TEXT
+      end {
+          // IF constant_editor.configuration.enableFancybox = enabled
+        if = 
+        if {
+          value = enabled
+          equals {
+            cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
+          }
+        }
+        value ( 
+          </div>
+)
+      }
+    }
       // Please copy to tt_content.uploads.20.itemRendering
     flip_it = USER
     flip_it {
@@ -395,108 +515,7 @@ plugin.tx_flipit {
           // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enableFlipit ...
         content = COA
         content {
-              // Fancybox enabled 1/2: begin
-          10 = COA
-          10 {
-              // Fancybox: ERROR
-            10 = TEXT
-            10 {
-                // IF field:tx_flipit_fancybox is not in list of 'enabled,disabeld,ts'
-              if = 
-              if {
-                value = enabled,disabled,ts
-                isInList {
-                  field = tx_flipit_fancybox
-                }
-                negate = 1
-              }
-              value (
-                <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-                  <h1>TypoScript Error</h1>
-                  <p>
-                    '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
-                  </p>
-                  <p>
-                    Flip it!
-                  </p>
-                </div>
-)
-              lang.de (
-                <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-                  <h1>TypoScript Fehler</h1>
-                  <p>
-                    '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
-                  </p>
-                  <p>
-                    Flip it!
-                  </p>
-                </div>
-)
-              insertData = 1
-            }
-              // Fancybox enabled 1/2
-            20 = COA
-            20 {
-                // IF constant_editor.configuration.enableFancybox = enabled
-              if = 
-              if {
-                value = enabled
-                equals {
-                  cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
-                }
-              }
-                // Javascript
-              10 = USER
-              10 {
-                  // params, variables, javascript
-                userFunc = tx_flipit_typoscript->javascriptFancyboxScript
-                userFunc {
-                    // Parameter from constant editor for the javascript
-                  params < plugin.tx_flipit.constant_editor.fancybox
-                    // Parameter from constant editor for the javascript
-                  paramsSpaceLeft = 26
-                    // Variables for the javascript
-                  variables = 
-                  variables {
-                      // field:uid
-                    uid = TEXT
-                    uid {
-                      value       = {field:uid}
-                      insertData  = 1
-                    }
-                  } 
-                    // Script
-                  javascript (
-
-                    <script type="text/javascript">
-                      $(document).ready(function() {
-                        $("#c%uid%_flipit_link").fancybox({
-                          %params%                         
-                        });
-                      });
-                    </script>
-)
-                }
-              }
-                // A tag
-              30 = TEXT
-              30 {
-                value (
-
-                  <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
-)
-                insertData = 1
-              }
-                // DIV "display:none" 1/2: begin
-              40 = TEXT
-              40 {
-                value (
-
-                  <div style="display: none;">
-)
-              }
-            }
-          }
+          10 < plugin.tx_flipit.master_templates.fancybox.begin
             // Content
           20 = TEXT
           20 {
@@ -517,37 +536,20 @@ plugin.tx_flipit {
 )
             insertData = 1
           }
-            // Fancybox enabled 2/2: DIV "display:none" 2/2: end
-          30 = TEXT
-          30 {
-              // IF constant_editor.configuration.enableFancybox = enabled
-            if = 
-            if {
-              value = enabled
-              equals {
-                cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
-              }
-            }
-            value ( 
-              </div>
-)
+          30 < plugin.tx_flipit.master_templates.fancybox.begin
+        }
+        css = 
+        css {
+          fancybox = TEXT
+          fancybox {
+            value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
           }
         }
-        htmlSnippets =
-        htmlSnippets {
-          css = 
-          css {
-            fancybox = TEXT
-            fancybox {
-              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
-            }
-          }
-          js = 
-          js {
-            fancyboxLibrary = TEXT
-            fancyboxLibrary {
-              value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
-            }
+        js = 
+        js {
+          fancyboxLibrary = TEXT
+          fancyboxLibrary {
+            value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
           }
         }
       }

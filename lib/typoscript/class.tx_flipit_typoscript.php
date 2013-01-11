@@ -1346,11 +1346,21 @@ class tx_flipit_typoscript
         case( $param == 'transitionIn'        && $value == "'fade'" ):
         case( $param == 'transitionOut'       && $value == "'fade'" ):
         case( $param == 'width'               && $value == '560px' ):
+          if( $this->b_drs_jquery )
+          {
+            $prompt = 'Fancybox parameter ' . $param . ' = ' . $value . '. This is the default. Parameter won\'t processed.';
+            t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+          }
           continue 2;
           break;
             // Don't process empty values
         case( $value === null ):
         case( $value == "''" ):
+          if( $this->b_drs_jquery )
+          {
+            $prompt = 'Fancybox parameter ' . $param . ' is empty. Parameter won\'t processed.';
+            t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+          }
           continue 2;
           break;
         default:
@@ -1486,8 +1496,8 @@ class tx_flipit_typoscript
   {
     $conf = $this->conf;
 
-    $coa_name = $conf['userFunc.']['htmlSnippets.']['css.']['fancybox'];
-    $coa_conf = $conf['userFunc.']['htmlSnippets.']['css.']['fancybox.'];
+    $coa_name = $conf['userFunc.']['css.']['fancybox'];
+    $coa_conf = $conf['userFunc.']['css.']['fancybox.'];
     $fancyboxCss = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     if( $this->b_drs_jquery )
     {
@@ -1501,8 +1511,8 @@ class tx_flipit_typoscript
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
     $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
-    $coa_name = $conf['userFunc.']['htmlSnippets.']['js.']['fancyboxLibrary'];
-    $coa_conf = $conf['userFunc.']['htmlSnippets.']['js.']['fancyboxLibrary.'];
+    $coa_name = $conf['userFunc.']['js.']['fancyboxLibrary'];
+    $coa_conf = $conf['userFunc.']['js.']['fancyboxLibrary.'];
     $fancyboxLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $fancyboxPosition )
