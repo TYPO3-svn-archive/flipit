@@ -1319,7 +1319,7 @@ class tx_flipit_typoscript
       switch( true )
       {
           // Don't process default values
-        case( $key == 'padding' && $value = 10 ):
+        case( $key == 'padding' && $value == 10 ):
             // Don't process empty values
           continue 2;
           break;
