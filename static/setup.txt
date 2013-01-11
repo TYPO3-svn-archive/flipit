@@ -478,8 +478,29 @@ plugin.tx_flipit {
                   20 = TEXT
                   20 {
                     value (
-                          'height'      : {$plugin.tx_flipit.constant_editor.fancybox.width},
+
+                          'height'      : {$plugin.tx_flipit.constant_editor.fancybox.height},
 )
+                  21 = TEXT
+                  21 {
+                    value (
+
+                          'height'      : {$plugin.tx_flipit.constant_editor.fancybox.height},
+)
+                    insertData = 1
+                  }
+                  22 = TEXT
+                  22 {
+                    value < plugin.tx_flipit.constant_editor.fancybox.height
+                    noTrimWrap (
+
+|                          'height'      : ||,
+)
+                  }
+                  23 = TEXT
+                  23 {
+                    value = {$plugin.tx_flipit.constant_editor.fancybox.height}
+                    noTrimWrap = |                          'height'      : ||,
                   }
                   30 = TEXT
                   30 {
@@ -496,6 +517,7 @@ plugin.tx_flipit {
                 50 = TEXT
                 50 {
                   value (
+
                         });
                       });
                     </script>
