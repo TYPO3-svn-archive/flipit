@@ -532,10 +532,12 @@ plugin.tx_flipit {
     layout = CASE
     layout {
       key {
-        cObject = COA
-        cObject {
-          10 = TEXT
-          10.valuie = 10
+        stdWrap {
+          cObject = COA
+          cObject {
+            10 = TEXT
+            10.valuie = 10
+          }
         }
       }
       default = TEXT
