@@ -510,17 +510,6 @@ plugin.tx_flipit {
                     value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.transitionOut
                     noTrimWrap = |, 'transitionOut' : ||
                   }
-                  30 = TEXT
-                  30 {
-                    value (
-
-                          'autoDimensions'      : false,
-                          'titlePosition' : 'inside',
-                          'overlayShow'  : false,
-                          'transitionIn'  : 'elastic',
-                          'transitionOut'  : 'elastic'      
-)
-                  }
                 }
                 50 = TEXT
                 50 {
