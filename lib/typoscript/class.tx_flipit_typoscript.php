@@ -1334,7 +1334,7 @@ class tx_flipit_typoscript
         case( $param == 'modal'               && $value == 'false' ):
         case( $param == 'opacity'             && $value == 'false' ):
         case( $param == 'overlayColor'        && $value == "'#666'" ):
-        case( $param == 'overlayShow'         && $value == 'false' ):
+        case( $param == 'overlayShow'         && $value == 'true' ):
         case( $param == 'overlayOpacity'      && $value == '0.3' ):
         case( $param == 'padding'             && $value == 10 ):
         case( $param == 'scrolling'           && $value == "'auto'" ):
