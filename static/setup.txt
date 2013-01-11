@@ -492,7 +492,7 @@ plugin.tx_flipit {
                   }
                   22 = TEXT
                   22 {
-                    value < plugin.tx_flipit.constant_editor.fancybox.height
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.height
                     noTrimWrap = |                          'height'      : |,|
                   }
                   23 = TEXT
