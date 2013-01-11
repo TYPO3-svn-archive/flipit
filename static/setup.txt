@@ -423,10 +423,10 @@ plugin.tx_flipit {
 )
               insertData = 1
             }
-              // Fancybox: enabled
-            20 = TEXT
+              // Fancybox enabled 1/2
+            20 = COA
             20 {
-                // IF field:tx_flipit_fancybox is not in list of 'enabled,disabeld,ts'
+                // IF constant_editor.jquery.fancybox = enabled
               if = 
               if {
                 value = enabled
@@ -434,28 +434,54 @@ plugin.tx_flipit {
                   cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
                 }
               }
-              value (
+                // SCRIPT part 1/2: without insertData!
+              10 = TEXT
+              10 {
+                value (
 
-                <script type="text/javascript">
-                  $(document).ready(function() 
-                  {
-                    $("#c1589_flipit_link").fancybox(
+                  <script type="text/javascript">
+                    $(document).ready(function() 
                     {
-                      'width'        : '100%',
-                      'height'      : '100%',
-                      'autoDimensions'      : false,
-                      'title' : 'Hannes',
-                      'titlePosition' : 'inside',
-                      'overlayShow'  : false,
-                      'transitionIn'  : 'elastic',
-                      'transitionOut'  : 'elastic'      
-                    });
-                  });
-                </script>
-                <a id="c1589_flipit_link" href="#c1589_flipit" title="{field:header}">{field:header}</a>              
-                <div style="display: none;">
 )
-              //insertData = 1
+                insertData = 0
+              }
+                // SCRIPT part 2/2: with insertData
+              20 = TEXT
+              20 {
+                value (
+
+                      $("#c{field:uid}_flipit_link").fancybox(
+                      {
+                        'width'        : '100%',
+                        'height'      : '100%',
+                        'autoDimensions'      : false,
+                        'title' : 'Hannes',
+                        'titlePosition' : 'inside',
+                        'overlayShow'  : false,
+                        'transitionIn'  : 'elastic',
+                        'transitionOut'  : 'elastic'      
+                      });
+                    });
+                  </script>
+)
+                insertData = 1
+              }
+                // A tag
+              30 = TEXT
+              30 {
+                value (
+
+                  <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{$field:header}">{$field:header}</a>              
+)
+              }
+                // DIV "display:none" 1/2: begin
+              40 = TEXT
+              40 {
+                value (
+
+                  <div style="display: none;">
+)
+              }
             }
           }
             // Content
@@ -478,9 +504,11 @@ plugin.tx_flipit {
 )
             insertData = 1
           }
-            // Fancybox end
+            // Fancybox enabled 2/2: DIV "display:none" 2/2: end
           30 = TEXT
           30 {
+              // IF constant_editor.jquery.fancybox = enabled
+            if = 
             if {
               value = enabled
               equals {
