@@ -478,7 +478,7 @@ plugin.tx_flipit {
                   20 = TEXT
                   20 {
                     value (
-                          'height'      : {$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.width},
+                          'height'      : {$plugin.tx_flipit.constant_editor.fancybox.width},
 )
                   }
                   30 = TEXT
