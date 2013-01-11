@@ -1335,7 +1335,7 @@ class tx_flipit_typoscript
     }
       // variables
 
-    $javascript = str_replace( $strParams, '%params%', $javascript ); 
+    $javascript = str_replace( '%params%', $strParams, $javascript ); 
     $javascript = str_replace( array_keys( $variables ), $variables, $javascript ); 
     
     return $javascript;    
