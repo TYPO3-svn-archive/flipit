@@ -1299,8 +1299,26 @@ class tx_flipit_typoscript
     
     $javascript = $conf['userFunc.']['javascript'];
     $params     = $conf['userFunc.']['params.'];
+    $strParams  = null;   
     $variables  = array( );
 
+      // params
+    foreach( array_keys ( ( array ) $conf['userFunc.']['params.'] ) as $param )
+    {
+        // CONTINUE : param has an dot
+      if( rtrim( $param, '.' ) != $param )
+      {
+        continue;
+      }
+        // CONTINUE : param has an dot
+
+      $cObj_name  = $conf['userFunc.']['params.'][$param];
+      $cObj_conf  = $conf['userFunc.']['params.'][$param . '.'];
+      $params[] = $param . ' : ' . $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
+    }
+    $strParams = implode( ',' . PHP_EOL, ( array ) $params );
+      // params
+       
       // variables
     foreach( array_keys ( ( array ) $conf['userFunc.']['variables.'] ) as $variable )
     {
@@ -1317,6 +1335,7 @@ class tx_flipit_typoscript
     }
       // variables
     
+    $javascript = str_replace( $strParams, '%params%', $javascript ); 
     $javascript = str_replace( array_keys( $variables ), $variables, $javascript ); 
     
     return $javascript;    
