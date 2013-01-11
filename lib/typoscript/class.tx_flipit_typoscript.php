@@ -1318,14 +1318,33 @@ class tx_flipit_typoscript
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
       switch( true )
       {
-          // Don't process default values
-        case( $param == 'ciclyc'  && $value == 'false' ):
-        case( $param == 'margin'  && $value == 20 ):
-        case( $param == 'opacity' && $value == 'false' ):
-        case( $param == 'padding' && $value == 10 ):
-            // Don't process empty values
+          // Don't process default values          
+        case( $param == 'speedIn'             && $value == 300 ):
+        case( $param == 'speedOut'            && $value == 300 ):
+        case( $param == 'showCloseButton'     && $value == 'true' ):
+        case( $param == 'showNavArrows'       && $value == 'true' ):
+        case( $param == 'enableEscapeButton'  && $value == 'true' ):
+        case( $param == 'autoDimensions'      && $value == 'true' ):
+        case( $param == 'autoScale'           && $value == 'true' ):
+        case( $param == 'centerOnScroll'      && $value == 'false' ):
+        case( $param == 'cyclic'              && $value == 'false' ):
+        case( $param == 'height'              && $value == '340px' ):
+        case( $param == 'hideOnContentClick'  && $value == 'false' ):
+        case( $param == 'hideOnOverlayClick'  && $value == 'true' ):
+        case( $param == 'margin'              && $value == 20 ):
+        case( $param == 'opacity'             && $value == 'false' ):
+        case( $param == 'overlayColor'        && $value == '#666' ):
+        case( $param == 'overlayShow'         && $value == 'false' ):
+        case( $param == 'overlayOpacity'      && $value == '0.3' ):
+        case( $param == 'padding'             && $value == 10 ):
+        case( $param == 'scrolling'           && $value == 'auto' ):
+        case( $param == 'titleShow'           && $value == 'true' ):
+        case( $param == 'transitionIn'        && $value == 'fade' ):
+        case( $param == 'transitionOut'       && $value == 'fade' ):
+        case( $param == 'width'               && $value == '560px' ):
           continue 2;
           break;
+            // Don't process empty values
         case( $value === null ):
         case( $value == "''" ):
           continue 2;
