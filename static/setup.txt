@@ -462,6 +462,14 @@ plugin.tx_flipit {
                   value (
 
                         {
+)
+                  insertData = 0
+                }
+                40 = COA
+                40 {
+                  10 = TEXT
+                  10 {
+                    value (
                           'width'        : '100%',
                           'height'      : '100%',
                           'autoDimensions'      : false,
@@ -470,6 +478,12 @@ plugin.tx_flipit {
                           'overlayShow'  : false,
                           'transitionIn'  : 'elastic',
                           'transitionOut'  : 'elastic'      
+)
+                  }
+                }
+                50 = TEXT
+                50 {
+                  value (
                         });
                       });
                     </script>
