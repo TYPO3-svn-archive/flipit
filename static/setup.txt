@@ -481,10 +481,19 @@ plugin.tx_flipit {
                     noTrimWrap = |, 'height' : ||
                   }
                     // autoDimensions
-                  30 = TEXT
+                  30 = COA
                   30 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
-                    noTrimWrap = |, 'autoDimensions' : ||
+                    10 = TEXT
+                    10 {
+                      value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
+                      noTrimWrap = |, 'autoDimensions' : ||
+                    }
+                    20 < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
+                    30 = TEXT
+                    30 {
+                      value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
+                      noTrimWrap = |, 'autoDimensions' : ||
+                    }
                   }
                     // titlePosition
                   40 = TEXT
@@ -522,6 +531,17 @@ plugin.tx_flipit {
                   insertData = 0
                 }
               }
+              10 >
+              10 = USER
+              10 {
+                  // constant_editor, content, html_snippets
+                userFunc = tx_flipit_typoscript->javascriptFancyboxScript
+                userFunc {
+                    // Values from constant editor
+                  fancybox < plugin.tx_flipit.constant_editor.fancybox
+                }
+              }
+              
                 // A tag
               30 = TEXT
               30 {

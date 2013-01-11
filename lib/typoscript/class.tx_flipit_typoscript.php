@@ -1276,6 +1276,35 @@ class tx_flipit_typoscript
     return $arr_return;
     
   }
+  
+
+  
+  
+ /**
+  * javascriptFancyboxScript( ): 
+  *
+  * @param	string		Content input. Not used, ignore.
+  * @param	array		TypoScript configuration
+  * @return	mixed		HTML output.
+  * @access public
+  * @version 0.0.3
+  * @since 0.0.3
+  */
+  public function javascriptFancyboxScript( $content, $conf )
+  {
+    unset( $content );
+    
+      // Current TypoScript configuration
+    $this->conf = $conf;
+    
+      // Get the global TCA
+      /* BACKGROUND : t3lib_div::loadTCA($table) loads for the frontend
+       * only 'ctrl' and 'feInterface' parts.
+       */
+    $GLOBALS['TSFE']->includeTCA( );
+
+    return $content;    
+  }
 
   
   
