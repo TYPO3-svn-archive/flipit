@@ -449,102 +449,6 @@ plugin.tx_flipit {
                 }
               }
                 // Javascript
-              10 = COA
-              10 {
-                  // SCRIPT part 1/2: without insertData!
-                10 = TEXT
-                10 {
-                  value (
-
-                    <script type="text/javascript">
-                      $(document).ready(function() 
-                      {
-)
-                  insertData = 0
-                }
-                  // SCRIPT part 2/2: with insertData
-                20 = TEXT
-                20 {
-                  value (
-
-                        $("#c{field:uid}_flipit_link").fancybox(
-)
-                  insertData = 1
-                }
-                30 = TEXT
-                30 {
-                  value (
-
-                        {
-)
-                  insertData = 0
-                }
-                40 = COA
-                40 {
-                    // width
-                  10 = TEXT
-                  10 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.width
-                    noTrimWrap = | 'width' : ||
-                  }
-                    // height
-                  20 = TEXT
-                  20 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.height
-                    noTrimWrap = |, 'height' : ||
-                  }
-                    // autoDimensions
-                  30 = COA
-                  30 {
-                    10 = TEXT
-                    10 {
-                      value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
-                      noTrimWrap = |, 'autoDimensions' : ||
-                    }
-                    20 < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
-                    30 = TEXT
-                    30 {
-                      value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
-                      noTrimWrap = |, 'autoDimensions' : ||
-                    }
-                  }
-                    // titlePosition
-                  40 = TEXT
-                  40 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.titlePosition
-                    noTrimWrap = |, 'titlePosition' : ||
-                  }
-                    // overlayShow
-                  50 = TEXT
-                  50 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.overlayShow
-                    noTrimWrap = |, 'overlayShow' : ||
-                  }
-                    // transitionIn
-                  60 = TEXT
-                  60 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.transitionIn
-                    noTrimWrap = |, 'transitionIn' : ||
-                  }
-                    // transitionOut
-                  70 = TEXT
-                  70 {
-                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.transitionOut
-                    noTrimWrap = |, 'transitionOut' : ||
-                  }
-                }
-                50 = TEXT
-                50 {
-                  value (
-
-                        });
-                      });
-                    </script>
-)
-                  insertData = 0
-                }
-              }
-              10 >
               10 = USER
               10 {
                   // params, variables, javascript
@@ -577,7 +481,6 @@ plugin.tx_flipit {
 )
                 }
               }
-              
                 // A tag
               30 = TEXT
               30 {
@@ -639,14 +542,14 @@ plugin.tx_flipit {
           css {
             fancybox = TEXT
             fancybox {
-              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancyboxCSS}" media="screen" />
+              value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.constant_editor.jquery.fancyboxCSS}" media="screen" />
             }
           }
           js = 
           js {
             fancyboxLibrary = TEXT
             fancyboxLibrary {
-              value = <script src="{$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancyboxLibrary}" type="text/javascript"></script>
+              value = <script src="{$plugin.tx_flipit.constant_editor.jquery.fancyboxLibrary}" type="text/javascript"></script>
             }
           }
         }
