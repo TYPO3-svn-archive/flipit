@@ -1466,8 +1466,8 @@ class tx_flipit_typoscript
     $GLOBALS['TSFE']->additionalHeaderData['flipit.fancybox.css'] = $fancyboxCss;
     
 
-    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['fancyboxPosition'];
-    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['fancyboxPosition.'];
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
     $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     $coa_name = $conf['userFunc.']['htmlSnippets.']['js.']['fancyboxLibrary'];
