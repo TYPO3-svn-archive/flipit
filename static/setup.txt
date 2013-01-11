@@ -474,6 +474,7 @@ plugin.tx_flipit {
 
                           'width'        : {$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.width},
 )
+                    insertData = 1
                   }
                   20 = TEXT
                   20 {
