@@ -471,7 +471,7 @@ plugin.tx_flipit {
               30 {
                 value (
 
-                  <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{$field:header}">{$field:header}</a>              
+                  <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
 )
               }
                 // DIV "display:none" 1/2: begin
