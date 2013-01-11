@@ -198,29 +198,7 @@ plugin.tx_flipit {
             }
             negate = 1
           }
-          value (
-            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-              <h1>TypoScript Error</h1>
-              <p>
-                '{field:tx_flipit_layout}' isn't any element of the list: layout_01,layout_02,layout_03,layout_04,ts
-              </p>
-              <p>
-                Flip it!
-              </p>
-            </div>
-)
-          lang.de (
-            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-              <h1>TypoScript Fehler</h1>
-              <p>
-                '{field:tx_flipit_layout}' ist kein Element der Liste: layout_01,layout_02,layout_03,layout_04,ts
-              </p>
-              <p>
-                Flip it!
-              </p>
-            </div>
-)
-          insertData = 1
+          value = error
         }
           // RETURNS layout_01,layout_02,layout_03,layout_04
         20 = COA
@@ -606,7 +584,32 @@ plugin.tx_flipit {
     layout = CASE
     layout {
       key.cObject < plugin.tx_flipit.constant_editor.configuration.layout
-      default < plugin.tx_flipit.constant_editor.configuration.layout
+      default = TEXT
+      default {
+        value (
+          <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+            <h1>TypoScript Error</h1>
+            <p>
+              '{field:tx_flipit_layout}' isn't any element of the list: layout_01,layout_02,layout_03,layout_04,ts
+            </p>
+            <p>
+              Flip it!
+            </p>
+          </div>
+)
+        lang.de (
+          <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+            <h1>TypoScript Fehler</h1>
+            <p>
+              '{field:tx_flipit_layout}' ist kein Element der Liste: layout_01,layout_02,layout_03,layout_04,ts
+            </p>
+            <p>
+              Flip it!
+            </p>
+          </div>
+)
+        insertData = 1
+      }
       layout_01 = TEXT
       layout_01 {
         value = x layout_01
