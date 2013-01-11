@@ -1298,7 +1298,7 @@ class tx_flipit_typoscript
     $this->conf = $conf;
     
     $javascript = $conf['userFunc.']['javascript'];
-    $params     = $conf['userFunc.']['params.'];
+    $params     = array( );
     $strParams  = null;   
     $variables  = array( );
 
