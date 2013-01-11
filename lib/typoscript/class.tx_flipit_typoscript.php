@@ -1319,6 +1319,9 @@ class tx_flipit_typoscript
       switch( true )
       {
           // Don't process default values
+        case( $param == 'ciclyc'  && $value == 'false' ):
+        case( $param == 'margin'  && $value == 20 ):
+        case( $param == 'opacity' && $value == 'false' ):
         case( $param == 'padding' && $value == 10 ):
             // Don't process empty values
           continue 2;
