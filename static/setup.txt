@@ -489,14 +489,6 @@ plugin.tx_flipit {
 )
                     insertData = 1
                   }
-                  22 = TEXT
-                  22 {
-                    value < plugin.tx_flipit.constant_editor.fancybox.height
-                    noTrimWrap (
-
-|                          'height'      : ||,
-)
-                  }
                   23 = TEXT
                   23 {
                     value = {$plugin.tx_flipit.constant_editor.fancybox.height}
