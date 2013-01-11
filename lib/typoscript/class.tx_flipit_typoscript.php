@@ -1321,7 +1321,7 @@ var_dump( __METHOD__, __LINE__, $value );
       {
         case( $value === null ):
         case( $value == "''" ):
-          continue;
+          continue 2;
           break;
         default:
             // Follow the workflow
