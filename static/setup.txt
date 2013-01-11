@@ -481,6 +481,7 @@ plugin.tx_flipit {
 
                           'height'      : {$plugin.tx_flipit.constant_editor.fancybox.height},
 )
+                  }
                   21 = TEXT
                   21 {
                     value (
