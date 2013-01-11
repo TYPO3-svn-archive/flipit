@@ -1334,7 +1334,7 @@ class tx_flipit_typoscript
       $variables['%' . $variable . '%'] = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
     }
       // variables
-    
+
     $javascript = str_replace( $strParams, '%params%', $javascript ); 
     $javascript = str_replace( array_keys( $variables ), $variables, $javascript ); 
     
