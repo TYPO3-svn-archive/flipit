@@ -220,7 +220,6 @@ plugin.tx_flipit {
               </p>
             </div>
 )
-          value = error
           insertData = 1
         }
           // RETURNS layout_01,layout_02,layout_03,layout_04
@@ -608,13 +607,21 @@ plugin.tx_flipit {
     layout {
       key.cObject < plugin.tx_flipit.constant_editor.configuration.layout
       default < plugin.tx_flipit.constant_editor.configuration.layout
-      default2 = TEXT
-      default2 {
-        value = x default
+      layout_01 = TEXT
+      layout_01 {
+        value = x layout_01
       }
-      error = TEXT
-      error {
-        value = ERROR ERROR ERROR ERROR 
+      layout_02 = TEXT
+      layout_02 {
+        value = x layout_02
+      }
+      layout_03 = TEXT
+      layout_03 {
+        value = x layout_03
+      }
+      layout_04 = TEXT
+      layout_04 {
+        value = x layout_04
       }
     }
     flip_itXXXX = USER
