@@ -432,9 +432,13 @@ plugin.tx_flipit {
               // Fancybox: enabled
             20 = TEXT
             20 {
-              value = enabled
-              equals {
-                cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
+                // IF field:tx_flipit_fancybox is not in list of 'enabled,disabeld,ts'
+              if = 
+              if {
+                value = enabled
+                equals {
+                  cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
+                }
               }
               value (
 
