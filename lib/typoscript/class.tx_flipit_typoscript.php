@@ -1318,6 +1318,11 @@ class tx_flipit_typoscript
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
       switch( true )
       {
+          // Don't process default values
+        case( $key == 'padding' && $value = 10 ):
+            // Don't process empty values
+          continue 2;
+          break;
         case( $value === null ):
         case( $value == "''" ):
           continue 2;
