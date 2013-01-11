@@ -468,38 +468,47 @@ plugin.tx_flipit {
                 }
                 40 = COA
                 40 {
+                    // width
                   10 = TEXT
                   10 {
-                    value (
-
-                          'width'        : {$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.width},
-)
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.width
+                    noTrimWrap = | 'width' : ||
                   }
+                    // height
                   20 = TEXT
                   20 {
-                    value (
-
-                          'height'      : {$plugin.tx_flipit.constant_editor.fancybox.height},
-)
-                  }
-                  21 = TEXT
-                  21 {
-                    value (
-
-                          'height'      : {$plugin.tx_flipit.constant_editor.fancybox.height},
-)
-                    insertData = 1
-                  }
-                  22 = TEXT
-                  22 {
                     value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.height
-                    noTrimWrap = |                          'height'      : |,|
+                    noTrimWrap = |, 'height' : ||
                   }
-                  23 = TEXT
-                  23 {
-                    value = {$plugin.tx_flipit.constant_editor.fancybox.height}
-                    value = {$userFunc.constant_editor.fancybox.height}
-                    noTrimWrap = |                          'height'      : |,|
+                    // autoDimensions
+                  30 = TEXT
+                  30 {
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.autoDimensions
+                    noTrimWrap = |, 'autoDimensions' : ||
+                  }
+                    // titlePosition
+                  40 = TEXT
+                  40 {
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.titlePosition
+                    noTrimWrap = |, 'titlePosition' : ||
+                  }
+                    // overlayShow
+                  50 = TEXT
+                  50 {
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.overlayShow
+                    noTrimWrap = |, 'overlayShow' : ||
+                  }
+                    // transitionIn
+                  60 = TEXT
+                  60 {
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.transitionIn
+                    noTrimWrap = |, 'transitionIn' : ||
+                  }
+                    // transitionOut
+                  70 = TEXT
+                  70 {
+                    value < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.fancybox.transitionOut
+                    noTrimWrap = |, 'transitionOut' : ||
                   }
                   30 = TEXT
                   30 {
