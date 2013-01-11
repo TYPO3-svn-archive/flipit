@@ -1133,8 +1133,8 @@ class tx_flipit_typoscript
     $arr_return = array( );
     $arr_return['return'] = false;
     
-    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['enabled'];
-    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['enabled.'];
+    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['enableFlipit'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['enableFlipit.'];
 //    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     $enabled  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
@@ -1316,10 +1316,8 @@ class tx_flipit_typoscript
       $cObj_name  = $conf['userFunc.']['params.'][$param];
       $cObj_conf  = $conf['userFunc.']['params.'][$param . '.'];
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
-//var_dump( __METHOD__, __LINE__, $value );
       switch( true )
       {
-        case( $param == 'enable' ):
         case( $value === null ):
         case( $value == "''" ):
           continue 2;

@@ -36,8 +36,8 @@ plugin.tx_flipit {
     configuration =
     configuration {
         // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
-      enabled = COA
-      enabled {
+      enabledFlipit = COA
+      enabledFlipit {
           // Error prompt, if enabled mode isn't an element of the list disabled,enabled,ts
         10 = TEXT
         10 {
@@ -105,7 +105,81 @@ plugin.tx_flipit {
                 field = tx_flipit_enabled
               }
             }
-            value = {$plugin.tx_flipit.configuration.enable}
+            value = {$plugin.tx_flipit.configuration.enableFlipit}
+          }
+        }
+      }
+        // Fancybox : enabled || disabled. Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
+      enabledFancybox = COA
+      enabledFancybox {
+          // Error prompt, if enabled mode isn't an element of the list enabled,disabled,ts
+        10 = TEXT
+        10 {
+            // IF field:tx_flipit_fancybox is not in list of 'enabled,disabled,ts'
+          if = 
+          if {
+            value = enabled,disabled,ts
+            isInList {
+              field = tx_flipit_fancybox
+            }
+            negate = 1
+          }
+          value (
+            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>TypoScript Error</h1>
+              <p>
+                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
+              </p>
+              <p>
+                Flip it!
+              </p>
+            </div>
+)
+          lang.de (
+            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
+              <h1>TypoScript Fehler</h1>
+              <p>
+                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
+              </p>
+              <p>
+                Flip it!
+              </p>
+            </div>
+)
+          insertData = 1
+        }
+          // RETURNS disabled or enabled
+        20 = COA
+        20 {
+            // IF field:tx_flipit_fancybox is in list of 'enabled,disabled,ts'
+          if = 
+          if {
+            value = enabled,disabled,ts
+            isInList {
+              field = tx_flipit_fancybox
+            }
+          }
+            // disabled || enabled
+          10 = TEXT
+          10 {
+            if {
+              value = enabled,disabled
+              isInList {
+                field = tx_flipit_fancybox
+              }
+            }
+            field = tx_flipit_fancybox
+          }
+            // ts
+          20 = TEXT
+          20 {
+            if {
+              value = ts
+              equals {
+                field = tx_flipit_fancybox
+              }
+            }
+            value = {$plugin.tx_flipit.jquery.fancybox}
           }
         }
       }
@@ -156,7 +230,7 @@ plugin.tx_flipit {
     fancybox = 
     fancybox {
         // Fancybox : Disable it, if you don't want to use Flip it! in a fancybox by default.
-      enable = {$plugin.tx_flipit.fancybox.enable}
+      enable = {$plugin.tx_flipit.configuration.enableFanybox}
         // padding : Space between FancyBox wrapper and content
       padding = {$plugin.tx_flipit.fancybox.padding}
         // margin : Space between viewport and FancyBox wrapper
@@ -261,81 +335,6 @@ plugin.tx_flipit {
       // Category jquery
     jquery = 
     jquery {
-        // Fancybox : enabled || disabled. Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
-      fancybox = {$plugin.tx_flipit.jquery.fancybox}
-      fancybox = COA
-      fancybox {
-          // Error prompt, if enabled mode isn't an element of the list enabled,disabled,ts
-        10 = TEXT
-        10 {
-            // IF field:tx_flipit_fancybox is not in list of 'enabled,disabled,ts'
-          if = 
-          if {
-            value = enabled,disabled,ts
-            isInList {
-              field = tx_flipit_fancybox
-            }
-            negate = 1
-          }
-          value (
-            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-              <h1>TypoScript Error</h1>
-              <p>
-                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
-              </p>
-              <p>
-                Flip it!
-              </p>
-            </div>
-)
-          lang.de (
-            <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
-              <h1>TypoScript Fehler</h1>
-              <p>
-                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
-              </p>
-              <p>
-                Flip it!
-              </p>
-            </div>
-)
-          insertData = 1
-        }
-          // RETURNS disabled or enabled
-        20 = COA
-        20 {
-            // IF field:tx_flipit_fancybox is in list of 'enabled,disabled,ts'
-          if = 
-          if {
-            value = enabled,disabled,ts
-            isInList {
-              field = tx_flipit_fancybox
-            }
-          }
-            // disabled || enabled
-          10 = TEXT
-          10 {
-            if {
-              value = enabled,disabled
-              isInList {
-                field = tx_flipit_fancybox
-              }
-            }
-            field = tx_flipit_fancybox
-          }
-            // ts
-          20 = TEXT
-          20 {
-            if {
-              value = ts
-              equals {
-                field = tx_flipit_fancybox
-              }
-            }
-            value = {$plugin.tx_flipit.jquery.fancybox}
-          }
-        }
-      }
         // Fancybox position : Place the jQuery fancybox library at the top of the page (HTML head) or at the bottom
       fancyboxPosition = {$plugin.tx_flipit.jquery.fancyboxPosition}
         // Fancybox library
@@ -395,10 +394,10 @@ plugin.tx_flipit {
       userFunc {
           // Values from constant editor
         constant_editor < plugin.tx_flipit.constant_editor
-          // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enabled ...
+          // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enableFlipit ...
         content = COA
         content {
-            // Fancybox begin
+              // Fancybox enabled 1/2: begin
           10 = COA
           10 {
               // Fancybox: ERROR

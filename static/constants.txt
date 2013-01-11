@@ -1,10 +1,12 @@
 plugin.tx_flipit {
 
   # cat=Flip it! - configuration/enable/101;    type=options[disabled,enabled];   label= Flip it!: Enable it, if you want to use Flip it! for PDF files by default.
-  configuration.enable = disabled
-  # cat=Flip it! - configuration/enable/102;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
+  configuration.enableFlipit = disabled
+  # cat=Flip it! - configuration/enable/102;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
+  configuration.enableFanybox = enabled
+  # cat=Flip it! - configuration/enable/103;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
   configuration.updateswfxml = enabled
-  # cat=Flip it! - configuration/enable/103;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
+  # cat=Flip it! - configuration/enable/104;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
   configuration.filetypes = jpg,pdf,png
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   configuration.externalLinks = Click me!
@@ -16,8 +18,6 @@ plugin.tx_flipit {
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   database.externalLinks = Click me!
 
-  # cat=Flip it! - fancybox/enable/101;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
-  fancybox.enable = enabled
   # cat=Flip it! - fancybox/dims/201;       type=int+;                  label= padding:Space between FancyBox wrapper and content
   fancybox.padding = 10
   # cat=Flip it! - fancybox/dims/202;       type=int+;                  label= margin:Space between viewport and FancyBox wrapper
