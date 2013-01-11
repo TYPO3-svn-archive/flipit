@@ -539,6 +539,8 @@ plugin.tx_flipit {
                 userFunc {
                     // Parameter from constant editor for the javascript
                   params < plugin.tx_flipit.constant_editor.fancybox
+                    // Parameter from constant editor for the javascript
+                  paramsSpaceLeft = 26
                     // Variables for the javascript
                   variables = 
                   variables {

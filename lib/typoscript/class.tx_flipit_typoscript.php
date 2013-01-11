@@ -1297,6 +1297,7 @@ class tx_flipit_typoscript
       // Current TypoScript configuration
     $this->conf = $conf;
     
+    $spaceLeft  = $conf['userFunc.']['paramsSpaceLeft'];
     $javascript = $conf['userFunc.']['javascript'];
     $params     = array( );
     $strParams  = null;   
@@ -1316,7 +1317,7 @@ class tx_flipit_typoscript
       $cObj_conf  = $conf['userFunc.']['params.'][$param . '.'];
       $params[] = $param . ' : ' . $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
     }
-    $strParams = implode( ',' . PHP_EOL, ( array ) $params );
+    $strParams = implode( ',' . PHP_EOL . str_repeat( ' ', $spaceLeft ), ( array ) $params );
       // params
        
       // variables
