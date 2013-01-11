@@ -433,7 +433,7 @@ plugin.tx_flipit {
           if {
             value = enabled
             equals {
-              cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
+              cObject < plugin.tx_flipit.constant_editor.configuration.enableFancybox
             }
           }
             // Javascript
@@ -496,7 +496,7 @@ plugin.tx_flipit {
         if {
           value = enabled
           equals {
-            cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.configuration.enableFancybox
+            cObject < plugin.tx_flipit.constant_editor.configuration.enableFancybox
           }
         }
         value ( 
