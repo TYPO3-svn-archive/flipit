@@ -178,12 +178,20 @@ $TCA['tt_content']['columns']['tx_flipit_layout'] = array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_disabled',
-        'disabled',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_flipbook',
+        'flipbook only',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_enabled',
-        'enabled',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_flipbook_link',
+        'flipbook + download link',
+      ),
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_flipbook_link_thumbnail',
+        'flipbook + download link + thumbnail',
+      ),
+      array(
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_flipbook_link_thumbnail_description',
+        'flipbook + description + download link + thumbnail',
       ),
       array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_ts',
