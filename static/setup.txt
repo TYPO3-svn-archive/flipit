@@ -200,11 +200,16 @@ plugin.tx_flipit {
         // overlayOpacity : Opacity of the overlay (from 0 to 1; default - 0.3)
       overlayOpacity = {$plugin.tx_flipit.fancybox.overlayOpacity}
         // overlayColor : Color of the overlay
-      overlayColor = {$plugin.tx_flipit.fancybox.overlayColor}
+      overlayColor = TEXT
+      overlayColor {
+        value = {$plugin.tx_flipit.fancybox.overlayColor}
+        wrap  = '|'
+      }
         // title : Forces title. Take a field of the current record.
       title = TEXT
       title {
         field = {$plugin.tx_flipit.fancybox.title}
+        wrap  = '|'
       }
         // titleShow : Toggle title
       titleShow = {$plugin.tx_flipit.fancybox.titleShow}
