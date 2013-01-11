@@ -54,7 +54,8 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Error</h1>
               <p>
-                '{field:tx_flipit_enabled}' isn't any element of the list: disabled,enabled,ts
+                '{field:tx_flipit_enabled}' isn't any element of the list: disabled,enabled,ts<br />
+                Maybe there is an unproper value in plugin.tx_flipit.configuration.enableFlipit.
               </p>
               <p>
                 Flip it!
@@ -65,7 +66,8 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Fehler</h1>
               <p>
-                '{field:tx_flipit_enabled}' ist kein Element der Liste: disabled,enabled,ts
+                '{field:tx_flipit_enabled}' ist kein Element der Liste: disabled,enabled,ts<br />
+                Vielleicht hat plugin.tx_flipit.configuration.enableFlipit einen falschen Wert.
               </p>
               <p>
                 Flip it!
@@ -128,7 +130,8 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Error</h1>
               <p>
-                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
+                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts<br />
+                Maybe there is an unproper value in plugin.tx_flipit.configuration.enableFancybox.
               </p>
               <p>
                 Flip it!
@@ -139,7 +142,8 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Fehler</h1>
               <p>
-                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
+                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts<br />
+                Vielleicht hat plugin.tx_flipit.configuration.enableFancybox einen falschen Wert.
               </p>
               <p>
                 Flip it!
@@ -590,7 +594,8 @@ plugin.tx_flipit {
           <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
             <h1>TypoScript Error</h1>
             <p>
-              '{field:tx_flipit_layout}' isn't any element of the list: layout_01,layout_02,layout_03,layout_04,ts
+              '{field:tx_flipit_layout}' isn't any element of the list: layout_01,layout_02,layout_03,layout_04,ts<br />
+              Maybe there is an unproper value in plugin.tx_flipit.configuration.layout
             </p>
             <p>
               Flip it!
@@ -601,7 +606,8 @@ plugin.tx_flipit {
           <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
             <h1>TypoScript Fehler</h1>
             <p>
-              '{field:tx_flipit_layout}' ist kein Element der Liste: layout_01,layout_02,layout_03,layout_04,ts
+              '{field:tx_flipit_layout}' ist kein Element der Liste: layout_01,layout_02,layout_03,layout_04,ts<br />
+              Vielleicht hat plugin.tx_flipit.configuration.layout einen falschen Wert.
             </p>
             <p>
               Flip it!
@@ -610,10 +616,35 @@ plugin.tx_flipit {
 )
         insertData = 1
       }
-      layout_01 = TEXT
+      layout_01 = USER
       layout_01 {
-        value = x layout_01
-      }
+          // constant_editor, content, html_snippets
+        userFunc = tx_flipit_typoscript->main
+        userFunc {
+            // Values from constant editor
+          constant_editor < plugin.tx_flipit.constant_editor
+            // Content will rendered only, if Flip it! is enabled. See master_templates.flip_itXXXX.userFunc.constant_editor.configuration.enableFlipit ...
+          content = COA
+          content {
+              // Fancybox enabled 1/2: begin
+            10 < plugin.tx_flipit.master_templates.fancybox.begin
+              // SWF code: Flip it! 
+            20 < plugin.tx_flipit.master_templates.flipitSwf
+              // Fancybox enabled 2/2: end
+            30 < plugin.tx_flipit.master_templates.fancybox.end
+          }
+            // CSS for the fancybox. It will included only, if fancybox is enabled.
+          fancyboxCss = TEXT
+          fancyboxCss {
+            value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
+          }
+            // Javascript library of the fancybox. It will included only, if fancybox is enabled and if this library should included.
+          fancyboxJs = TEXT
+          fancyboxJs {
+            value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
+          }
+        }
+      } 
       layout_02 = TEXT
       layout_02 {
         value = x layout_02
@@ -627,35 +658,6 @@ plugin.tx_flipit {
         value = x layout_04
       }
     }
-    flip_itXXXX = USER
-    flip_itXXXX {
-        // constant_editor, content, html_snippets
-      userFunc = tx_flipit_typoscript->main
-      userFunc {
-          // Values from constant editor
-        constant_editor < plugin.tx_flipit.constant_editor
-          // Content will rendered only, if Flip it! is enabled. See master_templates.flip_itXXXX.userFunc.constant_editor.configuration.enableFlipit ...
-        content = COA
-        content {
-            // Fancybox enabled 1/2: begin
-          10 < plugin.tx_flipit.master_templates.fancybox.begin
-            // SWF code: Flip it! 
-          20 < plugin.tx_flipit.master_templates.flipitSwf
-            // Fancybox enabled 2/2: end
-          30 < plugin.tx_flipit.master_templates.fancybox.end
-        }
-          // CSS for the fancybox. It will included only, if fancybox is enabled.
-        fancyboxCss = TEXT
-        fancyboxCss {
-          value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
-        }
-          // Javascript library of the fancybox. It will included only, if fancybox is enabled and if this library should included.
-        fancyboxJs = TEXT
-        fancyboxJs {
-          value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
-        }
-      }
-    } 
   }
 }
   // plugin.tx_flipit.master_templates
