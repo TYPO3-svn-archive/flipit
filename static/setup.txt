@@ -311,8 +311,8 @@ plugin.tx_flipit {
           // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enabled ...
         content = COA
         content {
-          if {
-            value = enabledXXX
+          XXX_if {
+            value = enabled
             equals {
               cObject < plugin.tx_flipit.constant_editor.configuration.enabled
             }
