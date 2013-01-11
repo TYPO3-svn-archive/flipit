@@ -229,8 +229,6 @@ plugin.tx_flipit {
       // Category fancybox
     fancybox = 
     fancybox {
-        // Fancybox : Disable it, if you don't want to use Flip it! in a fancybox by default.
-      enable = {$plugin.tx_flipit.configuration.enableFancybox}
         // padding : Space between FancyBox wrapper and content
       padding = {$plugin.tx_flipit.fancybox.padding}
         // margin : Space between viewport and FancyBox wrapper
