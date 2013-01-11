@@ -331,7 +331,6 @@ plugin.tx_flipit {
               if {
                 value = Use it
                 equals = plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
-                }
               }
               value (
 
