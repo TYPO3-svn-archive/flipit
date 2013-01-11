@@ -377,19 +377,13 @@ plugin.tx_flipit {
       // Please copy to tt_content.uploads.20.itemRendering
     flip_it = USER
     flip_it {
-        // enabled, content
+        // constant_editor, content, html_snippets
       userFunc = tx_flipit_typoscript->main
       userFunc {
         constant_editor < plugin.tx_flipit.constant_editor
           // Content will rendered only, if Flip it! is enabled. See master_templates.flip_it.userFunc.constant_editor.configuration.enabled ...
         content = COA
         content {
-          XXX_if {
-            value = enabled
-            equals {
-              cObject < plugin.tx_flipit.constant_editor.configuration.enabled
-            }
-          }
             // Fancybox begin
           10 = COA
           10 {
