@@ -434,37 +434,48 @@ plugin.tx_flipit {
                   cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
                 }
               }
-                // SCRIPT part 1/2: without insertData!
-              10 = TEXT
+                // Javascript
+              10 = COA
               10 {
-                value (
+                  // SCRIPT part 1/2: without insertData!
+                10 = TEXT
+                10 {
+                  value (
 
-                  <script type="text/javascript">
-                    $(document).ready(function() 
-                    {
-)
-                insertData = 0
-              }
-                // SCRIPT part 2/2: with insertData
-              20 = TEXT
-              20 {
-                value (
-
-                      $("#c{field:uid}_flipit_link").fancybox(
+                    <script type="text/javascript">
+                      $(document).ready(function() 
                       {
-                        'width'        : '100%',
-                        'height'      : '100%',
-                        'autoDimensions'      : false,
-                        'title' : 'Hannes',
-                        'titlePosition' : 'inside',
-                        'overlayShow'  : false,
-                        'transitionIn'  : 'elastic',
-                        'transitionOut'  : 'elastic'      
-                      });
-                    });
-                  </script>
 )
-                insertData = 1
+                  insertData = 0
+                }
+                  // SCRIPT part 2/2: with insertData
+                20 = TEXT
+                20 {
+                  value (
+
+                        $("#c{field:uid}_flipit_link").fancybox(
+)
+                  insertData = 1
+                }
+                30 = TEXT
+                30 {
+                  value (
+
+                        {
+                          'width'        : '100%',
+                          'height'      : '100%',
+                          'autoDimensions'      : false,
+                          'title' : 'Hannes',
+                          'titlePosition' : 'inside',
+                          'overlayShow'  : false,
+                          'transitionIn'  : 'elastic',
+                          'transitionOut'  : 'elastic'      
+                        });
+                      });
+                    </script>
+)
+                  insertData = 0
+                }
               }
                 // A tag
               30 = TEXT
@@ -473,6 +484,7 @@ plugin.tx_flipit {
 
                   <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
 )
+                insertData = 1
               }
                 // DIV "display:none" 1/2: begin
               40 = TEXT
