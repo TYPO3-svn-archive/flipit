@@ -505,6 +505,7 @@ plugin.tx_flipit {
 )
       }
     }
+      // The swf code of Flip it!
     flipitSwf = TEXT
     flipitSwf {
       value ( 
@@ -528,6 +529,24 @@ plugin.tx_flipit {
       insertData = 1
     }
       // Please copy to tt_content.uploads.20.itemRendering
+    layout = CASE
+    layout {
+      key {
+        cObject = COA
+        cObject {
+          10 = TEXT
+          10.valuie = 10
+        }
+      }
+      default = TEXT
+      default {
+        value = x default
+      }
+      10 = TEXT
+      10 {
+        value = X 10
+      }
+    }
     flip_itXXXX = USER
     flip_itXXXX {
         // constant_editor, content, html_snippets
@@ -545,10 +564,12 @@ plugin.tx_flipit {
             // Fancybox enabled 2/2: end
           30 < plugin.tx_flipit.master_templates.fancybox.end
         }
+          // CSS for the fancybox. It will included only, if fancybox is enabled.
         fancyboxCss = TEXT
         fancyboxCss {
           value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
         }
+          // Javascript library of the fancybox. It will included only, if fancybox is enabled and if this library should included.
         fancyboxJs = TEXT
         fancyboxJs {
           value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
@@ -642,7 +663,7 @@ tt_content.uploads {
       // Don't outerWrap the thumbnail with <table> by default
     outerWrap = |
     itemRendering >
-    itemRendering < plugin.tx_flipit.master_templates.flip_itXXXX
+    itemRendering < plugin.tx_flipit.master_templates.layout
   }
 }
   // tt_content.uploads

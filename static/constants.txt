@@ -46,7 +46,7 @@ plugin.tx_flipit {
   fancybox.hideOnContentClick = false
   # cat=Flip it! - fancybox/dims/214;       type=options[true,false];   label= overlayShow:Toggle overlay
   fancybox.overlayShow = true
-  # cat=Flip it! - fancybox/dims/215;       type=double;                label= overlayOpacity:Opacity of the overlay (from 0 to 1; default - 0.3)
+  # cat=Flip it! - fancybox/dims/215;       type=double;                label= overlayOpacity:Opacity of the overlay (from 0 to 1. default: 0.3)
   fancybox.overlayOpacity = 0.3
   # cat=Flip it! - fancybox/dims/216;       type=string;                label= overlayColor:Color of the overlay
   fancybox.overlayColor = #666
