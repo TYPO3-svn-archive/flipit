@@ -1496,8 +1496,8 @@ class tx_flipit_typoscript
   {
     $conf = $this->conf;
 
-    $coa_name = $conf['userFunc.']['css.']['fancybox'];
-    $coa_conf = $conf['userFunc.']['css.']['fancybox.'];
+    $coa_name = $conf['userFunc.']['fancyboxCss'];
+    $coa_conf = $conf['userFunc.']['fancyboxCss.'];
     $fancyboxCss = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     if( $this->b_drs_jquery )
     {
@@ -1511,8 +1511,8 @@ class tx_flipit_typoscript
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
     $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
-    $coa_name = $conf['userFunc.']['js.']['fancyboxLibrary'];
-    $coa_conf = $conf['userFunc.']['js.']['fancyboxLibrary.'];
+    $coa_name = $conf['userFunc.']['fancyboxJs'];
+    $coa_conf = $conf['userFunc.']['fancyboxJs.'];
     $fancyboxLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $fancyboxPosition )

@@ -538,19 +538,13 @@ plugin.tx_flipit {
           }
           30 < plugin.tx_flipit.master_templates.fancybox.begin
         }
-        css = 
-        css {
-          fancybox = TEXT
-          fancybox {
-            value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
-          }
+        fancyboxCss = TEXT
+        fancyboxCss {
+          value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
         }
-        js = 
-        js {
-          fancyboxLibrary = TEXT
-          fancyboxLibrary {
-            value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
-          }
+        fancyboxJs = TEXT
+        fancyboxJs {
+          value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
         }
       }
     } 
