@@ -534,7 +534,7 @@ plugin.tx_flipit {
               10 >
               10 = USER
               10 {
-                  // fancybox, script
+                  // params, variables, javascript
                 userFunc = tx_flipit_typoscript->javascriptFancyboxScript
                 userFunc {
                     // Parameter from constant editor for the javascript

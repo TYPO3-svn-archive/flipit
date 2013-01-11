@@ -1297,7 +1297,27 @@ class tx_flipit_typoscript
       // Current TypoScript configuration
     $this->conf = $conf;
     
-    $javascript  = $conf['userFunc.']['javascript'];
+    $javascript = $conf['userFunc.']['javascript'];
+    $params     = $conf['userFunc.']['params.'];
+    $variables  = array( );
+
+      // variables
+    foreach( array_keys ( ( array ) $conf['userFunc.']['variables.'] ) as $variable )
+    {
+        // CONTINUE : param has an dot
+      if( rtrim( $variable, '.' ) != $variable )
+      {
+        continue;
+      }
+        // CONTINUE : param has an dot
+
+      $cObj_name  = $conf['userFunc.']['variables.'][$variable];
+      $cObj_conf  = $conf['userFunc.']['variables.'][$variable . '.'];
+      $variables['%' . $variable . '%'] = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
+    }
+      // variables
+    
+    $javascript = str_replace( array_keys( $variables ), $variables, $javascript ); 
     
     return $javascript;    
   }
