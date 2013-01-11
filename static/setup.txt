@@ -538,7 +538,7 @@ plugin.tx_flipit {
             insertData = 1
           }
             // Fancybox enabled 2/2: end
-          30 < plugin.tx_flipit.master_templates.fancybox.begin
+          30 < plugin.tx_flipit.master_templates.fancybox.end
         }
         fancyboxCss = TEXT
         fancyboxCss {
