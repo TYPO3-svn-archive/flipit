@@ -459,7 +459,7 @@ plugin.tx_flipit {
     // For tt_content.uploads
   master_templates =
   master_templates {
-      // Javascript, A tag and DIV "display:none" 1/2 for the fancybox. If fancybox is enabled.
+      // Javascript, A tag and DIV "display:none" for the fancybox. If fancybox is enabled.
     fancybox =
     fancybox {
         // Fancybox enabled 1/2: begin
@@ -606,8 +606,8 @@ plugin.tx_flipit {
       // Please copy to tt_content.uploads.20.itemRendering
     layout = CASE
     layout {
-      key.cObject < plugin.tx_flipit.configuration.layout
-      default < plugin.tx_flipit.configuration.layout
+      key.cObject < plugin.tx_flipit.constant_editor.configuration.layout
+      default < plugin.tx_flipit.constant_editor.configuration.layout
       default2 = TEXT
       default2 {
         value = x default
