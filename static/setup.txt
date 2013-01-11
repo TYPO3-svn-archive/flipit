@@ -539,6 +539,16 @@ plugin.tx_flipit {
                 userFunc {
                     // Values from constant editor
                   fancybox < plugin.tx_flipit.constant_editor.fancybox
+                  script (
+
+                    <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#c%uid%_flipit_link").fancybox({
+                          %params%                         
+                        });
+                      });
+                    </script>
+)
                 }
               }
               
