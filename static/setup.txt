@@ -534,12 +534,23 @@ plugin.tx_flipit {
               10 >
               10 = USER
               10 {
-                  // constant_editor, content, html_snippets
+                  // fancybox, script
                 userFunc = tx_flipit_typoscript->javascriptFancyboxScript
                 userFunc {
-                    // Values from constant editor
-                  fancybox < plugin.tx_flipit.constant_editor.fancybox
-                  script (
+                    // Parameter from constant editor for the javascript
+                  params < plugin.tx_flipit.constant_editor.fancybox
+                    // Variables for the javascript
+                  variables = 
+                  variables {
+                      // field:uid
+                    uid = TEXT
+                    uid {
+                      value       = {field:uid}
+                      insertData  = 1
+                    }
+                  } 
+                    // Script
+                  javascript (
 
                     <script type="text/javascript">
                       $(document).ready(function() {
@@ -576,7 +587,7 @@ plugin.tx_flipit {
           20 {
             value ( 
 
-                    <script src="typo3conf/ext/flipit/res/jss/swfobjects_1.4.4/swfobject.js" type="text/javascript"></script>
+                    <script src="typo3conf/ext/flipit/res/js/swfobjects_1.4.4/swfobject.js" type="text/javascript"></script>
                     <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.html.width}; height:{$plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.html.height};overflow:auto;">
                       <p>
                         To view Flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>

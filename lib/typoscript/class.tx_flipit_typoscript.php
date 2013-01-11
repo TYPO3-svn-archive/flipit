@@ -1297,13 +1297,9 @@ class tx_flipit_typoscript
       // Current TypoScript configuration
     $this->conf = $conf;
     
-      // Get the global TCA
-      /* BACKGROUND : t3lib_div::loadTCA($table) loads for the frontend
-       * only 'ctrl' and 'feInterface' parts.
-       */
-    $GLOBALS['TSFE']->includeTCA( );
-
-    return $content . '<h1>XXX</h1>';    
+    $javascript  = $conf['userFunc.']['javascript'];
+    
+    return $javascript;    
   }
 
   
