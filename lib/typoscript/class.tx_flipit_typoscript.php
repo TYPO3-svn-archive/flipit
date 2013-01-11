@@ -1319,6 +1319,7 @@ class tx_flipit_typoscript
 //var_dump( __METHOD__, __LINE__, $value );
       switch( true )
       {
+        case( $param == 'enable' ):
         case( $value === null ):
         case( $value == "''" ):
           continue 2;
