@@ -174,9 +174,17 @@ plugin.tx_flipit {
         wrap  = '|'
       }
         // width : Width for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
-      width = {$plugin.tx_flipit.fancybox.width}
+      width = TEXT
+      width {
+        value = {$plugin.tx_flipit.fancybox.width}
+        wrap  = '|'
+      }
         // height : Height for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
-      height = {$plugin.tx_flipit.fancybox.height}
+      height = TEXT
+      height {
+        value = {$plugin.tx_flipit.fancybox.height}
+        wrap  = '|'
+      }
         // autoScale : If true, FancyBox is scaled to fit in viewport 
       autoScale = {$plugin.tx_flipit.fancybox.autoScale}
         // autoDimensions : For inline and ajax views, resizes the view to the element recieves. Make sure it has dimensions otherwise this will give unexpected results
