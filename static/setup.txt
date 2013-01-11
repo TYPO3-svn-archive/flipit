@@ -531,14 +531,10 @@ plugin.tx_flipit {
       // Please copy to tt_content.uploads.20.itemRendering
     layout = CASE
     layout {
-      key {
-        stdWrap {
-          cObject = COA
-          cObject {
-            10 = TEXT
-            10.valuie = 10
-          }
-        }
+      key.cObject = COA
+      key.cObject {
+        10 = TEXT
+        10.value = 10
       }
       default = TEXT
       default {
