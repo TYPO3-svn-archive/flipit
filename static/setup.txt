@@ -186,13 +186,13 @@ plugin.tx_flipit {
         // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
       layout = COA
       layout {
-          // Error prompt, if enabled mode isn't an element of the list flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts
+          // Error prompt, if enabled mode isn't an element of the list layout_01,layout_02,layout_03,layout_04,ts
         10 = TEXT
         10 {
-            // IF field:tx_flipit_layout is not in list of 'flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts'
+            // IF field:tx_flipit_layout is not in list of 'layout_01,layout_02,layout_03,layout_04,ts'
           if = 
           if {
-            value = flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts
+            value = layout_01,layout_02,layout_03,layout_04,ts
             isInList {
               field = tx_flipit_layout
             }
@@ -202,7 +202,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Error</h1>
               <p>
-                '{field:tx_flipit_layout}' isn't any element of the list: flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts
+                '{field:tx_flipit_layout}' isn't any element of the list: layout_01,layout_02,layout_03,layout_04,ts
               </p>
               <p>
                 Flip it!
@@ -213,7 +213,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Fehler</h1>
               <p>
-                '{field:tx_flipit_layout}' ist kein Element der Liste: flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts
+                '{field:tx_flipit_layout}' ist kein Element der Liste: layout_01,layout_02,layout_03,layout_04,ts
               </p>
               <p>
                 Flip it!
@@ -223,22 +223,22 @@ plugin.tx_flipit {
           value = error
           insertData = 1
         }
-          // RETURNS flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail
+          // RETURNS layout_01,layout_02,layout_03,layout_04
         20 = COA
         20 {
-            // IF field:tx_flipit_layout is in list of 'flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts'
+            // IF field:tx_flipit_layout is in list of 'layout_01,layout_02,layout_03,layout_04,ts'
           if = 
           if {
-            value = flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail,ts
+            value = layout_01,layout_02,layout_03,layout_04,ts
             isInList {
               field = tx_flipit_layout
             }
           }
-            // flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail
+            // layout_01,layout_02,layout_03,layout_04
           10 = TEXT
           10 {
             if {
-              value = flipbook only,flipbook + download link,flipbook + download link + thumbnail,flipbook + description + download link + thumbnail
+              value = layout_01,layout_02,layout_03,layout_04
               isInList {
                 field = tx_flipit_layout
               }
