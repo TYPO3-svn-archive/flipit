@@ -1303,7 +1303,7 @@ class tx_flipit_typoscript
        */
     $GLOBALS['TSFE']->includeTCA( );
 
-    return $content;    
+    return $content . '<h1>XXX</h1>';    
   }
 
   
