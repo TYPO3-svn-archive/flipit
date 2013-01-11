@@ -1316,6 +1316,7 @@ class tx_flipit_typoscript
       $cObj_name  = $conf['userFunc.']['params.'][$param];
       $cObj_conf  = $conf['userFunc.']['params.'][$param . '.'];
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
+var_dump( __METHOD__, __LINE__, $value );
       switch( true )
       {
         case( $value === null ):
