@@ -312,7 +312,7 @@ plugin.tx_flipit {
         content = COA
         content {
           if {
-            value = enabled
+            value = enabledXXX
             equals {
               cObject < plugin.tx_flipit.constant_editor.configuration.enabled
             }
@@ -328,6 +328,11 @@ plugin.tx_flipit {
           20 {
             10 = TEXT
             10 {
+              if {
+                value = Use it
+                equals = plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
+                }
+              }
               value (
 
                 <script type="text/javascript">
