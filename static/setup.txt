@@ -396,12 +396,6 @@ plugin.tx_flipit {
               // Fancybox: ERROR
             10 = TEXT
             10 {
-              if {
-                value = Use it
-                equals {
-                  cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
-                }
-              }
                 // IF field:tx_flipit_fancybox is not in list of 'Use it,Don't use it,ts'
               if = 
               if {
@@ -438,9 +432,9 @@ plugin.tx_flipit {
               // Fancybox: Use it
             20 = TEXT
             20 {
-              if {
-                value = Use it
-                equals < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
+              value = Use it
+              equals {
+                cObject < plugin.tx_flipit.master_templates.flip_it.userFunc.constant_editor.jquery.fancybox
               }
               value (
 
