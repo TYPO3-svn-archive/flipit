@@ -1315,7 +1315,12 @@ class tx_flipit_typoscript
 
       $cObj_name  = $conf['userFunc.']['params.'][$param];
       $cObj_conf  = $conf['userFunc.']['params.'][$param . '.'];
-      $params[] = "'" . $param . "' : " . $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
+      $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
+      if( $value === '' )
+      {
+        continue;
+      }
+      $params[] = "'" . $param . "' : " . $value;
     }
     $strParams = implode( ',' . PHP_EOL . str_repeat( ' ', $spaceLeft ), ( array ) $params );
       // params
