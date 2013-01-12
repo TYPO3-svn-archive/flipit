@@ -531,8 +531,11 @@ plugin.tx_flipit {
           20 {
             10 < tt_content.uploads.20.linkProc.iconCObject
             10 {
-              imageLinkWrap = 1
-              imageLinkWrap {
+              altText {
+                field = header
+              }
+              XX_imageLinkWrap = 1
+              XX_imageLinkWrap {
                 enable = 1
                 typolink {
                   parameter {
@@ -541,10 +544,28 @@ plugin.tx_flipit {
                 }
               }
               params {
-                cObject = TEXT
+                cObject = COA
                 cObject {
-                  value = id="c{field:uid}_flipit_link" 
-                  insertData = 1
+                    // id = c{field:uid}_flipit_link
+                  10 = TEXT
+                  10 {
+                    value = id="c{field:uid}_flipit_link" 
+                    insertData = 1
+                  }
+                  20 = COA
+                  20 {
+                    10 = TEXT
+                    10 {
+                      value = href=
+                    }
+                    20 = TEXT
+                    20 {
+                      typolink {
+                        parameter = TSFE : id
+                      }
+                      wrap = "|"
+                    }
+                  }
                 }
               }
             }
