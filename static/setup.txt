@@ -541,6 +541,7 @@ plugin.tx_flipit {
                   parameter {
                     data = TSFE : id
                   }
+                  returnLast = url
                 }
               }
               params {
