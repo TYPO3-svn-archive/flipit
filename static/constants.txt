@@ -98,6 +98,8 @@ plugin.tx_flipit {
   jquery.source = enabled
   # cat=Flip it! - jquery/enable/202;    type=options[top,bottom];            label= jQuery position: Place the jQuery library at the top of the page (HTML head) or at the bottom
   jquery.sourcePosition = top
+  # cat=Flip it! - jquery/enable/203;    type=string;                         label= jQuery library
+  jquery.sourceLibrary = typo3conf/ext/flipit/res/js/jquery.fancybox-1.3.4/jquery-1.4.3.min.js
   # cat=Flip it! - jquery/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   jquery.externalLinks = Click me!
 
