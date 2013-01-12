@@ -556,7 +556,7 @@ plugin.tx_flipit {
                         // id = c{field:uid}_flipit_link
                       10 = TEXT
                       10 {
-                        //data = TSFE : id
+                        data = TSFE : id
                       }
                       20 = TEXT
                       20 {
@@ -568,13 +568,22 @@ plugin.tx_flipit {
                 }
               }
             }
+            10 >
             20 = TEXT
             20 {
               value (
 
-                <a id="XXc{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
 )
               insertData = 1
+            }
+            30 < tt_content.uploads.20.linkProc.iconCObject
+            40 = TEXT
+            40 {
+              value (
+
+                </a>              
+)
             }
           }
             // DIV "display:none" 1/2: begin
