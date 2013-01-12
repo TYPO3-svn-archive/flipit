@@ -544,7 +544,7 @@ plugin.tx_flipit {
                 cObject = TEXT
                 cObject {
                   value = id="c{field:uid}_flipit_link" 
-                  insertData
+                  insertData = 1
                 }
               }
             }
