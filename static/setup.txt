@@ -556,7 +556,7 @@ plugin.tx_flipit {
                         // id = c{field:uid}_flipit_link
                       10 = TEXT
                       10 {
-                        data = TSFE : id
+                        //data = TSFE : id
                       }
                       20 = TEXT
                       20 {
