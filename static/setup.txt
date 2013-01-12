@@ -539,7 +539,14 @@ plugin.tx_flipit {
                 enable = 1
                 typolink {
                   parameter {
-                    data = TSFE : id
+                    cObject = COA
+                    cObject {
+                        // id = c{field:uid}_flipit_link
+                      10 = TEXT
+                      10 {
+                        data = TSFE : id
+                      }
+                    }
                   }
                 }
               }
