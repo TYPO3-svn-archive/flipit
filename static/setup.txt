@@ -591,22 +591,36 @@ plugin.tx_flipit {
                 30 = TEXT
                 30 {
                   text.field = header
+                  fontFile = typo3conf/ext/pdfcontroller_fonts/res/html2ps_v2043/public_html/fonts/arial.ttf
+                  fontSize = 20
+                  fontColor = #000000
+                  offset    = 10,10
                 }
-                31 = BOX
+                31 < . 30
                 31 {
+                  text.field = title
+                }
+                32 < . 30
+                32 {
+                  text.field >
+                  text.value = Test 32
+                }
+                33 < . 30
+                33 {
+                  text.field >
+                  value = Test 33
+                }
+                41 = BOX
+                41 {
                   dimensions = 0,0,40,40
                   color = #00FFFF
                   align = l,b
                 }
-                32 = BOX
-                32 {
+                42 = BOX
+                42 {
                   dimensions = 0,0,20,20
                   color = #00FF00
                   align = r,t
-                }
-                40 = TEXT
-                40 {
-                  text.field = title
                 }
               }
             }
