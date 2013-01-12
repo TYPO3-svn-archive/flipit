@@ -1002,6 +1002,14 @@ class tx_flipit_typoscript
       // Init the DRS
     $this->initDrs( );
     
+      // RETURN : 
+    $arr_return = $this->initLayout( );
+    if( $arr_return['return'] )
+    {
+      return $arr_return;
+    }
+      // RETURN : 
+
       // RETURN : Flip it! is disabled or there is an error
     $arr_return = $this->initEnable( );
     if( $arr_return['return'] )
@@ -1274,6 +1282,58 @@ class tx_flipit_typoscript
     
     unset( $firstFile );
     unset( $currentFile );
+
+    return $arr_return;
+    
+  }
+
+  
+  
+ /**
+  * initLayout( ): 
+  *
+  * @return	mixed		HTML output.
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function initLayout( )
+  {
+    $conf = $this->conf;
+
+    $arr_return = array( );
+    $arr_return['content']  = 'null';
+    $arr_return['return']   = true;
+    
+    $coa_name = $conf['userFunc.']['drs.']['layout'];
+    $coa_conf = $conf['userFunc.']['drs.']['layout.'];
+    $layout   = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $layout )
+    {
+      case( 'layout_00' ):
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Current layout: ' . $layout;
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+          $prompt = 'Current layout is the tt_content.uploads.20 default. Flip it! won\'t processed.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        $arr_return['return'] = false;
+        break;
+      case( 'layout_01' ):
+      case( 'layout_02' ):
+      case( 'layout_03' ):
+      case( 'layout_04' ):
+      default:
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Current layout: ' . $layout;
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        $arr_return['return'] = true;
+        break;
+    }
 
     return $arr_return;
     

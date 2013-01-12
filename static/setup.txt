@@ -669,7 +669,7 @@ plugin.tx_flipit {
               20 < plugin.tx_flipit.master_templates.flipitSwf
                 // Fancybox enabled 2/2: end
               30 < plugin.tx_flipit.master_templates.fancybox.end
-              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf tx_flipit_layout_01 tx_flipit_layout_01_swf">|</td>
+              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
           }
@@ -692,54 +692,33 @@ plugin.tx_flipit {
         }
       } 
         // layout_02: flipbook + download link
-      layout_02 = USER
+      layout_02 < .layout_01
       layout_02 {
-          // constant_editor, content, drs, fancyboxCss, fancyboxJs
-        userFunc = tx_flipit_typoscript->main
         userFunc {
-            // Values from constant editor
-          constant_editor < plugin.tx_flipit.constant_editor
-            // Content will rendered only, if Flip it! is enabled. See master_templates.flip_itXXXX.userFunc.constant_editor.configuration.enableFlipit ...
-          content = COA
           content {
-              // swf
-            20 = COA
-            20 {
-                // Fancybox enabled 1/2: begin
-              10 < plugin.tx_flipit.master_templates.fancybox.begin
-                // SWF code: Flip it! 
-              20 < plugin.tx_flipit.master_templates.flipitSwf
-                // Fancybox enabled 2/2: end
-              30 < plugin.tx_flipit.master_templates.fancybox.end
-              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf tx_flipit_layout_02 tx_flipit_layout_02_swf">|</td>
-            }
             30 < tt_content.uploads.20.itemRendering.20
             40 < tt_content.uploads.20.itemRendering.30
             wrap = <tr class="tx_flipit_layout_02">|</tr>
           }
-            // DRS - for reporting only
-          drs = 
           drs {
-              // Current layout. Don't change it!
             layout = layout_02
-          }
-            // CSS for the fancybox. It will included only, if fancybox is enabled.
-          fancyboxCss = TEXT
-          fancyboxCss {
-            value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
-          }
-            // Javascript library of the fancybox. It will included only, if fancybox is enabled and if this library should included.
-          fancyboxJs = TEXT
-          fancyboxJs {
-            value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
           }
         }
       }
         // layout_03: flipbook + download link + thumbnail
-      layout_03 = TEXT
+      layout_03 < .layout_01
       layout_03 {
-        value = x layout_03
-        wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
+        userFunc {
+          content {
+            10 < tt_content.uploads.20.itemRendering.10
+            30 < tt_content.uploads.20.itemRendering.20
+            40 < tt_content.uploads.20.itemRendering.30
+            wrap = <tr class="tx_flipit_layout_03">|</tr>
+          }
+          drs {
+            layout = layout_03
+          }
+        }
       }
         // layout_04: flipbook + description + download link + thumbnai
       layout_04 = TEXT

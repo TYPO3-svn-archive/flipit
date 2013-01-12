@@ -10,23 +10,23 @@
       <label index="tcaLabel_tx_flipit_enabled">Use Flip it?</label>
       <label index="tcaLabel_tx_flipit_enabled_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_enabled_item_enabled">enabled</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_ts">Take value from the TypoScript Constant Editor (default)!</label>
+      <label index="tcaLabel_tx_flipit_enabled_item_ts">Take value from the TypoScript Constant Editor (recommended)!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_enabled">enabled</label>
-      <label index="tcaLabel_tx_flipit_fancybox_item_ts">Take value from the TypoScript Constant-Editor (default)!</label>
+      <label index="tcaLabel_tx_flipit_fancybox_item_ts">Take value from the TypoScript Constant-Editor (recommended)!</label>
       <label index="tcaLabel_tx_flipit_layout">Layout</label>
       <label index="tcaLabel_tx_flipit_layout_item_00">0: Default file link (without Flip it!)</label>
       <label index="tcaLabel_tx_flipit_layout_item_01">1: Flip book only</label>
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip book, download link</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip book, download link, thumbnail</label>
       <label index="tcaLabel_tx_flipit_layout_item_04">4: Flip book, description, download link, thumbnail</label>
-      <label index="tcaLabel_tx_flipit_layout_item_ts">Take value from the TypoScript Constant Editor (default)!</label>
+      <label index="tcaLabel_tx_flipit_layout_item_ts">Take value from the TypoScript Constant Editor (recommended)!</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Update SWF files and XML file automatically</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">no (protects manually uploaded files)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_enabled">yes</label>
-      <label index="tcaLabel_tx_flipit_updateswfxml_item_ts">Take value from the TypoScript Constant Editor (default)!</label>
+      <label index="tcaLabel_tx_flipit_updateswfxml_item_ts">Take value from the TypoScript Constant Editor (recommended)!</label>
       <label index="tcaLabel_tx_flipit_xml_file">XML-configuration-file</label>
     </languageKey>
     <languageKey index="de" type="array">
@@ -34,17 +34,17 @@
       <label index="tcaLabel_tx_flipit_enabled">Flip it! benutzen?</label>
       <label index="tcaLabel_tx_flipit_enabled_item_disabled">deaktiviert</label>
       <label index="tcaLabel_tx_flipit_enabled_item_enabled">aktiviert</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_ts">Nimm den Wert von TypoScript (Standard)!</label>
+      <label index="tcaLabel_tx_flipit_enabled_item_ts">Nimm den Wert von TypoScript (empfohlen)!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">deaktiviert</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_enabled">aktiviert</label>
-      <label index="tcaLabel_tx_flipit_fancybox_item_ts">Nimm den Wert vom TypoScript-Konstanten-Editor (Standard)!</label>
+      <label index="tcaLabel_tx_flipit_fancybox_item_ts">Nimm den Wert vom TypoScript-Konstanten-Editor (empfohlen)!</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Dateien automatisch ins SWF-Format konverieren</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind geschützt)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_enabled">Ja</label>
-      <label index="tcaLabel_tx_flipit_updateswfxml_item_ts">Nimm den Wert vom TypoScript-Konstanten-Editor (Standard)!</label>
+      <label index="tcaLabel_tx_flipit_updateswfxml_item_ts">Nimm den Wert vom TypoScript-Konstanten-Editor (empfohlen)!</label>
       <label index="tcaLabel_tx_flipit_xml_file">XML-Konfigurations-Datei</label>
     </languageKey>
   </data>
