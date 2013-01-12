@@ -19,7 +19,7 @@
       <label index="tcaLabel_tx_flipit_layout_item_00">0: tt_content default (without Flip it!)</label>
       <label index="tcaLabel_tx_flipit_layout_item_01">1: Flip it! only</label>
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! and tt_content default but download thumbnail</label>
-      <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and  default</label>
+      <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and tt_content default</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Update SWF files and XML file automatically</label>
