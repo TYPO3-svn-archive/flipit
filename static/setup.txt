@@ -609,8 +609,12 @@ plugin.tx_flipit {
                 }
                 33 < .30
                 33 {
-                  text >
-                  value = Test 33
+                  text {
+                    cObject = TEXT
+                    cObject {
+                      value = test 33
+                    }
+                  }
                   offset    = 50,50
                 }
                 41 = BOX
