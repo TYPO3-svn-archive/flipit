@@ -584,12 +584,12 @@ plugin.tx_flipit {
                 XY = 150,213
                 10 = TEXT
                 10 {
-                  text.value = Vor
+                  text.field = header
                 }
                 20 < tt_content.uploads.20.linkProc.iconCObject
                 30 = TEXT
                 30 {
-                  text.value = Hinter
+                  text.field = header
                 }
               }
             }
