@@ -537,18 +537,14 @@ plugin.tx_flipit {
                 <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="Flip '{field:header}'!">
 )
               lang {
-                de {
-                  value (
+                de (
 
                 <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">{field:header}
 )
-                }
-                en {
-                  value (
+                en (
 
                 <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="Flip '{field:header}'!">
 )
-                }
               }
               insertData = 1
             }
@@ -585,18 +581,14 @@ plugin.tx_flipit {
                   Flip '{field:header}'!
 )
               lang {
-                de {
-                  value (
+                de (
 
                   In '{field:header}' bl&auml;ttern!
 )
-                }
-                en {
-                  value (
+                en (
 
                   Flip '{field:header}'!
 )
-                }
               }
               insertData = 1
             }
