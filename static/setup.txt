@@ -584,12 +584,12 @@ plugin.tx_flipit {
                 XY = 150,213
                 10 = TEXT
                 10 {
-                  value = Vor
+                  test.value = Vor
                 }
                 20 < tt_content.uploads.20.linkProc.iconCObject
                 30 = TEXT
                 30 {
-                  value = Hinter
+                  test.value = Hinter
                 }
               }
             }
