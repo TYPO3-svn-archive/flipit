@@ -86,6 +86,20 @@ plugin.tx_flipit {
   # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   html.externalLinks = Click me!
 
+  # cat=Flip it! - jquery/enable/101;    type=options[enabled,disabled];      label= Fancybox: Include the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
+  jquery.fancybox = enabled
+  # cat=Flip it! - jquery/enable/102;    type=options[top,bottom];            label= Fancybox position: Place the jQuery fancybox library at the top of the page (HTML head) or at the bottom
+  jquery.fancyboxPosition = top
+  # cat=Flip it! - jquery/enable/103;    type=string;                         label= Fancybox library
+  jquery.fancyboxLibrary = typo3conf/ext/flipit/res/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js
+  # cat=Flip it! - jquery/enable/104;    type=string;                         label= Fancybox CSS
+  jquery.fancyboxCSS = typo3conf/ext/flipit/res/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css
+  # cat=Flip it! - jquery/enable/201;    type=options[enabled,disabled];      label= jQuery: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
+  jquery.source = enabled
+  # cat=Flip it! - jquery/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
+  jquery.externalLinks = Click me!
+
+
   # cat=Flip it! - thumbnails/dims/101;      type=int+;     label= Download height: height of the thumbnail, which is linked with the file for download
   thumbnails.download.height = 
   # cat=Flip it! - thumbnails/dims/102;      type=int+;     label= Download height: height of the thumbnail, which is linked with the file for download
@@ -102,19 +116,6 @@ plugin.tx_flipit {
   thumbnails.flipit.icon = EXT:flipit/res/icons/flipit.gif
   # cat=Flip it! - thumbnails/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   thumbnails.externalLinks = Click me!
-
-  # cat=Flip it! - jquery/enable/101;    type=options[enabled,disabled];      label= Fancybox: Include the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
-  jquery.fancybox = enabled
-  # cat=Flip it! - jquery/enable/102;    type=options[top,bottom];            label= Fancybox position: Place the jQuery fancybox library at the top of the page (HTML head) or at the bottom
-  jquery.fancyboxPosition = top
-  # cat=Flip it! - jquery/enable/103;    type=string;                         label= Fancybox library
-  jquery.fancyboxLibrary = typo3conf/ext/flipit/res/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js
-  # cat=Flip it! - jquery/enable/104;    type=string;                         label= Fancybox CSS
-  jquery.fancyboxCSS = typo3conf/ext/flipit/res/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css
-  # cat=Flip it! - jquery/enable/201;    type=options[enabled,disabled];      label= jQuery: Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
-  jquery.source = enabled
-  # cat=Flip it! - jquery/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
-  jquery.externalLinks = Click me!
 
   # cat=Flip it! - xml/dims/101;            type=int+;   label= Document width: Width in pixel (if autodetection failes)
   xml.width             = 592
