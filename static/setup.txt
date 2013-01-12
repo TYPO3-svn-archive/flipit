@@ -539,7 +539,7 @@ plugin.tx_flipit {
               lang {
                 de (
 
-                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">{field:header}
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">
 )
                 en (
 
