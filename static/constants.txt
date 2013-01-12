@@ -84,9 +84,9 @@ plugin.tx_flipit {
   # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
   html.color.background = #cccccc
   # cat=Flip it! - html/dims/104;      type=int+;     label= Thumbnail height
-  html.color.background = 
+  html.thumbnail.height = 
   # cat=Flip it! - html/dims/105;      type=int+;     label= Thumbnail width
-  html.color.background = 150
+  html.thumbnail.width = 150
   # cat=Flip it! - html/others/106;    type=string;   label= Flip it! icon: The path to the Flip it! icon. The Flip it! icon is placed at the right bottom corner of a thumbnail.
   html.flipitIcon = EXT:flipit/res/icons/flipit.gif
   # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
