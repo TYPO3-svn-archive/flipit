@@ -540,7 +540,13 @@ plugin.tx_flipit {
                   }
                 }
               }
-              params = id=1234
+              params {
+                cObject = TEXT
+                cObject {
+                  value = id="c{field:uid}_flipit_link" 
+                  insertData
+                }
+              }
             }
             20 = TEXT
             20 {
