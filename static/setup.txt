@@ -529,51 +529,11 @@ plugin.tx_flipit {
             // A tag
           20 = COA
           20 {
-            10 < tt_content.uploads.20.linkProc.iconCObject
-            10 {
-              altText {
-                field = header
-              }
-              imageLinkWrap = 1
-              imageLinkWrap {
-                enable = 1
-                typolink {
-                  ATagParams {
-                    cObject = COA
-                    cObject {
-                        // id = c{field:uid}_flipit_link
-                      10 = TEXT
-                      10 {
-                        value = id="c{field:uid}_flipit_link" 
-                        insertData = 1
-                      }
-                    }
-                  }
-                  parameter {
-                    cObject = COA
-                    cObject {
-                        // href
-                        // id = c{field:uid}_flipit_link
-                      10 = TEXT
-                      10 {
-                        data = TSFE : id
-                      }
-                      20 = TEXT
-                      20 {
-                        value = #c{field:uid}_flipit
-                        insertData = 1
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            10 >
             20 = TEXT
             20 {
               value (
 
-                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">{field:header}
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">{field:description|field:header}
 )
               insertData = 1
             }
@@ -598,41 +558,6 @@ plugin.tx_flipit {
                   }
                   align = r,b
                 }
-                  // Test
-                30 = COA
-                30 {
-                  30 = TEXT
-                  30 {
-                    text.field = header
-                    fontFile = typo3conf/ext/pdfcontroller_fonts/res/html2ps_v2043/public_html/fonts/arial.ttf
-                    fontSize = 20
-                    fontColor = #FF0000
-                    offset    = 20,20
-                  }
-                  33 < .30
-                  33 {
-                    text {
-                      cObject = TEXT
-                      cObject {
-                        value = test 33
-                      }
-                    }
-                    offset    = 50,50
-                  }
-                  41 = BOX
-                  41 {
-                    dimensions = 0,0,40,40
-                    color = #00FFFF
-                    align = l,b
-                  }
-                  42 = BOX
-                  42 {
-                    dimensions = 0,0,20,20
-                    color = #00FF00
-                    align = r,t
-                  }
-                }
-                30 >
               }
             }
             40 = TEXT
