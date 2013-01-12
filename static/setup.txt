@@ -633,10 +633,26 @@ plugin.tx_flipit {
       }
         // layout_00: default tt_content.uploads.20 layout (without Flip it!)
       layout_00 < tt_content.uploads.20.itemRendering
+      layout_00 {
+          // DRS - for reporting only
+        40 = USER
+        40 {
+            // drs
+          userFunc = tx_flipit_typoscript->main
+          userFunc {
+              // DRS - for reporting only
+            drs = 
+            drs {
+                // Current layout. Don't change it!
+              layout = layout_00
+            }
+          }
+        } 
+      }
         // layout_00: default tt_content.uploads.20 layout (without Flip it!)
       layout_01 = USER
       layout_01 {
-          // constant_editor, content, html_snippets
+          // constant_editor, content, drs, fancyboxCss, fancyboxJs
         userFunc = tx_flipit_typoscript->main
         userFunc {
             // Values from constant editor
@@ -673,8 +689,45 @@ plugin.tx_flipit {
         // layout_02: flipbook + download link
       layout_02 = TEXT
       layout_02 {
-        value = x layout_02
-        wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
+          // constant_editor, content, drs, fancyboxCss, fancyboxJs
+        userFunc = tx_flipit_typoscript->main
+        userFunc {
+            // Values from constant editor
+          constant_editor < plugin.tx_flipit.constant_editor
+            // Content will rendered only, if Flip it! is enabled. See master_templates.flip_itXXXX.userFunc.constant_editor.configuration.enableFlipit ...
+          content = COA
+          content {
+            20 = COA
+            20 {
+                // Fancybox enabled 1/2: begin
+              10 < plugin.tx_flipit.master_templates.fancybox.begin
+                // SWF code: Flip it! 
+              20 < plugin.tx_flipit.master_templates.flipitSwf
+                // Fancybox enabled 2/2: end
+              30 < plugin.tx_flipit.master_templates.fancybox.end
+              wrap = <td class="tx_flipit_layout_01 tx_flipit_layout_01_swf">|</td>
+            }
+            30 < tt_content.uploads.20.itemRendering.20
+            40 < tt_content.uploads.20.itemRendering.30
+            wrap = <tr class="tx_flipit_layout_01">|</tr>
+          }
+            // DRS - for reporting only
+          drs = 
+          drs {
+              // Current layout. Don't change it!
+            layout = layout_01
+          }
+            // CSS for the fancybox. It will included only, if fancybox is enabled.
+          fancyboxCss = TEXT
+          fancyboxCss {
+            value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
+          }
+            // Javascript library of the fancybox. It will included only, if fancybox is enabled and if this library should included.
+          fancyboxJs = TEXT
+          fancyboxJs {
+            value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
+          }
+        }
       }
         // layout_03: flipbook + download link + thumbnail
       layout_03 = TEXT
