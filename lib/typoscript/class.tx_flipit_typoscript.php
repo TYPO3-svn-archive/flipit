@@ -1303,7 +1303,7 @@ class tx_flipit_typoscript
 
     $arr_return = array( );
     $arr_return['content']  = 'null';
-    $arr_return['return']   = true;
+    $arr_return['return']   = false;
     
     $coa_name = $conf['userFunc.']['drs.']['layout'];
     $coa_conf = $conf['userFunc.']['drs.']['layout.'];
@@ -1319,7 +1319,7 @@ class tx_flipit_typoscript
           $prompt = 'Current layout is the tt_content.uploads.20 default. Flip it! won\'t processed.';
           t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
         }
-        $arr_return['return'] = false;
+        $arr_return['return'] = true;
         break;
       case( 'layout_01' ):
       case( 'layout_02' ):
@@ -1331,7 +1331,7 @@ class tx_flipit_typoscript
           $prompt = 'Current layout: ' . $layout;
           t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
         }
-        $arr_return['return'] = true;
+        $arr_return['return'] = false;
         break;
     }
 
