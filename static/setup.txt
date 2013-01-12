@@ -577,13 +577,20 @@ plugin.tx_flipit {
 )
               insertData = 1
             }
-            30 < tt_content.uploads.20.linkProc.iconCObject
+            30 = IMAGE
+            30 {
+              file = GIFBUILDER
+              file {
+                10 = TEXT
+                10 {
+                  value = Netz
+                }
+                20 < tt_content.uploads.20.linkProc.iconCObject
+              }
+            }
             40 = TEXT
             40 {
-              value (
-
-                </a>              
-)
+              value = </a>              
             }
           }
             // DIV "display:none" 1/2: begin
