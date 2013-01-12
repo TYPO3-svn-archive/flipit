@@ -670,10 +670,14 @@ plugin.tx_flipit {
               18 {
                 data = register : ICON_REL_PATH
               }
-              19 < tt_content.uploads.20.linkProc.iconCObject
               20 < plugin.tx_flipit.master_templates.flipitSwf
                 // Fancybox enabled 2/2: end
               30 < plugin.tx_flipit.master_templates.fancybox.end
+              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
+            }
+            21 = COA
+            21 {
+              19 < tt_content.uploads.20.linkProc.iconCObject
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
