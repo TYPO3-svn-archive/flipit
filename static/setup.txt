@@ -609,7 +609,7 @@ plugin.tx_flipit {
                 }
                 33 < .30
                 33 {
-                  text.field >
+                  text >
                   value = Test 33
                   offset    = 50,50
                 }
