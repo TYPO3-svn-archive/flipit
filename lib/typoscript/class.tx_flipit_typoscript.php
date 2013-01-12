@@ -1302,7 +1302,7 @@ class tx_flipit_typoscript
     $conf = $this->conf;
 
     $arr_return = array( );
-    $arr_return['content']  = 'null';
+    $arr_return['content']  = null;
     $arr_return['return']   = false;
     
     $coa_name = $conf['userFunc.']['drs.']['layout'];
