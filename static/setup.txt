@@ -573,7 +573,7 @@ plugin.tx_flipit {
             20 {
               value (
 
-                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}
 )
               insertData = 1
             }
