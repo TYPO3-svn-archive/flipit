@@ -114,7 +114,7 @@ class tx_flipit_typoscript
   */
   public function main( $content, $conf )
   {
-var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
+//var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
     unset( $content );
     
       // Current TypoScript configuration
