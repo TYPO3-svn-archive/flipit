@@ -526,17 +526,33 @@ plugin.tx_flipit {
 )
             }
           }
-            // A tag
+            // A tag, Flip it! thumbnail
           20 = COA
           20 {
+              // A tag 1/2, begin
             20 = TEXT
             20 {
               value (
 
-                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">{field:description||field:header}
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="Flip '{field:header}'!">
 )
+              lang {
+                de {
+                  value (
+
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="In '{field:header}' bl&auml;ttern">{field:header}
+)
+                }
+                en {
+                  value (
+
+                <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="Flip '{field:header}'!">
+)
+                }
+              }
               insertData = 1
             }
+              // Flip it! thumbnail
             30 = IMAGE
             30 {
               file = GIFBUILDER
@@ -559,9 +575,33 @@ plugin.tx_flipit {
                   align = r,b
                 }
               }
+              wrap = |<br />
             }
+              // field:header
             40 = TEXT
             40 {
+              value (
+
+                  Flip '{field:header}'!
+)
+              lang {
+                de {
+                  value (
+
+                  In '{field:header}' bl&auml;ttern!
+)
+                }
+                en {
+                  value (
+
+                  Flip '{field:header}'!
+)
+                }
+              insertData = 1
+            }
+              // A tag 2/2, begin
+            50 = TEXT
+            50 {
               value = </a>              
             }
           }
