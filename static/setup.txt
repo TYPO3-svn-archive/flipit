@@ -593,7 +593,7 @@ plugin.tx_flipit {
                 }
                 31 = BOX
                 31 {
-                  dimensions = 20,20,40,40
+                  dimensions = 0,0,40,40
                   color = #00FFFF
                   align = l,b
                 }
@@ -602,6 +602,10 @@ plugin.tx_flipit {
                   dimensions = 0,0,20,20
                   color = #00FF00
                   align = r,t
+                }
+                40 = TEXT
+                40 {
+                  text.field = title
                 }
               }
             }
