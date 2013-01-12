@@ -649,7 +649,7 @@ plugin.tx_flipit {
           }
         } 
       }
-        // layout_00: default tt_content.uploads.20 layout (without Flip it!)
+        // layout_01: flipbook only
       layout_01 = USER
       layout_01 {
           // constant_editor, content, drs, fancyboxCss, fancyboxJs
@@ -666,6 +666,7 @@ plugin.tx_flipit {
                 // Fancybox enabled 1/2: begin
               10 < plugin.tx_flipit.master_templates.fancybox.begin
                 // SWF code: Flip it! 
+              19 < tt_content.uploads.20.linkProc.iconCObject
               20 < plugin.tx_flipit.master_templates.flipitSwf
                 // Fancybox enabled 2/2: end
               30 < plugin.tx_flipit.master_templates.fancybox.end
@@ -691,7 +692,7 @@ plugin.tx_flipit {
           }
         }
       } 
-        // layout_02: flipbook + download link
+        // layout_03: flipbook + tt_content.20.uploads default ./. thumbnail
       layout_02 < .layout_01
       layout_02 {
         userFunc {
@@ -705,13 +706,16 @@ plugin.tx_flipit {
           }
         }
       }
-        // layout_03: flipbook + download link + thumbnail
+        // layout_03: flipbook + tt_content.20.uploads default
       layout_03 < .layout_01
       layout_03 {
         userFunc {
           content {
+              // linked thumbnail
             10 < tt_content.uploads.20.itemRendering.10
+              // download link, description
             30 < tt_content.uploads.20.itemRendering.20
+              // file size
             40 < tt_content.uploads.20.itemRendering.30
             wrap = <tr class="tx_flipit_layout_03">|</tr>
           }
@@ -720,7 +724,7 @@ plugin.tx_flipit {
           }
         }
       }
-        // layout_04: flipbook + description + download link + thumbnai
+        // layout_04: flipbook + description + download link + thumbnail
       layout_04 = TEXT
       layout_04 {
         value = x layout_04
@@ -739,8 +743,7 @@ plugin.tx_flipit {
 
 tt_content.uploads {
   20 {
-      // Don't outerWrap the thumbnail with <table> by default
-    outerWrap = |
+    outerWrap = <table>|</table>
     itemRendering >
     itemRendering < plugin.tx_flipit.master_templates.layout
   }
