@@ -586,10 +586,22 @@ plugin.tx_flipit {
                 10 {
                   text.field = header
                 }
+                11 = BOX
+                11 {
+                  dimensions = 0,0,20,20
+                  color = #00FF00
+                  align = 1,b
+                }
                 20 < tt_content.uploads.20.linkProc.iconCObject
                 30 = TEXT
                 30 {
                   text.field = header
+                }
+                31 = BOX
+                31 {
+                  dimensions = 20,20,40,40
+                  color = #00FFFF
+                  align = 1,b
                 }
               }
             }
