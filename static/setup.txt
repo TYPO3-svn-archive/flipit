@@ -564,7 +564,7 @@ plugin.tx_flipit {
                       typolink {
                         parameter = TSFE : id
                       }
-                      wrap = "|"
+                      returnLast = url
                     }
                   }
                 }
