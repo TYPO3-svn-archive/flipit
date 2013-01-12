@@ -1114,6 +1114,8 @@ class tx_flipit_typoscript
     $this->b_drs_todo   = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+    $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
+    t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
 
   
@@ -1160,7 +1162,7 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'The enabling mode of Flip it! isn\'t part of the list: disabled,enabled,ts';
+          $prompt = 'The enabling mode "' . $enabled . '" of Flip it! isn\'t part of the list: disabled,enabled,ts';
           t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
           $prompt = 'Flip it! won\'t run!';
           t3lib_div::devlog( '[WARN/INIT] ' . $prompt, $this->extKey, 3 );
