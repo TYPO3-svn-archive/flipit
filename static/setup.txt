@@ -583,6 +583,7 @@ plugin.tx_flipit {
               file {
                 XY = 150,213
                 XY = 400,400
+                XY = [20.w],[20.h]
                 10 = TEXT
                 10 {
                   text.field = header
