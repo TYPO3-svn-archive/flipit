@@ -83,18 +83,25 @@ plugin.tx_flipit {
   html.width = 100%
   # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
   html.color.background = #cccccc
-  # cat=Flip it! - html/dims/104;      type=int+;     label= Thumbnail height
-  html.thumbnail.height = 
-  # cat=Flip it! - html/dims/105;      type=int+;     label= Thumbnail width
-  html.thumbnail.width = 150
-  # cat=Flip it! - html/dims/106;      type=int+;     label= Thumbnail height
-  html.flipitHeight = 
-  # cat=Flip it! - html/dims/107;      type=int+;     label= Thumbnail width
-  html.flipitWidth = 60
-  # cat=Flip it! - html/others/106;    type=string;   label= Flip it! icon: The path to the Flip it! icon. The Flip it! icon is placed at the right bottom corner of a thumbnail.
-  html.flipitIcon = EXT:flipit/res/icons/flipit.gif
   # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   html.externalLinks = Click me!
+
+  # cat=Flip it! - thumbnails/dims/101;      type=int+;     label= Download height: height of the thumbnail, which is linked with the file for download
+  thumbnails.download.height = 
+  # cat=Flip it! - thumbnails/dims/102;      type=int+;     label= Download height: height of the thumbnail, which is linked with the file for download
+  thumbnails.download.width = 150
+  # cat=Flip it! - thumbnails/dims/103;      type=int+;     label= Flip it! height: height of the thumbnail, which is linked with the fancybox
+  thumbnails.fancybox.height = 
+  # cat=Flip it! - thumbnails/dims/104;      type=int+;     label= Flip it! height: height of the thumbnail, which is linked with the fancybox
+  thumbnails.fancybox.width = 150
+  # cat=Flip it! - thumbnails/dims/106;      type=int+;     label= Flip it! icon height: height of the icon at teh right bottom corner of the Flip it! thumbnail
+  thumbnails.flipit.height = 
+  # cat=Flip it! - thumbnails/dims/107;      type=int+;     label= Flip it! icon width: width of the icon at teh right bottom corner of the Flip it! thumbnail
+  thumbnails.flipit.width = 60
+  # cat=Flip it! - thumbnails/others/108;    type=string;   label= Flip it! icon file: The path to the Flip it! icon. The Flip it! icon is placed at the right bottom corner of a thumbnail.
+  thumbnails.flipit.icon = EXT:flipit/res/icons/flipit.gif
+  # cat=Flip it! - thumbnails/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
+  thumbnails.externalLinks = Click me!
 
   # cat=Flip it! - jquery/enable/101;    type=options[enabled,disabled];      label= Fancybox: Include the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
   jquery.fancybox = enabled

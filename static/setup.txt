@@ -557,16 +557,16 @@ plugin.tx_flipit {
                 10 < tt_content.uploads.20.linkProc.iconCObject
                 10 {
                   file {
-                    height  = {$plugin.tx_flipit.html.thumbnail.height}
-                    width   = {$plugin.tx_flipit.html.thumbnail.width}
+                    height  = {$plugin.tx_flipit.thumbnails.fancybox.height}
+                    width   = {$plugin.tx_flipit.thumbnails.fancybox.width}
                   }
                 }
                 20 = IMAGE
                 20 {
-                  file = {$plugin.tx_flipit.html.flipitIcon}
+                  file = {$plugin.tx_flipit.thumbnails.flipit.icon}
                   file {
-                    height  = {$plugin.tx_flipit.html.flipitHeight}
-                    width   = {$plugin.tx_flipit.html.flipitWidth}
+                    height  = {$plugin.tx_flipit.thumbnails.flipit.height}
+                    width   = {$plugin.tx_flipit.thumbnails.flipit.width}
                   }
                   align = r,b
                 }
@@ -724,8 +724,8 @@ plugin.tx_flipit {
           content = COA
           content {
               // swf
-            20 = COA
-            20 {
+            10 = COA
+            10 {
                 // Fancybox enabled 1/2: begin
               10 < plugin.tx_flipit.master_templates.fancybox.begin
                 // SWF code: Flip it! 
@@ -774,7 +774,13 @@ plugin.tx_flipit {
         userFunc {
           content {
               // linked thumbnail
-            10 < tt_content.uploads.20.itemRendering.10
+            20 < tt_content.uploads.20.itemRendering.10
+            20 {
+              file {
+                height  = {$plugin.tx_flipit.thumbnails.download.height}
+                width   = {$plugin.tx_flipit.thumbnails.download.width}
+              }
+            }
               // download link, description
             30 < tt_content.uploads.20.itemRendering.20
               // file size
