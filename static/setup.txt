@@ -538,26 +538,32 @@ plugin.tx_flipit {
               imageLinkWrap {
                 enable = 1
                 typolink {
-                  parameter {
+                  ATagParams {
                     cObject = COA
                     cObject {
                         // id = c{field:uid}_flipit_link
                       10 = TEXT
                       10 {
-                        data = TSFE : id
+                        value = id="c{field:uid}_flipit_link" 
+                        insertData = 1
                       }
                     }
                   }
-                }
-              }
-              params {
-                cObject = COA
-                cObject {
-                    // id = c{field:uid}_flipit_link
-                  10 = TEXT
-                  10 {
-                    value = id="c{field:uid}_flipit_link" 
-                    insertData = 1
+                  parameter {
+                    cObject = COA
+                    cObject {
+                        // href
+                        // id = c{field:uid}_flipit_link
+                      10 = TEXT
+                      10 {
+                        data = TSFE : id
+                      }
+                      20 = TEXT
+                      20 {
+                        value = #c{field:uid}_flipit
+                        insertData = 1
+                      }
+                    }
                   }
                 }
               }
