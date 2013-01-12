@@ -653,10 +653,7 @@ plugin.tx_flipit {
       layout_03 {
         value = x layout_03
       }
-      layout_04 = TEXT
-      layout_04 {
-        value = x layout_04
-      }
+      layout_04 < tt_content.uploads.20.itemRendering
     }
   }
 }
@@ -739,11 +736,6 @@ plugin.tx_flipit {
   ///////////////////////////////////////////////////////////////
   //
   // tt_content.uploads
-
-[globalVar = TSFE:tt_content|tx_flipit_layout=layout_02]
-  page.20 = TEXT
-  page.20.value = <h1>layout_02</h1>
-[global]
 
 tt_content.uploads {
   20 {
