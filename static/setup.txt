@@ -581,44 +581,48 @@ plugin.tx_flipit {
             30 {
               file = GIFBUILDER
               file {
-                XY = 150,213
-                XY = 400,400
-                XY = [20.w],[20.h]
-                10 = TEXT
-                10 {
-                  text.field = header
+                XY = [10.w],[10.h]
+                10 < tt_content.uploads.20.linkProc.iconCObject
+                20 = IMAGE
+                20 {
+                  file = EXT:flipit/res/icons/flipit.gif
+                  align = r,b
                 }
-                20 < tt_content.uploads.20.linkProc.iconCObject
-                30 = TEXT
+                  // Test
+                30 = COA
                 30 {
-                  text.field = header
-                  fontFile = typo3conf/ext/pdfcontroller_fonts/res/html2ps_v2043/public_html/fonts/arial.ttf
-                  fontSize = 20
-                  fontColor = #FF0000
-                  offset    = 20,20
-                }
-                33 < .30
-                33 {
-                  text {
-                    cObject = TEXT
-                    cObject {
-                      value = test 33
-                    }
+                  30 = TEXT
+                  30 {
+                    text.field = header
+                    fontFile = typo3conf/ext/pdfcontroller_fonts/res/html2ps_v2043/public_html/fonts/arial.ttf
+                    fontSize = 20
+                    fontColor = #FF0000
+                    offset    = 20,20
                   }
-                  offset    = 50,50
+                  33 < .30
+                  33 {
+                    text {
+                      cObject = TEXT
+                      cObject {
+                        value = test 33
+                      }
+                    }
+                    offset    = 50,50
+                  }
+                  41 = BOX
+                  41 {
+                    dimensions = 0,0,40,40
+                    color = #00FFFF
+                    align = l,b
+                  }
+                  42 = BOX
+                  42 {
+                    dimensions = 0,0,20,20
+                    color = #00FF00
+                    align = r,t
+                  }
                 }
-                41 = BOX
-                41 {
-                  dimensions = 0,0,40,40
-                  color = #00FFFF
-                  align = l,b
-                }
-                42 = BOX
-                42 {
-                  dimensions = 0,0,20,20
-                  color = #00FF00
-                  align = r,t
-                }
+                30 >
               }
             }
             40 = TEXT
