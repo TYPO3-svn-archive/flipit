@@ -399,7 +399,7 @@ plugin.tx_flipit {
       fancyboxCSS = {$plugin.tx_flipit.jquery.fancyboxCSS}
         // jQuery : jQuery: Use the jQuery library (1.4.3) provided by the fancybox. If you are using another jquery library, please set this option to "disabled"
       source = {$plugin.tx_flipit.jquery.source}
-        // Fancybox position : Place the jQuery library at the top of the page (HTML head) or at the bottom
+        // jQuery position : Place the jQuery library at the top of the page (HTML head) or at the bottom
       sourcePosition = {$plugin.tx_flipit.jquery.sourcePosition}
     }
       // Category xml
@@ -750,10 +750,15 @@ plugin.tx_flipit {
           fancyboxCss {
             value = <link rel="stylesheet" type="text/css" href="{$plugin.tx_flipit.jquery.fancyboxCSS}" media="screen" />
           }
-            // Javascript library of the fancybox. It will included only, if fancybox is enabled and if this library should included.
+            // jQuery fancybox library. It will included only, if fancybox is enabled and if this library should included.
           fancyboxJs = TEXT
           fancyboxJs {
             value = <script src="{$plugin.tx_flipit.jquery.fancyboxLibrary}" type="text/javascript"></script>
+          }
+            // jQuery library. It will included only, if jQuery library is enabled and if this library should included.
+          sourceJs = TEXT
+          sourceJs {
+            value = <script src="{$plugin.tx_flipit.jquery.sourceLibrary}" type="text/javascript"></script>
           }
         }
       } 

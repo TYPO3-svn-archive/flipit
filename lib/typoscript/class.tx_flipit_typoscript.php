@@ -1518,36 +1518,36 @@ class tx_flipit_typoscript
         break;
     }
 
-    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition'];
-    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
-    $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['sourcePosition'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['sourcePosition.'];
+    $sourcePosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
-    $coa_name = $conf['userFunc.']['fancyboxJs'];
-    $coa_conf = $conf['userFunc.']['fancyboxJs.'];
-    $fancyboxLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    $coa_name = $conf['userFunc.']['sourceJs'];
+    $coa_conf = $conf['userFunc.']['sourceJs.'];
+    $sourceLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
-    switch( $fancyboxPosition )
+    switch( $sourcePosition )
     {
       case( 'top' ):
         if( $this->b_drs_jquery )
         {
-          $prompt = 'Fancybox is included at the top of the page (HTML head).';
+          $prompt = 'jQuery is included at the top of the page (HTML head).';
           t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
         }
-        $GLOBALS['TSFE']->additionalHeaderData['flipit.fancybox.lib'] = $fancyboxLibrary;
+        $GLOBALS['TSFE']->additionalHeaderData['flipit.source.lib'] = $sourceLibrary;
         break;
       case( 'bottom' ):
         if( $this->b_drs_jquery )
         {
-          $prompt = 'Fancybox is included at the bottom of the page.';
+          $prompt = 'jQuery is included at the bottom of the page.';
           t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
         }
-        $GLOBALS['TSFE']->additionalFooterData['flipit.fancybox.lib'] = $fancyboxLibrary;
+        $GLOBALS['TSFE']->additionalFooterData['flipit.source.lib'] = $sourceLibrary;
         break;
       default:
         $prompt = '
           <p>
-            Undefined value: fancyboxPosition = ' . fancyboxPosition . '<br />
+            Undefined value: sourcePosition = ' . sourcePosition . '<br />
             Please fix the bug!<br />
             TYPO3 extension Flip it!<br />
             Method: ' . __METHOD__ . ' <br />
