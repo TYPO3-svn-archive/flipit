@@ -592,6 +592,10 @@ plugin.tx_flipit {
                 20 = IMAGE
                 20 {
                   file = {$plugin.tx_flipit.html.flipitIcon}
+                  file {
+                    height  = {$plugin.tx_flipit.html.flipitHeight}
+                    width   = {$plugin.tx_flipit.html.flipitWidth}
+                  }
                   align = r,b
                 }
                   // Test
