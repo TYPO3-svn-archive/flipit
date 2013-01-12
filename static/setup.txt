@@ -681,6 +681,7 @@ plugin.tx_flipit {
               19 {
                 imageLinkWrap = 1
                 imageLinkWrap {
+                  enable = 1
                   typolink {
                     parameter = 1354
                   }
