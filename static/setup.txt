@@ -692,7 +692,7 @@ plugin.tx_flipit {
         }
       } 
         // layout_02: flipbook + download link
-      layout_02 = TEXT
+      layout_02 = USER
       layout_02 {
           // constant_editor, content, drs, fancyboxCss, fancyboxJs
         userFunc = tx_flipit_typoscript->main
