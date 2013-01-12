@@ -678,6 +678,15 @@ plugin.tx_flipit {
             21 = COA
             21 {
               19 < tt_content.uploads.20.linkProc.iconCObject
+              19 {
+                imageLinkWrap = 1
+                imageLinkWrap {
+                  typolink {
+                    parameter = 1354
+                  }
+                }
+              }
+              
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
