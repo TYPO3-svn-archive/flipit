@@ -190,13 +190,13 @@ plugin.tx_flipit {
         // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
       layout = COA
       layout {
-          // Error prompt, if enabled mode isn't an element of the list layout_01,layout_02,layout_03,layout_04,ts
+          // Error prompt, if enabled mode isn't an element of the list layout_00,layout_01,layout_02,layout_03,layout_04,ts
         10 = TEXT
         10 {
-            // IF field:tx_flipit_layout is not in list of 'layout_01,layout_02,layout_03,layout_04,ts'
+            // IF field:tx_flipit_layout is not in list of 'layout_00,layout_01,layout_02,layout_03,layout_04,ts'
           if = 
           if {
-            value = layout_01,layout_02,layout_03,layout_04,ts
+            value = layout_00,layout_01,layout_02,layout_03,layout_04,ts
             isInList {
               field = tx_flipit_layout
             }
@@ -204,22 +204,22 @@ plugin.tx_flipit {
           }
           value = error
         }
-          // RETURNS layout_01,layout_02,layout_03,layout_04
+          // RETURNS layout_00,layout_01,layout_02,layout_03,layout_04
         20 = COA
         20 {
-            // IF field:tx_flipit_layout is in list of 'layout_01,layout_02,layout_03,layout_04,ts'
+            // IF field:tx_flipit_layout is in list of 'layout_00,layout_01,layout_02,layout_03,layout_04,ts'
           if = 
           if {
-            value = layout_01,layout_02,layout_03,layout_04,ts
+            value = layout_00,layout_01,layout_02,layout_03,layout_04,ts
             isInList {
               field = tx_flipit_layout
             }
           }
-            // layout_01,layout_02,layout_03,layout_04
+            // layout_00,layout_01,layout_02,layout_03,layout_04
           10 = TEXT
           10 {
             if {
-              value = layout_01,layout_02,layout_03,layout_04
+              value = layout_00,layout_01,layout_02,layout_03,layout_04
               isInList {
                 field = tx_flipit_layout
               }
@@ -594,7 +594,7 @@ plugin.tx_flipit {
           <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
             <h1>TypoScript Error</h1>
             <p>
-              '{field:tx_flipit_layout}' isn't any element of the list: layout_01,layout_02,layout_03,layout_04,ts<br />
+              '{field:tx_flipit_layout}' isn't any element of the list: layout_00,layout_01,layout_02,layout_03,layout_04,ts<br />
               Maybe there is an unproper value in plugin.tx_flipit.configuration.layout
             </p>
             <p>
@@ -606,7 +606,7 @@ plugin.tx_flipit {
           <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
             <h1>TypoScript Fehler</h1>
             <p>
-              '{field:tx_flipit_layout}' ist kein Element der Liste: layout_01,layout_02,layout_03,layout_04,ts<br />
+              '{field:tx_flipit_layout}' ist kein Element der Liste: layout_00,layout_01,layout_02,layout_03,layout_04,ts<br />
               Vielleicht hat plugin.tx_flipit.configuration.layout einen falschen Wert.
             </p>
             <p>
@@ -616,6 +616,7 @@ plugin.tx_flipit {
 )
         insertData = 1
       }
+      layout_00 < tt_content.uploads.20.itemRendering
       layout_01 = USER
       layout_01 {
           // constant_editor, content, html_snippets
@@ -632,6 +633,12 @@ plugin.tx_flipit {
             20 < plugin.tx_flipit.master_templates.flipitSwf
               // Fancybox enabled 2/2: end
             30 < plugin.tx_flipit.master_templates.fancybox.end
+          }
+            // DRS - for reporting only
+          drs = 
+          drs {
+              // Current layout. Don't change it!
+            layout = layout_01
           }
             // CSS for the fancybox. It will included only, if fancybox is enabled.
           fancyboxCss = TEXT
@@ -653,7 +660,6 @@ plugin.tx_flipit {
       layout_03 {
         value = x layout_03
       }
-      layout_04 < tt_content.uploads.20.itemRendering
     }
   }
 }

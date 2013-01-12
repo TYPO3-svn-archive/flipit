@@ -20,6 +20,7 @@
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip book, download link</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip book, download link, thumbnail</label>
       <label index="tcaLabel_tx_flipit_layout_item_04">4: Flip book, description, download link, thumbnail</label>
+      <label index="tcaLabel_tx_flipit_layout_item_09">9: tt_content default (without Flip it!)</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Take value from the TypoScript Constant Editor (default)!</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Update SWF files and XML file automatically</label>
