@@ -578,19 +578,18 @@ plugin.tx_flipit {
             40 {
               value (
 
-                  Flip '{field:header}'!
+                  Flip it!
 )
               lang {
                 de (
 
-                  In '{field:header}' bl&auml;ttern!
+                  Online bl&auml;ttern!
 )
                 en (
 
-                  Flip '{field:header}'!
+                  Flip it!
 )
               }
-              insertData = 1
             }
               // A tag 2/2, begin
             50 = TEXT
