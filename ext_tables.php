@@ -194,10 +194,6 @@ $TCA['tt_content']['columns']['tx_flipit_layout'] = array (
         'layout_03',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_04',
-        'layout_04',
-      ),
-      array(
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout_item_ts',
         'ts',
       ),
