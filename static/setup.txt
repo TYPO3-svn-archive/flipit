@@ -583,9 +583,15 @@ plugin.tx_flipit {
               file {
                 XY = [10.w],[10.h]
                 10 < tt_content.uploads.20.linkProc.iconCObject
+                10 {
+                  file {
+                    height  = {$plugin.tx_flipit.html.thumbnail.height}
+                    width   = {$plugin.tx_flipit.html.thumbnail.width}
+                  }
+                }
                 20 = IMAGE
                 20 {
-                  file = EXT:flipit/res/icons/flipit.gif
+                  file = {$plugin.tx_flipit.html.flipitIcon}
                   align = r,b
                 }
                   // Test

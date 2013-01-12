@@ -77,12 +77,18 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   fancybox.externalLinks = Click me!
 
-  # cat=Flip it! - html/dims/101;      type=string;  label= Height: Height with em, per cent or pixel
+  # cat=Flip it! - html/dims/101;      type=string;   label= Height: Height with em, per cent or pixel
   html.height = 100%
-  # cat=Flip it! - html/dims/102;      type=string;  label= Width: Width with em, per cent or pixel
+  # cat=Flip it! - html/dims/102;      type=string;   label= Width: Width with em, per cent or pixel
   html.width = 100%
   # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
   html.color.background = #cccccc
+  # cat=Flip it! - html/dims/104;      type=int+;     label= Thumbnail height
+  html.color.background = 
+  # cat=Flip it! - html/dims/105;      type=int+;     label= Thumbnail width
+  html.color.background = 150
+  # cat=Flip it! - html/others/106;    type=string;   label= Flip it! icon: The path to the Flip it! icon. The Flip it! icon is placed at the right bottom corner of a thumbnail.
+  html.flipitIcon = EXT:flipit/res/icons/flipit.gif
   # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   html.externalLinks = Click me!
 
