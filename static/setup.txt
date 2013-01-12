@@ -631,7 +631,9 @@ plugin.tx_flipit {
 )
         insertData = 1
       }
+        // layout_00: default tt_content.uploads.20 layout (without Flip it!)
       layout_00 < tt_content.uploads.20.itemRendering
+        // layout_00: default tt_content.uploads.20 layout (without Flip it!)
       layout_01 = USER
       layout_01 {
           // constant_editor, content, html_snippets
@@ -668,16 +670,19 @@ plugin.tx_flipit {
           }
         }
       } 
+        // layout_02: flipbook + download link
       layout_02 = TEXT
       layout_02 {
         value = x layout_02
         wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
       }
+        // layout_03: flipbook + download link + thumbnail
       layout_03 = TEXT
       layout_03 {
         value = x layout_03
         wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
       }
+        // layout_04: flipbook + description + download link + thumbnai
       layout_04 = TEXT
       layout_04 {
         value = x layout_04
