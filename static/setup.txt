@@ -648,7 +648,7 @@ plugin.tx_flipit {
             20 < plugin.tx_flipit.master_templates.flipitSwf
               // Fancybox enabled 2/2: end
             30 < plugin.tx_flipit.master_templates.fancybox.end
-            wrap = <tr><td>|</td></tr>
+            wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
           }
             // DRS - for reporting only
           drs = 
@@ -671,14 +671,17 @@ plugin.tx_flipit {
       layout_02 = TEXT
       layout_02 {
         value = x layout_02
+        wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
       }
       layout_03 = TEXT
       layout_03 {
         value = x layout_03
+        wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
       }
       layout_04 = TEXT
       layout_04 {
         value = x layout_04
+        wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
       }
     }
   }
