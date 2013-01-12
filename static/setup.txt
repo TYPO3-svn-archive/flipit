@@ -740,10 +740,10 @@ plugin.tx_flipit {
   //
   // tt_content.uploads
 
-//[globalVar = TSFE:tt_content|tx_flipit_la//out="layout_02"]
+[globalVar = TSFE:tt_content|tx_flipit_la//out="layout_02"]
   page.20 = TEXT
   page.20.value = <h1>layout_02</h1>
-//[global]
+[global]
 
 tt_content.uploads {
   20 {
