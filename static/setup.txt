@@ -527,13 +527,29 @@ plugin.tx_flipit {
             }
           }
             // A tag
-          20 = TEXT
+          20 = COA
           20 {
-            value (
+            10 < tt_content.uploads.20.linkProc.iconCObject
+            10 {
+              imageLinkWrap = 1
+              imageLinkWrap {
+                enable = 1
+                typolink {
+                  parameter {
+                    data = TSFE : id
+                  }
+                }
+              }
+              params = id=1234
+            }
+            20 = TEXT
+            20 {
+              value (
 
                 <a id="c{field:uid}_flipit_link" href="#c{field:uid}_flipit" title="{field:header}">{field:header}</a>              
 )
-            insertData = 1
+              insertData = 1
+            }
           }
             // DIV "display:none" 1/2: begin
           30 = TEXT
@@ -683,13 +699,16 @@ plugin.tx_flipit {
                 imageLinkWrap {
                   enable = 1
                   typolink {
-                    parameter = 1354
+                    parameter {
+                      data = TSFE : id
+                    }
                   }
                 }
               }
               
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
+            21 >
             wrap = <tr class="tx_flipit_layout_01">|</tr>
           }
             // DRS - for reporting only
