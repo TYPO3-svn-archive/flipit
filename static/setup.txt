@@ -666,6 +666,10 @@ plugin.tx_flipit {
                 // Fancybox enabled 1/2: begin
               10 < plugin.tx_flipit.master_templates.fancybox.begin
                 // SWF code: Flip it! 
+              18 = TEXT
+              18 {
+                data = register : ICON_REL_PATH
+              }
               19 < tt_content.uploads.20.linkProc.iconCObject
               20 < plugin.tx_flipit.master_templates.flipitSwf
                 // Fancybox enabled 2/2: end
