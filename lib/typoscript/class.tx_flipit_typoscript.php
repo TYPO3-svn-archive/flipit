@@ -1485,11 +1485,79 @@ class tx_flipit_typoscript
   */
   private function jquerySource( )
   {
-    if( $this->b_drs_jquery )
+    $conf = $this->conf;
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['source'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['source.'];
+    $source = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $source )
     {
-      $prompt = 'jquerySource( ): Code is missing';
-      t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 3 );
+      case( 'enabled' ):
+          // Follow the workflow: include library and css
+        break;
+      case( 'disabled' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'jQuery library should not included.';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        return;
+        break;
+      default:
+        $prompt = '
+          <p>
+            Undefined value: $source = ' . $source . '<br />
+            Please fix the bug!<br />
+            TYPO3 extension Flip it!<br />
+            Method: ' . __METHOD__ . ' <br />
+            Line: ' . __LINE__ . ' 
+          </p>
+';
+        die( $prompt ); 
+        break;
     }
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
+    $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    $coa_name = $conf['userFunc.']['fancyboxJs'];
+    $coa_conf = $conf['userFunc.']['fancyboxJs.'];
+    $fancyboxLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $fancyboxPosition )
+    {
+      case( 'top' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'Fancybox is included at the top of the page (HTML head).';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        $GLOBALS['TSFE']->additionalHeaderData['flipit.fancybox.lib'] = $fancyboxLibrary;
+        break;
+      case( 'bottom' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'Fancybox is included at the bottom of the page.';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        $GLOBALS['TSFE']->additionalFooterData['flipit.fancybox.lib'] = $fancyboxLibrary;
+        break;
+      default:
+        $prompt = '
+          <p>
+            Undefined value: fancyboxPosition = ' . fancyboxPosition . '<br />
+            Please fix the bug!<br />
+            TYPO3 extension Flip it!<br />
+            Method: ' . __METHOD__ . ' <br />
+            Line: ' . __LINE__ . ' 
+          </p>
+';
+        die( $prompt ); 
+        break;
+    }
+
     return;
   }
 
@@ -1558,6 +1626,37 @@ class tx_flipit_typoscript
   private function jqueryFancyboxInclude( )
   {
     $conf = $this->conf;
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox.'];
+    $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $fancybox )
+    {
+      case( 'enabled' ):
+          // Follow the workflow: include library and css
+        break;
+      case( 'disabled' ):
+        if( $this->b_drs_jquery )
+        {
+          $prompt = 'jQuery fancybox library and CSS should not included.';
+          t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
+        }
+        return;
+        break;
+      default:
+        $prompt = '
+          <p>
+            Undefined value: $fancybox = ' . $fancybox . '<br />
+            Please fix the bug!<br />
+            TYPO3 extension Flip it!<br />
+            Method: ' . __METHOD__ . ' <br />
+            Line: ' . __LINE__ . ' 
+          </p>
+';
+        die( $prompt ); 
+        break;
+    }
 
     $coa_name = $conf['userFunc.']['fancyboxCss'];
     $coa_conf = $conf['userFunc.']['fancyboxCss.'];
