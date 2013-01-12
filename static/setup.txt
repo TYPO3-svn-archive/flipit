@@ -660,6 +660,10 @@ plugin.tx_flipit {
       layout_03 {
         value = x layout_03
       }
+      layout_04 = TEXT
+      layout_04 {
+        value = x layout_04
+      }
     }
   }
 }
