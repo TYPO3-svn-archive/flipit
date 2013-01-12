@@ -389,13 +389,15 @@ plugin.tx_flipit {
       // Category jquery
     jquery = 
     jquery {
+        // Fancybox: Include the jQuery fancybox library (1.3.4) and CSS provided by Flip it! If you are using another fancybox library and CSS, please set this option to "disabled"
+      fancybox = {$plugin.tx_flipit.jquery.fancybox}
         // Fancybox position : Place the jQuery fancybox library at the top of the page (HTML head) or at the bottom
       fancyboxPosition = {$plugin.tx_flipit.jquery.fancyboxPosition}
         // Fancybox library
       fancyboxLibrary = {$plugin.tx_flipit.jquery.fancyboxLibrary}
         // Fancybox CSS
       fancyboxCSS = {$plugin.tx_flipit.jquery.fancyboxCSS}
-        // jQuery : Use the jQuery fancybox library (1.3.4) provided by Flip it! If you are using another fancybox library, please set this option to "disabled"
+        // jQuery : jQuery: Use the jQuery library (1.4.3) provided by the fancybox. If you are using another jquery library, please set this option to "disabled"
       source = {$plugin.tx_flipit.jquery.source}
     }
       // Category xml

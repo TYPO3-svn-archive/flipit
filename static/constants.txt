@@ -111,7 +111,7 @@ plugin.tx_flipit {
   # cat=Flip it! - thumbnails/dims/106;      type=int+;     label= Flip it! icon height: height of the icon at teh right bottom corner of the Flip it! thumbnail
   thumbnails.flipit.height = 
   # cat=Flip it! - thumbnails/dims/107;      type=int+;     label= Flip it! icon width: width of the icon at teh right bottom corner of the Flip it! thumbnail
-  thumbnails.flipit.width = 60
+  thumbnails.flipit.width = 30
   # cat=Flip it! - thumbnails/others/108;    type=string;   label= Flip it! icon file: The path to the Flip it! icon. The Flip it! icon is placed at the right bottom corner of a thumbnail.
   thumbnails.flipit.icon = EXT:flipit/res/icons/flipit.gif
   # cat=Flip it! - thumbnails/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
