@@ -582,6 +582,7 @@ plugin.tx_flipit {
               file = GIFBUILDER
               file {
                 XY = 150,213
+                XY = 400,400
                 10 = TEXT
                 10 {
                   text.field = header
