@@ -581,7 +581,7 @@ plugin.tx_flipit {
             30 {
               file = GIFBUILDER
               file {
-                xy = 150,213
+                XY = 150,213
                 10 = TEXT
                 10 {
                   value = Netz
