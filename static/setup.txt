@@ -594,21 +594,24 @@ plugin.tx_flipit {
                   fontFile = typo3conf/ext/pdfcontroller_fonts/res/html2ps_v2043/public_html/fonts/arial.ttf
                   fontSize = 20
                   fontColor = #000000
-                  offset    = 10,10
+                  offset    = 20,20
                 }
                 31 < . 30
                 31 {
                   text.field = title
+                  offset    = 30,30
                 }
                 32 < . 30
                 32 {
                   text.field >
                   text.value = Test 32
+                  offset    = 40,40
                 }
                 33 < . 30
                 33 {
                   text.field >
                   value = Test 33
+                  offset    = 50,50
                 }
                 41 = BOX
                 41 {
