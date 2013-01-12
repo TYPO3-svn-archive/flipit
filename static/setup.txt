@@ -660,13 +660,18 @@ plugin.tx_flipit {
             // Content will rendered only, if Flip it! is enabled. See master_templates.flip_itXXXX.userFunc.constant_editor.configuration.enableFlipit ...
           content = COA
           content {
-              // Fancybox enabled 1/2: begin
-            10 < plugin.tx_flipit.master_templates.fancybox.begin
-              // SWF code: Flip it! 
-            20 < plugin.tx_flipit.master_templates.flipitSwf
-              // Fancybox enabled 2/2: end
-            30 < plugin.tx_flipit.master_templates.fancybox.end
-            wrap = <tr class="tx_flipit_layout_01"><td class="tx_flipit_layout_01">|</td></tr>
+              // swf
+            20 = COA
+            20 {
+                // Fancybox enabled 1/2: begin
+              10 < plugin.tx_flipit.master_templates.fancybox.begin
+                // SWF code: Flip it! 
+              20 < plugin.tx_flipit.master_templates.flipitSwf
+                // Fancybox enabled 2/2: end
+              30 < plugin.tx_flipit.master_templates.fancybox.end
+              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf tx_flipit_layout_01 tx_flipit_layout_01_swf">|</td>
+            }
+            wrap = <tr class="tx_flipit_layout_01">|</tr>
           }
             // DRS - for reporting only
           drs = 
@@ -697,6 +702,7 @@ plugin.tx_flipit {
             // Content will rendered only, if Flip it! is enabled. See master_templates.flip_itXXXX.userFunc.constant_editor.configuration.enableFlipit ...
           content = COA
           content {
+              // swf
             20 = COA
             20 {
                 // Fancybox enabled 1/2: begin
@@ -705,17 +711,17 @@ plugin.tx_flipit {
               20 < plugin.tx_flipit.master_templates.flipitSwf
                 // Fancybox enabled 2/2: end
               30 < plugin.tx_flipit.master_templates.fancybox.end
-              wrap = <td class="tx_flipit_layout_01 tx_flipit_layout_01_swf">|</td>
+              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf tx_flipit_layout_02 tx_flipit_layout_02_swf">|</td>
             }
             30 < tt_content.uploads.20.itemRendering.20
             40 < tt_content.uploads.20.itemRendering.30
-            wrap = <tr class="tx_flipit_layout_01">|</tr>
+            wrap = <tr class="tx_flipit_layout_02">|</tr>
           }
             // DRS - for reporting only
           drs = 
           drs {
               // Current layout. Don't change it!
-            layout = layout_01
+            layout = layout_02
           }
             // CSS for the fancybox. It will included only, if fancybox is enabled.
           fancyboxCss = TEXT
