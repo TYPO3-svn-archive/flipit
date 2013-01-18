@@ -6,15 +6,20 @@ evaluatorSWFtools      = Undefined error: Evaluation failed!
 evaluatorTYPO3version  = Undefined error: Evaluation failed!
   # cat=evaluator/enable/198;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorDetectionBug]; label= Detection bug?
 evaluatorDetectionBug  = Undefined error: Evaluation failed!
-  # cat=evaluator/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  # cat=evaluator/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 evaluatorExternalLinks = 1
+
+  # cat=windows/others/100;            type=string; label= Windows: Path to SWFTOOLS.
+windowsPathToSwftools = C:\Program Files (x86)\SWFTools
+  # cat=windows/others/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
+windowsExternalLinks = 1
 
   # cat=language/enable/100;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
 beLanguage = English
-  # cat=language/others/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  # cat=language/others/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 beLanguageExternalLinks = 1
 
   # cat=debugging/enable/100;              type=options[Disabled,Enabled (for debugging only!)]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
 debuggingDrs            = Disabled
-  # cat=debugging/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=External Links:Helpful links
+  # cat=debugging/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 debuggingExternalLinks = 1

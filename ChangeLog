@@ -1,3 +1,15 @@
+0.0.5
+  13-01-18
+  Bugfix
+  * #00000: includeLibs.tx_browser_cssstyledcontent -> includeLibs.tx_flipit_cssstyledcontent
+            Effected file:
+            * static/setup.txt
+
+0.0.4
+  13-01-16
+  Improvement
+  * #00000: Windows-Server
+
 0.0.3
   13-01-07
   Development

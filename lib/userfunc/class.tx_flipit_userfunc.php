@@ -50,6 +50,20 @@ class tx_flipit_userfunc
 {
   
  /**
+  * Extension key
+  *
+  * @var string
+  */
+  private $extKey = 'flipit';
+
+ /**
+  * Extension configuration
+  *
+  * @var array
+  */
+  private $arr_extConf = null;
+  
+ /**
   * Status of operating system: linux, unix, windows, unsupported, undefined
   *
   * @var string
@@ -64,6 +78,13 @@ class tx_flipit_userfunc
   public $swfTools = null;
   
  /**
+  * Path to SWFTOOLS - relevant for Windows
+  *
+  * @var string
+  */
+  public $pathToSwfTools = null;
+  
+ /**
   * Version of TYPO3 (sample: 4.7.7 -> 4007007)
   *
   * @var string
@@ -75,8 +96,8 @@ class tx_flipit_userfunc
 /**
  * Constructor. The method initiate the parent object
  *
- * @param	object		The parent object
- * @return	void
+ * @param    object        The parent object
+ * @return    void
  */
   function __construct( $pObj )
   {
@@ -87,12 +108,12 @@ class tx_flipit_userfunc
 
 //  /**
 //   * pageWizard( ): Builds an input form that also includes the link popup wizard.
-//   * @param		array		Parameter array.  Contains fieldName and fieldValue.
-//   * @return		string		HTML output for form widget.
+//   * @param        array        Parameter array.  Contains fieldName and fieldValue.
+//   * @return        string        HTML output for form widget.
 //   * @version 0.0.1
 //   * @since   0.0.1
 //   */
-//  public function pageWizard( $params ) 
+//  public function pageWizard( $params )
 //  {
 //    /* Pull the current fieldname and value from constants */
 //    $fieldName  = $params['fieldName'];
@@ -100,7 +121,7 @@ class tx_flipit_userfunc
 //    
 //    $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
 //
-//    /* @todo 	Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */
+//    /* @todo     Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */
 //    $wizard = '<a href="#" onclick="this.blur(); vHWin=window.open(\'../../../../typo3/browse_links.php?mode=wizard&amp;P[field]='. $fieldName .'&amp;P[formName]=editForm&amp;P[itemName]='. $fieldName .'&amp;P[fieldChangeFunc][typo3form.fieldGet]=null&amp;P[fieldChangeFunc][TBE_EDITOR_fieldChanged]=null\',\'popUpID478be36b64\',\'height=300,width=500,status=0,menubar=0,scrollbars=1\'); vHWin.focus(); return false;"><img src="../../../../typo3/sysext/t3skin/icons/gfx/link_popup.gif" width="16" height="15" border="0" alt="Link" title="Link" /></a>';
 //
 //    return $input.$wizard;
@@ -123,11 +144,11 @@ class tx_flipit_userfunc
 //.message-warning
 //.message-error
 
-    $prompt = $prompt.'
+    $prompt = $prompt . '
 <div class="typo3-message message-notice">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorDetectionBug'). '
-  </div> 
+  </div>
 </div>';
 
     return $prompt;
@@ -159,28 +180,28 @@ class tx_flipit_userfunc
       case( 'linux' ):
       case( 'unix' ):
       case( 'windows' ):
-        $prompt = $prompt.'
+        $prompt = $prompt . '
 <div class="typo3-message message-ok">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
-  </div> 
+  </div>
 </div>';
         break;
       case( 'unsupported' ):
-        $prompt = $prompt.'
+        $prompt = $prompt . '
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSunsupported'). '
-  </div> 
+  </div>
 </div>';
         break;
       case( 'undefined' ):
       default:
-        $prompt = $prompt.'
+        $prompt = $prompt . '
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSundefined'). '
-  </div> 
+  </div>
 </div>';
         break;
     }
@@ -212,59 +233,105 @@ class tx_flipit_userfunc
     
     if( $arr_return['error']['status'] )
     {
-      $prompt = $prompt.'
+      $prompt = $prompt . '
 <div class="typo3-message message-error">
   <div class="message-body">
     ' . $arr_return['error']['prompt'] . '
-  </div> 
+  </div>
 </div>
 <div class="typo3-message message-warning">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsBugfix'). '
-  </div> 
+  </div>
 </div>';
       return $prompt;
     }
     
+    $exec   = $arr_return['data']['exec'];
+    $lines  = $arr_return['data']['lines'];
+    $result = implode( '<br />', $lines );
+    $result = htmlspecialchars( $result );
+    $result = str_replace( '&lt;br /&gt;', '<br />', $result );
+    
     switch( $this->swfTools )
     {
       case( 'installed' ):
-        $prompt = $prompt.'
+        $prompt = $prompt . '
 <div class="typo3-message message-ok">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '<br />
-    ' . $arr_return['data']['lines'][0] . '
-  </div> 
+    <br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordCommand'). ':<br />
+    ' . $exec . '<br />
+    <br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordResult'). ':<br />
+    ' . var_export( $result, true ) . '
+  </div>
 </div>';
         break;
       case( 'notInstalled' ):
       default:
-        $prompt = $prompt.'
+        $prompt = $prompt . '
 <div class="typo3-message message-warning">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '
-  </div> 
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '<br />
+    <br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordCommand'). ':<br />
+    ' . $exec . '<br />
+    <br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordResult'). ':<br />
+    ' . var_export( $result, true );
+
+// Search for pdf2swf.exe at partition C:
+//$exec = 'dir C:\\*pdf2swf.exe /s';
+//$arr_return = $this->zz_exec( $exec );
+//$lines      = implode( '<br />', $result );
+//$lines      = htmlspecialchars( $lines );
+//$lines      = str_replace( '&lt;br /&gt;', '<br />', $lines);
+//        $prompt = $prompt . '
+//    ' . $exec . '<br />
+//    ' . $lines . '<br />
+//    <br />';
+
+    $prompt = $prompt . '
+  </div>
 </div>';
         switch( $this->os )
         {
           case( 'linux'):
           case( 'unix'):
-            $prompt = $prompt.'
+            $prompt = $prompt . '
 <div class="typo3-message message-information">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools4Linux'). '
-  </div> 
+  </div>
 </div>';
             break;
           case( 'windows'):
-            $prompt = $prompt.'
+            $prompt = $prompt . '
 <div class="typo3-message message-information">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools4Windows'). '
-  </div> 
+  </div>
 </div>';
             break;
         }
+        break;
+    }
+
+    switch( $this->os )
+    {
+      case( 'linux'):
+      case( 'unix'):
+          // Nothing to prompt
+        break;
+      case( 'windows'):
+        $prompt = $prompt . '
+<div class="typo3-message message-information">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorWindowsConf'). '
+  </div>
+</div>';
         break;
     }
 
@@ -296,7 +363,7 @@ class tx_flipit_userfunc
     {
       case( $this->typo3Version < 4006000 ):
           // Smaller than 4.6
-        $prompt = $prompt.'
+        $prompt = $prompt . '
           <div class="typo3-message message-warning">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000smaller'). '
@@ -306,7 +373,7 @@ class tx_flipit_userfunc
         break;
       case( $this->typo3Version >= 4007000 ):
           // Greater than 4.6
-        $prompt = $prompt.'
+        $prompt = $prompt . '
           <div class="typo3-message message-warning">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000greater'). '
@@ -317,7 +384,7 @@ class tx_flipit_userfunc
       case( ( $this->typo3Version >= 4006000 ) && ( $this->typo3Version < 4007000 ) ):
       default:
           // Equal to 4.6
-        $prompt = $prompt.'
+        $prompt = $prompt . '
           <div class="typo3-message message-ok">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000equal'). '
@@ -354,7 +421,7 @@ class tx_flipit_userfunc
 
       $prompt = null;
 
-      $prompt = $prompt.'
+      $prompt = $prompt . '
 <div class="message-body">
   ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptExternalLinksBody') . '
 </div>';
@@ -365,7 +432,7 @@ class tx_flipit_userfunc
   
   
 /**
- * set_os( ): 
+ * set_os( ):
  *
  * @return  void
  * @version 0.0.2
@@ -412,39 +479,59 @@ class tx_flipit_userfunc
   
   
 /**
- * set_swfTools( ): 
+ * set_swfTools( ):
  *
  * @return  void
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.2
  */
   private function set_swfTools( )
   {
-      // RETURN  : $this->os was set before
+    $pathToSwfTools = null;
+    
+      // RETURN  : $this->swfTools was set before
     if( ! ( $this->swfTools === null ) )
     {
       return;
     }
-      // RETURN  : $this->os was set before
+      // RETURN  : $this->swfTools was set before
 
     $this->set_os( );
     
+      // Init extension configuration array
+    if( $this->arr_extConf === null )
+    {
+      $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
+    }
+      // Init extension configuration array
+    
+      // Get windows path to SWFTOOLS
+    $windowsPathToSwftools = $this->arr_extConf['windowsPathToSwftools'];
+    if( empty ( $windowsPathToSwftools ) )
+    {
+      $windowsPathToSwftools = 'C:\Program Files (x86)\SWFTools';
+    }
+      // Get windows path to SWFTOOLS
+
     switch( $this->os )
     {
       case( 'linux' ):
       case( 'unix' ):
+        $this->pathToSwfTools = $pathToSwfTools;
           // 130109, dwildt, 1-
         //$arr_return = $this->zz_exec( '/usr/local/bin/pdf2swf --version' );
-          // 130109, dwildt, 1+
-        $arr_return = $this->zz_exec( 'pdf2swf --version' );
+          // 130109, dwildt, 2+
+        $exec = 'pdf2swf --version';
+        $arr_return = $this->zz_exec( $exec );
         break;
       case( 'windows' ):
-          // 130109, dwildt, 3-
-//        $arr_return['error']['status'] = true;
-//        $arr_return['error']['prompt'] = 
-//          $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsWindowsError');
-          // 130109, dwildt, 1+
-        $arr_return = $this->zz_exec( 'pdf2swf --version' );
+        $path = $windowsPathToSwftools;
+        $path = str_replace('\\', '\\\\', $path );
+        $path = rtrim( $path, '\\' );
+        $pathToSwfTools = $path . '\\\\';
+        $this->pathToSwfTools = $pathToSwfTools;
+        $exec = '"' . $pathToSwfTools . 'pdf2swf.exe" --version';
+        $arr_return = $this->zz_exec( $exec );
         break;
       default:
         break;
@@ -471,7 +558,7 @@ class tx_flipit_userfunc
   
   
 /**
- * set_TYPO3Version( ): 
+ * set_TYPO3Version( ):
  *
  * @return  void
  * @version 0.0.1
@@ -494,7 +581,7 @@ class tx_flipit_userfunc
     $this->typo3Version = $version;
       // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
 
-    if( $this->typo3Version < 3000000 ) 
+    if( $this->typo3Version < 3000000 )
     {
       $prompt = '<h1>ERROR</h1>
         <h2>Unproper TYPO3 version</h2>
@@ -517,7 +604,7 @@ class tx_flipit_userfunc
   
   
 /**
- * set_allParams( ): 
+ * set_allParams( ):
  *
  * @return  void
  * @version 0.0.2
@@ -532,7 +619,7 @@ class tx_flipit_userfunc
   
   
 /**
- * zz_exec( ): 
+ * zz_exec( ):
  *
  * @return  array
  * @version 0.0.2
@@ -544,17 +631,18 @@ class tx_flipit_userfunc
     $lines      = null;
     
       // RETURN : function exec doesn't exist
-    if( ! ( function_exists('exec') ) )  
+    if( ! ( function_exists( 'exec' ) ) )  
     {
       $arr_return['error']['status'] = true;
-      $arr_return['error']['prompt'] = 
+      $arr_return['error']['prompt'] =
         $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpExecIsFalse');
       return $arr_return;
     }
       // RETURN : function exec doesn't exist
     
     exec( $exec, $lines);
-    $arr_return['data']['lines'] = $lines;
+    $arr_return['data']['exec']   = $exec;
+    $arr_return['data']['lines']  = $lines;
     
     return $arr_return;
   }
