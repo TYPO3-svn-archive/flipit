@@ -1443,13 +1443,25 @@ if ( ! ( $pos === false ) )
   echo '<pre>';
   var_dump( __METHOD__, __LINE__, $this->cObj->data );
   var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+
+  if( $this->cObj->data['tx_flipit_enabled'] )
+  {
+      // All is proper. Do nothing.
+    echo '</pre>';
+    return $arr_return;
+  }
+
   if( $GLOBALS['TSFE']->cObj->data['tx_flipit_enabled'] )
   {
     $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+    var_dump( __METHOD__, __LINE__, $this->cObj->data );
+    var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+    echo '</pre>';
+    return $arr_return;
   }
-  var_dump( __METHOD__, __LINE__, $this->cObj->data );
-  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-  echo '</pre>';
+
+  $arr_return['content']  = 'There is a propblem!';
+  $arr_return['return']   = true;
   return $arr_return;
 }
 
