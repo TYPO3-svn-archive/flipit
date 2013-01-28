@@ -151,7 +151,7 @@ if ( ! ( $pos === false ) )
       // IF return  : return with an error prompt
     
       // Get field, where media files are stored
-    $field  = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
+    $field  = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
       // Get table.field, where files are stored
 
       // RETURN : no media files
@@ -1284,7 +1284,7 @@ if ( ! ( $pos === false ) )
     $conf = $this->conf;
 
       // Get files from media
-    $field    = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
+    $field    = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
     $path     = $this->zz_getPath( $field );
@@ -1331,7 +1331,7 @@ if ( ! ( $pos === false ) )
     $arr_return['return'] = false;
 
       // Get first file from media
-    $field            = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
+    $field            = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
     $pathParts        = pathinfo( $firstFileWiPath );
@@ -2091,7 +2091,7 @@ if ( ! ( $pos === false ) )
     }
     
       // Get table.field, where files are stored
-    $field  = $conf['userFunc.']['constant_editor.']['database.']['fieldMedia'];
+    $field  = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
       // Get table.field, where files are stored
 
       // Get latest timestamp of files in given field
