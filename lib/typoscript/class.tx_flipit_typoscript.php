@@ -115,6 +115,14 @@ class tx_flipit_typoscript
   public function main( $content, $conf )
   {
 //var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
+// #44858 
+$pos = strpos( '91.23.185.49', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+if ( ! ( $pos === false ) )
+{
+  $this->pObj->dev_var_dump( $this->pObj->cObj->data );
+  $this->pObj->dev_var_dump( $GLOBALS['TSFE']->cObj->data );
+}
+    
     unset( $content );
     
       // Current TypoScript configuration
