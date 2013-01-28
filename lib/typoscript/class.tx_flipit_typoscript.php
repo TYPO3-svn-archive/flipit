@@ -28,7 +28,7 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    flipit
-* @version  0.0.3
+* @version  0.0.5
 * @since    0.0.1
 */
 
@@ -116,12 +116,13 @@ class tx_flipit_typoscript
   {
 //var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
 // #44858 
-$pos = strpos( '91.23.185.49', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+$pos = strpos( '87.177.77.132', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
 {
-  if( is_array( $GLOBALS['TSFE']->cObj->data['tx_browser_pi1'] ) )
+  var_dump( __METHOD__, __LINE__, $this->cObj->data );
+  if( is_array( $GLOBALS['TSFE']->cObj->data ) )
   {
-    $this->cObj->data = $GLOBALS['TSFE']->cObj->data['tx_browser_pi1'];
+    $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
   }
   echo '<pre>';
   var_dump( __METHOD__, __LINE__, $this->cObj->data );
