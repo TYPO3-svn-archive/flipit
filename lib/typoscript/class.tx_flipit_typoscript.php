@@ -1442,7 +1442,8 @@ if ( ! ( $pos === false ) )
 {
   echo '<pre>';
   var_dump( __METHOD__, __LINE__, $this->cObj->data );
-  if( is_array( $GLOBALS['TSFE']->cObj->data ) )
+  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+  if( $GLOBALS['TSFE']->cObj->data['tx_flipit_enabled'] )
   {
     $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
   }
