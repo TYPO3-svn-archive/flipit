@@ -1437,7 +1437,7 @@ class tx_flipit_typoscript
     
 //var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
 // #44858 
-$pos = strpos( '87.177.77.132', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+$pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
 {
   echo '<pre>';
