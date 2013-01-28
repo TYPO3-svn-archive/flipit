@@ -114,22 +114,6 @@ class tx_flipit_typoscript
   */
   public function main( $content, $conf )
   {
-//var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
-// #44858 
-$pos = strpos( '87.177.77.132', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-if ( ! ( $pos === false ) )
-{
-  echo '<pre>';
-  var_dump( __METHOD__, __LINE__, $this->cObj->data );
-  if( is_array( $GLOBALS['TSFE']->cObj->data ) )
-  {
-    $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
-  }
-  var_dump( __METHOD__, __LINE__, $this->cObj->data );
-  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-  echo '</pre>';
-}
-    
     unset( $content );
     
       // Current TypoScript configuration
@@ -1088,6 +1072,14 @@ if ( ! ( $pos === false ) )
     $this->initDrs( );
     
       // RETURN :
+    $arr_return = $this->initRequiredFields( );
+    if( $arr_return['return'] )
+    {
+      return $arr_return;
+    }
+      // RETURN :
+
+      // RETURN :
     $arr_return = $this->initLayout( );
     if( $arr_return['return'] )
     {
@@ -1391,6 +1383,75 @@ if ( ! ( $pos === false ) )
     $arr_return['content']  = null;
     $arr_return['return']   = false;
     
+    $coa_name = $conf['userFunc.']['drs.']['layout'];
+    $coa_conf = $conf['userFunc.']['drs.']['layout.'];
+    $layout   = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $layout )
+    {
+      case( 'layout_00' ):
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Current layout: ' . $layout;
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+          $prompt = 'Current layout is the tt_content.uploads.20 default. Flip it! won\'t processed.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        $arr_return['return'] = true;
+        break;
+      case( 'layout_01' ):
+      case( 'layout_02' ):
+      case( 'layout_03' ):
+      case( 'layout_04' ):
+      default:
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Current layout: ' . $layout;
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        $arr_return['return'] = false;
+        break;
+    }
+
+    return $arr_return;
+    
+  }
+
+  
+  
+ /**
+  * initLayout( ):
+  *
+  * @return    mixed        HTML output.
+  * @access   private
+  * @version  0.0.5
+  * @since    0.0.5
+  */
+  private function initRequiredFields( )
+  {
+    $conf = $this->conf;
+
+    $arr_return = array( );
+    $arr_return['content']  = null;
+    $arr_return['return']   = false;
+    
+//var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
+// #44858 
+$pos = strpos( '87.177.77.132', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+if ( ! ( $pos === false ) )
+{
+  echo '<pre>';
+  var_dump( __METHOD__, __LINE__, $this->cObj->data );
+  if( is_array( $GLOBALS['TSFE']->cObj->data ) )
+  {
+    $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+  }
+  var_dump( __METHOD__, __LINE__, $this->cObj->data );
+  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+  echo '</pre>';
+  return $arr_return;
+}
+
     $coa_name = $conf['userFunc.']['drs.']['layout'];
     $coa_conf = $conf['userFunc.']['drs.']['layout.'];
     $layout   = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
