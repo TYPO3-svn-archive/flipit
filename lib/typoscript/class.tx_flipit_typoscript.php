@@ -119,6 +119,10 @@ class tx_flipit_typoscript
 $pos = strpos( '91.23.185.49', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
 {
+  if( is_array( $GLOBALS['TSFE']->cObj->data['tx_browser_pi1'] ) )
+  {
+    $this->cObj->data = $GLOBALS['TSFE']->cObj->data['tx_browser_pi1'];
+  }
   echo '<pre>';
   var_dump( __METHOD__, __LINE__, $this->cObj->data );
   var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
