@@ -119,8 +119,10 @@ class tx_flipit_typoscript
 $pos = strpos( '91.23.185.49', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
 {
-  var_dump( $this->cObj->data );
-  var_dump( $GLOBALS['TSFE']->cObj->data );
+  echo '<pre>';
+  var_dump( __METHOD__, __LINE__, $this->cObj->data );
+  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+  echo '</pre>';
 }
     
     unset( $content );
