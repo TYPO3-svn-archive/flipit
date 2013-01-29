@@ -262,7 +262,15 @@ class tx_flipit_typoscript
     {
       return;
     }
-    $this->bakCObjData = $this->pObj->cObj->data;
+  // #44858 
+$pos = strpos( '87.177.65.251 ', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+if ( ! ( $pos === false ) )
+{
+  echo '<pre>';
+  var_dump( __METHOD__, __LINE__, 'Backup of cObj->data' );
+  echo '</pre>' . PHP_EOL;
+}
+    $this->bakCObjData = $this->cObj->data;
     $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
   }
   
@@ -280,7 +288,15 @@ class tx_flipit_typoscript
     {
       return;
     }
-    $this->pObj->cObj->data       = $this->bakCObjData;
+  // #44858 
+$pos = strpos( '87.177.65.251 ', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+if ( ! ( $pos === false ) )
+{
+  echo '<pre>';
+  var_dump( __METHOD__, __LINE__, 'Reset of cObj->data' );
+  echo '</pre>' . PHP_EOL;
+}
+    $this->cObj->data             = $this->bakCObjData;
     $GLOBALS['TSFE']->cObj->data  = $this->bakTsfeData;
   }
   
