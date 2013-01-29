@@ -590,6 +590,13 @@ class tx_flipit_typoscript
     $swfFiles = array( );
     
       // FOREACH  : file
+    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+    if ( ! ( $pos === false ) )
+    {
+      echo '<pre>';
+      var_dump( __METHOD__, __LINE__, $this->files );
+      echo '</pre>';
+    }
     foreach( $this->files['media'] as $fileWiPath )
     {
       $pathParts = pathinfo( $fileWiPath );
@@ -2417,7 +2424,7 @@ class tx_flipit_typoscript
       case( true ):
         if( $this->b_drs_flipit )
         {    
-          $prompt = 'latest ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
+          $prompt = 'latest ' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
         return $tstampLatest;
@@ -2426,7 +2433,7 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_flipit )
         {    
-          $prompt = 'first ' . $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
+          $prompt = 'first ' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
         return $tstampFirst;
