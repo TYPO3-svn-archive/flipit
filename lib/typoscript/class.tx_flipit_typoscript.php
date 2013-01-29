@@ -118,6 +118,7 @@ class tx_flipit_typoscript
   * @var array
   */
   private $arrRequiredFields = array(
+    'tstamp',
     'tx_flipit_enabled',
     'tx_flipit_fancybox',
     'tx_flipit_layout',
@@ -1688,7 +1689,7 @@ class tx_flipit_typoscript
         t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         break;
       default:
-        $prompt = 'FLIP it! configuration is taken from ' . $this->table . '.id ' . $this->cObj->data['uid'];
+        $prompt = 'FLIP it! configuration is taken from ' . $this->table . '.uid ' . $this->cObj->data['uid'];
         t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         break;
     }
