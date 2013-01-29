@@ -207,6 +207,7 @@ class tx_flipit_typoscript
   private function cObjDataAddFieldsWoTablePrefix(  )
   {
     $this->cObjDataBackup( );
+    $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
     
       // FOREACH  : cObj->data in TSFE
     foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
@@ -216,7 +217,7 @@ class tx_flipit_typoscript
       {
         continue;
       }
-      $this->cObj->data[$field] = $GLOBALS['TSFE']->cObj->data[$tableField];
+      $this->cObj->data[$field]       = $GLOBALS['TSFE']->cObj->data[$tableField];
     }
       // FOREACH  : cObj->data in TSFE
     
