@@ -13,22 +13,10 @@ plugin.tx_flipit {
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   configuration.externalLinks = Click me!
 
-  # cat=Flip it! - database/others/101;     type=string;   label= Table: Current table. Example: tt_content, tx_org_downloads
-  database.table = tt_content
+  # cat=Flip it! - database/others/101;     type=string;   label= Title field : Label of the field, which contains the title. Examples: header, tx_org_downloads.title
+  database.field.title = header
   # cat=Flip it! - database/others/102;     type=string;   label= Media field : Label of the field, which contains the files for converting to SWF / Flash. Examples: media, tx_org_downloads.documents
   database.field.media = media
-  # cat=Flip it! - database/others/103;     type=string;   label= tx_flipit_enabled: Label of the field, which enables Flip it! Example: tx_flipit_enabled, tx_org_downloads.tx_flipit_enabled
-  database.field.tx_flipit_enabled = tx_flipit_enabled
-  # cat=Flip it! - database/others/104;     type=string;   label= tx_flipit_fancybox: Label of the field, which enables the fancybox. Example: tx_flipit_fancybox, tx_org_downloads.tx_flipit_fancybox
-  database.field.tx_flipit_fancybox = tx_flipit_fancybox
-  # cat=Flip it! - database/others/105;     type=string;   label= tx_flipit_layout: Label of the field, which selects the layout. Example: tx_flipit_layout, tx_org_downloads.tx_flipit_layout
-  database.field.tx_flipit_layout = tx_flipit_layout
-  # cat=Flip it! - database/others/106;     type=string;   label= tx_flipit_swf_files: Label of the field, which contains the SWF files. Example: tx_flipit_swf_files, tx_org_downloads.tx_flipit_swf_files
-  database.field.tx_flipit_swf_files = tx_flipit_swf_files
-  # cat=Flip it! - database/others/107;     type=string;   label= tx_flipit_updateswfxml: Label of the field, which enables to update SWF files and the XML file. Example: tx_flipit_updateswfxml, tx_org_downloads.tx_flipit_updateswfxml
-  database.field.tx_flipit_updateswfxml = tx_flipit_updateswfxml
-  # cat=Flip it! - database/others/108;     type=string;   label= tx_flipit_xml_file: Label of the field, which contains the XML file. Example: tx_flipit_xml_file, tx_org_downloads.tx_flipit_xml_file
-  database.field.tx_flipit_xml_file = tx_flipit_xml_file
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   database.externalLinks = Click me!
 

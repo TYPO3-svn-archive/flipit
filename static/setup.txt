@@ -46,7 +46,7 @@ plugin.tx_flipit {
           if {
             value = disabled,enabled,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_enabled}
+              field = tx_flipit_enabled
             }
             negate = 1
           }
@@ -54,7 +54,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Error</h1>
               <p>
-                'field:tx_flipit_enabled' isn't any element of the list: disabled,enabled,ts<br />
+                '{field:tx_flipit_enabled}' isn't any element of the list: disabled,enabled,ts<br />
                 Maybe there is an unproper value in plugin.tx_flipit.configuration.enableFlipit.
               </p>
               <p>
@@ -66,7 +66,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Fehler</h1>
               <p>
-                'field:tx_flipit_enabled' ist kein Element der Liste: disabled,enabled,ts<br />
+                '{field:tx_flipit_enabled}' ist kein Element der Liste: disabled,enabled,ts<br />
                 Vielleicht hat plugin.tx_flipit.configuration.enableFlipit einen falschen Wert.
               </p>
               <p>
@@ -84,7 +84,7 @@ plugin.tx_flipit {
           if {
             value = disabled,enabled,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_enabled}
+              field = tx_flipit_enabled
             }
           }
             // disabled || enabled
@@ -93,10 +93,10 @@ plugin.tx_flipit {
             if {
               value = disabled,enabled
               isInList {
-                field = {$plugin.tx_flipit.database.field.tx_flipit_enabled}
+                field = tx_flipit_enabled
               }
             }
-            field = {$plugin.tx_flipit.database.field.tx_flipit_enabled}
+            field = tx_flipit_enabled
           }
             // ts
           20 = TEXT
@@ -104,7 +104,7 @@ plugin.tx_flipit {
             if {
               value = ts
               equals {
-                field = {$plugin.tx_flipit.database.field.tx_flipit_enabled}
+                field = tx_flipit_enabled
               }
             }
             value = {$plugin.tx_flipit.configuration.enableFlipit}
@@ -122,7 +122,7 @@ plugin.tx_flipit {
           if {
             value = enabled,disabled,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_fancybox}
+              field = tx_flipit_fancybox
             }
             negate = 1
           }
@@ -130,7 +130,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Error</h1>
               <p>
-                'field:tx_flipit_fancybox' isn't any element of the list: enabled,disabled,ts<br />
+                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts<br />
                 Maybe there is an unproper value in plugin.tx_flipit.configuration.enableFancybox.
               </p>
               <p>
@@ -142,7 +142,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Fehler</h1>
               <p>
-                'field:tx_flipit_fancybox' ist kein Element der Liste: enabled,disabled,ts<br />
+                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts<br />
                 Vielleicht hat plugin.tx_flipit.configuration.enableFancybox einen falschen Wert.
               </p>
               <p>
@@ -160,7 +160,7 @@ plugin.tx_flipit {
           if {
             value = enabled,disabled,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_fancybox}
+              field = tx_flipit_fancybox
             }
           }
             // disabled || enabled
@@ -169,10 +169,10 @@ plugin.tx_flipit {
             if {
               value = enabled,disabled
               isInList {
-                field = {$plugin.tx_flipit.database.field.tx_flipit_fancybox}
+                field = tx_flipit_fancybox
               }
             }
-            field = {$plugin.tx_flipit.database.field.tx_flipit_fancybox}
+            field = tx_flipit_fancybox
           }
             // ts
           20 = TEXT
@@ -180,7 +180,7 @@ plugin.tx_flipit {
             if {
               value = ts
               equals {
-                field = {$plugin.tx_flipit.database.field.tx_flipit_fancybox}
+                field = tx_flipit_fancybox
               }
             }
             value = {$plugin.tx_flipit.configuration.enableFancybox}
@@ -198,7 +198,7 @@ plugin.tx_flipit {
           if {
             value = layout_00,layout_01,layout_02,layout_03,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_layout}
+              field = tx_flipit_layout
             }
             negate = 1
           }
@@ -212,7 +212,7 @@ plugin.tx_flipit {
           if {
             value = layout_00,layout_01,layout_02,layout_03,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_layout}
+              field = tx_flipit_layout
             }
           }
             // layout_00,layout_01,layout_02,layout_03
@@ -221,10 +221,10 @@ plugin.tx_flipit {
             if {
               value = layout_00,layout_01,layout_02,layout_03
               isInList {
-                field = {$plugin.tx_flipit.database.field.tx_flipit_layout}
+                field = tx_flipit_layout
               }
             }
-            field = {$plugin.tx_flipit.database.field.tx_flipit_layout}
+            field = tx_flipit_layout
           }
             // ts
           20 = TEXT
@@ -232,7 +232,7 @@ plugin.tx_flipit {
             if {
               value = ts
               equals {
-                field = {$plugin.tx_flipit.database.field.tx_flipit_layout}
+                field = tx_flipit_layout
               }
             }
             value = {$plugin.tx_flipit.configuration.layout}
@@ -247,7 +247,7 @@ plugin.tx_flipit {
         if {
           value = disabled,enabled,ts
           isInList {
-            field = {$plugin.tx_flipit.database.field.tx_flipit_updateswfxml}
+            field = tx_flipit_updateswfxml
           }
         }
           // disabled || enabled
@@ -256,10 +256,10 @@ plugin.tx_flipit {
           if {
             value = disabled,enabled
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_updateswfxml}
+              field = tx_flipit_updateswfxml
             }
           }
-          field = {$plugin.tx_flipit.database.field.tx_flipit_updateswfxml}
+          field = tx_flipit_updateswfxml
         }
           // ts
         20 = TEXT
@@ -267,7 +267,7 @@ plugin.tx_flipit {
           if {
             value = ts
             equals {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_updateswfxml}
+              field = tx_flipit_updateswfxml
             }
           }
           value = {$plugin.tx_flipit.configuration.updateswfxml} 
@@ -277,8 +277,8 @@ plugin.tx_flipit {
       // Category database
     database = 
     database {
-        // Table : Current table. Example: tt_content, tx_org_downloads
-      table = {$plugin.tx_flipit.database.table} 
+        // Title field : Label of the field, which contains the title. Examples: header, tx_org_downloads.title
+      field.title = {$plugin.tx_flipit.database.field.title} 
         // Media field : Label of the field, which contains the files for converting to SWF / Flash
       field.media = {$plugin.tx_flipit.database.field.media} 
     }
@@ -458,7 +458,7 @@ plugin.tx_flipit {
           if {
             value = enabled,disabled,ts
             isInList {
-              field = {$plugin.tx_flipit.database.field.tx_flipit_fancybox}
+              field = tx_flipit_fancybox
             }
             negate = 1
           }
@@ -466,7 +466,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Error</h1>
               <p>
-                'field:tx_flipit_fancybox' isn't any element of the list: enabled,disabled,ts
+                '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
               </p>
               <p>
                 Flip it!
@@ -477,7 +477,7 @@ plugin.tx_flipit {
             <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
               <h1>TypoScript Fehler</h1>
               <p>
-                'field:tx_flipit_fancybox' ist kein Element der Liste: enabled,disabled,ts
+                '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
               </p>
               <p>
                 Flip it!
