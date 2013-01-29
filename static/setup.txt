@@ -44,6 +44,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_enabled is not in list of 'disabled,enabled,ts'
           if = 
           if {
+              // Be aware of the first comma!
             value = ,disabled,enabled,ts
             isInList {
               field = tx_flipit_enabled
@@ -82,6 +83,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_enabled is in list of 'disabled,enabled,ts'
           if = 
           if {
+              // Be aware of the first comma!
             value = ,disabled,enabled,ts
             isInList {
               field = tx_flipit_enabled
@@ -128,10 +130,11 @@ plugin.tx_flipit {
           // Error prompt, if enabled mode isn't an element of the list enabled,disabled,ts
         10 = TEXT
         10 {
-            // IF field:tx_flipit_fancybox is not in list of 'enabled,disabled,ts'
+            // IF field:tx_flipit_fancybox is not in list of ',enabled,disabled,ts'
           if = 
           if {
-            value = enabled,disabled,ts
+              // Be aware of the first comma!
+            value = ,disabled,enabled,ts
             isInList {
               field = tx_flipit_fancybox
             }
@@ -166,10 +169,11 @@ plugin.tx_flipit {
           // RETURNS disabled or enabled
         20 = COA
         20 {
-            // IF field:tx_flipit_fancybox is in list of 'enabled,disabled,ts'
+            // IF field:tx_flipit_fancybox is in list of ',enabled,disabled,ts'
           if = 
           if {
-            value = enabled,disabled,ts
+              // Be aware of the first comma!
+            value = ,disabled,enabled,ts
             isInList {
               field = tx_flipit_fancybox
             }
@@ -190,6 +194,17 @@ plugin.tx_flipit {
           20 {
             if {
               value = ts
+              equals {
+                field = tx_flipit_fancybox
+              }
+            }
+            value = {$plugin.tx_flipit.configuration.enableFancybox}
+          }
+            // null
+          30 = TEXT
+          30 {
+            if {
+              value = 
               equals {
                 field = tx_flipit_fancybox
               }
