@@ -1685,9 +1685,15 @@ if ( ! ( $pos === false ) )
           Field is missing
         </h2>
         <p>
-          $this->cObj->data doesn\'t contain the field ' . $requiredField. '<br />
+          $this->cObj->data doesn\'t contain the field "' . $requiredField. '"<br />
           This is an unexpected result.<br />
           Sorry for the trouble.
+        </p>
+        <p>
+          Required fields:<br />
+          <pre>
+            ' . var_dump( $this->arrRequiredFields, true ) . '
+          </pre>
         </p>
         <p>
           ' . __METHOD__ . ' (line ' . __LINE__ . ') 
