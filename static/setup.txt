@@ -44,7 +44,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_enabled is not in list of 'disabled,enabled,ts'
           if = 
           if {
-            value = disabled,enabled,ts
+            value = ,disabled,enabled,ts
             isInList {
               field = tx_flipit_enabled
             }
@@ -82,7 +82,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_enabled is in list of 'disabled,enabled,ts'
           if = 
           if {
-            value = disabled,enabled,ts
+            value = ,disabled,enabled,ts
             isInList {
               field = tx_flipit_enabled
             }
@@ -108,6 +108,17 @@ plugin.tx_flipit {
               }
             }
             value = {$plugin.tx_flipit.configuration.enableFlipit}
+          }
+            // null
+          30 = TEXT
+          30 {
+            if {
+              value = 
+              equals {
+                field = tx_flipit_enabled
+              }
+            }
+            value = ts
           }
         }
       }
