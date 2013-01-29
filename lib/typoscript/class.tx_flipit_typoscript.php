@@ -1170,7 +1170,7 @@ if ( ! ( $pos === false ) )
   * @version 0.0.1
   * @since 0.0.1
   */
-  private function init( )
+  private function  init( )
   {
       //  #44896, 130129, dwildt, 1-
 //    $conf = $this->conf;
@@ -1390,7 +1390,7 @@ if ( ! ( $pos === false ) )
     $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
 echo '<pre>';
-var_dump( __METHOD__, __LINE__, $this->table, $this->fieldLabelForMedia, $this->fieldLabelForTitle, $this->fieldLabelForTstamp );
+var_dump( __METHOD__, __LINE__, $this->fieldLabelForMedia, $this->fieldLabelForTitle );
 echo '</pre>';
   }
   
@@ -1406,7 +1406,8 @@ echo '</pre>';
   private function initFiles( )
   {
       // Get files from media
-    $csvFiles = $this->cObj->data[$this->fieldLabelForMedia];
+    $field    = $this->fieldLabelForMedia;
+    $csvFiles = $this->cObj->data[$field];
     $files    = explode( ',', $csvFiles );
     $path     = $this->zz_getPath( $field );
       // Set global var $files
