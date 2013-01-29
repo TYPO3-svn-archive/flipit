@@ -1223,9 +1223,6 @@ if ( ! ( $pos === false ) )
     }
       // DRS
 
-      // Init field labels
-    $this->initFieldLabels( );
-    
       // Init file lists
     $this->initFiles( );
     
@@ -1645,6 +1642,9 @@ echo '</pre>';
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
+    
+      // Init field labels
+    $this->initFieldLabels( );
     
       // Add to the global $arrRequiredFields the title field
     $this->arrRequiredFields[] = $this->fieldLabelForTitle;
