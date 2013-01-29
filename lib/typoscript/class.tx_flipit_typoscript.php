@@ -1451,7 +1451,7 @@ if ( ! ( $pos === false ) )
     $field            = $this->fieldLabelForMedia;
     $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
-var_dump( __METHOD__, __LINE__, $this->files, $GLOBALS['TSFE']->register );
+//var_dump( __METHOD__, __LINE__, $this->files, $GLOBALS['TSFE']->register );
     
       // RETURN : There isn't any file
     if( empty( $firstFileWiPath ) )
