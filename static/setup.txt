@@ -118,7 +118,7 @@ plugin.tx_flipit {
                 field = tx_flipit_enabled
               }
             }
-            value = ts
+            value = {$plugin.tx_flipit.configuration.enableFlipit}
           }
         }
       }
