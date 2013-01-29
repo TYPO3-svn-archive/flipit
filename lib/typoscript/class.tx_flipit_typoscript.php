@@ -1451,7 +1451,8 @@ echo '</pre>';
     $arr_return['return'] = false;
 
       // Get first file from media
-    $firstkey         = key( ( array ) $this->files[$this->fieldLabelForMedia] );
+    $field            = $this->fieldLabelForMedia;
+    $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
     $pathParts        = pathinfo( $firstFileWiPath );
     $firstFile        = $pathParts['basename'];
