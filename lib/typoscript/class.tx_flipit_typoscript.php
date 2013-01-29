@@ -1667,7 +1667,7 @@ if ( ! ( $pos === false ) )
     $this->arrRequiredFields[] = $this->fieldLabelForTitle;
       // Add to the global $arrRequiredFields the media field
     $this->arrRequiredFields[] = $this->fieldLabelForMedia;
-    array_unique( $this->arrRequiredFields );
+    $this->arrRequiredFields = array_unique( $this->arrRequiredFields );
       // Add to the global $arrRequiredFields the media field
       
       // FOREACH : required field
