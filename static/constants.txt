@@ -15,7 +15,7 @@ plugin.tx_flipit {
 
   # cat=Flip it! - database/others/101;     type=string;   label= Table: Current table. Example: tt_content, tx_org_downloads
   database.table = tt_content
-  # cat=Flip it! - database/others/102;     type=string;   label= Media field : Label of the field, which contains the files for converting to SWF / Flash
+  # cat=Flip it! - database/others/102;     type=string;   label= Media field : Label of the field, which contains the files for converting to SWF / Flash. Examples: media, tx_org_downloads.documents
   database.field.media = media
   # cat=Flip it! - database/others/103;     type=string;   label= tx_flipit_enabled: Label of the field, which enables Flip it! Example: tx_flipit_enabled, tx_org_downloads.tx_flipit_enabled
   database.field.tx_flipit_enabled = tx_flipit_enabled
