@@ -1181,6 +1181,9 @@ if ( ! ( $pos === false ) )
       // Init the DRS
     $this->initDrs( );
     
+      // Init field labels
+    $this->initFieldLabels( );
+    
       // RETURN :
     $arr_return = $this->initRequiredFields( );
     if( $arr_return['return'] )
@@ -1386,7 +1389,6 @@ if ( ! ( $pos === false ) )
     $conf = $this->conf;
     $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
-    $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
 echo '<pre>';
 var_dump( __METHOD__, __LINE__, $this->table, $this->fieldLabelForMedia, $this->fieldLabelForTitle, $this->fieldLabelForTstamp );
 echo '</pre>';
@@ -1559,6 +1561,7 @@ echo '</pre>';
       // RETURN : fields are initialised by cObj->data
     if( $this->initRequiredFieldsByCObj( ) )
     {
+      $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
         // Default case: tt_content table is used.
       $arr_return = $this->initRequiredFieldsCheck( );
       return $arr_return;
@@ -1568,6 +1571,7 @@ echo '</pre>';
       // RETURN : fields are initialised by cObj->data of TSFE
     if( $this->initRequiredFieldsByTsfe( ) )
     {
+      $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
         // txfliptit_typoscript is called by an extension
       $this->cObjDataAddFieldsWoTablePrefix( );
       $arr_return = $this->initRequiredFieldsCheck( );
@@ -1642,9 +1646,6 @@ echo '</pre>';
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
-    
-      // Init field labels
-    $this->initFieldLabels( );
     
       // Add to the global $arrRequiredFields the title field
     $this->arrRequiredFields[] = $this->fieldLabelForTitle;
