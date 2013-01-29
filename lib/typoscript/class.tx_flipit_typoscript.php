@@ -2310,6 +2310,8 @@ class tx_flipit_typoscript
       {
         $prompt = '$GLOBALS[TCA][' . $this->table . '][columns][' . $field . '][config][uploadfolder] is empty! ';
         t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
+        $prompt = $uploadFolder;
+        t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
       }
     }
       // DRS
