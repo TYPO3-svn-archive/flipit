@@ -1193,7 +1193,8 @@ class tx_flipit_typoscript
   */
   private function init( )
   {
-    $conf = $this->conf;
+      //  #44896, 130129, dwildt, 1-
+//    $conf = $this->conf;
     
       // Init extension configuration array
     $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
@@ -1331,6 +1332,10 @@ class tx_flipit_typoscript
     $this->b_drs_todo   = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+echo '<pre>';
+var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+var_dump( __METHOD__, __LINE__, $this->cObj->data );
+echo '</pre>';
     $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
