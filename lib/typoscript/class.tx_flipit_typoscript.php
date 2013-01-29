@@ -1451,7 +1451,21 @@ if ( ! ( $pos === false ) )
     $field            = $this->fieldLabelForMedia;
     $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
-var_dump( __METHOD__, __LINE__, $firstFileWiPath );
+    
+      // RETURN : There isn't any file
+    if( empty( $firstFileWiPath ) )
+    {
+      if( $this->b_drs_init )
+      {
+        $prompt = 'There isn\'t any file. Flip it! won\'t run. This is OK.';
+        t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+      }
+      $arr_return['return']   = true;
+      $arr_return['content']  = null;
+      return $arr_return;    
+    }
+      // RETURN : There isn't any file
+
     $pathParts        = pathinfo( $firstFileWiPath );
     $firstFile        = $pathParts['basename'];
       // Get first file from media
@@ -1469,16 +1483,6 @@ var_dump( __METHOD__, __LINE__, $firstFileWiPath );
           t3lib_div::devlog( '[OK/INIT] ' . $prompt, $this->extKey, -1 );
         }
         $arr_return['return'] = false;
-        break;
-      case( $currentFile == '.' ):
-        if( $this->b_drs_init )
-        {
-          $prompt = 'The current file is a dot. This is a defined bug. It should be fixed. ' . 
-                    'Flip it! won\'t run. This is OK.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-        }
-        $arr_return['return']   = true;
-        $arr_return['content']  = null;
         break;
       case( $firstFile != $currentFile ):
       default:
