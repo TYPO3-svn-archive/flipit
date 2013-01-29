@@ -222,7 +222,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_layout is not in list of 'layout_00,layout_01,layout_02,layout_03,ts'
           if = 
           if {
-            value = layout_00,layout_01,layout_02,layout_03,ts
+            value = ,layout_00,layout_01,layout_02,layout_03,ts
             isInList {
               field = tx_flipit_layout
             }
@@ -236,7 +236,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_layout is in list of 'layout_00,layout_01,layout_02,layout_03,ts'
           if = 
           if {
-            value = layout_00,layout_01,layout_02,layout_03,ts
+            value = ,layout_00,layout_01,layout_02,layout_03,ts
             isInList {
               field = tx_flipit_layout
             }
@@ -257,6 +257,17 @@ plugin.tx_flipit {
           20 {
             if {
               value = ts
+              equals {
+                field = tx_flipit_layout
+              }
+            }
+            value = {$plugin.tx_flipit.configuration.layout}
+          }
+            // null
+          30 = TEXT
+          30 {
+            if {
+              value = 
               equals {
                 field = tx_flipit_layout
               }
@@ -701,7 +712,7 @@ plugin.tx_flipit {
           <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
             <h1>TypoScript Error</h1>
             <p>
-              'field:tx_flipit_layout' isn't any element of the list: layout_00,layout_01,layout_02,layout_03,ts<br />
+              '{field:tx_flipit_layout}' isn't any element of the list: layout_00,layout_01,layout_02,layout_03,ts<br />
               Maybe there is an unproper value in plugin.tx_flipit.configuration.layout
             </p>
             <p>
@@ -713,7 +724,7 @@ plugin.tx_flipit {
           <div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">
             <h1>TypoScript Fehler</h1>
             <p>
-              'field:tx_flipit_layout' ist kein Element der Liste: layout_00,layout_01,layout_02,layout_03,ts<br />
+              '{field:tx_flipit_layout}' ist kein Element der Liste: layout_00,layout_01,layout_02,layout_03,ts<br />
               Vielleicht hat plugin.tx_flipit.configuration.layout einen falschen Wert.
             </p>
             <p>
