@@ -2216,6 +2216,33 @@ class tx_flipit_typoscript
       // RETURN : lines
     return $lines;
   }
+  
+  
+ /**
+  * zzFieldWoTable( ):
+  *
+  * @return    
+  * @access   private
+  * @version  1.0.0
+  * @since    1.0.0
+  */
+  private function zzFieldWoTable( $tableField )
+  {
+    switch( $this->table )
+    {
+      case( 'tt_content' ):
+          // Field is without table by default.
+        $field = $tableField;
+        break;
+      default:
+          // table.field syntax
+        list( $table, $field ) = explode( '.', $tableField );
+        unset( $table );
+        break;
+    }
+
+    return $field;
+  }
 
   
   
@@ -2266,8 +2293,10 @@ class tx_flipit_typoscript
   * @version  0.0.3
   * @since    0.0.3
   */
-  private function zz_getPath( $field)
+  private function zz_getPath( $field )
   {
+    $field = $this->zzFieldWoTable( $field );
+    
       // Get path
     $this->zz_TCAload( $this->table );
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
@@ -2284,12 +2313,6 @@ class tx_flipit_typoscript
       }
     }
       // DRS
-
-    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-    if ( ! ( $pos === false ) )
-    {
-      var_dump( __METHOD__, __LINE__, $this->table, $field,$GLOBALS['TCA'][$this->table]['columns'][$field]['config'] );
-    }
 
     return $path;
   }
