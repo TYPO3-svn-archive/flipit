@@ -1390,6 +1390,9 @@ if ( ! ( $pos === false ) )
     $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
     $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
+echo '<pre>';
+var_dump( __METHOD__, __LINE__, $this->table, $this->fieldLabelForMedia, $this->fieldLabelForTitle, $this->fieldLabelForTstamp );
+echo '</pre>';
   }
   
   
