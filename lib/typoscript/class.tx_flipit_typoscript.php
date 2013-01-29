@@ -1210,14 +1210,6 @@ class tx_flipit_typoscript
     }
       // RETURN :
 
-      // DRS
-    if( $this->b_drs_flipit )
-    {    
-      $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
-      t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
-    }
-      // DRS
-
       // RETURN :
     $arr_return = $this->initLayout( );
     if( $arr_return['return'] )
@@ -1637,6 +1629,13 @@ class tx_flipit_typoscript
     if( $this->cObj->data['tx_flipit_enabled'] )
     {
       $this->initTable( 'tt_content' );
+        // DRS
+      if( $this->b_drs_flipit )
+      {    
+        $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
+        t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+      }
+        // DRS
       return true;
     }
     
@@ -1728,6 +1727,13 @@ class tx_flipit_typoscript
         continue;
       }
       $this->initTable( $table );
+        // DRS
+      if( $this->b_drs_flipit )
+      {    
+        $prompt = $table . '.id ' . $this->cObj->data['uid'];
+        t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+      }
+        // DRS
       return true;
     }
       // FOREACH  : cObj->data in TSFE
