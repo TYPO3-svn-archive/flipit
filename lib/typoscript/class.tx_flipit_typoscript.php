@@ -590,13 +590,6 @@ class tx_flipit_typoscript
     $swfFiles = array( );
     
       // FOREACH  : file
-    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-    if ( ! ( $pos === false ) )
-    {
-      echo '<pre>';
-      var_dump( __METHOD__, __LINE__, $this->files );
-      echo '</pre>';
-    }
     foreach( $this->files['media'] as $fileWiPath )
     {
       $pathParts = pathinfo( $fileWiPath );
@@ -730,6 +723,13 @@ class tx_flipit_typoscript
   */
   private function updateSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
   {
+$pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+if ( ! ( $pos === false ) )
+{
+  echo '<pre>';
+  var_dump( __METHOD__, __LINE__, $this->files );
+  echo '</pre>';
+}
     $arrReturn = null;
     
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
