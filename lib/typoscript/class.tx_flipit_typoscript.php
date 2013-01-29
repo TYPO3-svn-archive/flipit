@@ -206,8 +206,24 @@ class tx_flipit_typoscript
  */
   private function cObjDataAddFieldsWoTablePrefix(  )
   {
+    $conf = $this->conf;
+
     $this->cObjDataBackup( );
     $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+
+      // Add to the global $arrRequiredFields the title field
+    $title = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
+    $this->cObj->data['header'] = $GLOBALS['TSFE']->cObj->data[$title];
+    if( $this->b_drs_warn )
+    {
+      if( empty( $GLOBALS['TSFE']->cObj->data[$title] ) )
+      {
+        $prompt = 'Title is empty.';
+        t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
+        $prompt = 'Value of the title field in the Constant Editor is ' . $title . '. Is this proper?';
+        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 1 );
+      }
+    }
     
       // FOREACH  : cObj->data in TSFE
     foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
@@ -1637,6 +1653,9 @@ class tx_flipit_typoscript
     $arr_return['content']  = null;
     $arr_return['return']   = false;
     
+      // Add to the global $arrRequiredFields the title field
+    $title = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
+    $this->arrRequiredFields[] = $title;
       // Add to the global $arrRequiredFields the media field
     $media = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $this->arrRequiredFields[] = $media;
