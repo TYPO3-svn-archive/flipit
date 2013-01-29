@@ -166,9 +166,7 @@ class tx_flipit_typoscript
     
 
       // RETURN : no media files
-      // Get field, where media files are stored
-    $field  = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-    if( empty ( $this->cObj->data[$field] ) )
+    if( empty ( $this->cObj->data[$this->fieldLabelForMedia] ) )
     {
       if( $this->b_drs_flipit )
       {    
@@ -207,21 +205,18 @@ class tx_flipit_typoscript
  */
   private function cObjDataAddFieldsWoTablePrefix(  )
   {
-    $conf = $this->conf;
-
     $this->cObjDataBackup( );
     $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
 
       // Add to the global $arrRequiredFields the title field
-    $title = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
-    $this->cObj->data['header'] = $GLOBALS['TSFE']->cObj->data[$title];
+    $this->cObj->data['header'] = $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle];
     if( $this->b_drs_warn )
     {
-      if( empty( $GLOBALS['TSFE']->cObj->data[$title] ) )
+      if( empty( $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle] ) )
       {
         $prompt = 'Title is empty.';
         t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
-        $prompt = 'Value of the title field in the Constant Editor is ' . $title . '. Is this proper?';
+        $prompt = 'Value of the title field in the Constant Editor is ' . $this->fieldLabelForTitle . '. Is this proper?';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 1 );
       }
     }
@@ -503,7 +498,6 @@ class tx_flipit_typoscript
   {
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
-    $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
     
     $arrExec      = array( );
 
@@ -543,8 +537,8 @@ class tx_flipit_typoscript
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $fieldTstamp  => $this->tstamp,
-      $fieldFiles   => null
+      $this->fieldLabelForTstamp  => $this->tstamp,
+      $fieldFiles                 => null
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
@@ -557,8 +551,8 @@ class tx_flipit_typoscript
       // Update database
 
       // Update cObj->data
-    $this->cObj->data[$fieldTstamp] = $this->tstamp;
-    $this->cObj->data[$fieldFiles]  = null;
+    $this->cObj->data[$this->fieldLabelForTstamp] = $this->tstamp;
+    $this->cObj->data[$fieldFiles]                = null;
 
     return;
   }
@@ -577,7 +571,6 @@ class tx_flipit_typoscript
   {
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
-    $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
 
       // filesCounter is needed for unique filenames
     $filesCounter = 0;
@@ -590,7 +583,7 @@ class tx_flipit_typoscript
     $swfFiles = array( );
     
       // FOREACH  : file
-    foreach( $this->files['media'] as $fileWiPath )
+    foreach( $this->files[$this->fieldLabelForMedia] as $fileWiPath )
     {
       $pathParts = pathinfo( $fileWiPath );
       switch( $pathParts['extension'] )
@@ -655,8 +648,8 @@ class tx_flipit_typoscript
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $fieldTstamp  => $this->tstamp,
-      $fieldFiles   => implode( ',', $swfFiles )
+      $this->fieldLabelForTstamp  => $this->tstamp,
+      $fieldFiles                 => implode( ',', $swfFiles )
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
@@ -670,8 +663,8 @@ class tx_flipit_typoscript
       // Update database
     
       // Update cObj->data
-    $this->cObj->data[$fieldTstamp] = $this->tstamp;
-    $this->cObj->data[$fieldFiles]  = implode( ',', $swfFiles );
+    $this->cObj->data[$this->fieldLabelForTstamp] = $this->tstamp;
+    $this->cObj->data[$fieldFiles]                = implode( ',', $swfFiles );
 
     // Reset tstamp for swf files
     $this->tstampSwf = null;
@@ -1003,7 +996,6 @@ if ( ! ( $pos === false ) )
   {
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_xml_file';
-    $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
 
       // Get content parameters
     $contentParams = $this->updateXmlFileRenderItParams( );
@@ -1031,8 +1023,8 @@ if ( ! ( $pos === false ) )
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
-      $fieldTstamp  => $this->tstamp,
-      $fieldFiles   => $xmlFile
+      $this->fieldLabelForTstamp  => $this->tstamp,
+      $fieldFiles                 => $xmlFile
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
@@ -1045,8 +1037,8 @@ if ( ! ( $pos === false ) )
       // Update database
 
       // Update cObj->data
-    $this->cObj->data[$fieldTstamp] = $this->tstamp;
-    $this->cObj->data[$fieldFiles]  = $xmlFile;
+    $this->cObj->data[$this->fieldLabelForTstamp] = $this->tstamp;
+    $this->cObj->data[$fieldFiles]                = $xmlFile;
 
     return;
   }
@@ -1231,6 +1223,9 @@ if ( ! ( $pos === false ) )
     }
       // DRS
 
+      // Init field labels
+    $this->initFieldLabels( );
+    
       // Init file lists
     $this->initFiles( );
     
@@ -1382,6 +1377,23 @@ if ( ! ( $pos === false ) )
   
   
  /**
+  * initFieldLables( ):
+  *
+  * @return    
+  * @access   private
+  * @version  0.0.3
+  * @since    0.0.3
+  */
+  private function initFieldLabels( )
+  {
+    $conf = $this->conf;
+    $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
+    $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
+    $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
+  }
+  
+  
+ /**
   * initFiles( ):
   *
   * @return    
@@ -1391,11 +1403,8 @@ if ( ! ( $pos === false ) )
   */
   private function initFiles( )
   {
-    $conf = $this->conf;
-
       // Get files from media
-    $field    = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-    $csvFiles = $this->cObj->data[$field];
+    $csvFiles = $this->cObj->data[$this->fieldLabelForMedia];
     $files    = explode( ',', $csvFiles );
     $path     = $this->zz_getPath( $field );
       // Set global var $files
@@ -1435,14 +1444,11 @@ if ( ! ( $pos === false ) )
   */
   private function initIfFirstFileOnly( )
   {
-    $conf = $this->conf;
-
     $arr_return = array( );
     $arr_return['return'] = false;
 
       // Get first file from media
-    $field            = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-    $firstkey         = key( ( array ) $this->files[$field] );
+    $firstkey         = key( ( array ) $this->files[$this->fieldLabelForMedia] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
     $pathParts        = pathinfo( $firstFileWiPath );
     $firstFile        = $pathParts['basename'];
@@ -1633,18 +1639,14 @@ if ( ! ( $pos === false ) )
   */
   private function initRequiredFieldsCheck( )
   {
-    $conf = $this->conf;
-
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
     
       // Add to the global $arrRequiredFields the title field
-    $title = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
-    $this->arrRequiredFields[] = $title;
+    $this->arrRequiredFields[] = $this->fieldLabelForTitle;
       // Add to the global $arrRequiredFields the media field
-    $media = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-    $this->arrRequiredFields[] = $media;
+    $this->arrRequiredFields[] = $this->fieldLabelForMedia;
     array_unique( $this->arrRequiredFields );
       // Add to the global $arrRequiredFields the media field
       
@@ -2453,20 +2455,14 @@ if ( ! ( $pos === false ) )
   */
   private function zz_tstampMedia( )
   {
-    $conf = $this->conf;
-    
     if( ! ( $this->tstampMedia === null ) )
     {
       return;
     }
     
-      // Get table.field, where files are stored
-    $field  = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-      // Get table.field, where files are stored
-
       // Get latest timestamp of files in given field
     $latest = true;
-    $this->tstampMedia = $this->zz_tstampLatest( $field, $latest );
+    $this->tstampMedia = $this->zz_tstampLatest( $this->fieldLabelForMedia, $latest );
   }
 
   
@@ -2489,17 +2485,12 @@ if ( ! ( $pos === false ) )
       return;
     }
     
-      // Get table.field, where tmstamp is stored
-//    $field  = $conf['userFunc.']['configuration.']['tables.'][$table . '.']['tstamp'];
-    $field  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];   
-      // Get table.field, where files are stored
-
       // Get timestamp of current record
-    $this->tstampRecord = $this->cObj->data[$field];
+    $this->tstampRecord = $this->cObj->data[$this->fieldLabelForTstamp];
 
     if( $this->b_drs_flipit )
     {    
-      $prompt = $this->table . '.' . $field . ': ' . date ( 'Y-m-d H:i:s.', $this->tstampRecord );
+      $prompt = $this->fieldLabelForTstamp . ': ' . date ( 'Y-m-d H:i:s.', $this->tstampRecord );
       t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
     }
     
