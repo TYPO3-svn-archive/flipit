@@ -1451,6 +1451,7 @@ if ( ! ( $pos === false ) )
     $field            = $this->fieldLabelForMedia;
     $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
+var_dump( __METHOD__, __LINE__, $firstFileWiPath );
     $pathParts        = pathinfo( $firstFileWiPath );
     $firstFile        = $pathParts['basename'];
       // Get first file from media
