@@ -1646,7 +1646,7 @@ class tx_flipit_typoscript
       // FOREACH : required field
     foreach( $this->arrRequiredFields as $requiredField )
     {
-      if( isset( $this->cObj->data[$requiredField] ) )
+      if( in_array( $this->cObj->data[$requiredField] ) )
       {
         continue;
       }
@@ -1658,7 +1658,7 @@ class tx_flipit_typoscript
           Field is missing
         </h2>
         <p>
-          $this->cObj->data doen\'t contain the field ' . $requiredField. '<br />
+          $this->cObj->data doesn\'t contain the field ' . $requiredField. '<br />
           This is an unexpected result.<br />
           Sorry for the trouble.
         </p>
