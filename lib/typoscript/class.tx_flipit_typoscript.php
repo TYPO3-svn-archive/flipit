@@ -1709,7 +1709,7 @@ class tx_flipit_typoscript
         t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         break;
       default:
-        $prompt = $table . '.id ' . $this->cObj->data['uid'];
+        $prompt = $this->table . '.id ' . $this->cObj->data['uid'];
         t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         break;
     }
