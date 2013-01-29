@@ -2228,21 +2228,17 @@ class tx_flipit_typoscript
   */
   private function zzFieldWoTable( $tableField )
   {
-    switch( $this->table )
+    list( $table, $field ) = explode( '.', $tableField );
+    
+    if( $field )
     {
-      case( 'tt_content' ):
-          // Field is without table by default.
-        $field = $tableField;
-        break;
-      default:
-          // table.field syntax
-        list( $table, $field ) = explode( '.', $tableField );
-var_dump( __METHOD__, __LINE__, $tableField, $table, $field );
-        unset( $table );
-        break;
+      return $field;
     }
-
-    return $field;
+    else
+    {
+      return $table;
+    }
+      
   }
 
   
