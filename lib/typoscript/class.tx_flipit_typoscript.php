@@ -2237,6 +2237,7 @@ class tx_flipit_typoscript
       default:
           // table.field syntax
         list( $table, $field ) = explode( '.', $tableField );
+var_dump( __METHOD__, __LINE__, $tableField, $table, $field );
         unset( $table );
         break;
     }
