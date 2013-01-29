@@ -222,6 +222,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_layout is not in list of 'layout_00,layout_01,layout_02,layout_03,ts'
           if = 
           if {
+              // Be aware of the first comma!
             value = ,layout_00,layout_01,layout_02,layout_03,ts
             isInList {
               field = tx_flipit_layout
@@ -236,6 +237,7 @@ plugin.tx_flipit {
             // IF field:tx_flipit_layout is in list of 'layout_00,layout_01,layout_02,layout_03,ts'
           if = 
           if {
+              // Be aware of the first comma!
             value = ,layout_00,layout_01,layout_02,layout_03,ts
             isInList {
               field = tx_flipit_layout
@@ -252,23 +254,13 @@ plugin.tx_flipit {
             }
             field = tx_flipit_layout
           }
-            // ts
+            // null, ts
           20 = TEXT
           20 {
             if {
-              value = ts
-              equals {
-                field = tx_flipit_layout
-              }
-            }
-            value = {$plugin.tx_flipit.configuration.layout}
-          }
-            // null
-          30 = TEXT
-          30 {
-            if {
-              value = 
-              equals {
+              // Be aware of the first comma!
+              value = ,ts
+              isInList {
                 field = tx_flipit_layout
               }
             }
