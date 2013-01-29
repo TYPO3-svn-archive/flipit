@@ -217,7 +217,7 @@ class tx_flipit_typoscript
       {
         continue;
       }
-      $this->cObj->data[$field]       = $GLOBALS['TSFE']->cObj->data[$tableField];
+      $this->cObj->data[$field] = $GLOBALS['TSFE']->cObj->data[$tableField];
     }
       // FOREACH  : cObj->data in TSFE
     
@@ -1646,7 +1646,7 @@ class tx_flipit_typoscript
       // FOREACH : required field
     foreach( $this->arrRequiredFields as $requiredField )
     {
-      if( in_array( $this->cObj->data[$requiredField] ) )
+      if( in_array( $requiredField, $this->cObj->data ) )
       {
         continue;
       }
