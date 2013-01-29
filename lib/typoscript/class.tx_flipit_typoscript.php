@@ -1389,9 +1389,6 @@ if ( ! ( $pos === false ) )
     $conf = $this->conf;
     $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
-echo '<pre>';
-var_dump( __METHOD__, __LINE__, $this->fieldLabelForMedia, $this->fieldLabelForTitle );
-echo '</pre>';
   }
   
   
@@ -1468,15 +1465,26 @@ echo '</pre>';
         if( $this->b_drs_init )
         {
           $prompt = 'The current file is the first file. Flip it! will run.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, -1 );
+          t3lib_div::devlog( '[OK/INIT] ' . $prompt, $this->extKey, -1 );
         }
         $arr_return['return'] = false;
+        break;
+      case( $currentFile == '.' ):
+        if( $this->b_drs_init )
+        {
+          $prompt = 'The current file is a dot. This is a defined bug. It should be fixed. ' . 
+                    'Flip it! won\'t run. This is OK.';
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        $arr_return['return']   = true;
+        $arr_return['content']  = null;
         break;
       case( $firstFile != $currentFile ):
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. Flip it! won\'t run. This is OK.';
+          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. ' . 
+                    'Flip it! won\'t run. This is OK.';
           t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
         }
         $arr_return['return']   = true;
