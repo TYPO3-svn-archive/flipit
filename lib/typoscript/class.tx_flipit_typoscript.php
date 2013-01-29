@@ -1664,9 +1664,15 @@ if ( ! ( $pos === false ) )
     $arr_return['return']   = false;
     
       // Add to the global $arrRequiredFields the title field
-    $this->arrRequiredFields[] = $this->fieldLabelForTitle;
+    if( $this->fieldLabelForTitle )
+    {
+      $this->arrRequiredFields[] = $this->fieldLabelForTitle;
+    }
       // Add to the global $arrRequiredFields the media field
-    $this->arrRequiredFields[] = $this->fieldLabelForMedia;
+    if( $this->fieldLabelForMedia )
+    {
+      $this->arrRequiredFields[] = $this->fieldLabelForMedia;
+    }
     $this->arrRequiredFields = array_unique( $this->arrRequiredFields );
       // Add to the global $arrRequiredFields the media field
       
