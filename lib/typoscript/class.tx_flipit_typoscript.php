@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
+*  (c) 2012-2013 - Dirk Wildt <http://wildt.at.die-netzmacher.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,7 +28,7 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    flipit
-* @version  0.0.5
+* @version  1.0.0
 * @since    0.0.1
 */
 
@@ -96,9 +96,37 @@ class tx_flipit_typoscript
   *
   * @var integer
   */
-
   private $tstamp;
   
+ /**
+  * Backup of cObj->data
+  *
+  * @var array
+  */
+  private $bakCObjData = null;
+  
+ /**
+  * Backup of $GLOBALS['TSFE']->cObj->data
+  *
+  * @var array
+  */
+  private $bakTsfeData = null;
+  
+ /**
+  * List of required fields. Should corresponds with ext_tables.sql.
+  *
+  * @var array
+  */
+  private $arrRequiredFields = array(
+    'tx_flipit_enabled',
+    'tx_flipit_fancybox',
+    'tx_flipit_layout',
+    'tx_flipit_swf_files',
+    'tx_flipit_updateswfxml',
+    'tx_flipit_xml_file'
+  );
+    
+
 
   
   
@@ -135,11 +163,10 @@ class tx_flipit_typoscript
     }
       // IF return  : return with an error prompt
     
-      // Get field, where media files are stored
-    $field  = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-      // Get table.field, where files are stored
 
       // RETURN : no media files
+      // Get field, where media files are stored
+    $field  = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     if( empty ( $this->cObj->data[$field] ) )
     {
       if( $this->b_drs_flipit )
@@ -160,9 +187,96 @@ class tx_flipit_typoscript
       // Return the content
     return $this->content( $conf );    
   }
+  
+  
+  
+  /***********************************************
+  *
+  * cObjData
+  *
+  **********************************************/
 
+/**
+ * cObjDataAddFieldsWoTablePrefix( ): 
+ *
+ * @return    void
+ * @internal  #44896
+ * @version 1.0.0
+ * @since   1.0.0
+ */
+  private function cObjDataAddFieldsWoTablePrefix(  )
+  {
+    $this->cObjDataBackup( );
+    
+      // FOREACH  : cObj->data in TSFE
+    foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
+    {
+      list( $table, $field ) = explode( '.', $tableField );
+      if( $table != $this->table )
+      {
+        continue;
+      }
+      $this->cObj->data[$field] = $GLOBALS['TSFE']->cObj->data[$tableField];
+    }
+      // FOREACH  : cObj->data in TSFE
+    
+    // #44858 
+    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+    if ( ! ( $pos === false ) )
+    {
+      echo '<pre>';
+      var_dump( __METHOD__, __LINE__, $this->cObj->data );
+      echo '</pre>';
+//      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+//
+//      if( $this->cObj->data['tx_flipit_enabled'] )
+//      {
+//          // All is proper. Do nothing.
+//        echo '</pre>';
+//        return $arr_return;
+//      }
+//
+//      if( $GLOBALS['TSFE']->cObj->data['tx_flipit_enabled'] )
+//      {
+//        $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+//        var_dump( __METHOD__, __LINE__, $this->cObj->data );
+//        var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+//        echo '</pre>';
+//        return $arr_return;
+//      }
+//
+//      $arr_return['content']  = 'There is a propblem!';
+//      $arr_return['return']   = true;
+//      return $arr_return;
+    }
+  }
+  
+/**
+ * cObjDataBackup( ): 
+ *
+ * @return    void
+ * @internal  #44896
+ * @version 1.0.0
+ * @since   1.0.0
+ */
+  private function cObjDataBackup(  )
+  {
+    if( ! ( $this->bakCObjData === null ) )
+    {
+      return;
+    }
+    $this->bakCObjData = $this->pObj->cObj->data;
+    $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
+  }
   
   
+  
+  /***********************************************
+  *
+  * Content
+  *
+  **********************************************/
+ 
  /**
   * content( ):
   *
@@ -388,7 +502,6 @@ class tx_flipit_typoscript
   */
   private function updateSwfFilesRemove( )
   {
-    $conf         = $this->conf;
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
     $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
@@ -463,7 +576,6 @@ class tx_flipit_typoscript
   */
   private function updateSwfFilesRenderAll( )
   {
-    $conf         = $this->conf;
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
     $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
@@ -883,7 +995,6 @@ class tx_flipit_typoscript
   */
   private function updateXmlFileRenderIt( )
   {
-    $conf         = $this->conf;
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_xml_file';
     $fieldTstamp  = $GLOBALS['TCA'][$table]['ctrl']['tstamp'];
@@ -1098,8 +1209,9 @@ class tx_flipit_typoscript
       // Require class userfunc
     $this->initClasses( );
 
-      // Init global vars
-    $this->table = $conf['userFunc.']['constant_editor.']['database.']['table'];
+      //  #44896, 130129, dwildt, 2-
+//      // Init global vars
+//    $this->table = $conf['userFunc.']['constant_editor.']['database.']['table'];
       // Global tstamp for updates. It must be older than the tstamp of generated files
     $this->tstamp = time( );
 
@@ -1420,14 +1532,101 @@ class tx_flipit_typoscript
   
   
  /**
-  * initLayout( ):
+  * initRequiredFields( ):
   *
   * @return    mixed        HTML output.
   * @access   private
-  * @version  0.0.5
-  * @since    0.0.5
+  * @version  1.0.0
+  * @since    1.0.0
   */
   private function initRequiredFields( )
+  {
+    $arr_return = array( );
+    $arr_return['content']  = null;
+    $arr_return['return']   = false;
+    
+      // RETURN : fields are initialised by cObj->data
+    if( $this->initRequiredFieldsByCObj( ) )
+    {
+        // Default case: tt_content table is used.
+      $arr_return = $this->initRequiredFieldsCheck( );
+      return $arr_return;
+    }
+      // RETURN : fields are initialised by cObj->data
+
+      // RETURN : fields are initialised by cObj->data of TSFE
+    if( $this->initRequiredFieldsByTsfe( ) )
+    {
+        // txfliptit_typoscript is called by an extension
+      $this->cObjDataAddFieldsWoTablePrefix( );
+      $arr_return = $this->initRequiredFieldsCheck( );
+      return $arr_return;
+    }
+      // RETURN : fields are initialised by cObj->data of TSFE
+
+      // RETURN ERROR
+    if( $this->b_drs_error )
+    {
+      $prompt = 'Unexepected result: field tx_flipit_enabled is missing!';
+      t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
+    }
+    $prompt = '<h1>
+        ERROR
+      </h1>
+      <h2>
+        Unexepected result: field tx_flipit_enabled is missing!
+      </h2>
+      <p>
+        The current cObj->data doesn\'t contain the field tx_flipit_enabled.<br />
+        Please report this bug to the developer of this extension.<br />
+        Sorry for the trouble.
+      </p>
+      <p>
+        ' . __METHOD__ . ' (line ' . __LINE__ . ') 
+      </p>
+      <p>
+        TYPO3 extension Flip it!
+      </p>
+      ';
+    $arr_return['content']  = $prompt;
+    $arr_return['return']   = true;
+    return $arr_return;
+      // RETURN ERROR
+  }
+
+ /**
+  * initRequiredFieldsByCObj( ) : checks if cObj->data contains the element
+  *                               tx_flipit_enabled.
+  *                               If yes
+  *                               * set global $table to 'tt_content'
+  *                               * return true
+  *
+  * @return   boolean             
+  * @access   private
+  * @version  1.0.0
+  * @since    1.0.0
+  */
+  private function initRequiredFieldsByCObj( )
+  {
+    if( $this->cObj->data['tx_flipit_enabled'] )
+    {
+      $this->initTable( 'tt_content' );
+      return true;
+    }
+    
+    return false;
+  }
+  
+ /**
+  * initRequiredFieldsCheck( )  : Checks, if cObj-data does contain all 
+  *                                     requied fields
+  *
+  * @return   array                     $arr_return : With values in case of an error 
+  * @access   private
+  * @version  1.0.0
+  * @since    1.0.0
+  */
+  private function initRequiredFieldsCheck( )
   {
     $conf = $this->conf;
 
@@ -1435,70 +1634,92 @@ class tx_flipit_typoscript
     $arr_return['content']  = null;
     $arr_return['return']   = false;
     
-//var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
-// #44858 
-$pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-if ( ! ( $pos === false ) )
-{
-  echo '<pre>';
-  var_dump( __METHOD__, __LINE__, $this->cObj->data );
-  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-
-  if( $this->cObj->data['tx_flipit_enabled'] )
-  {
-      // All is proper. Do nothing.
-    echo '</pre>';
-    return $arr_return;
-  }
-
-  if( $GLOBALS['TSFE']->cObj->data['tx_flipit_enabled'] )
-  {
-    $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
-    var_dump( __METHOD__, __LINE__, $this->cObj->data );
-    var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-    echo '</pre>';
-    return $arr_return;
-  }
-
-  $arr_return['content']  = 'There is a propblem!';
-  $arr_return['return']   = true;
-  return $arr_return;
-}
-
-    $coa_name = $conf['userFunc.']['drs.']['layout'];
-    $coa_conf = $conf['userFunc.']['drs.']['layout.'];
-    $layout   = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
-    switch( $layout )
+      // Add to the global $arrRequiredFields the media field
+    $media = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
+    $this->arrRequiredFields[] = $media;
+    array_unique( $this->arrRequiredFields );
+      // Add to the global $arrRequiredFields the media field
+      
+      // FOREACH : required field
+    foreach( $this->arrRequiredFields as $requiredField )
     {
-      case( 'layout_00' ):
-        if( $this->b_drs_init )
-        {
-          $prompt = 'Current layout: ' . $layout;
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-          $prompt = 'Current layout is the tt_content.uploads.20 default. Flip it! won\'t processed.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-        }
-        $arr_return['return'] = true;
-        break;
-      case( 'layout_01' ):
-      case( 'layout_02' ):
-      case( 'layout_03' ):
-      case( 'layout_04' ):
-      default:
-        if( $this->b_drs_init )
-        {
-          $prompt = 'Current layout: ' . $layout;
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-        }
-        $arr_return['return'] = false;
-        break;
+      if( isset( $this->cObj->data[$requiredField] ) )
+      {
+        continue;
+      }
+      $prompt = '<h1>
+          ERROR
+        </h1>
+        <h2>
+          Field is missing
+        </h2>
+        <p>
+          $this->cObj->data doen\'t contain the field ' . $requiredField. '<br />
+          This is an unexpected result.
+        </p>
+        <p>
+          ' . __METHOD__ . ' (line ' . __LINE__ . ') 
+        </p>
+        ';
+      $arr_return['content']  = $prompt;
+      $arr_return['return']   = true;
+      return $arr_return;
     }
-
-    return $arr_return;
+      // FOREACH : required field
     
+    return $arr_return;
+  }
+
+ /**
+  * initRequiredFieldsByTsfe( ) : checks if cObj->data in TSFE contains the element
+  *                               table.tx_flipit_enabled.
+  *                               If yes
+  *                               * set global $table to the given table
+  *                               * return true
+  *
+  * @return   boolean             
+  * @access   private
+  * @version  1.0.0
+  * @since    1.0.0
+  */
+  private function initRequiredFieldsByTsfe( )
+  {
+      // FOREACH  : cObj->data in TSFE
+    foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
+    {
+      list( $table, $field ) = explode( '.', $tableField );
+      if( $field != 'tx_flipit_enabled' )
+      {
+        continue;
+      }
+      $this->initTable( $table );
+      return true;
+    }
+      // FOREACH  : cObj->data in TSFE
+    
+    return false;
   }
   
+  
+ /**
+  * initTable( ) : 
+  *
+  * @return   boolean             
+  * @access   private
+  * @version  1.0.0
+  * @since    1.0.0
+  */
+  private function initTable( $table )
+  {
+    $this->table = $table;
+    if( $this->b_drs_init )
+    {
+      $prompt = 'table is set to ' . $table;
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+    }
+    
+  }
+
 
   
   

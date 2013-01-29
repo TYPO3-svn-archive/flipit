@@ -147,7 +147,7 @@ class tx_flipit_userfunc
     $prompt = $prompt . '
 <div class="typo3-message message-notice">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorDetectionBug'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorDetectionBug'). '
   </div>
 </div>';
 
@@ -183,7 +183,7 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
 <div class="typo3-message message-ok">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSsupported'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorOSsupported'). '
   </div>
 </div>';
         break;
@@ -191,7 +191,7 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
 <div class="typo3-message message-warning">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSunsupported'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorOSunsupported'). '
   </div>
 </div>';
         break;
@@ -200,7 +200,7 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
 <div class="typo3-message message-warning">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorOSundefined'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorOSundefined'). '
   </div>
 </div>';
         break;
@@ -241,7 +241,7 @@ class tx_flipit_userfunc
 </div>
 <div class="typo3-message message-warning">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsBugfix'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtoolsBugfix'). '
   </div>
 </div>';
       return $prompt;
@@ -259,12 +259,12 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
 <div class="typo3-message message-ok">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '<br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '<br />
     <br />
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordCommand'). ':<br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:wordCommand'). ':<br />
     ' . $exec . '<br />
     <br />
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordResult'). ':<br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:wordResult'). ':<br />
     ' . var_export( $result, true ) . '
   </div>
 </div>';
@@ -274,12 +274,12 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
 <div class="typo3-message message-warning">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '<br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '<br />
     <br />
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordCommand'). ':<br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:wordCommand'). ':<br />
     ' . $exec . '<br />
     <br />
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:wordResult'). ':<br />
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:wordResult'). ':<br />
     ' . var_export( $result, true );
 
 // Search for pdf2swf.exe at partition C:
@@ -303,7 +303,7 @@ class tx_flipit_userfunc
             $prompt = $prompt . '
 <div class="typo3-message message-information">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools4Linux'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtools4Linux'). '
   </div>
 </div>';
             break;
@@ -311,7 +311,7 @@ class tx_flipit_userfunc
             $prompt = $prompt . '
 <div class="typo3-message message-information">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorSWFtools4Windows'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtools4Windows'). '
   </div>
 </div>';
             break;
@@ -329,7 +329,7 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
 <div class="typo3-message message-information">
   <div class="message-body">
-    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorWindowsConf'). '
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorWindowsConf'). '
   </div>
 </div>';
         break;
@@ -366,7 +366,7 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
           <div class="typo3-message message-warning">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000smaller'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000smaller'). '
             </div>
           </div>
           ';
@@ -376,7 +376,7 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
           <div class="typo3-message message-warning">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000greater'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000greater'). '
             </div>
           </div>
           ';
@@ -387,12 +387,12 @@ class tx_flipit_userfunc
         $prompt = $prompt . '
           <div class="typo3-message message-ok">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000equal'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000equal'). '
             </div>
           </div>
           <div class="typo3-message message-warning">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorTYPO3version4006000equalTS'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000equalTS'). '
             </div>
           </div>
           ';
@@ -423,7 +423,7 @@ class tx_flipit_userfunc
 
       $prompt = $prompt . '
 <div class="message-body">
-  ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptExternalLinksBody') . '
+  ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptExternalLinksBody') . '
 </div>';
 
     return $prompt;
@@ -635,7 +635,7 @@ class tx_flipit_userfunc
     {
       $arr_return['error']['status'] = true;
       $arr_return['error']['prompt'] =
-        $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/locallang.xml:promptEvaluatorPhpExecIsFalse');
+        $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorPhpExecIsFalse');
       return $arr_return;
     }
       // RETURN : function exec doesn't exist

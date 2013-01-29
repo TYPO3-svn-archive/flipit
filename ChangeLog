@@ -1,3 +1,13 @@
+1.0.0
+  13-01-29
+  Feature
+  * #44896: Interface for third party extensions
+            Effected file:
+            * lib/typoscript/class.tx_flipit_typoscript.php
+            * static
+              * constants.txt
+              * setup.txt
+
 0.0.5
   13-01-18
   Bugfix
