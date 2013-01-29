@@ -1210,6 +1210,14 @@ class tx_flipit_typoscript
     }
       // RETURN :
 
+      // DRS
+    if( $this->b_drs_flipit )
+    {    
+      $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
+      t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+
       // RETURN :
     $arr_return = $this->initLayout( );
     if( $arr_return['return'] )
@@ -1331,12 +1339,6 @@ class tx_flipit_typoscript
     $this->b_drs_updateSwfXml    = true;
     $this->b_drs_todo   = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
-    t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
-echo '<pre>';
-var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-var_dump( __METHOD__, __LINE__, $this->cObj->data );
-echo '</pre>';
-    $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
 
