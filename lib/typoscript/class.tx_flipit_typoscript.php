@@ -1650,7 +1650,8 @@ class tx_flipit_typoscript
       {
         continue;
       }
-      $prompt = '<h1>
+      $prompt = '<div style="background:white;border:1em solid red;padding:1em;text-align:center;">
+        <h1>
           ERROR
         </h1>
         <h2>
@@ -1658,11 +1659,16 @@ class tx_flipit_typoscript
         </h2>
         <p>
           $this->cObj->data doen\'t contain the field ' . $requiredField. '<br />
-          This is an unexpected result.
+          This is an unexpected result.<br />
+          Sorry for the trouble.
         </p>
         <p>
           ' . __METHOD__ . ' (line ' . __LINE__ . ') 
         </p>
+        <p>
+          TYPO3 extension Flip it!
+        </p>
+        </div>
         ';
       $arr_return['content']  = $prompt;
       $arr_return['return']   = true;
