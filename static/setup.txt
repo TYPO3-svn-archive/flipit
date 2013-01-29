@@ -258,7 +258,7 @@ plugin.tx_flipit {
           20 = TEXT
           20 {
             if {
-              // Be aware of the first comma!
+                // Be aware of the first comma!
               value = ,ts
               isInList {
                 field = tx_flipit_layout
