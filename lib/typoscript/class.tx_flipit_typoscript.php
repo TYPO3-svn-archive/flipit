@@ -238,36 +238,15 @@ class tx_flipit_typoscript
       // FOREACH  : cObj->data in TSFE
     
     // #44858 
-    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-    if ( ! ( $pos === false ) )
-    {
-      echo '<pre>';
-      var_dump( __METHOD__, __LINE__, $this->table );
-      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-      var_dump( __METHOD__, __LINE__, $this->cObj->data );
-      echo '</pre>';
+//    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+//    if ( ! ( $pos === false ) )
+//    {
+//      echo '<pre>';
+//      var_dump( __METHOD__, __LINE__, $this->table );
 //      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-//
-//      if( $this->cObj->data['tx_flipit_enabled'] )
-//      {
-//          // All is proper. Do nothing.
-//        echo '</pre>';
-//        return $arr_return;
-//      }
-//
-//      if( $GLOBALS['TSFE']->cObj->data['tx_flipit_enabled'] )
-//      {
-//        $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
-//        var_dump( __METHOD__, __LINE__, $this->cObj->data );
-//        var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-//        echo '</pre>';
-//        return $arr_return;
-//      }
-//
-//      $arr_return['content']  = 'There is a propblem!';
-//      $arr_return['return']   = true;
-//      return $arr_return;
-    }
+//      var_dump( __METHOD__, __LINE__, $this->cObj->data );
+//      echo '</pre>';
+//    }
   }
   
 /**
@@ -1705,11 +1684,11 @@ class tx_flipit_typoscript
     switch( $this->table )
     {
       case( 'tt_content' ):
-        $prompt = 'Plugin with id ' . $this->cObj->data['uid'];
+        $prompt = 'FLIP it! configuration is taken from plugin with id ' . $this->cObj->data['uid'];
         t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         break;
       default:
-        $prompt = $this->table . '.id ' . $this->cObj->data['uid'];
+        $prompt = 'FLIP it! configuration is taken from ' . $this->table . '.id ' . $this->cObj->data['uid'];
         t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
         break;
     }
@@ -2294,6 +2273,23 @@ class tx_flipit_typoscript
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
     $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
     $path                 = $typo3_document_root . '/' . $uploadFolder;
+
+      // DRS
+    if ( $this->b_drs_error )
+    {
+      if ( ! $uploadFolder )
+      {
+        $prompt = '$GLOBALS[TCA][' . $this->table . '][columns][' . $field . '][config][uploadfolder] is empty! ';
+        t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
+      }
+    }
+      // DRS
+
+    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+    if ( ! ( $pos === false ) )
+    {
+      var_dump( __METHOD__, __LINE__, $this->table, $field,$GLOBALS['TCA'][$this->table]['columns'][$field]['config'] );
+    }
 
     return $path;
   }
