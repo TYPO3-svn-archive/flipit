@@ -1646,7 +1646,7 @@ class tx_flipit_typoscript
       // FOREACH : required field
     foreach( $this->arrRequiredFields as $requiredField )
     {
-      if( in_array( $requiredField, $this->cObj->data ) )
+      if( array_key_exists( $requiredField, $this->cObj->data ) )
       {
         continue;
       }
