@@ -160,6 +160,7 @@ class tx_flipit_typoscript
       // IF return  : return with an error prompt
     if( $arr_return['return'] )
     {
+      $this->cObjDataReset( );
       return $arr_return['content'];
     }
       // IF return  : return with an error prompt
@@ -173,6 +174,7 @@ class tx_flipit_typoscript
         $prompt = $this->table . '.' . $field . ' is empty. Nothing todo. Return!';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
+      $this->cObjDataReset( );
       return;
     }
       // RETURN : no media files
@@ -184,6 +186,7 @@ class tx_flipit_typoscript
     $this->update( );   
 
       // Return the content
+    $this->cObjDataReset( );
     return $this->content( $conf );    
   }
   
@@ -233,7 +236,7 @@ class tx_flipit_typoscript
     }
       // FOREACH  : cObj->data in TSFE
     
-    // #44858 
+// #44858 
 //    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 //    if ( ! ( $pos === false ) )
 //    {
@@ -261,6 +264,24 @@ class tx_flipit_typoscript
     }
     $this->bakCObjData = $this->pObj->cObj->data;
     $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
+  }
+  
+/**
+ * cObjDataReset( ): 
+ *
+ * @return    void
+ * @internal  #44896
+ * @version 1.0.0
+ * @since   1.0.0
+ */
+  private function cObjDataReset(  )
+  {
+    if( $this->bakCObjData === null )
+    {
+      return;
+    }
+    $this->pObj->cObj->data       = $this->bakCObjData;
+    $GLOBALS['TSFE']->cObj->data  = $this->bakTsfeData;
   }
   
   
