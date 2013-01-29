@@ -1692,7 +1692,7 @@ if ( ! ( $pos === false ) )
         <p>
           Required fields:<br />
           <pre>
-            ' . var_dump( $this->arrRequiredFields, true ) . '
+            ' . var_export( $this->arrRequiredFields, true ) . '
           </pre>
         </p>
         <p>
