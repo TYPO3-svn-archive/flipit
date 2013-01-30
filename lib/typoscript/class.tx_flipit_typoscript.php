@@ -235,7 +235,7 @@ class tx_flipit_typoscript
     foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
     {
       list( $table, $field ) = explode( '.', $tableField );
-      if( $table != $this->table )
+      if( $table == $this->table )
       {
         continue;
       }
