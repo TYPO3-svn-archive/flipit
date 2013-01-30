@@ -1663,6 +1663,9 @@ class tx_flipit_typoscript
         Sorry for the trouble.
       </p>
       <p>
+        Current record: ' . $GLOBALS['TSFE']->currentRecord . ' 
+      </p>
+      <p>
         ' . __METHOD__ . ' (line ' . __LINE__ . ') 
       </p>
       <p>
