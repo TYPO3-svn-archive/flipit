@@ -1,15 +1,21 @@
 1.0.1
   13-01-30
   Improvemnet
-  * #i0001: Porperty enabled is removed
-            Effected file:
+  * #i0005: Porperty enabled is removed
+            Effected files:
             * lib/typoscript/class.tx_flipit_typoscript.php
             * static
               * constants.txt
               * setup.txt
             * ext_tables.php
+            * ext_tables.sql
             * locallang_db.xml
-  * #i0002: Flexform got property "Plugin check"
+  * #i0004: Flexform got property "Plugin check"
+            Effected files:
+            * ext_tables.php
+            * ext_tables.sql
+            * locallang_db.xml
+  * #i0003: Palettes for the flexform
 
 1.0.0
   13-01-29
@@ -24,14 +30,14 @@
 0.0.5
   13-01-18
   Bugfix
-  * #00000: includeLibs.tx_browser_cssstyledcontent -> includeLibs.tx_flipit_cssstyledcontent
+  * #i0002: includeLibs.tx_browser_cssstyledcontent -> includeLibs.tx_flipit_cssstyledcontent
             Effected file:
             * static/setup.txt
 
 0.0.4
   13-01-16
   Improvement
-  * #00000: Windows-Server
+  * #i0001: Windows-Server
 
 0.0.3
   13-01-07
