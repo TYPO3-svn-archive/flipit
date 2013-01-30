@@ -50,7 +50,7 @@
       <label index="sheetFlipit_evaluate_drs_enabled">Warnung: Das DRS - Development Reporting System - ist aktiviert. Das kostet Performance und ist ein Sicherheistririsko f<![CDATA[&uuml;]]>r jedes operative System.Du kannst das DRS im <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> deaktivieren. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Fehler: Das Plugin wurde noch nicht gespeichert.</label>
       <label index="sheetFlipit_evaluate_ok">Gl<![CDATA[&uuml;]]>ckwunsch: Deine Einstellungen sind in Ordnung.</label>
-      <label index="sheetFlipit_evaluate_ok_constantEditor">Beachte bitte auch den <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]>. Dort findest Du eine Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten.</label>
+      <label index="sheetFlipit_evaluate_ok_constantEditor">Beachte bitte auch den <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]> mit einer Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten.</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... den Fehler beheben m<![CDATA[&ouml;]]>chtest, binde das Static-Template "Flip it!: Basis (einbinden!)" ein!</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fehler beheben: Speichere dfas Plugin einmal.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Beachte bitte auch das <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Online-Handbuch</a>]]>.</label>
