@@ -213,7 +213,7 @@ class tx_flipit_flexform
     }
     else
     {
-      $str_prompt = $str_prompt . $str_prompt_warn_tutorialAndForums;
+      $str_prompt = $str_prompt . $str_prompt_warn_tutorialAndForum;
     }
       // DRS is enabled
 
