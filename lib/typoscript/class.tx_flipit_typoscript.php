@@ -219,15 +219,18 @@ class tx_flipit_typoscript
     $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
 
       // Add to the global $arrRequiredFields the title field
-    $this->cObj->data['header'] = $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle];
-    if( $this->b_drs_warn )
+    if( $this->fieldLabelForTitle )
     {
-      if( empty( $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle] ) )
+      $this->cObj->data['header'] = $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle];
+      if( $this->b_drs_warn )
       {
-        $prompt = 'Title is empty.';
-        t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
-        $prompt = 'Value of the title field in the Constant Editor is ' . $this->fieldLabelForTitle . '. Is this proper?';
-        t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 1 );
+        if( empty( $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle] ) )
+        {
+          $prompt = 'Title is empty.';
+          t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
+          $prompt = 'Value of the title field in the Constant Editor is ' . $this->fieldLabelForTitle . '. Is this proper?';
+          t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 1 );
+        }
       }
     }
     
