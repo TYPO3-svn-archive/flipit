@@ -167,10 +167,10 @@ class tx_flipit_flexform
         ';
       $str_promptDrs = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_promptDrs );
     }
-    else
-    {
-      $str_promptDrs = $str_prompt_info_tutorialAndForum;
-    }
+//    else
+//    {
+//      $str_promptDrs = $str_prompt_info_tutorialAndForum;
+//    }
       // DRS
 
       // General information
@@ -221,7 +221,15 @@ class tx_flipit_flexform
 
     if( $str_prompt )
     {
-      return $str_prompt . $str_promptDrs;
+      if( $str_promptDrs ) 
+      {
+        $str_prompt = $str_prompt . $str_promptDrs; 
+      }
+      else
+      {
+        $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;        
+      }
+      return $str_prompt;
     }
     
       // Evaluation result: default message in case of success
