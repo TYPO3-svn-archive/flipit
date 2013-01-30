@@ -1648,7 +1648,8 @@ class tx_flipit_typoscript
       // RETURN ERROR
     if( $this->b_drs_error )
     {
-      $prompt = 'Unexepected result: field tx_flipit_enabled is missing!';
+      $prompt = 'Unexepected result: field tx_flipit_enabled is missing! ' .
+                'Current record: ' . $GLOBALS['TSFE']->currentRecord;
       t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
     }
     $prompt = '<h1>
