@@ -147,24 +147,24 @@ class tx_flipit_flexform
       //
       // Check the plugin
 
-      // RETURN plugin isn't never saved
-    if( empty ( $arr_pluginConf['row']['pi_flexform'] ) )
-    {
-      $str_prompt = '
-        <div class="typo3-message message-error">
-          <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_error_saved_never') . '
-          </div>
-        </div>
-        <div class="typo3-message message-information">
-          <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_saved_never') . '
-          </div>
-        </div>
-        ';
-      return $str_prompt . $str_prompt_inCaseOfAnError;
-    }
-      // RETURN plugin isn't never saved
+//      // RETURN plugin isn't never saved
+//    if( empty ( $arr_pluginConf['row']['pi_flexform'] ) )
+//    {
+//      $str_prompt = '
+//        <div class="typo3-message message-error">
+//          <div class="message-body">
+//            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_error_saved_never') . '
+//          </div>
+//        </div>
+//        <div class="typo3-message message-information">
+//          <div class="message-body">
+//            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_saved_never') . '
+//          </div>
+//        </div>
+//        ';
+//      return $str_prompt . $str_prompt_inCaseOfAnError;
+//    }
+//      // RETURN plugin isn't never saved
 
       // RETURN TypoScript static template isn't included
     if( !is_array ( $this->obj_TypoScript->setup['plugin.']['tx_flipit.']['flexform.'] ) )
