@@ -1217,7 +1217,7 @@ class tx_flipit_typoscript
   *
   * @return    mixed        HTML output.
   * @access private
-  * @version 0.0.1
+  * @version 1.0.0
   * @since 0.0.1
   */
   private function  init( )

@@ -17,6 +17,10 @@ plugin.tx_flipit {
   database.field.title = header
   # cat=Flip it! - database/others/102;     type=string;   label= Media field : Label of the field, which contains the files for converting to SWF / Flash. Examples: media, tx_org_downloads.documents
   database.field.media = media
+  # cat=Flip it! - database/others/103;     type=string;   label= Layout field : Label of the field, which contains the number of the selected layout. Examples: layout, tx_org_downloads.documentslayout
+  database.field.layout = layout
+  # cat=Flip it! - database/others/104;     type=string;   label= Filesize field : Label of the field, which contains the size of the file. Examples: filelink_size, tx_org_downloads.documentssize
+  database.field.filelink_size = filelink_size
   # cat=Flip it! - database/others/999;     type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   database.externalLinks = Click me!
 
