@@ -235,7 +235,7 @@ class tx_flipit_typoscript
     foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
     {
       list( $table, $field ) = explode( '.', $tableField );
-      if( $table == $this->table )
+      if( $table != $this->table )
       {
         continue;
       }
@@ -251,6 +251,7 @@ class tx_flipit_typoscript
     if ( ! ( $pos === false ) )
     {
       echo '<pre>';
+      var_dump( __METHOD__, __LINE__, $this->table );
       var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
       var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
       echo '</pre>';
