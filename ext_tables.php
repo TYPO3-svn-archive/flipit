@@ -315,8 +315,8 @@ $TCA['tt_content']['palettes']['tx_flipit_fancybox']['canNotCollapse'] = 1;
 
 $TCA['tt_content']['palettes']['tx_flipit_files']['showitem'] = 
   'tx_flipit_updateswfxml;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml, --linebreak--,' .
-  'tx_flipit_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files,' . 
-  'tx_flipit_xml_file;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_xml_file';
+  'tx_flipit_xml_file;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_xml_file, --linebreak--,' .
+  'tx_flipit_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files'; 
 $TCA['tt_content']['palettes']['tx_flipit_files']['canNotCollapse'] = 1;
 
 $TCA['tt_content']['palettes']['tx_flipit_properties']['showitem'] = 
