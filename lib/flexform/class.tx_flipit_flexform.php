@@ -199,6 +199,10 @@ class tx_flipit_flexform
         ';
       $str_prompt = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_prompt );
     }
+    else
+    {
+      $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum
+    }
       // DRS is enabled
 
     if( $str_prompt )
