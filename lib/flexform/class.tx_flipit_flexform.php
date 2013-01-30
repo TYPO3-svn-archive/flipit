@@ -165,7 +165,7 @@ class tx_flipit_flexform
           </div>
         </div>
         ';
-      $str_promptDrs = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_prompt );
+      $str_promptDrs = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_promptDrs );
     }
 //    else
 //    {
