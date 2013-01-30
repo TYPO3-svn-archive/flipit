@@ -14,7 +14,7 @@
       <label index="sheetFlipit_evaluate_info_drs">If you need help, please refer to the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. There is an evaluator too. And you can enable the DRS - the Development Reporting System. The DRS reports the work flow.</label>
       <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
       <label index="sheetFlipit_evaluate_ok_drs">If you get an unexpected result nevertheless, please refer to the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. There is an evaluator too. And you can enable the DRS - the Development Reporting System. The DRS reports the work flow.</label>
-      <label index="sheetFlipit_evaluate_ok_no_ts_template">Fix it: include the Static Template "Flip it!"!</label>
+      <label index="sheetFlipit_evaluate_ok_no_ts_template">... fix it. Include the Static Template "Flip it!"!</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fix it: Save the Flexform once.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about Flip it!, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Flip it!</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_drs">Warning: The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. Status: %status%.</label>

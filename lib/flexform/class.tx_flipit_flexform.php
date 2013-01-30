@@ -152,6 +152,26 @@ class tx_flipit_flexform
         </div>
       </div>
       ';
+
+      // DRS
+    $arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
+    if ($arr_extConf['debuggingDrs'] != 'Disabled')
+    {
+      $str_promptDrs = '
+        <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+          <div class="message-body">
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_drs') . '
+          </div>
+        </div>
+        ';
+      $str_promptDrs = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_prompt );
+    }
+    else
+    {
+      $str_promptDrs = $str_prompt_warn_tutorialAndForum;
+    }
+      // DRS
+
       // General information
 
 
@@ -198,28 +218,9 @@ class tx_flipit_flexform
     }
       // RETURN TypoScript static template isn't included
 
-      // DRS is enabled
-    $arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
-    if ($arr_extConf['debuggingDrs'] != 'Disabled')
-    {
-      $str_prompt = $str_prompt . '
-        <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
-          <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_drs') . '
-          </div>
-        </div>
-        ';
-      $str_prompt = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_prompt );
-    }
-    else
-    {
-      $str_prompt = $str_prompt . $str_prompt_warn_tutorialAndForum;
-    }
-      // DRS is enabled
-
     if( $str_prompt )
     {
-      return $str_prompt;
+      return $str_prompt . $str_promptDrs;
     }
     
       // Evaluation result: default message in case of success
@@ -233,7 +234,7 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    return $str_prompt . $str_prompt_info_tutorialAndForum;
+    return $str_prompt . $str_promptDrs . $str_prompt_info_tutorialAndForum;
   }
   
   
