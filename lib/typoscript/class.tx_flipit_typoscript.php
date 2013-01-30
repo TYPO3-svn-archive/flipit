@@ -243,7 +243,7 @@ class tx_flipit_typoscript
     }
       // FOREACH  : cObj->data in TSFE
     
-    $GLOBALS['TSFE']->currentRecord = $this->table . ':' . $GLOBALS['TSFE']->cObj->data['uid'];
+    $GLOBALS['TSFE']->currentRecord = $this->table . ':' . $this->cObj->data['uid'];
 
     
 // #44858 
