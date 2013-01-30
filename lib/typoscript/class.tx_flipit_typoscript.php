@@ -246,16 +246,16 @@ class tx_flipit_typoscript
     $GLOBALS['TSFE']->currentRecord = $this->table . ':' . $this->cObj->data['uid'];
 
     
-// #44858 
-    $pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-    if ( ! ( $pos === false ) )
-    {
-      echo '<pre>';
-      var_dump( __METHOD__, __LINE__, $this->table );
-      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
-      echo '</pre>';
-    }
+//// #44858 
+//$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+//if ( ! ( $pos === false ) )
+//{
+//  echo '<pre>';
+//  var_dump( __METHOD__, __LINE__, $this->table );
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
+//  echo '</pre>';
+//}
   }
   
 /**
