@@ -167,12 +167,12 @@ class tx_flipit_flexform
 //      // RETURN plugin isn't never saved
 
       // RETURN TypoScript static template isn't included
-    if( !is_array ( $this->obj_TypoScript->setup['plugin.']['tx_flipit.']['flexform.'] ) )
+    if( ! is_array ( $this->obj_TypoScript->setup['plugin.']['tx_flipit.'] ) )
     {
       $str_prompt = '
-        <div class="typo3-message message-error" style="max-width:' . $this->maxWidth . ';">
+        <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
           <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_error_no_ts_template') . '
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_no_ts_template') . '
           </div>
         </div>
         <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
@@ -202,7 +202,7 @@ class tx_flipit_flexform
       $str_prompt = $str_prompt . '
         <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
           <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_drs_warn') . '
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_drs') . '
             ' . var_export( $arr_extConf, true ) . '
           </div>
         </div>
