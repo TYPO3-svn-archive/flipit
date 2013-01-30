@@ -227,7 +227,7 @@ class tx_flipit_flexform
       }
       else
       {
-        $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;        
+        $str_prompt = $str_prompt . $str_prompt_warn_tutorialAndForum;        
       }
       return $str_prompt;
     }
