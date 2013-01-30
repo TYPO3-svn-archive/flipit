@@ -389,13 +389,14 @@ class tx_flipit_userfunc
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000equal'). '
             </div>
-          </div>
-          <div class="typo3-message message-warning">
-            <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000equalTS'). '
-            </div>
-          </div>
           ';
+//        $prompt = $prompt . '
+//          <div class="typo3-message message-warning">
+//            <div class="message-body">
+//              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version4006000equalTS'). '
+//            </div>
+//          </div>
+//          ';
         break;
     }
         
