@@ -197,7 +197,7 @@ class tx_flipit_flexform
 
       // DRS is enabled
     $arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
-    if ($arr_extConf['drs_mode'] != 'Don\'t log anything')
+    if ($arr_extConf['drs_mode'] != 'Disabled')
     {
       $str_prompt = $str_prompt . '
         <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
