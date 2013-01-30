@@ -15,8 +15,8 @@
       <label index="sheetFlipit_evaluate_error_no_ts_template">Bug: There isn't any TypoScript configuration for this plugin.</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">Fix it: include the Static Template "Browser"!</label>
       <label index="sheetFlipit_evaluate_drs_warn">The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the extension manager. Status: %status%.</label>
-      <label index="sheetFlipit_evaluate_ok_drs">If you get an unexpected result nevertheless, you can enable the DRS - the Development Reporting System. You will get a report with all rendered SQL queries among others. You enable the DRS in the extension manager.</label>
-      <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about Flip it!, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipt/" target="_blank">Flip it!</a>]]>.</label>
+      <label index="sheetFlipit_evaluate_ok_drs">If you get an unexpected result nevertheless, please refer to the extension manager. There is an evaluator too.you can enable the DRS - the Development Reporting System. You will get a report of the work flow. You enable the DRS in the extension manager.</label>
+      <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about Flip it!, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Flip it!</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
       <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
       
