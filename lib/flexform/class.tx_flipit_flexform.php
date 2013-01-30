@@ -224,7 +224,7 @@ class tx_flipit_flexform
     $str_prompt = '
       <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
         <div class="message-body">
-          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok') . '
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_constantEditor') . '
         </div>
       </div>
       ';

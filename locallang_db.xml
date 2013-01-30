@@ -14,11 +14,28 @@
       <label index="sheetFlipit_evaluate_drs_enabled">Warning: The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Bug: This plugin isn't saved never.</label>
       <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
+      <label index="sheetFlipit_evaluate_ok_constantEditor"><![CDATA[
+        <p>
+          Constant Editor
+        </p>
+        <ul>
+          <li>
+            Layout: %layout%
+          </li>
+          <li>
+            Update SWF files and XML file automatically: %update%
+          </li>
+          <li>
+            Lightbox: Fancybos is %fancybox%
+          </li>
+        <ul>
+      ]]></label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... fix it. Include the Static Template "Flip it!: Basis (obligate!)"!</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fix it: Save the Flexform once.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about Flip it!, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Flip it!</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warning: There isn't any TypoScript configuration for this plugin. Flip it! won't have any effect. Maybe you don't want any effect, but if not, you can ...</label>
+      
       
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_externalLinks">Developers</label>
