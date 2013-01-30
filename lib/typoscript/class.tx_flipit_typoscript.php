@@ -272,14 +272,14 @@ class tx_flipit_typoscript
     {
       return;
     }
-  // #44858 
-$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-if ( ! ( $pos === false ) )
-{
-  echo '<pre>';
-  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
-  echo '</pre>' . PHP_EOL;
-}
+//  // #44858 
+//$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+//if ( ! ( $pos === false ) )
+//{
+//  echo '<pre>';
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
+//  echo '</pre>' . PHP_EOL;
+//}
     $this->bakCObjData    = $this->cObj->data;
     $this->bakTsfeData    = $GLOBALS['TSFE']->cObj->data;
     $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
