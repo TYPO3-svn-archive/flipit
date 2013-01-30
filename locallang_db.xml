@@ -20,7 +20,7 @@
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warning: There isn't any TypoScript configuration for this plugin. Flip it! won't have any effect. Maybe you don't want any effect, but if not, you can ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_externalLinks">Developers</label>
+      <label index="tcaLabel_tx_flipit_externalLinks">Powered by</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_enabled">enabled</label>
@@ -57,7 +57,7 @@
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_externalLinks">Entwickler</label>
+      <label index="tcaLabel_tx_flipit_externalLinks">Powered by</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">deaktiviert</label>
