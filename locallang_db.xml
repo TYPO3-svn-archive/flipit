@@ -57,6 +57,7 @@
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_externalLinks">Entwickler</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">deaktiviert</label>
