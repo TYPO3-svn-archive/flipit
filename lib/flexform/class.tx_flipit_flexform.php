@@ -111,7 +111,8 @@ class tx_flipit_flexform
       //.message-warning
       //.message-error
     $str_prompt = null;
-    $str_promptDrs = null;
+    $str_promptDrsEnabled = null;
+    $str_promptDrsDisbled = null;
 
 
 
@@ -121,24 +122,6 @@ class tx_flipit_flexform
 
       // INFO: Link to the tutorial and to the Flip it! forum
     $str_prompt_info_tutorialAndForum = '
-      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
-        <div class="message-body">
-          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_drs') . '
-        </div>
-      </div>
-      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
-        <div class="message-body">
-          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_tutorialAndForum') . '
-        </div>
-      </div>
-      ';
-
-    $str_prompt_warn_tutorialAndForum = '
-      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
-        <div class="message-body">
-          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_info_drs') . '
-        </div>
-      </div>
       <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
         <div class="message-body">
           ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_tutorialAndForum') . '
@@ -158,19 +141,25 @@ class tx_flipit_flexform
     $arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
     if ($arr_extConf['debuggingDrs'] != 'Disabled')
     {
-      $str_promptDrs = '
+      $str_promptDrsEnabled = '
         <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
           <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_drs') . '
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_drs_enabled') . '
           </div>
         </div>
         ';
-      $str_promptDrs = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_promptDrs );
+      $str_promptDrsEnabled = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_promptDrsEnabled );
     }
-//    else
-//    {
-//      $str_promptDrs = $str_prompt_info_tutorialAndForum;
-//    }
+    else
+    {
+      $str_promptDrsDisabled = '
+        <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+          <div class="message-body">
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_drs_disabled') . '
+          </div>
+        </div>
+        ';
+    }
       // DRS
 
       // General information
@@ -219,17 +208,9 @@ class tx_flipit_flexform
     }
       // RETURN TypoScript static template isn't included
 
-    if( $str_prompt )
+    if( $str_prompt || $str_promptDrsEnabled )
     {
-      if( $str_promptDrs ) 
-      {
-        $str_prompt = $str_prompt . $str_promptDrs; 
-      }
-      else
-      {
-        $str_prompt = $str_prompt . $str_prompt_warn_tutorialAndForum;        
-      }
-      return $str_prompt;
+      return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
     }
     
       // Evaluation result: default message in case of success
@@ -243,7 +224,7 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    return $str_prompt . $str_promptDrs;
+    return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
   }
   
   
