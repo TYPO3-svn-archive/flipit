@@ -16,7 +16,7 @@
       <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
       <label index="sheetFlipit_evaluate_ok_constantEditor"><![CDATA[
         <p>
-          Constant Editor
+          Current values in the Constant Editor
         </p>
         <ul>
           <li style="margin-bottom:0px;">
