@@ -224,7 +224,7 @@ class tx_flipit_flexform
     }
       // RETURN TypoScript static template isn't included
 
-    if( $str_prompt || $str_promptDrs )
+    if( $str_prompt . $str_promptDrs )
     {
       return $str_prompt . $str_promptDrs;
     }
