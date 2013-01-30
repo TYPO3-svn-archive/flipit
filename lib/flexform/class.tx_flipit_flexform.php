@@ -68,7 +68,13 @@ class tx_flipit_flexform
   *
   * @var string
   */
-  
+  private $pid = null;
+
+ /**
+  * Max width for prompts
+  *
+  * @var string
+  */
   private $maxWidth = '600px';
 
 
@@ -268,6 +274,7 @@ class tx_flipit_flexform
       </div>
       ';
     
+    $str_prompt = str_replace( '%pid%', $this->pid, $str_prompt );
     return $str_prompt;
   }
   
@@ -364,7 +371,7 @@ class tx_flipit_flexform
       // New: Get current page id from the current URL
 
       // Set current page id
-    $this->pid      = $int_pid;
+    $this->pid = $int_pid;
 
     return false;
   }

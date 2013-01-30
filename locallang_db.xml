@@ -14,7 +14,7 @@
       <label index="sheetFlipit_evaluate_drs_enabled">Warning: The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Bug: This plugin isn't saved never.</label>
       <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
-      <label index="sheetFlipit_evaluate_ok_constantEditor">Please take care of the <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=7560&SET[function]=tx_tstemplateceditor" target="_blank">Constant Editor</a>]]>. There are further properties for Flip it!.</label>
+      <label index="sheetFlipit_evaluate_ok_constantEditor">Direct link to the  <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Constant Editor</a>]]>. There are further properties for Flip it!.</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... fix it. Include the Static Template "Flip it!: Basis (obligate!)"!</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fix it: Save the Flexform once.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about Flip it!, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Flip it!</a>]]>.</label>
