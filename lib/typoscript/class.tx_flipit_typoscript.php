@@ -106,6 +106,13 @@ class tx_flipit_typoscript
   private $bakCObjData = null;
   
  /**
+  * Backup of $GLOBALS['TSFE']->currentRecord
+  *
+  * @var array
+  */
+  private $bakCurrRecord = null;
+  
+ /**
   * Backup of $GLOBALS['TSFE']->cObj->data
   *
   * @var array
@@ -236,16 +243,17 @@ class tx_flipit_typoscript
     }
       // FOREACH  : cObj->data in TSFE
     
+    $GLOBALS['TSFE']->currentRecord = $this->table . ':' . $GLOBALS['TSFE']->cObj->data['uid'];
+
+    
 // #44858 
-//    $pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-//    if ( ! ( $pos === false ) )
-//    {
-//      echo '<pre>';
-//      var_dump( __METHOD__, __LINE__, $this->table );
-//      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-//      var_dump( __METHOD__, __LINE__, $this->cObj->data );
-//      echo '</pre>';
-//    }
+    $pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+    if ( ! ( $pos === false ) )
+    {
+      echo '<pre>';
+      var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
+      echo '</pre>';
+    }
   }
   
 /**
@@ -263,15 +271,24 @@ class tx_flipit_typoscript
       return;
     }
   // #44858 
-$pos = strpos( '87.177.65.251 ', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
 {
   echo '<pre>';
   var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
   echo '</pre>' . PHP_EOL;
 }
-    $this->bakCObjData = $this->cObj->data;
-    $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
+    $this->bakCObjData    = $this->cObj->data;
+    $this->bakTsfeData    = $GLOBALS['TSFE']->cObj->data;
+    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
+
+      // DRS
+    if( $this->b_drs_init )
+    {
+      $prompt = 'cObj->data are set (overriden).';
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
   }
   
 /**
@@ -288,8 +305,17 @@ if ( ! ( $pos === false ) )
     {
       return;
     }
-    $this->cObj->data             = $this->bakCObjData;
-    $GLOBALS['TSFE']->cObj->data  = $this->bakTsfeData;
+    $this->cObj->data               = $this->bakCObjData;
+    $GLOBALS['TSFE']->cObj->data    = $this->bakTsfeData;
+    $GLOBALS['TSFE']->currentRecord = $this->bakCurrRecord;
+
+      // DRS
+    if( $this->b_drs_init )
+    {
+      $prompt = 'cObj->data are reset.';
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
   }
   
   
@@ -745,13 +771,6 @@ if ( ! ( $pos === false ) )
   */
   private function updateSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
   {
-$pos = strpos( '87.177.70.13', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-if ( ! ( $pos === false ) )
-{
-  echo '<pre>';
-  var_dump( __METHOD__, __LINE__, $this->files );
-  echo '</pre>';
-}
     $arrReturn = null;
     
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
