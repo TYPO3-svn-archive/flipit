@@ -15,6 +15,8 @@ if( ! defined( 'TYPO3_MODE' ) )
   // Configuration by the extension manager
   //    Localization support
   // Enables the Include Static Templates
+  // Add pagetree icons
+  // Methods for backend workflows
   // TCA for tt_content
 
 
@@ -136,6 +138,16 @@ t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-flipit', '../typo3conf/ex
 
 
 
+  ///////////////////////////////////////////////////////////
+  //
+  // Methods for backend workflows
+
+  // #i0004, 130130, dwildt, 1+
+require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/flexform/class.tx_flipit_flexform.php');
+require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/userfunc/class.tx_flipit_userfunc.php');
+
+
+
   ////////////////////////////////////////////////////////////////////////////
   //
   // TCA for tt_content
@@ -144,31 +156,17 @@ t3lib_div::loadTCA( 'tt_content' );
 
   // Add fields to interface
 $showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
-$showRecordFieldList = $showRecordFieldList.',tx_flipit_plugincheck,tx_flipit_layout,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox';
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_evaluate,tx_flipit_layout,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox';
 $TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to interface
 
   // Add fields to columns
-$TCA['tt_content']['columns']['tx_flipit_plugincheck'] = array (
+$TCA['tt_content']['columns']['tx_flipit_evaluate'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck',
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_evaluate',
   'config'  => array (
-    'type' => 'select',
-    'items' => array(
-      array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck_item_disabled',
-        'disabled',
-      ),
-      array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck_item_enabled',
-        'enabled',
-      ),
-      array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck_item_ts',
-        'ts',
-      ),
-    ),
-    'default' => 'ts',
+    'type'      => 'user',
+    'userFunc'  => 'tx_flipit_flexform->evaluate',
   ),
 );
 $TCA['tt_content']['columns']['tx_flipit_layout'] = array (
@@ -275,6 +273,14 @@ $TCA['tt_content']['columns']['tx_flipit_fancybox'] = array (
     'default' => 'ts',
   ),
 );
+$TCA['tt_content']['columns']['tx_flipit_externalLinks'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_externalLinks',
+  'config'  => array (
+    'type'      => 'user',
+    'userFunc'  => 'tx_flipit_userfunc->promptExternalLinks',
+  ),
+);
   // Add fields to columns
 
   // Insert div [flipit] at position $int_div_position
@@ -292,11 +298,11 @@ foreach( $arr_showitem as $key => $value )
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, ' . 
-          'tx_flipit_plugincheck,' .
+          'tx_flipit_evaluate,' .
           'tx_flipit_layout,' .
-//          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_properties;tx_flipit_properties,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_files;tx_flipit_files,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_fancybox;tx_flipit_fancybox,' ;
+//          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_properties;tx_flipit_properties,' .
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_files;tx_flipit_files,' .
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_fancybox;tx_flipit_fancybox,' ;
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):
@@ -322,7 +328,7 @@ $TCA['tt_content']['palettes']['tx_flipit_files']['showitem'] =
 $TCA['tt_content']['palettes']['tx_flipit_files']['canNotCollapse'] = 1;
 
 $TCA['tt_content']['palettes']['tx_flipit_properties']['showitem'] = 
-  'tx_flipit_plugincheck;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck, ' .
+  'tx_flipit_evaluate;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_evaluate, ' .
   'tx_flipit_layout;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout';
 $TCA['tt_content']['palettes']['tx_flipit_properties']['canNotCollapse'] = 1;
   // Insert palettes

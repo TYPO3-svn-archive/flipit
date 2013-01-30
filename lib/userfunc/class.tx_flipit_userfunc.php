@@ -422,7 +422,7 @@ class tx_flipit_userfunc
       $prompt = null;
 
       $prompt = $prompt . '
-<div class="message-body">
+<div class="message-body" style="max-width:600px;">
   ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptExternalLinksBody') . '
 </div>';
 

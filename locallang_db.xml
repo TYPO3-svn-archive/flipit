@@ -6,9 +6,20 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="palette.tx_flipit_fancybox">Lightbox</label>
-      <label index="palette.tx_flipit_files">Files</label>
-      <label index="palette.tx_flipit_properties">Main properties</label>
+      <label index="palette_tx_flipit_fancybox">Lightbox</label>
+      <label index="palette_tx_flipit_files">Files</label>
+      <label index="palette_tx_flipit_properties">Main properties</label>
+
+      <label index="sheetFlipit_evaluate_error_saved_never">Bug: This plugin isn't saved never.</label>
+      <label index="sheetFlipit_evaluate_ok_saved_never">Fix it: Save the Flexform once.</label>
+      <label index="sheetFlipit_evaluate_error_no_ts_template">Bug: There isn't any TypoScript configuration for this plugin.</label>
+      <label index="sheetFlipit_evaluate_ok_no_ts_template">Fix it: include the Static Template "Browser"!</label>
+      <label index="sheetFlipit_evaluate_drs_warn">The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the extension manager. Status: %status%.</label>
+      <label index="sheetFlipit_evaluate_ok_drs">If you get an unexpected result nevertheless, please check with the TYPO3 Browser Update Assistent, if your plugin and if your TypoScript is up-to-date. You enable the Update Assistent in the extension manager.</label>
+      <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about the Browser, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/browser/current/" target="_blank">Browser</a>]]>. If you need interactive help, please post your question in the <![CDATA[<a href="http://typo3-browser-forum.de/" target="_blank">TYPO3 Browser Forum</a>]]>. Posts are welcome in English and German.</label>
+      <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
+      <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
+      
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
@@ -21,10 +32,10 @@
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and tt_content default</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
-      <label index="tcaLabel_tx_flipit_plugincheck">Plugin Check</label>
-      <label index="tcaLabel_tx_flipit_plugincheck_item_disabled">disabled</label>
-      <label index="tcaLabel_tx_flipit_plugincheck_item_enabled">enabled</label>
-      <label index="tcaLabel_tx_flipit_plugincheck_item_ts">Value from the Constant Editor (recommended)</label>
+      <label index="tcaLabel_tx_flipit_evaluate">Plugin Check</label>
+      <label index="tcaLabel_tx_flipit_evaluate_item_disabled">disabled</label>
+      <label index="tcaLabel_tx_flipit_evaluate_item_enabled">enabled</label>
+      <label index="tcaLabel_tx_flipit_evaluate_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Update SWF files and XML file automatically</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">no (protects manually uploaded files)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_enabled">yes</label>
@@ -32,9 +43,9 @@
       <label index="tcaLabel_tx_flipit_xml_file">XML-configuration-file</label>
     </languageKey>
     <languageKey index="de" type="array">
-      <label index="palette.tx_flipit_fancybox">Lightbox</label>
-      <label index="palette.tx_flipit_files">Dateien</label>
-      <label index="palette.tx_flipit_properties">Einstellungen</label>
+      <label index="palette_tx_flipit_fancybox">Lightbox</label>
+      <label index="palette_tx_flipit_files">Dateien</label>
+      <label index="palette_tx_flipit_properties">Einstellungen</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
@@ -47,10 +58,10 @@
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! und tt_content-Standard ohne Download-Bild</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! und tt_content-Standard</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
-      <label index="tcaLabel_tx_flipit_plugincheck">Plugin-Check</label>
-      <label index="tcaLabel_tx_flipit_plugincheck_item_disabled">deaktiviert</label>
-      <label index="tcaLabel_tx_flipit_plugincheck_item_enabled">aktiviert</label>
-      <label index="tcaLabel_tx_flipit_plugincheck_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
+      <label index="tcaLabel_tx_flipit_evaluate">Plugin-Check</label>
+      <label index="tcaLabel_tx_flipit_evaluate_item_disabled">deaktiviert</label>
+      <label index="tcaLabel_tx_flipit_evaluate_item_enabled">aktiviert</label>
+      <label index="tcaLabel_tx_flipit_evaluate_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Dateien automatisch ins SWF-Format konverieren</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind geschützt)</label>
