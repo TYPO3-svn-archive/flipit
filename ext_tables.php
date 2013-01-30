@@ -156,7 +156,7 @@ t3lib_div::loadTCA( 'tt_content' );
 
   // Add fields to interface
 $showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
-$showRecordFieldList = $showRecordFieldList.',tx_flipit_evaluate,tx_flipit_layout,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox';
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_evaluate,tx_flipit_layout,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox,tx_flipit_externalLinks';
 $TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to interface
 
@@ -302,7 +302,8 @@ foreach( $arr_showitem as $key => $value )
           'tx_flipit_layout,' .
 //          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_properties;tx_flipit_properties,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_files;tx_flipit_files,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_fancybox;tx_flipit_fancybox,' ;
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_fancybox;tx_flipit_fancybox,' .
+          'tx_flipit_externalLinks,';
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):

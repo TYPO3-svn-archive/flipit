@@ -94,7 +94,7 @@ class tx_flipit_flexform
  * @version 4.1.7
  * @since 4.0.0
  */
-  public function evaluate_plugin( $arr_pluginConf )
+  public function evaluate( $arr_pluginConf )
   {
       // Require classes, init page id, page object and TypoScript object
     $bool_success = $this->init( $arr_pluginConf );
