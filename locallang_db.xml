@@ -21,6 +21,7 @@
       <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
       
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_externalLinks">Developers</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_enabled">enabled</label>
