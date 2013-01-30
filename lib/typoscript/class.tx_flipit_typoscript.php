@@ -267,7 +267,7 @@ $pos = strpos( '87.177.65.251 ', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
 {
   echo '<pre>';
-  var_dump( __METHOD__, __LINE__, 'Backup of cObj->data' );
+  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
   echo '</pre>' . PHP_EOL;
 }
     $this->bakCObjData = $this->cObj->data;
@@ -288,14 +288,6 @@ if ( ! ( $pos === false ) )
     {
       return;
     }
-  // #44858 
-$pos = strpos( '87.177.65.251 ', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-if ( ! ( $pos === false ) )
-{
-  echo '<pre>';
-  var_dump( __METHOD__, __LINE__, 'Reset of cObj->data' );
-  echo '</pre>' . PHP_EOL;
-}
     $this->cObj->data             = $this->bakCObjData;
     $GLOBALS['TSFE']->cObj->data  = $this->bakTsfeData;
   }
