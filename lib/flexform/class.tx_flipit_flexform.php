@@ -231,7 +231,7 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    $str_prompt = $this-> evaluate_promptConstantEditor( $arr_pluginConf ) . $str_prompt;
+    $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( $arr_pluginConf );
     return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
   }
 
