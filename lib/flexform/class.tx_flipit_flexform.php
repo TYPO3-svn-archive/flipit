@@ -131,7 +131,19 @@ class tx_flipit_flexform
         </div>
       </div>
       ';
-      // General information
+
+    $str_prompt_warn_tutorialAndForum = '
+      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_info_drs') . '
+        </div>
+      </div>
+      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_tutorialAndForum') . '
+        </div>
+      </div>
+      ';
 
     $str_prompt_inCaseOfAnError = '
       <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
@@ -140,6 +152,7 @@ class tx_flipit_flexform
         </div>
       </div>
       ';
+      // General information
 
 
 
@@ -201,7 +214,7 @@ class tx_flipit_flexform
     }
     else
     {
-      $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;
+      $str_prompt = $str_prompt . $str_prompt_warn_tutorialAndForum;
     }
       // DRS is enabled
 
