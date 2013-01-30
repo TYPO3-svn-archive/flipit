@@ -9,7 +9,6 @@
       <label index="palette_tx_flipit_fancybox">Lightbox</label>
       <label index="palette_tx_flipit_files">Files</label>
       <label index="palette_tx_flipit_properties">Main properties</label>
-
       <label index="sheetFlipit_evaluate_drs_disabled">If you need help, please refer to the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. There is an evaluator too. And you can enable the DRS - the Development Reporting System. The DRS reports the work flow.</label>
       <label index="sheetFlipit_evaluate_drs_enabled">Warning: The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Bug: This plugin isn't saved never.</label>
@@ -20,8 +19,6 @@
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">If you have any question about Flip it!, please refer to the online manual <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Flip it!</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warning: There isn't any TypoScript configuration for this plugin. Flip it! won't have any effect. Maybe you don't want any effect, but if not, you can ...</label>
-      
-      
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_externalLinks">Developers</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
@@ -49,6 +46,16 @@
       <label index="palette_tx_flipit_fancybox">Lightbox</label>
       <label index="palette_tx_flipit_files">Dateien</label>
       <label index="palette_tx_flipit_properties">Einstellungen</label>
+      <label index="sheetFlipit_evaluate_drs_disabled">Wenn Du Hilfe brauchst, rufe bitte den <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> auf. Dort werden die Einstellungen von Flip it! ebenfalls gepr<![CDATA[&auml;]]>ft. Und Du kannst das DRS - Development Reporting System - aktivieren. Das DRS zeigt den Arbeitsablauf von Flip it!.</label>
+      <label index="sheetFlipit_evaluate_drs_enabled">Warnung: Das DRS - Development Reporting System - ist aktiviert. Das kostet Performance und ist ein Sicherheistririsko f<![CDATA[&uuml;]]>r jedes operative System.Du kannst das DRS im <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> deaktivieren. Status: %status%.</label>
+      <label index="sheetFlipit_evaluate_error_saved_never">Fehler: Das Plugin wurde noch nicht gespeichert.</label>
+      <label index="sheetFlipit_evaluate_ok">Gl<![CDATA[&uuml;]]>ckwunsch! Deine Konfiguration ist gepr<![CDATA[&uuml;]]>ft und scheint in Ordnung zu sein.</label>
+      <label index="sheetFlipit_evaluate_ok_constantEditor">Link zum <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]>. Dort findest Du eine Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten f<![CDATA[&uuml;]]>r Flip it!.</label>
+      <label index="sheetFlipit_evaluate_ok_no_ts_template">... den Fehler beheben m<![CDATA[&ouml;]]>chtest, binde das Static-Template "Flip it!: Basis (einbinden!)" ein!</label>
+      <label index="sheetFlipit_evaluate_ok_saved_never">Fehler beheben: Speichere dfas Plugin einmal.</label>
+      <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Wenn Du eine Frage zu Flip it! hast, gucke bitte ins <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Online-Handbuch</a>]]>.</label>
+      <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>
+      <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
@@ -67,7 +74,7 @@
       <label index="tcaLabel_tx_flipit_evaluate_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Dateien automatisch ins SWF-Format konverieren</label>
-      <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind geschützt)</label>
+      <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind gesch<![CDATA[&uuml;]]>tzt)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_enabled">Ja</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_xml_file">XML-Konfigurations-Datei</label>
