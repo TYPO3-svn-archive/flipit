@@ -1,3 +1,16 @@
+1.0.1
+  13-01-30
+  Improvemnet
+  * #i0001: Porperty enabled is removed
+            Effected file:
+            * lib/typoscript/class.tx_flipit_typoscript.php
+            * static
+              * constants.txt
+              * setup.txt
+            * ext_tables.php
+            * locallang_db.xml
+  * #i0002: Flexform got property "Plugin check"
+
 1.0.0
   13-01-29
   Feature

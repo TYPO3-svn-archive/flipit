@@ -7,10 +7,6 @@
   <data type="array">
     <languageKey index="default" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_enabled">Use Flip it?</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_disabled">disabled</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_enabled">enabled</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_enabled">enabled</label>
@@ -22,6 +18,10 @@
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and tt_content default</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
+      <label index="tcaLabel_tx_flipit_plugincheck">Plugin Check</label>
+      <label index="tcaLabel_tx_flipit_plugincheck_item_disabled">disabled</label>
+      <label index="tcaLabel_tx_flipit_plugincheck_item_enabled">enabled</label>
+      <label index="tcaLabel_tx_flipit_plugincheck_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Update SWF files and XML file automatically</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">no (protects manually uploaded files)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_enabled">yes</label>
@@ -30,10 +30,6 @@
     </languageKey>
     <languageKey index="de" type="array">
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
-      <label index="tcaLabel_tx_flipit_enabled">Flip it! benutzen?</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_disabled">deaktiviert</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_enabled">aktiviert</label>
-      <label index="tcaLabel_tx_flipit_enabled_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">deaktiviert</label>
@@ -45,6 +41,10 @@
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! und tt_content-Standard ohne Download-Bild</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! und tt_content-Standard</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
+      <label index="tcaLabel_tx_flipit_plugincheck">Plugin-Check</label>
+      <label index="tcaLabel_tx_flipit_plugincheck_item_disabled">deaktiviert</label>
+      <label index="tcaLabel_tx_flipit_plugincheck_item_enabled">aktiviert</label>
+      <label index="tcaLabel_tx_flipit_plugincheck_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Dateien automatisch ins SWF-Format konverieren</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind geschützt)</label>

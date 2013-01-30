@@ -1243,14 +1243,6 @@ class tx_flipit_typoscript
     }
       // RETURN :
 
-      // RETURN : Flip it! is disabled or there is an error
-    $arr_return = $this->initEnable( );
-    if( $arr_return['return'] )
-    {
-      return $arr_return;
-    }
-      // RETURN : Flip it! is disabled or there is an error
-
       // Require class userfunc
     $this->initClasses( );
 
@@ -1357,64 +1349,6 @@ class tx_flipit_typoscript
     $this->b_drs_todo   = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
-  }
-
-  
-  
- /**
-  * initEnable( ):
-  *
-  * @return    mixed        HTML output.
-  * @access   private
-  * @version  0.0.1
-  * @since    0.0.1
-  */
-  private function initEnable( )
-  {
-    $conf = $this->conf;
-
-    $arr_return = array( );
-    $arr_return['return'] = false;
-    
-    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['enableFlipit'];
-    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['enableFlipit.'];
-//    $enabled  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
-    $enabled  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
-    switch( $enabled )
-    {
-      case( 'enabled' ):
-        if( $this->b_drs_init )
-        {
-          $prompt = 'Flip it! is enabled.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-        }
-        $arr_return['return'] = false;
-        break;
-      case( 'disabled' ):
-        if( $this->b_drs_init )
-        {
-          $prompt = 'Flip it! is disabled.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-        }
-        $arr_return['return'] = true;
-        break;
-      case( 'error' ):
-      default:
-        if( $this->b_drs_init )
-        {
-          $prompt = 'The enabling mode "' . $enabled . '" of Flip it! isn\'t part of the list: disabled,enabled,ts';
-          t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
-          $prompt = 'Flip it! won\'t run!';
-          t3lib_div::devlog( '[WARN/INIT] ' . $prompt, $this->extKey, 3 );
-        }
-        $arr_return['return']   = true;
-        $arr_return['content']  = $enabled;
-        break;
-    }
-
-    return $arr_return;
-    
   }
 
   

@@ -144,27 +144,27 @@ t3lib_div::loadTCA( 'tt_content' );
 
   // Add fields to interface
 $showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
-$showRecordFieldList = $showRecordFieldList.',tx_flipit_enabled,tx_flipit_layout,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox';
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_plugincheck,tx_flipit_layout,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox';
 $TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to interface
 
   // Add fields to columns
-$TCA['tt_content']['columns']['tx_flipit_enabled'] = array (
+$TCA['tt_content']['columns']['tx_flipit_plugincheck'] = array (
   'exclude' => 0,
-  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled',
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck',
   'config'  => array (
     'type' => 'select',
     'items' => array(
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_disabled',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck_item_disabled',
         'disabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_enabled',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck_item_enabled',
         'enabled',
       ),
       array(
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_enabled_item_ts',
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck_item_ts',
         'ts',
       ),
     ),
@@ -291,7 +291,7 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_enabled, tx_flipit_layout, tx_flipit_updateswfxml, tx_flipit_swf_files, tx_flipit_xml_file, tx_flipit_fancybox,';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_plugincheck, tx_flipit_layout, tx_flipit_updateswfxml, tx_flipit_swf_files, tx_flipit_xml_file, tx_flipit_fancybox,';
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):
