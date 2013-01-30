@@ -47,7 +47,7 @@
       <label index="palette_tx_flipit_files">Dateien</label>
       <label index="palette_tx_flipit_properties">Einstellungen</label>
       <label index="sheetFlipit_evaluate_drs_disabled">Im <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> kannst Du weitere Einstellungen pr<![CDATA[&uuml;]]>fen und das DRS - das Development Reporting System - aktivieren. Das DRS zeigt Dir den gesamten Arbeitsprozess an.</label>
-      <label index="sheetFlipit_evaluate_drs_enabled">Warnung: Das DRS - Development Reporting System - ist aktiviert. Das kostet Performance und ist ein Sicherheistririsko f<![CDATA[&uuml;]]>r jedes operative System.Du kannst das DRS im <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> deaktivieren. Status: %status%.</label>
+      <label index="sheetFlipit_evaluate_drs_enabled">Warnung: Das DRS - Development Reporting System - ist aktiviert. Das kostet Performance und ist ein Sicherheitsrisiko f<![CDATA[&uuml;]]>r jedes operative System. Du kannst das DRS im <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> deaktivieren. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Fehler: Das Plugin wurde noch nicht gespeichert.</label>
       <label index="sheetFlipit_evaluate_ok">Gl<![CDATA[&uuml;]]>ckwunsch: Deine Einstellungen sind in Ordnung.</label>
       <label index="sheetFlipit_evaluate_ok_constantEditor">Der <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]> bietet eine Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten.</label>
