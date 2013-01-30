@@ -63,6 +63,13 @@ class tx_flipit_flexform
   */
   private $arr_extConf = null;
   
+ /**
+  * Max width for prompts
+  *
+  * @var string
+  */
+  
+  private $maxWidth = '600px';
 
 
 
@@ -112,7 +119,7 @@ class tx_flipit_flexform
       //.message-error
     $str_prompt = null;
     $str_promptDrsEnabled = null;
-    $str_promptDrsDisbled = null;
+    $str_promptDrsDisabled = null;
 
 
 
@@ -129,13 +136,13 @@ class tx_flipit_flexform
       </div>
       ';
 
-    $str_prompt_inCaseOfAnError = '
-      <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
-        <div class="message-body">
-          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_fixThisBug') . '
-        </div>
-      </div>
-      ';
+//    $str_prompt_inCaseOfAnError = '
+//      <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+//        <div class="message-body">
+//          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_fixThisBug') . '
+//        </div>
+//      </div>
+//      ';
 
       // DRS
     $arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
@@ -224,9 +231,46 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
+    $str_prompt = $this-> evaluate_promptConstantEditor( $arr_pluginConf ) . $str_prompt;
     return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
   }
-  
+
+
+
+
+
+
+/**
+ * evaluate_plugin: Evaluates the plugin, flexform, TypoScript
+ *                  Returns a HTML report
+ *
+ * Tab [evaluate]
+ *
+ * @param	array		$arr_pluginConf:  Current plugin/flexform configuration
+ * @param	array		$obj_TCEform:     Current TCE form object
+ * @return	string		$str_prompt: HTML prompt
+ * @version 4.1.7
+ * @since 4.0.0
+ */
+  private function evaluate_promptConstantEditor( $arr_pluginConf )
+  {
+      //.message-notice
+      //.message-information
+      //.message-ok
+      //.message-warning
+      //.message-error
+
+    $str_prompt = '
+      <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok') . '
+          CONSTANT EDITOR
+        </div>
+      </div>
+      ';
+    
+    return $str_prompt;
+  }
   
   
   /***********************************************
