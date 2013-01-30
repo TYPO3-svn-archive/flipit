@@ -167,16 +167,10 @@ class tx_flipit_flexform
         ';
       $str_promptDrs = str_replace( '%status%', $arr_extConf['debuggingDrs'], $str_promptDrs );
     }
-//    else
-//    {
-//      $str_promptDrs = '
-//        <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
-//          <div class="message-body">
-//            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_drs') . '
-//          </div>
-//        </div>
-//        ';
-//    }
+    else
+    {
+      $str_promptDrs = $str_prompt_info_tutorialAndForum;
+    }
       // DRS
 
       // General information
@@ -235,14 +229,13 @@ class tx_flipit_flexform
       <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
         <div class="message-body">
           ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok') . '
-          ' . var_export( $arr_extConf, true ). '
         </div>
       </div>
       ';
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    return $str_prompt . $str_promptDrs . $str_prompt_info_tutorialAndForum;
+    return $str_prompt . $str_promptDrs;
   }
   
   
