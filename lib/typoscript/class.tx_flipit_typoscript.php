@@ -304,7 +304,7 @@ class tx_flipit_typoscript
  * @version 1.0.0
  * @since   1.0.0
  */
-  private function cObjDataReset(  )
+  private function cObjDataReset( )
   {
     if( $this->bakCObjData === null )
     {

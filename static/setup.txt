@@ -807,6 +807,11 @@ plugin.tx_flipit {
               // linked thumbnail
             20 < tt_content.uploads.20.itemRendering.10
             20 {
+              if {
+                isPositive {
+                  field = {$plugin.tx_flipit.database.field.layout}
+                }
+              }
               file {
                 height  = {$plugin.tx_flipit.thumbnails.download.height}
                 width   = {$plugin.tx_flipit.thumbnails.download.width}
@@ -816,6 +821,13 @@ plugin.tx_flipit {
             30 < tt_content.uploads.20.itemRendering.20
               // file size
             40 < tt_content.uploads.20.itemRendering.30
+            40 {
+              if {
+                isTrue {
+                  field = {$plugin.tx_flipit.database.field.filelink_size}
+                }
+              }
+            }
             wrap = <tr class="tx_flipit_layout_03">|</tr>
           }
           drs {
