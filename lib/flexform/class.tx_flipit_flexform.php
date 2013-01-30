@@ -181,19 +181,9 @@ class tx_flipit_flexform
           </div>
         </div>
         ';
-      return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
+      //return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
     }
       // RETURN TypoScript static template isn't included
-
-      // Evaluation result: default message in case of success
-    $str_prompt = '
-      <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
-        <div class="message-body">
-          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok') . '
-        </div>
-      </div>
-      ';
-      // Evaluation result: default message in case of success
 
       // DRS is enabled
     $arr_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit']);
@@ -211,6 +201,20 @@ class tx_flipit_flexform
     }
       // DRS is enabled
 
+    if( $str_prompt )
+    {
+      return $str_prompt;
+    }
+    
+      // Evaluation result: default message in case of success
+    $str_prompt = '
+      <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok') . '
+        </div>
+      </div>
+      ';
+      // Evaluation result: default message in case of success
 
       // Check the plugin
     return $str_prompt . $str_prompt_info_tutorialAndForum;
