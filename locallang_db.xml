@@ -19,13 +19,13 @@
           Constant Editor
         </p>
         <ul>
-          <li>
+          <li style="margin-bottom:0px">
             Layout: %layout%
           </li>
-          <li>
+          <li style="margin-bottom:0px">
             Update SWF files and XML file automatically: %update%
           </li>
-          <li>
+          <li style="margin-bottom:0px">
             Lightbox: Fancybos is %fancybox%
           </li>
         <ul>
