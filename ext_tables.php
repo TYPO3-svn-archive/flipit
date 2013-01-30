@@ -294,7 +294,7 @@ foreach( $arr_showitem as $key => $value )
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, ' . 
           'tx_flipit_plugincheck,' .
           'tx_flipit_layout,' .
-          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_properties;tx_flipit_properties,' .
+//          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_properties;tx_flipit_properties,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_files;tx_flipit_files,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_fancybox;tx_flipit_fancybox,' ;
       $arr_new_showitem[$key + 1] = $value;
