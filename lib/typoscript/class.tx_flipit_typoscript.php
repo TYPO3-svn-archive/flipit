@@ -1222,6 +1222,8 @@ class tx_flipit_typoscript
       // Init the DRS
     $this->initDrs( );
     
+    list( $this->table ) = explode( ':', $GLOBALS['TSFE']->currentRecord );
+
       // Init field labels
     $this->initFieldLabels( );
     
@@ -1430,6 +1432,7 @@ class tx_flipit_typoscript
     $conf = $this->conf;
     $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
     $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
+    $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
   }
   
   
@@ -1611,6 +1614,7 @@ class tx_flipit_typoscript
   */
   private function initRequiredFields( )
   {
+
 // #44858 
 $pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 if ( ! ( $pos === false ) )
@@ -1625,83 +1629,42 @@ if ( ! ( $pos === false ) )
     $arr_return['content']  = null;
     $arr_return['return']   = false;
     
-      // RETURN : fields are initialised by cObj->data
-    if( $this->initRequiredFieldsByCObj( ) )
+    switch( $this->table )
     {
-      $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
-        // Default case: tt_content table is used.
-      $arr_return = $this->initRequiredFieldsCheck( );
-      return $arr_return;
-    }
-      // RETURN : fields are initialised by cObj->data
-
-      // RETURN : fields are initialised by cObj->data of TSFE
-    if( $this->initRequiredFieldsByTsfe( ) )
-    {
-      $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
-        // txfliptit_typoscript is called by an extension
-      $this->cObjDataAddFieldsWoTablePrefix( );
-      $arr_return = $this->initRequiredFieldsCheck( );
-      return $arr_return;
-    }
-      // RETURN : fields are initialised by cObj->data of TSFE
-
-      // RETURN ERROR
-    if( $this->b_drs_error )
-    {
-      $prompt = 'Unexepected result: field tx_flipit_enabled is missing! ' .
-                'Current record: ' . $GLOBALS['TSFE']->currentRecord;
-      t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
-    }
-    $prompt = '<h1>
-        ERROR
-      </h1>
-      <h2>
-        Unexepected result: field tx_flipit_enabled is missing!
-      </h2>
-      <p>
-        The current cObj->data doesn\'t contain the field tx_flipit_enabled.<br />
-        Please report this bug to the developer of this extension.<br />
-        Sorry for the trouble.
-      </p>
-      <p>
-        Current record: ' . $GLOBALS['TSFE']->currentRecord . ' 
-      </p>
-      <p>
-        ' . __METHOD__ . ' (line ' . __LINE__ . ') 
-      </p>
-      <p>
-        TYPO3 extension Flip it!
-      </p>
-      ';
-    $arr_return['content']  = $prompt;
-    $arr_return['return']   = true;
-    return $arr_return;
-      // RETURN ERROR
-  }
-
- /**
-  * initRequiredFieldsByCObj( ) : checks if cObj->data contains the element
-  *                               tx_flipit_enabled.
-  *                               If yes
-  *                               * set global $table to 'tt_content'
-  *                               * return true
-  *
-  * @return   boolean             
-  * @access   private
-  * @version  1.0.0
-  * @since    1.0.0
-  */
-  private function initRequiredFieldsByCObj( )
-  {
-    if( $this->cObj->data['tx_flipit_enabled'] )
-    {
-      $this->initTable( 'tt_content' );
-      return true;
+      case( 'tt_content' ):
+          // Do nothing
+        break;
+      default:
+        $this->cObjDataAddFieldsWoTablePrefix( );
+        break;
     }
     
-    return false;
+    $arr_return = $this->initRequiredFieldsCheck( );
+    return $arr_return;
   }
+
+// /**
+//  * initRequiredFieldsByCObj( ) : checks if cObj->data contains the element
+//  *                               tx_flipit_enabled.
+//  *                               If yes
+//  *                               * set global $table to 'tt_content'
+//  *                               * return true
+//  *
+//  * @return   boolean             
+//  * @access   private
+//  * @version  1.0.0
+//  * @since    1.0.0
+//  */
+//  private function initRequiredFieldsByCObj( )
+//  {
+//    if( $this->cObj->data['tx_flipit_enabled'] )
+//    {
+//      $this->initTable( 'tt_content' );
+//      return true;
+//    }
+//    
+//    return false;
+//  }
   
  /**
   * initRequiredFieldsCheck( )  : Checks, if cObj-data does contain all 
@@ -1794,35 +1757,35 @@ if ( ! ( $pos === false ) )
     return $arr_return;
   }
 
- /**
-  * initRequiredFieldsByTsfe( ) : checks if cObj->data in TSFE contains the element
-  *                               table.tx_flipit_enabled.
-  *                               If yes
-  *                               * set global $table to the given table
-  *                               * return true
-  *
-  * @return   boolean             
-  * @access   private
-  * @version  1.0.0
-  * @since    1.0.0
-  */
-  private function initRequiredFieldsByTsfe( )
-  {
-      // FOREACH  : cObj->data in TSFE
-    foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
-    {
-      list( $table, $field ) = explode( '.', $tableField );
-      if( $field != 'tx_flipit_enabled' )
-      {
-        continue;
-      }
-      $this->initTable( $table );
-      return true;
-    }
-      // FOREACH  : cObj->data in TSFE
-    
-    return false;
-  }
+// /**
+//  * initRequiredFieldsByTsfe( ) : checks if cObj->data in TSFE contains the element
+//  *                               table.tx_flipit_enabled.
+//  *                               If yes
+//  *                               * set global $table to the given table
+//  *                               * return true
+//  *
+//  * @return   boolean             
+//  * @access   private
+//  * @version  1.0.0
+//  * @since    1.0.0
+//  */
+//  private function initRequiredFieldsByTsfe( )
+//  {
+//      // FOREACH  : cObj->data in TSFE
+//    foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
+//    {
+//      list( $table, $field ) = explode( '.', $tableField );
+//      if( $field != 'tx_flipit_enabled' )
+//      {
+//        continue;
+//      }
+//      $this->initTable( $table );
+//      return true;
+//    }
+//      // FOREACH  : cObj->data in TSFE
+//    
+//    return false;
+//  }
   
   
  /**
