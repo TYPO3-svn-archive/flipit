@@ -12,7 +12,7 @@
       <label index="sheetFlipit_evaluate_drs_disabled">If you need help, please refer to the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. There is an evaluator too. And you can enable the DRS - the Development Reporting System. The DRS reports the work flow.</label>
       <label index="sheetFlipit_evaluate_drs_enabled">Warning: The DRS - Development Reporting System - is enabled. This costs performance and is a security risk for any operative sytem. You can disable the DRS in the <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">extension manager</a>]]>. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Bug: This plugin isn't saved never.</label>
-      <label index="sheetFlipit_evaluate_ok">Congratulations! Your configuration is checked. Everything seems ok!</label>
+      <label index="sheetFlipit_evaluate_ok">Congratulations: Your configuration is ok!</label>
       <label index="sheetFlipit_evaluate_ok_constantEditor">Direct link to the  <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Constant Editor</a>]]>. There are further properties for Flip it!.</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... fix it. Include the Static Template "Flip it!: Basis (obligate!)"!</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fix it: Save the Flexform once.</label>
@@ -46,14 +46,14 @@
       <label index="palette_tx_flipit_fancybox">Lightbox</label>
       <label index="palette_tx_flipit_files">Dateien</label>
       <label index="palette_tx_flipit_properties">Einstellungen</label>
-      <label index="sheetFlipit_evaluate_drs_disabled">Wenn Du Hilfe brauchst, rufe bitte den <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> auf. Dort werden die Einstellungen von Flip it! ebenfalls gepr<![CDATA[&auml;]]>ft. Und Du kannst das DRS - Development Reporting System - aktivieren. Das DRS zeigt den Arbeitsablauf von Flip it!.</label>
+      <label index="sheetFlipit_evaluate_drs_disabled">Wenn Du Hilfe ben<![CDATA[&ouml;]]>tigen solltest, kannst Du den <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> aufrufen. Dort werden weitere Einstellungen gepr<![CDATA[&uuml;]]>ft. Und Du kannst das DRS - Development Reporting System - aktivieren. Das DRS zeigt Dir den gesamten Arbeitsprozess an.</label>
       <label index="sheetFlipit_evaluate_drs_enabled">Warnung: Das DRS - Development Reporting System - ist aktiviert. Das kostet Performance und ist ein Sicherheistririsko f<![CDATA[&uuml;]]>r jedes operative System.Du kannst das DRS im <![CDATA[<a href="/typo3/mod.php?M=tools_em" target="_blank">Extension Manager</a>]]> deaktivieren. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Fehler: Das Plugin wurde noch nicht gespeichert.</label>
-      <label index="sheetFlipit_evaluate_ok">Gl<![CDATA[&uuml;]]>ckwunsch! Deine Konfiguration ist gepr<![CDATA[&uuml;]]>ft und scheint in Ordnung zu sein.</label>
-      <label index="sheetFlipit_evaluate_ok_constantEditor">Link zum <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]>. Dort findest Du eine Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten f<![CDATA[&uuml;]]>r Flip it!.</label>
+      <label index="sheetFlipit_evaluate_ok">Gl<![CDATA[&uuml;]]>ckwunsch: Deine Einstellungen sind in Ordnung.</label>
+      <label index="sheetFlipit_evaluate_ok_constantEditor">Beachte bitte auch den <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]>. Dort findest Du eine Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten.</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... den Fehler beheben m<![CDATA[&ouml;]]>chtest, binde das Static-Template "Flip it!: Basis (einbinden!)" ein!</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fehler beheben: Speichere dfas Plugin einmal.</label>
-      <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Wenn Du eine Frage zu Flip it! hast, gucke bitte ins <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Online-Handbuch</a>]]>.</label>
+      <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Beachte bitte auch das <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Online-Handbuch</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
