@@ -29,7 +29,7 @@
 * @package    TYPO3
 * @subpackage    flipit
 * @version  1.0.1
-* @since    1.01
+* @since    1.0.1
 */
 
 
@@ -104,8 +104,8 @@ class tx_flipit_flexform
  * @param	array		$arr_pluginConf:  Current plugin/flexform configuration
  * @param	array		$obj_TCEform:     Current TCE form object
  * @return	string		$str_prompt: HTML prompt
- * @version 4.1.7
- * @since 4.0.0
+ * @version 1.0.1
+ * @since 1.0.1
  */
   public function evaluate( $arr_pluginConf )
   {
@@ -255,8 +255,8 @@ class tx_flipit_flexform
  * @param	array		$arr_pluginConf:  Current plugin/flexform configuration
  * @param	array		$obj_TCEform:     Current TCE form object
  * @return	string		$str_prompt: HTML prompt
- * @version 4.1.7
- * @since 4.0.0
+ * @version 1.0.1
+ * @since 1.0.1
  */
   private function evaluate_promptConstantEditor( $arr_pluginConf )
   {

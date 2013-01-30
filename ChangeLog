@@ -14,7 +14,7 @@
   * #i0004: Flexform got property "Plugin check"
             Effected files:
             * lib
-              * flexform/class.tx_flipit_flexform.php
+              * flexform/class.tx_flipit_flexform.php (new)
               * userfunc/class.tx_flipit_userfunc.php
             * ext_tables.php
             * ext_tables.sql
