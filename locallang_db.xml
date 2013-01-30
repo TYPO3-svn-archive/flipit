@@ -6,6 +6,9 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
+      <label index="palette.tx_flipit_fancybox">Lightbox</label>
+      <label index="palette.tx_flipit_files">Files</label>
+      <label index="palette.tx_flipit_properties">Main properties</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
@@ -29,6 +32,9 @@
       <label index="tcaLabel_tx_flipit_xml_file">XML-configuration-file</label>
     </languageKey>
     <languageKey index="de" type="array">
+      <label index="palette.tx_flipit_fancybox">Lightbox</label>
+      <label index="palette.tx_flipit_files">Dateien</label>
+      <label index="palette.tx_flipit_properties">Einstellungen</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>

@@ -1,6 +1,6 @@
 1.0.1
   13-01-30
-  Improvemnet
+  Improvement
   * #i0005: Porperty enabled is removed
             Effected files:
             * lib/typoscript/class.tx_flipit_typoscript.php
@@ -10,12 +10,16 @@
             * ext_tables.php
             * ext_tables.sql
             * locallang_db.xml
+  Features
   * #i0004: Flexform got property "Plugin check"
             Effected files:
             * ext_tables.php
             * ext_tables.sql
             * locallang_db.xml
   * #i0003: Palettes for the flexform
+            Effected files:
+            * ext_tables.php
+            * locallang_db.xml
 
 1.0.0
   13-01-29

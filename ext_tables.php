@@ -291,7 +291,10 @@ foreach( $arr_showitem as $key => $value )
       break;
     case($key == $int_div_position):
       $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, tx_flipit_plugincheck, tx_flipit_layout, tx_flipit_updateswfxml, tx_flipit_swf_files, tx_flipit_xml_file, tx_flipit_fancybox,';
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, ' . 
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_properties;tx_flipit_properties,' .
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_files;tx_flipit_files,' .
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette.tx_flipit_fancybox;tx_flipit_fancybox,' ;
       $arr_new_showitem[$key + 1] = $value;
       break;
     case($key > $int_div_position):
@@ -304,6 +307,24 @@ $str_showitem = implode( '--div--;', $arr_new_showitem );
 $TCA['tt_content']['types']['uploads']['showitem'] = $str_showitem;
 unset( $int_div_position );
   // Insert div [flipit] at position $int_div_position
+   
+  // Insert palettes
+$TCA['tt_content']['palettes']['tx_flipit_fancybox']['showitem'] = 
+  'tx_flipit_fancybox;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_fancybox';
+$TCA['tt_content']['palettes']['tx_flipit_fancybox']['canNotCollapse'] = 1;
+
+$TCA['tt_content']['palettes']['tx_flipit_files']['showitem'] = 
+  'tx_flipit_updateswfxml;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml, --linebreak--,' .
+  'tx_flipit_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files,' . 
+  'tx_flipit_xml_file;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_xml_file';
+$TCA['tt_content']['palettes']['tx_flipit_files']['canNotCollapse'] = 1;
+
+$TCA['tt_content']['palettes']['tx_flipit_properties']['showitem'] = 
+  'tx_flipit_plugincheck;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_plugincheck, ' .
+  'tx_flipit_layout;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_layout';
+$TCA['tt_content']['palettes']['tx_flipit_properties']['canNotCollapse'] = 1;
+  // Insert palettes
+
   // TCA for tt_content
 
 ?>
