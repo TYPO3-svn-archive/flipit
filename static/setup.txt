@@ -397,6 +397,7 @@ plugin.tx_flipit {
               <h1>TypoScript Error</h1>
               <p>
                 '{field:tx_flipit_fancybox}' isn't any element of the list: enabled,disabled,ts
+                Maybe there is an unproper value in plugin.tx_flipit.master_templates.fancybox .
               </p>
               <p>
                 Flip it!
@@ -408,6 +409,7 @@ plugin.tx_flipit {
               <h1>TypoScript Fehler</h1>
               <p>
                 '{field:tx_flipit_fancybox}' ist kein Element der Liste: enabled,disabled,ts
+                Vielleicht hat plugin.tx_flipit.master_templates.fancybox einen falschen Wert.
               </p>
               <p>
                 Flip it!
