@@ -193,6 +193,7 @@ class tx_flipit_typoscript
 
       // Return the content
     $content =  $this->content( $conf );    
+var_dump( __METHOD__, __LINE__, $this->cObj->data );
     $this->cObjDataReset( );
     return $content;    
   }
