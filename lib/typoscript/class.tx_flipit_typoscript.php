@@ -1275,7 +1275,7 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data );
     $arr_return = $this->initIfFirstFileOnly( );
     if( $arr_return['return'] )
     {
-      return $arr_return;
+//      return $arr_return;
     }
       // RETURN : $firstFile != $currentFile
 
