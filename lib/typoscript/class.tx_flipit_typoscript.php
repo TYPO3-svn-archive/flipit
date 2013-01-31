@@ -166,8 +166,13 @@ class tx_flipit_typoscript
       // IF return  : return with an error prompt
     if( $arr_return['return'] )
     {
+      $content = $arr_return['content'];
+var_dump( __METHOD__, __LINE__, $this->cObj->data );
+$coa_name = $conf['userFunc.']['content'];
+$coa_conf = $conf['userFunc.']['content.'];
+$content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
       $this->cObjDataReset( );
-      return $arr_return['content'];
+      return $content;
     }
       // IF return  : return with an error prompt
     
@@ -335,7 +340,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['content'];
     $coa_conf = $conf['userFunc.']['content.'];
 
-var_dump( __METHOD__, __LINE__, $this->cObj->data );
+//var_dump( __METHOD__, __LINE__, $this->cObj->data );
 //if( empty( $this->cObj->data( 'tx_flipit_swf_files') ) )
 //{
 //    $coa_name = $conf['userFunc.']['content'];
@@ -1275,7 +1280,7 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data );
     $arr_return = $this->initIfFirstFileOnly( );
     if( $arr_return['return'] )
     {
-//      return $arr_return;
+      return $arr_return;
     }
       // RETURN : $firstFile != $currentFile
 
