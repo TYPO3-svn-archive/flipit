@@ -172,7 +172,7 @@ plugin.tx_flipit {
         // RETURNS disabled or enabled
       updateSwfXml = COA
       updateSwfXml {
-            // IF field:tx_flipit_updateswfxml is in list of 'disabled,enabled,ts'
+            // IF field:tx_flipit_updateswfxml is in list of ',disabled,enabled,ts'
           if = 
         if {
             // Be aware of the first comma!
@@ -198,8 +198,8 @@ plugin.tx_flipit {
           if {
               // Be aware of the first comma!
             value = ,ts
-            equals {
-              isInList = tx_flipit_updateswfxml
+            isInList {
+              field = tx_flipit_updateswfxml
             }
           }
           value = {$plugin.tx_flipit.configuration.updateswfxml} 
