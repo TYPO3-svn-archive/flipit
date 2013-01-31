@@ -175,7 +175,8 @@ plugin.tx_flipit {
             // IF field:tx_flipit_updateswfxml is in list of 'disabled,enabled,ts'
           if = 
         if {
-          value = disabled,enabled,ts
+            // Be aware of the first comma!
+          value = ,disabled,enabled,ts
           isInList {
             field = tx_flipit_updateswfxml
           }
@@ -191,13 +192,14 @@ plugin.tx_flipit {
           }
           field = tx_flipit_updateswfxml
         }
-          // ts
+          // null, ts
         20 = TEXT
         20 {
           if {
-            value = ts
+              // Be aware of the first comma!
+            value = ,ts
             equals {
-              field = tx_flipit_updateswfxml
+              isInList = tx_flipit_updateswfxml
             }
           }
           value = {$plugin.tx_flipit.configuration.updateswfxml} 
