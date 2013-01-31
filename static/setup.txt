@@ -386,7 +386,8 @@ plugin.tx_flipit {
             // IF field:tx_flipit_fancybox is not in list of 'enabled,disabeld,ts'
           if = 
           if {
-            value = enabled,disabled,ts
+              // Be aware of the first comma!
+            value = ,enabled,disabled,ts
             isInList {
               field = tx_flipit_fancybox
             }
@@ -421,11 +422,12 @@ plugin.tx_flipit {
           // Javascript, A tag, DIV begin
         20 = COA
         20 {
-            // IF constant_editor.configuration.enableFancybox = enabled
+            // IF constant_editor.configuration.enableFancybox = enabled || null
           if = 
           if {
-            value = enabled
-            equals {
+              // Be aware of the first comma!
+            value = ,enabled
+            isInList {
               cObject < plugin.tx_flipit.constant_editor.configuration.enableFancybox
             }
           }
