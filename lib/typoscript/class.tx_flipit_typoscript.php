@@ -167,7 +167,8 @@ class tx_flipit_typoscript
     if( $arr_return['return'] )
     {
       $content = $arr_return['content'];
-var_dump( __METHOD__, __LINE__, $this->cObj->data );
+// :TODO:
+//var_dump( __METHOD__, __LINE__, $this->cObj->data );
 $coa_name = $conf['userFunc.']['content'];
 $coa_conf = $conf['userFunc.']['content.'];
 $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
@@ -339,14 +340,6 @@ $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
 
     $coa_name = $conf['userFunc.']['content'];
     $coa_conf = $conf['userFunc.']['content.'];
-
-//var_dump( __METHOD__, __LINE__, $this->cObj->data );
-//if( empty( $this->cObj->data( 'tx_flipit_swf_files') ) )
-//{
-//    $coa_name = $conf['userFunc.']['content'];
-//    $coa_conf = $conf['userFunc.']['content.'];
-//}
-    
     $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     if( $this->b_drs_flipit )
