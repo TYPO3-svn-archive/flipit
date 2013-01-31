@@ -678,29 +678,58 @@ plugin.tx_flipit {
               // swf
             10 = COA
             10 {
-              if {
-                isTrue {
-                  field = tx_flipit_swf_files
+              10 = COA
+              10 {
+                if {
+                  isTrue {
+                    field = tx_flipit_swf_files
+                  }
                 }
+                  // Fancybox enabled 1/2: begin
+                10 < plugin.tx_flipit.master_templates.fancybox.begin
+                  // SWF code: Flip it! 
+                20 < plugin.tx_flipit.master_templates.flipitSwf
+                  // Fancybox enabled 2/2: end
+                30 < plugin.tx_flipit.master_templates.fancybox.end
+                wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
               }
-                // Fancybox enabled 1/2: begin
-              10 < plugin.tx_flipit.master_templates.fancybox.begin
-                // SWF code: Flip it! 
-              20 < plugin.tx_flipit.master_templates.flipitSwf
-                // Fancybox enabled 2/2: end
-              30 < plugin.tx_flipit.master_templates.fancybox.end
-              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
-            }
-              // swf
-            20 = TEXT
-            20 {
-              if {
-                isFalse {
-                  field = tx_flipit_swf_files
+                // layout_00: default tt_content.uploads.20 layout (without Flip it!)
+              20 = TEXT
+              20 {
+                if {
+                  isFalse {
+                    field = tx_flipit_swf_files
+                  }
                 }
+                10 {
+                  if {
+                    isPositive {
+                      field = {$plugin.tx_flipit.database.field.layout}
+                    }
+                  }
+                }
+                30 {
+                  if {
+                    isTrue {
+                      field = {$plugin.tx_flipit.database.field.filelink_size}
+                    }
+                  }
+                }
+                  // DRS - for reporting only
+                40 = USER
+                40 {
+                    // drs
+                  userFunc = tx_flipit_typoscript->main
+                  userFunc {
+                      // DRS - for reporting only
+                    drs = 
+                    drs {
+                        // Current layout. Don't change it!
+                      layout = layout_00
+                    }
+                  }
+                } 
               }
-              value = Ätsch!
-              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
           }
