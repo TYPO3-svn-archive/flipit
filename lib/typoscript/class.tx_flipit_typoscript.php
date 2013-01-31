@@ -334,7 +334,13 @@ class tx_flipit_typoscript
 
     $coa_name = $conf['userFunc.']['content'];
     $coa_conf = $conf['userFunc.']['content.'];
-//    $content  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
+
+//if( empty( $this->cObj->data( 'tx_flipit_swf_files') ) )
+//{
+//    $coa_name = $conf['userFunc.']['content'];
+//    $coa_conf = $conf['userFunc.']['content.'];
+//}
+    
     $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     if( $this->b_drs_flipit )
