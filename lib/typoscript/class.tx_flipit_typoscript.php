@@ -185,15 +185,16 @@ class tx_flipit_typoscript
     }
       // RETURN : no media files
 
-      // Generate and check SWF and XML files
-    $this->update( );   
-
       // ...
     $this->jquery( );   
 
+      // Generate and check SWF and XML files
+    $this->update( );   
+
       // Return the content
+    $content =  $this->content( $conf );    
     $this->cObjDataReset( );
-    return $this->content( $conf );    
+    return $content;    
   }
   
   
@@ -2030,7 +2031,6 @@ if ( ! ( $pos === false ) )
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox.'];
     $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-var_dump( __METHOD__, __LINE__, $this->cObj->data );
     
     switch( $fancybox )
     {
