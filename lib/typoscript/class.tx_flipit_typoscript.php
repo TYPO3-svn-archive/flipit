@@ -185,11 +185,11 @@ class tx_flipit_typoscript
     }
       // RETURN : no media files
 
-      // ...
-    $this->jquery( );   
-
       // Generate and check SWF and XML files
     $this->update( );   
+
+      // ...
+    $this->jquery( );   
 
       // Return the content
     $this->cObjDataReset( );
@@ -940,11 +940,11 @@ class tx_flipit_typoscript
   */
   private function updateXml( )
   {
-    $xmlFileAreDeprecated = false;
+    $xmlFileIsDeprecated = false;
     
       // Render SWF files if they are deprecated or if there isn't any SWF file
-    $xmlFileAreDeprecated = $this->updateXmlFileIsDeprecated( );
-    if( $xmlFileAreDeprecated )
+    $xmlFileIsDeprecated = $this->updateXmlFileIsDeprecated( );
+    if( $xmlFileIsDeprecated )
     {
       $this->updateXmlFileRenderIt( );
     }
