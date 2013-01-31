@@ -126,7 +126,7 @@ class tx_flipit_typoscript
   */
   private $arrRequiredFields = array(
     'tstamp',
-    'tx_flipit_evaluated',
+    'tx_flipit_evaluate',
     'tx_flipit_fancybox',
     'tx_flipit_layout',
     'tx_flipit_swf_files',
