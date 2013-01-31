@@ -2030,6 +2030,7 @@ if ( ! ( $pos === false ) )
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox.'];
     $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+var_dump( __METHOD__, __LINE__, $this->cObj->data );
     
     switch( $fancybox )
     {
