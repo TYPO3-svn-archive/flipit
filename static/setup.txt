@@ -694,7 +694,7 @@ plugin.tx_flipit {
                 wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
               }
                 // layout_00: default tt_content.uploads.20 layout (without Flip it!)
-              20 = TEXT
+              20  < tt_content.uploads.20.itemRendering
               20 {
                 if {
                   isFalse {
