@@ -167,11 +167,10 @@ class tx_flipit_typoscript
     if( $arr_return['return'] )
     {
       $content = $arr_return['content'];
-// :TODO:
-//var_dump( __METHOD__, __LINE__, $this->cObj->data );
-$coa_name = $conf['userFunc.']['content'];
-$coa_conf = $conf['userFunc.']['content.'];
-$content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+      if( empty( $content ) )
+      {
+        $content =  $this->content( $conf );    
+      }
       $this->cObjDataReset( );
       return $content;
     }
@@ -186,6 +185,7 @@ $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
         $prompt = $this->table . '.' . $field . ' is empty. Nothing todo. Return!';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
+      $content =  $this->content( $conf );    
       $this->cObjDataReset( );
       return;
     }
