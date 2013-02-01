@@ -105,21 +105,28 @@ class tx_flipit_typoscript
   */
   private $bakCObjData = null;
   
- /**
-  * Backup of $GLOBALS['TSFE']->currentRecord
-  *
-  * @var array
-  */
-  private $bakCurrRecord = null;
+// /**
+//  * Backup of $GLOBALS['TSFE']->currentRecord
+//  *
+//  * @var array
+//  */
+//  private $bakCurrRecord = null;
+//  
+// /**
+//  * Backup of $GLOBALS['TSFE']->cObj->data
+//  *
+//  * @var array
+//  */
+//  private $bakTsfeData = null;
   
  /**
-  * Backup of $GLOBALS['TSFE']->cObj->data
+  * Current record in table:uid syntax like tt_content:25
   *
-  * @var array
+  * @var string
   */
-  private $bakTsfeData = null;
-  
- /**
+  private $currentRecord  = null;
+
+  /**
   * List of required fields. Should corresponds with ext_tables.sql.
   *
   * @var array
@@ -222,15 +229,25 @@ class tx_flipit_typoscript
   private function cObjDataAddFieldsWoTablePrefix(  )
   {
     $this->cObjDataBackup( );
-    $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+    
+    switch( true ) 
+    {
+      case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
+        $this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
+        break;
+      default:
+        $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+        break;
+    }
+    
 
       // Add to the global $arrRequiredFields the title field
     if( $this->fieldLabelForTitle )
     {
-      $this->cObj->data['header'] = $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle];
+      $this->cObj->data['header'] = $this->cObj->data[$this->fieldLabelForTitle];
       if( $this->b_drs_warn )
       {
-        if( empty( $GLOBALS['TSFE']->cObj->data[$this->fieldLabelForTitle] ) )
+        if( empty( $this->cObj->data[$this->fieldLabelForTitle] ) )
         {
           $prompt = 'Title is empty.';
           t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
@@ -241,18 +258,27 @@ class tx_flipit_typoscript
     }
     
       // FOREACH  : cObj->data in TSFE
-    foreach( array_keys( $GLOBALS['TSFE']->cObj->data ) as $tableField )
+    foreach( array_keys( $this->cObj->data ) as $tableField )
     {
       list( $table, $field ) = explode( '.', $tableField );
       if( $table != $this->table )
       {
         continue;
       }
-      $this->cObj->data[$field] = $GLOBALS['TSFE']->cObj->data[$tableField];
+      $this->cObj->data[$field] = $this->cObj->data[$tableField];
     }
       // FOREACH  : cObj->data in TSFE
     
-    $GLOBALS['TSFE']->currentRecord = $this->table . ':' . $this->cObj->data['uid'];
+    switch( true ) 
+    {
+      case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
+        $this->currentRecord = $GLOBALS['TSFE']->tx_browser_pi1->currentRecord;
+        break;
+      default:
+        $this->currentRecord = $GLOBALS['TSFE']->currentRecord;
+        break;
+    }
+    
   }
   
 /**
@@ -278,8 +304,7 @@ class tx_flipit_typoscript
 //  echo '</pre>' . PHP_EOL;
 //}
     $this->bakCObjData    = $this->cObj->data;
-    $this->bakTsfeData    = $GLOBALS['TSFE']->cObj->data;
-    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
+//    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
 
       // DRS
     if( $this->b_drs_init )
@@ -305,8 +330,7 @@ class tx_flipit_typoscript
       return;
     }
     $this->cObj->data               = $this->bakCObjData;
-    $GLOBALS['TSFE']->cObj->data    = $this->bakTsfeData;
-    $GLOBALS['TSFE']->currentRecord = $this->bakCurrRecord;
+//    $GLOBALS['TSFE']->currentRecord = $this->bakCurrRecord;
 
       // DRS
     if( $this->b_drs_init )
@@ -1227,7 +1251,15 @@ class tx_flipit_typoscript
       // Init the DRS
     $this->initDrs( );
     
-    list( $this->table ) = explode( ':', $GLOBALS['TSFE']->currentRecord );
+    switch( true ) 
+    {
+      case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
+        list( $this->table ) = explode( ':', $GLOBALS['TSFE']->tx_browser_pi1->currentRecord );
+        break;
+      default:
+        list( $this->table ) = explode( ':', $GLOBALS['TSFE']->currentRecord );
+        break;
+    }
 
       // Init field labels
     $this->initFieldLabels( );
@@ -1555,15 +1587,15 @@ class tx_flipit_typoscript
   {
 
 // #44858 
-$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
-if ( ! ( $pos === false ) )
-{
-  echo '<pre>';
-  var_dump( __METHOD__, __LINE__, $this->table );
-  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
-  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
-  echo '</pre>';
-}
+//$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+//if ( ! ( $pos === false ) )
+//{
+//  echo '<pre>';
+//  var_dump( __METHOD__, __LINE__, $this->table );
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
+//  echo '</pre>';
+//}
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
