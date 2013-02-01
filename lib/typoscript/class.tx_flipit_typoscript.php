@@ -1760,7 +1760,7 @@ class tx_flipit_typoscript
   * @version  1.0.0
   * @since    1.0.0
   */
-  private function initTable( $table )
+  private function initTable( )
   {
     if( ! ( $this->table === null ) )
     {
