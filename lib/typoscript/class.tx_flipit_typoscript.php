@@ -219,17 +219,19 @@ class tx_flipit_typoscript
   **********************************************/
 
 /**
- * cObjDataAddFieldsWoTablePrefix( ): 
+ * cObjDataSet( ): 
  *
  * @return    void
  * @internal  #44896
- * @version 1.0.0
+ * @version 1.0.1
  * @since   1.0.0
  */
-  private function cObjDataAddFieldsWoTablePrefix(  )
-  {
+  private function cObjDataSet(  )
+  { 
+      // Backup data, which will changed below
     $this->cObjDataBackup( );
     
+      // SWITCH : Set cObj->data
     switch( true ) 
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
@@ -239,9 +241,9 @@ class tx_flipit_typoscript
         $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
         break;
     }
+      // SWITCH : Set cObj->data
     
-
-      // Add to the global $arrRequiredFields the title field
+      // Add to the header field
     if( $this->fieldLabelForTitle )
     {
       $this->cObj->data['header'] = $this->cObj->data[$this->fieldLabelForTitle];
@@ -256,8 +258,9 @@ class tx_flipit_typoscript
         }
       }
     }
+      // Add to the header field
     
-      // FOREACH  : cObj->data in TSFE
+      // FOREACH  : Add all fields of the current table with table.field syntax without table
     foreach( array_keys( $this->cObj->data ) as $tableField )
     {
       list( $table, $field ) = explode( '.', $tableField );
@@ -267,8 +270,19 @@ class tx_flipit_typoscript
       }
       $this->cObj->data[$field] = $this->cObj->data[$tableField];
     }
-      // FOREACH  : cObj->data in TSFE
+      // FOREACH  : Add all fields of the current table with table.field syntax without table
     
+      // DRS
+    if( $this->b_drs_init )
+    {
+      $prompt = 'cObj->data are set (overriden).';
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+      $prompt = var_export( $this->cObj->data, true );
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+
+      // SWITCH : set current record in table:uid syntax
     switch( true ) 
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
@@ -278,7 +292,15 @@ class tx_flipit_typoscript
         $this->currentRecord = $GLOBALS['TSFE']->currentRecord;
         break;
     }
+      // SWITCH : set current record in table:uid syntax
     
+      // DRS
+    if( $this->b_drs_init )
+    {
+      $prompt = 'current record is: ' . $this->currentRecord;
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
   }
   
 /**
@@ -286,7 +308,7 @@ class tx_flipit_typoscript
  *
  * @return    void
  * @internal  #44896
- * @version 1.0.0
+ * @version 1.0.1
  * @since   1.0.0
  */
   private function cObjDataBackup(  )
@@ -305,14 +327,6 @@ class tx_flipit_typoscript
 //}
     $this->bakCObjData    = $this->cObj->data;
 //    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
-
-      // DRS
-    if( $this->b_drs_init )
-    {
-      $prompt = 'cObj->data are set (overriden).';
-      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-    }
-      // DRS
   }
   
 /**
@@ -1599,7 +1613,7 @@ class tx_flipit_typoscript
           // Do nothing
         break;
       default:
-        $this->cObjDataAddFieldsWoTablePrefix( );
+        $this->cObjDataSet( );
         break;
     }
     
