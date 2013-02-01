@@ -1251,16 +1251,9 @@ class tx_flipit_typoscript
       // Init the DRS
     $this->initDrs( );
     
-    switch( true ) 
-    {
-      case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
-        list( $this->table ) = explode( ':', $GLOBALS['TSFE']->tx_browser_pi1->currentRecord );
-        break;
-      default:
-        list( $this->table ) = explode( ':', $GLOBALS['TSFE']->currentRecord );
-        break;
-    }
-
+      // Init table
+    $this->initTable( );
+    
       // Init field labels
     $this->initFieldLabels( );
     
@@ -1762,17 +1755,31 @@ class tx_flipit_typoscript
  /**
   * initTable( ) : 
   *
-  * @return   boolean             
+  * @return   void             
   * @access   private
   * @version  1.0.0
   * @since    1.0.0
   */
   private function initTable( $table )
   {
-    $this->table = $table;
+    if( ! ( $this->table === null ) )
+    {
+      return;
+    }
+    
+    switch( true ) 
+    {
+      case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
+        list( $this->table ) = explode( ':', $GLOBALS['TSFE']->tx_browser_pi1->currentRecord );
+        break;
+      default:
+        list( $this->table ) = explode( ':', $GLOBALS['TSFE']->currentRecord );
+        break;
+    }
+
     if( $this->b_drs_init )
     {
-      $prompt = 'table is set to ' . $table;
+      $prompt = 'table is set to ' . $this->table;
       t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
     }
     
