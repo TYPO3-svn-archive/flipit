@@ -238,8 +238,8 @@ class tx_flipit_typoscript
         $this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
         break;
       default:
-var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data, $this->cObj->data );
-        $this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+          // Do nothing
+        //$this->cObj->data = $GLOBALS['TSFE']->cObj->data;
         break;
     }
       // SWITCH : Set cObj->data
