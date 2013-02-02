@@ -233,9 +233,11 @@ class tx_flipit_flexform
 
     if( $str_prompt || $str_promptDrsEnabled )
     {
-      $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+      $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
       $str_prompt = $str_prompt . $this-> evaluate_promptSwftools( );
-      return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
+      $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+      $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;
+      return $str_prompt;
     }
     
       // Evaluation result: default message in case of success
@@ -249,9 +251,11 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+    $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
     $str_prompt = $str_prompt . $this-> evaluate_promptSwftools( );
-    return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
+    $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+    $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;
+    return $str_prompt;
   }
 
 
@@ -319,22 +323,23 @@ class tx_flipit_flexform
     $this->objUserfunc->set_allParams( );
       // Include class userfunc
 
-      // DRS
-    if( $this->b_drs_init )
+    switch( $this->objUserfunc->swfTools )
     {
-      $prompt = 'OS: ' . $this->objUserfunc->os;
-      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
-      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
-      $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
-      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );    
+      case( 'installed' ):
+        $type   = 'ok';
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_swftools');
+        break;
+      case( 'notInstalled' ):
+      default:
+        $type   = 'warning';
+        $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_swftools');
+        break;
     }
-      // DRS
-      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
+
     $str_prompt = '
-      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+      <div class="typo3-message message-'. $type . '" style="max-width:' . $this->maxWidth . ';">
         <div class="message-body">
-          ' . $prompt . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_constantEditor') . '
+          ' . $prompt . '
         </div>
       </div>
       ';
