@@ -33,7 +33,7 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/dims/205;       type=options[true,false];   label= cyclic:When true, galleries will be cyclic, allowing you to keep pressing next/back.
   fancybox.cyclic = false
   # cat=Flip it! - fancybox/dims/206;       type=options[auto,yes,no];  label= scrolling:Set the overflow CSS property to create or hide scrollbars. Can be set to 'auto', 'yes', or 'no'
-  fancybox.scrolling = auto 	
+  fancybox.scrolling = auto     
   # cat=Flip it! - fancybox/dims/207;       type=string;                  label= width:Width for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
   fancybox.width = 100%
   # cat=Flip it! - fancybox/dims/208;       type=string;                  label= height:Height for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
