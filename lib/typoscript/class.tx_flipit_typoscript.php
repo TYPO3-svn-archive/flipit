@@ -238,8 +238,7 @@ class tx_flipit_typoscript
         $this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
         break;
       default:
-          // Do nothing
-        //$this->cObj->data = $GLOBALS['TSFE']->cObj->data;
+          // Do nothing: $this->cObj->data is set by the TYPO3 core
         break;
     }
       // SWITCH : Set cObj->data
@@ -247,15 +246,18 @@ class tx_flipit_typoscript
       // Add to the header field
     if( $this->fieldLabelForTitle )
     {
-      $this->cObj->data['header'] = $this->cObj->data[$this->fieldLabelForTitle];
-      if( $this->b_drs_warn )
+      if( isset( $this->cObj->data[$this->fieldLabelForTitle] ) )
       {
-        if( empty( $this->cObj->data[$this->fieldLabelForTitle] ) )
+        $this->cObj->data['header'] = $this->cObj->data[$this->fieldLabelForTitle];
+        if( $this->b_drs_warn )
         {
-          $prompt = 'Title is empty.';
-          t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
-          $prompt = 'Value of the title field in the Constant Editor is ' . $this->fieldLabelForTitle . '. Is this proper?';
-          t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 1 );
+          if( empty( $this->cObj->data[$this->fieldLabelForTitle] ) )
+          {
+            $prompt = 'Title is empty.';
+            t3lib_div::devlog( '[WARN/FLIPIT] ' . $prompt, $this->extKey, 2 );
+            $prompt = 'Value of the title field in the Constant Editor is ' . $this->fieldLabelForTitle . '. Is this proper?';
+            t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 1 );
+          }
         }
       }
     }
@@ -1642,16 +1644,27 @@ class tx_flipit_typoscript
     $arr_return['content']  = null;
     $arr_return['return']   = false;
     
-      // Add to the global $arrRequiredFields the title field
-    if( $this->fieldLabelForTitle )
+      // SWITCH : add required fields for title and media
+    switch( true ) 
     {
-      $this->arrRequiredFields[] = $this->fieldLabelForTitle;
+      case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
+          // Add to the global $arrRequiredFields the title field
+        if( $this->fieldLabelForTitle )
+        {
+          $this->arrRequiredFields[] = $this->fieldLabelForTitle;
+        }
+          // Add to the global $arrRequiredFields the media field
+        if( $this->fieldLabelForMedia )
+        {
+          $this->arrRequiredFields[] = $this->fieldLabelForMedia;
+        }
+        break;
+      default:
+          // Do nothing: $this->cObj->data is set by the TYPO3 core
+        break;
     }
-      // Add to the global $arrRequiredFields the media field
-    if( $this->fieldLabelForMedia )
-    {
-      $this->arrRequiredFields[] = $this->fieldLabelForMedia;
-    }
+      // SWITCH : add required fields for title and media
+
     $this->arrRequiredFields = array_unique( $this->arrRequiredFields );
       // Add to the global $arrRequiredFields the media field
       
