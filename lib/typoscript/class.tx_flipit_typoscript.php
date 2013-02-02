@@ -1377,15 +1377,15 @@ class tx_flipit_typoscript
 //  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
 //  echo '</pre>';
 //}
-//    switch( $this->table )
-//    {
-//      case( 'tt_content' ):
-//          // Do nothing
-//        break;
-//      default:
+    switch( $this->table )
+    {
+      case( 'tt_content' ):
+          // Do nothing
+        break;
+      default:
         $this->cObjDataSet( );
-//        break;
-//    }
+        break;
+    }
   }
   
 /**

@@ -1,6 +1,6 @@
   # cat=evaluator/enable/100;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorOS]; label= Operating System: Linux, Unix and Windows are supported.
 evaluatorOS            = Undefined error: Evaluation failed!
-  # cat=evaluator/enable/101;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorSWFtools]; label= SWF tools: If PDF files should converted to SWF / Flash files automatically, you need SWF tools on your server.
+  # cat=evaluator/enable/101;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorSWFtools]; label= SWFTOOLS: If PDF files should converted to SWF / Flash files automatically, you need SWFTOOLS on your server.
 evaluatorSWFtools      = Undefined error: Evaluation failed!
   # cat=evaluator/enable/103;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorTYPO3version]; label= TYPO3 version
 evaluatorTYPO3version  = Undefined error: Evaluation failed!

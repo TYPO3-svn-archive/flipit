@@ -85,29 +85,33 @@ switch( true )
   case( $beLanguage == 'de' ):
       // German
     t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (immer einbinden!)');
-    switch( true )
-    {
-      case( $typo3Version < 4007000 ):
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis fuer TYPO3 < 4.7 (einbinden!)');
-        break;
-      default:
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis fuer TYPO3 < 4.7 (NICHT einbinden!)');
-        break;
-    }
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox', '+Flip it!: Fancybox disabled');
+// #i0001, 130202, dwildt, -
+//    switch( true )
+//    {
+//      case( $typo3Version < 4007000 ):
+//        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis fuer TYPO3 < 4.7 (einbinden!)');
+//        break;
+//      default:
+//        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis fuer TYPO3 < 4.7 (NICHT einbinden!)');
+//        break;
+//    }
     break;
   default:
       // English
     t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (obligate!)');
-    switch( true )
-    {
-      case( $typo3Version < 4007000 ):
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis for TYPO3 < 4.7 (obligate!)');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox', '+Flip it!: Fancybox abgeschaltet');
+// #i0001, 130202, dwildt, -
+//    switch( true )
+//    {
+//      case( $typo3Version < 4007000 ):
+//        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis for TYPO3 < 4.7 (obligate!)');
+//        break;
+//      default:
+//        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis for TYPO3 < 4.7 (don\'t use it!)');
+//        break;
+//    }
         break;
-      default:
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/',     'Flip it!: Basis for TYPO3 < 4.7 (don\'t use it!)');
-        break;
-    }
-    break;
 }
   // Case $beLanguage
   // Enables the Include Static Templates

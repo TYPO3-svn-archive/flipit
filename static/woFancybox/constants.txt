@@ -1,0 +1,11 @@
+plugin.tx_flipit {
+  configuration {
+      // Don't use fancybox
+    enableFancybox = disabled
+  }
+  html {
+      // Size of HTML content in case of no fancybox
+    height  = 450px
+    width   = 600px
+  }
+}

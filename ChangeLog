@@ -1,3 +1,17 @@
+1.0.2
+  13-02-02
+  Feature
+  * #i0002: Include static template for "without fancybox"
+            Effected files:
+            * static/woFancybox
+              * constants.txt
+              * setup.txt
+            * ext_tables.php
+  Improvements
+  * #i0001: Don't offer an include static template for TYPO3 < 4.7
+            Effected file:
+            * ext_tables.php
+
 1.0.1
   13-01-30
   Improvement
