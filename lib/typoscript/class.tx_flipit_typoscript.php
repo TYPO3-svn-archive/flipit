@@ -111,13 +111,13 @@ class tx_flipit_typoscript
 //  * @var array
 //  */
 //  private $bakCurrRecord = null;
-//  
-// /**
-//  * Backup of $GLOBALS['TSFE']->cObj->data
-//  *
-//  * @var array
-//  */
-//  private $bakTsfeData = null;
+  
+ /**
+  * Backup of $GLOBALS['TSFE']->cObj->data
+  *
+  * @var array
+  */
+  private $bakTsfeData = null;
   
  /**
   * Current record in table:uid syntax like tt_content:25
@@ -271,6 +271,7 @@ class tx_flipit_typoscript
       $this->cObj->data[$field] = $this->cObj->data[$tableField];
     }
       // FOREACH  : Add all fields of the current table with table.field syntax without table
+    $GLOBALS['TSFE']->cObj->data = $this->cObj->data;
     
       // DRS
     if( $this->b_drs_init )
@@ -327,6 +328,7 @@ class tx_flipit_typoscript
 //}
     $this->bakCObjData    = $this->cObj->data;
 //    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
+    $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
   }
   
 /**
@@ -345,6 +347,7 @@ class tx_flipit_typoscript
     }
     $this->cObj->data               = $this->bakCObjData;
 //    $GLOBALS['TSFE']->currentRecord = $this->bakCurrRecord;
+    $GLOBALS['TSFE']->cObj->data    = $this->bakTsfeData;
 
       // DRS
     if( $this->b_drs_init )
@@ -1271,6 +1274,9 @@ class tx_flipit_typoscript
       // Init field labels
     $this->initFieldLabels( );
     
+      // Init table
+    $this->initCObj( );
+    
       // RETURN :
     $arr_return = $this->initRequiredFields( );
     if( $arr_return['return'] )
@@ -1350,7 +1356,37 @@ class tx_flipit_typoscript
       // DRS
   }
   
-  
+ /**
+  * initCObj( ):
+  *
+  * @return    mixed        HTML output.
+  * @access   private
+  * @version  1.0.1
+  * @since    1.0.1
+  */
+  private function initCObj( )
+  {
+
+// #44858 
+//$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
+//if ( ! ( $pos === false ) )
+//{
+//  echo '<pre>';
+//  var_dump( __METHOD__, __LINE__, $this->table );
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->cObj->data );
+//  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
+//  echo '</pre>';
+//}
+//    switch( $this->table )
+//    {
+//      case( 'tt_content' ):
+//          // Do nothing
+//        break;
+//      default:
+        $this->cObjDataSet( );
+//        break;
+//    }
+  }
   
 /**
  * initDrs( ): Init the DRS - Development Reportinmg System
@@ -1579,8 +1615,6 @@ class tx_flipit_typoscript
     return $arr_return;
     
   }
-
-  
   
  /**
   * initRequiredFields( ):
@@ -1606,16 +1640,6 @@ class tx_flipit_typoscript
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
-    
-    switch( $this->table )
-    {
-      case( 'tt_content' ):
-          // Do nothing
-        break;
-      default:
-        $this->cObjDataSet( );
-        break;
-    }
     
     $arr_return = $this->initRequiredFieldsCheck( );
     return $arr_return;
