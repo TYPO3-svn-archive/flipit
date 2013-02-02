@@ -104,20 +104,20 @@ class tx_flipit_typoscript
   * @var array
   */
   private $bakCObjData = null;
-  
+//  
 // /**
 //  * Backup of $GLOBALS['TSFE']->currentRecord
 //  *
 //  * @var array
 //  */
 //  private $bakCurrRecord = null;
-  
- /**
-  * Backup of $GLOBALS['TSFE']->cObj->data
-  *
-  * @var array
-  */
-  private $bakTsfeData = null;
+//  
+// /**
+//  * Backup of $GLOBALS['TSFE']->cObj->data
+//  *
+//  * @var array
+//  */
+//  private $bakTsfeData = null;
   
  /**
   * Current record in table:uid syntax like tt_content:25
@@ -271,7 +271,7 @@ class tx_flipit_typoscript
       $this->cObj->data[$field] = $this->cObj->data[$tableField];
     }
       // FOREACH  : Add all fields of the current table with table.field syntax without table
-    $GLOBALS['TSFE']->cObj->data = $this->cObj->data;
+//    $GLOBALS['TSFE']->cObj->data = $this->cObj->data;
     
       // DRS
     if( $this->b_drs_init )
@@ -328,7 +328,7 @@ class tx_flipit_typoscript
 //}
     $this->bakCObjData    = $this->cObj->data;
 //    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
-    $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
+//    $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
   }
   
 /**
@@ -347,7 +347,7 @@ class tx_flipit_typoscript
     }
     $this->cObj->data               = $this->bakCObjData;
 //    $GLOBALS['TSFE']->currentRecord = $this->bakCurrRecord;
-    $GLOBALS['TSFE']->cObj->data    = $this->bakTsfeData;
+//    $GLOBALS['TSFE']->cObj->data    = $this->bakTsfeData;
 
       // DRS
     if( $this->b_drs_init )
@@ -1444,8 +1444,8 @@ class tx_flipit_typoscript
   private function initFieldLabels( )
   {
     $conf = $this->conf;
-    $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['field.']['media'];
-    $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['field.']['title'];
+    $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['media'];
+    $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['title'];
     $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
   }
   

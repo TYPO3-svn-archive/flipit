@@ -209,10 +209,14 @@ plugin.tx_flipit {
       // Category database
     database = 
     database {
-        // Title field : Label of the field, which contains the title. Examples: header, tx_org_downloads.title
-      field.title = {$plugin.tx_flipit.database.field.title} 
-        // Media field : Label of the field, which contains the files for converting to SWF / Flash
-      field.media = {$plugin.tx_flipit.database.field.media} 
+      fields {
+          // Title field : Label of the field, which contains the title. Examples: header, tx_org_downloads.title
+        title = {$plugin.tx_flipit.database.field.title} 
+          // Media field : Label of the field, which contains the files for converting to SWF / Flash
+        media = {$plugin.tx_flipit.database.field.media} 
+          // Layout field : Label of the field, which contains the number of the selected layout. Examples: layout, tx_org_downloads.documentslayout
+        layout = {$plugin.tx_flipit.database.field.layout}
+      }
     }
       // Category fancybox
     fancybox = 
@@ -571,7 +575,7 @@ plugin.tx_flipit {
       value ( 
 
                   <script src="typo3conf/ext/flipit/res/js/swfobjects_1.4.4/swfobject.js" type="text/javascript"></script>
-                  <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};overflow:auto;">
+                  <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};overflow:hidden;">
                     <p>
                       To view Flip it!, you need the latest <a href="http://adobe.com/go/getflashplayer">Flash player</a>
                     </p>
