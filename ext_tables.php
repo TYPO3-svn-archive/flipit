@@ -85,7 +85,7 @@ switch( true )
   case( $beLanguage == 'de' ):
       // German
     t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (immer einbinden!)');
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox', '+Flip it!: Fancybox disabled');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox disabled');
 // #i0001, 130202, dwildt, -
 //    switch( true )
 //    {
@@ -100,7 +100,7 @@ switch( true )
   default:
       // English
     t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (obligate!)');
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox', '+Flip it!: Fancybox abgeschaltet');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox abgeschaltet');
 // #i0001, 130202, dwildt, -
 //    switch( true )
 //    {
