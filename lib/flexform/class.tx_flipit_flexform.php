@@ -233,9 +233,10 @@ class tx_flipit_flexform
 
     if( $str_prompt || $str_promptDrsEnabled )
     {
+      $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
       $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
-      $str_prompt = $str_prompt . $this-> evaluate_promptSwftools( );
-      $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+      $str_prompt = $str_prompt . $str_promptPdfOnly;
+      $str_prompt = $str_prompt . $this->evaluate_promptConstantEditor( );
       $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;
       return $str_prompt;
     }
@@ -251,9 +252,10 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    $str_prompt = $str_prompt . $this-> evaluate_promptSwftools( );
+    $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
     $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
-    $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+    $str_prompt = $str_prompt . $str_promptPdfOnly;
+    $str_prompt = $str_prompt . $this->evaluate_promptConstantEditor( );
     $str_prompt = $str_prompt . $str_prompt_info_tutorialAndForum;
     return $str_prompt;
   }
@@ -331,7 +333,7 @@ class tx_flipit_flexform
         break;
       case( 'notInstalled' ):
       default:
-        $type   = 'warning';
+        $type   = 'information';
         $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_swftools');
         break;
     }
