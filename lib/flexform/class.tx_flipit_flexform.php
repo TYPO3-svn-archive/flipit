@@ -325,7 +325,7 @@ class tx_flipit_flexform
 
     switch( $this->objUserfunc->swfTools )
     {
-      case( 'installed' ):
+      case( 'installed""' ):
         $type   = 'ok';
         $prompt = $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_swftools');
         break;
