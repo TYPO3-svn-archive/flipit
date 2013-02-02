@@ -15,6 +15,7 @@
       <label index="sheetFlipit_evaluate_ok">Congratulations: Your configuration is proper!</label>
       <label index="sheetFlipit_evaluate_ok_constantEditor">The  <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Constant Editor</a>]]> offers a lot of further properties. Look for the category: [FLIP IT! ...]</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... fix it. Include the Static Template "Flip it!: Basis (obligate!)"!</label>
+      <label index="sheetFlipit_evaluate_ok_pdfonly">Flip it! handles PDF files only.</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fix it: Save the Flexform once.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">You can take a look into the <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">online manual</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
@@ -52,6 +53,7 @@
       <label index="sheetFlipit_evaluate_ok">Gl<![CDATA[&uuml;]]>ckwunsch: Deine Einstellungen sind in Ordnung.</label>
       <label index="sheetFlipit_evaluate_ok_constantEditor">Der <![CDATA[<a href="/typo3/sysext/tstemplate/ts/index.php?&id=%pid%&SET[function]=tx_tstemplateceditor" target="_blank">Konstanten-Editor</a>]]> bietet eine Menge weiterer Konfigurations-M<![CDATA[&ouml;]]>glichkeiten. Siehe Kategorie: [FLIP IT! ...]</label>
       <label index="sheetFlipit_evaluate_ok_no_ts_template">... den Fehler beheben m<![CDATA[&ouml;]]>chtest, binde das Static-Template "Flip it!: Basis (immer einbinden!)" ein!</label>
+      <label index="sheetFlipit_evaluate_ok_pdfonly">Flip it! verarbeitet nur PDF-Dateien.</label>
       <label index="sheetFlipit_evaluate_ok_saved_never">Fehler beheben: Speichere dfas Plugin einmal.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Du kannst auch einen Blick ins <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" target="_blank">Online-Handbuch</a>]]> werfen.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>

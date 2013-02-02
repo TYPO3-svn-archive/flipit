@@ -486,7 +486,7 @@ class tx_flipit_userfunc
  * @version 0.0.3
  * @since 0.0.2
  */
-  private function set_swfTools( )
+  public function set_swfTools( )
   {
     $pathToSwfTools = null;
     

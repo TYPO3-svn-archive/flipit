@@ -123,9 +123,11 @@ class tx_flipit_flexform
       //.message-ok
       //.message-warning
       //.message-error
-    $str_prompt = null;
-    $str_promptDrsEnabled = null;
-    $str_promptDrsDisabled = null;
+    $str_prompt                       = null;
+    $str_promptDrsEnabled             = null;
+    $str_promptDrsDisabled            = null;
+    $str_prompt_info_tutorialAndForum = null;
+    $str_promptPdfOnly                = null;
 
 
 
@@ -138,6 +140,14 @@ class tx_flipit_flexform
       <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
         <div class="message-body">
           ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_tutorialAndForum') . '
+        </div>
+      </div>
+      ';
+
+    $str_promptPdfOnly = '
+      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_pdfonly') . '
         </div>
       </div>
       ';
@@ -223,6 +233,8 @@ class tx_flipit_flexform
 
     if( $str_prompt || $str_promptDrsEnabled )
     {
+      $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+      $str_prompt = $str_prompt . $this-> evaluate_promptSwftools( );
       return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
     }
     
@@ -237,7 +249,8 @@ class tx_flipit_flexform
       // Evaluation result: default message in case of success
 
       // Check the plugin
-    $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( $arr_pluginConf );
+    $str_prompt = $str_prompt . $this-> evaluate_promptConstantEditor( );
+    $str_prompt = $str_prompt . $this-> evaluate_promptSwftools( );
     return $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled . $str_prompt_info_tutorialAndForum;
   }
 
@@ -258,7 +271,7 @@ class tx_flipit_flexform
  * @version 1.0.1
  * @since 1.0.1
  */
-  private function evaluate_promptConstantEditor( $arr_pluginConf )
+  private function evaluate_promptConstantEditor( )
   {
       //.message-notice
       //.message-information
@@ -270,6 +283,58 @@ class tx_flipit_flexform
       <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
         <div class="message-body">
           ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_constantEditor') . '
+        </div>
+      </div>
+      ';
+    
+    $str_prompt = str_replace( '%pid%', $this->pid, $str_prompt );
+    return $str_prompt;
+  }
+  
+/**
+ * evaluate_promptSwftools: Evaluates the plugin, flexform, TypoScript
+ *                  Returns a HTML report
+ *
+ * Tab [evaluate]
+ *
+ * @param	array		$arr_pluginConf:  Current plugin/flexform configuration
+ * @param	array		$obj_TCEform:     Current TCE form object
+ * @return	string		$str_prompt: HTML prompt
+ * @version 1.0.1
+ * @since 1.0.1
+ */
+  private function evaluate_promptSwftools( )
+  {
+      //.message-notice
+      //.message-information
+      //.message-ok
+      //.message-warning
+      //.message-error
+
+      // Include class userfunc
+    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+    $pathToUserfunc       = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
+    require_once( $pathToUserfunc );
+    $this->objUserfunc = new tx_flipit_userfunc( $this );
+    $this->objUserfunc->set_allParams( );
+      // Include class userfunc
+
+      // DRS
+    if( $this->b_drs_init )
+    {
+      $prompt = 'OS: ' . $this->objUserfunc->os;
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+      $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );    
+    }
+      // DRS
+      $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
+    $str_prompt = '
+      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $prompt . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_constantEditor') . '
         </div>
       </div>
       ';
