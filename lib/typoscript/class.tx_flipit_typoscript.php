@@ -1379,9 +1379,9 @@ class tx_flipit_typoscript
 //}
     switch( $this->table )
     {
-      case( 'tt_content' ):
-          // Do nothing
-        break;
+//      case( 'tt_content' ):
+//          // Do nothing
+//        break;
       default:
         $this->cObjDataSet( );
         break;
@@ -1621,7 +1621,7 @@ class tx_flipit_typoscript
   *
   * @return    mixed        HTML output.
   * @access   private
-  * @version  1.0.0
+  * @version  1.0.2
   * @since    1.0.0
   */
   private function initRequiredFields( )
@@ -1637,48 +1637,6 @@ class tx_flipit_typoscript
 //  var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->currentRecord );
 //  echo '</pre>';
 //}
-    $arr_return = array( );
-    $arr_return['content']  = null;
-    $arr_return['return']   = false;
-    
-    $arr_return = $this->initRequiredFieldsCheck( );
-    return $arr_return;
-  }
-
-// /**
-//  * initRequiredFieldsByCObj( ) : checks if cObj->data contains the element
-//  *                               tx_flipit_enabled.
-//  *                               If yes
-//  *                               * set global $table to 'tt_content'
-//  *                               * return true
-//  *
-//  * @return   boolean             
-//  * @access   private
-//  * @version  1.0.0
-//  * @since    1.0.0
-//  */
-//  private function initRequiredFieldsByCObj( )
-//  {
-//    if( $this->cObj->data['tx_flipit_enabled'] )
-//    {
-//      $this->initTable( 'tt_content' );
-//      return true;
-//    }
-//    
-//    return false;
-//  }
-  
- /**
-  * initRequiredFieldsCheck( )  : Checks, if cObj-data does contain all 
-  *                                     requied fields
-  *
-  * @return   array                     $arr_return : With values in case of an error 
-  * @access   private
-  * @version  1.0.0
-  * @since    1.0.0
-  */
-  private function initRequiredFieldsCheck( )
-  {
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
