@@ -373,11 +373,14 @@ class tx_flipit_flexform
       //.message-ok
       //.message-warning
       //.message-error
+    
+    $str_prompt = null;
+    $setup      = $this->obj_TypoScript->setup;
 
       // RETURN TypoScript static template isn't included
-    if( ! is_array ( $this->obj_TypoScript->setup['plugin.']['tx_flipit.'] ) )
+    if( ! is_array ( $setup['plugin.']['tx_flipit.'] ) )
     {
-      $str_prompt = '
+      $str_prompt = $str_prompt . '
         <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
           <div class="message-body">
             ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_no_ts_template') . '
@@ -385,19 +388,50 @@ class tx_flipit_flexform
         </div>
         <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
           <div class="message-body">
-            ' . (int) t3lib_div::_GP( 'type' ) . ' <br />
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_no_ts_template') . '
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_info_no_ts_template') . '
           </div>
         </div>
         ';
       //return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
     }
+    
+      // Get name of current page object
+    $nameOfPageObject = $setup['config.'][(int) t3lib_div::_GP( 'type' )];   
 
-//    $str_prompt = (int) t3lib_div::_GP( 'type' );
-//    if( empty ( $str_prompt ) )
-//    {
-//      $str_prompt = "0";
-//    }
+    switch( true )
+    {
+      case( $setup[$nameOfPageObject]['config.']['prefixLocalAnchors'] ):
+      case( $setup['config.']['prefixLocalAnchors'] ):
+        $str_prompt = $str_prompt . '
+          <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_prefixLocalAnchors') . '
+            </div>
+          </div>
+          ';
+        break;
+    }
+    switch( true )
+    {
+      case( $setup[$nameOfPageObject]['config.']['prefixLocalAnchors'] ):
+        $str_prompt = $str_prompt . '
+          <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:phrase_remove') . ' ' . $nameOfPageObject . '.config.prefixLocalAnchors
+            </div>
+          </div>
+          ';
+        break;
+      case( $setup['config.']['prefixLocalAnchors'] ):
+        $str_prompt = $str_prompt . '
+          <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:phrase_remove') . ' config.prefixLocalAnchors
+            </div>
+          </div>
+          ';
+        break;
+    }
 
     return $str_prompt;
   }
