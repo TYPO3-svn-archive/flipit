@@ -683,8 +683,8 @@ plugin.tx_flipit {
               // swf
             10 = COA
             10 {
-              10 = COA
-              10 {
+              xx10 = COA
+              xx10 {
                 if {
                   isTrue {
                     field = tx_flipit_swf_files
@@ -708,8 +708,8 @@ plugin.tx_flipit {
                     field = tx_flipit_swf_files
                   }
                 }
-                xx9 = COA
-                xx9 {
+                9 = COA
+                9 {
                   if {
                     isTrue {
                       field = tx_flipit_swf_files
