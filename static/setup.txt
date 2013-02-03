@@ -696,7 +696,7 @@ plugin.tx_flipit {
                 20 < plugin.tx_flipit.master_templates.flipitSwf
                   // Fancybox enabled 2/2: end
                 30 < plugin.tx_flipit.master_templates.fancybox.end
-                wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
+//                wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
               }
                 // layout_00: default tt_content.uploads.20 layout (without Flip it!)
               20  < tt_content.uploads.20.itemRendering
@@ -736,7 +736,7 @@ plugin.tx_flipit {
                 } 
               }
             }
-            wrap = <tr class="tx_flipit_layout_01">|</tr>
+//            wrap = <tr class="tx_flipit_layout_01">|</tr>
           }
             // DRS - for reporting only
           drs = 
