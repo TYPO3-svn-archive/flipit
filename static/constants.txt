@@ -35,7 +35,7 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/dims/206;       type=options[auto,yes,no];  label= scrolling:Set the overflow CSS property to create or hide scrollbars. Can be set to 'auto', 'yes', or 'no'
   fancybox.scrolling = auto     
   # cat=Flip it! - fancybox/dims/207;       type=string;                  label= width:Width for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
-  fancybox.width = 60%
+  fancybox.width = 100%
   # cat=Flip it! - fancybox/dims/208;       type=string;                  label= height:Height for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
   fancybox.height = 100% 
   # cat=Flip it! - fancybox/dims/209;       type=options[true,false];   label= autoScale:If true, FancyBox is scaled to fit in viewport 
