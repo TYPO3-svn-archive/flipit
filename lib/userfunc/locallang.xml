@@ -230,13 +230,6 @@
       <label index="promptEvaluatorSWFtoolsWindowsError"><![CDATA[
         SWFTOOLS f&uuml;r Windows werden unterst&uuml;tzt.
       ]]></label>
-      <label index="promptEvaluatorSWFtools">Pardon, die SWF-Tools werden nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
-      <label index="promptEvaluatorTYPO3version45smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.5. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
-      <label index="promptEvaluatorIncludeCss4-6">Du musst das Static Template "+Flip it!: Basis fuer TYPO3 < 4.7" einbinden.</label>
-      <label index="promptEvaluatorTYPO3version46smaller">Du verwendest TYPO3 4.5.x. Das ist perfekt.</label>
-      <label index="promptEvaluatorTYPO3version47smaller">Du verwendest TYPO3 4.6.x. Das ist perfekt.</label>
-      <label index="promptEvaluatorTYPO3version48smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
-      <label index="promptEvaluatorTYPO3version48orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als 4.7. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
       <label index="promptEvaluatorWindowsConf"><![CDATA[
           Den Pfad zu den SWFTOOLS konfigurierst Du hier im Extension Manager. Kategorie [Windows]
       ]]></label>
