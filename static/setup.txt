@@ -765,7 +765,7 @@ plugin.tx_flipit {
           }
         }
       } 
-        // layout_02: Flip it! and tt_content default but download thumbnail
+        // layout_02: Flip it! and tt_content default but download link
       layout_02 < .layout_01
       layout_02 {
         userFunc {

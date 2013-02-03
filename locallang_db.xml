@@ -31,7 +31,7 @@
       <label index="tcaLabel_tx_flipit_layout">Layout</label>
       <label index="tcaLabel_tx_flipit_layout_item_00">0: tt_content default (without Flip it!)</label>
       <label index="tcaLabel_tx_flipit_layout_item_01">1: Flip it! only</label>
-      <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! and tt_content default but download thumbnail</label>
+      <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! and tt_content default but download link</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and tt_content default</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
@@ -72,7 +72,7 @@
       <label index="tcaLabel_tx_flipit_layout">Layout</label>
       <label index="tcaLabel_tx_flipit_layout_item_00">0: tt_content-Standard (ohne Flip it!)</label>
       <label index="tcaLabel_tx_flipit_layout_item_01">1: Flip it! exklusiv</label>
-      <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! und tt_content-Standard ohne Download-Bild</label>
+      <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! und tt_content-Standard ohne Download-Link</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! und tt_content-Standard</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_evaluate">Plugin-Check</label>

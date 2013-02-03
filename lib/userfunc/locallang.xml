@@ -102,10 +102,13 @@
       <label index="promptEvaluatorSWFtoolsWindowsError"><![CDATA[
         SWFTOOLS for Windows aren't supported now.
       ]]></label>
-      <label index="promptEvaluatorTYPO3version4006000equal">You are using TYPO3 4.6. This is perfect!</label>
-      <label index="promptEvaluatorTYPO3version4006000equalTS">You have to include the static template ...</label>
-      <label index="promptEvaluatorTYPO3version4006000greater">Your are using a TYPO3 version greater than 4.6. Flip it! isn't tested in this version. May be you will have unwanted effects. Try it!</label>
-      <label index="promptEvaluatorTYPO3version4006000smaller">Your are using a TYPO3 version smaller than 4.6. Flip it! isn't tested in this version. Try it!</label>
+      <label index="promptEvaluatorTYPO3version45smaller">Your are using a TYPO3 version smaller than 4.5. Flip it! isn't tested in this version. Try it!</label>
+      <label index="promptEvaluatorIncludeCss4-6">Please iclude the static template [+Flip it!: Basis for TYPO3 < 4.7 (obligate!)]</label>
+      <label index="promptEvaluatorTYPO3version46smaller">You are using TYPO3 4.5. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version47smaller">You are using TYPO3 4.6. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version48smaller">You are using TYPO3 4.7. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version48orGreater">You are using TYPO3 greater than 4.7. Flip it! isn't tested in this version. Try it!</label>
+      
       <label index="promptEvaluatorWindowsConf"><![CDATA[
         You are configuring the path to the SWFTOOLS in this Extension Manager. Category [Windows]
       ]]></label>
@@ -228,10 +231,12 @@
         SWFTOOLS f&uuml;r Windows werden unterst&uuml;tzt.
       ]]></label>
       <label index="promptEvaluatorSWFtools">Pardon, die SWF-Tools werden nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
-      <label index="promptEvaluatorTYPO3version4006000equal">Du verwendest TYPO3 4.6. Das ist perfekt!</label>
-      <label index="promptEvaluatorTYPO3version4006000equalTS">Du musst das Static Template einbinden ...</label>
-      <label index="promptEvaluatorTYPO3version4006000greater">Du verwendest eine TYPO3-Version, die groesser ist als 4.6. Flip it! ist fur diese Version nicht getestet. Moeglicherweise bekommst Du unerwartete Ergebnisse. Probier es einfach aus!</label>
-      <label index="promptEvaluatorTYPO3version4006000smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.6. Flip it! ist fur diese Version nicht getestet. Moeglicherweise bekommst Du unerwartete Ergebnisse. Probier es einfach aus!</label>
+      <label index="promptEvaluatorTYPO3version45smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.5. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. M<![CDATA[&ouml;]]>glicherweise bekommst Du unerwartete Ergebnisse. Probier es einfach aus!</label>
+      <label index="promptEvaluatorIncludeCss4-6">Du musst das Static Template [+Flip it!: Basis fuer TYPO3 < 4.7] einbinden.</label>
+      <label index="promptEvaluatorTYPO3version46smaller">Du verwendest TYPO3 4.5.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version47smaller">Du verwendest TYPO3 4.6.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version48smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version48orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als 4.7. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
       <label index="promptEvaluatorWindowsConf"><![CDATA[
           Den Pfad zu den SWFTOOLS konfigurierst Du hier im Extension Manager. Kategorie [Windows]
       ]]></label>
