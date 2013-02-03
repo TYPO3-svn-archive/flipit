@@ -234,6 +234,7 @@ class tx_flipit_flexform
     if( $str_prompt || $str_promptDrsEnabled )
     {
       $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
+      $str_prompt = $str_prompt . $this->evaluate_promptTYPO3version( );
       $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
       $str_prompt = $str_prompt . $str_promptPdfOnly;
       $str_prompt = $str_prompt . $this->evaluate_promptConstantEditor( );
@@ -253,6 +254,7 @@ class tx_flipit_flexform
 
       // Check the plugin
     $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
+    $str_prompt = $str_prompt . $this->evaluate_promptTYPO3version( );
     $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
     $str_prompt = $str_prompt . $str_promptPdfOnly;
     $str_prompt = $str_prompt . $this->evaluate_promptConstantEditor( );
@@ -348,6 +350,35 @@ class tx_flipit_flexform
     
     $str_prompt = str_replace( '%pid%', $this->pid, $str_prompt );
     return $str_prompt;
+  }
+  
+/**
+ * evaluate_promptTYPO3version( ): 
+ *
+ * Tab [evaluate]
+ *
+ * @param	array		$arr_pluginConf:  Current plugin/flexform configuration
+ * @param	array		$obj_TCEform:     Current TCE form object
+ * @return	string		$str_prompt: HTML prompt
+ * @version 1.0.1
+ * @since 1.0.1
+ */
+  private function evaluate_promptTYPO3version( )
+  {
+      //.message-notice
+      //.message-information
+      //.message-ok
+      //.message-warning
+      //.message-error
+
+      // Include class userfunc
+    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+    $pathToUserfunc       = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
+    require_once( $pathToUserfunc );
+    $this->objUserfunc = new tx_flipit_userfunc( $this );
+      // Include class userfunc
+
+    return $this->objUserfunc->promptEvaluatorTYPO3version( );
   }
   
   
