@@ -227,7 +227,7 @@ $TCA['tt_content']['columns']['tx_flipit_swf_files'] = array (
     'uploadfolder'  => 'uploads/tx_flipit',
     'show_thumbs'   => '1',
     'size'          => '10',
-    'maxitems'      => '100',
+    'maxitems'      => '999',
     'minitems'      => '0',
   ),
 );
