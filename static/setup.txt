@@ -683,8 +683,8 @@ plugin.tx_flipit {
               // swf
             10 = COA
             10 {
-              10 = COA
-              10 {
+              xx10 = COA
+              xx10 {
                 if {
                   isTrue {
                     field = tx_flipit_swf_files
@@ -706,6 +706,21 @@ plugin.tx_flipit {
                     field = tx_flipit_swf_files
                   }
                 }
+              9 = COA
+              9 {
+                if {
+                  isTrue {
+                    field = tx_flipit_swf_files
+                  }
+                }
+                  // Fancybox enabled 1/2: begin
+                10 < plugin.tx_flipit.master_templates.fancybox.begin
+                  // SWF code: Flip it! 
+                20 < plugin.tx_flipit.master_templates.flipitSwf
+                  // Fancybox enabled 2/2: end
+                30 < plugin.tx_flipit.master_templates.fancybox.end
+//                wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
+              }
                 10 {
                   if {
                     isPositive {
