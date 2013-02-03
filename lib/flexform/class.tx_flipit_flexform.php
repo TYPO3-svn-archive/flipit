@@ -385,6 +385,7 @@ class tx_flipit_flexform
         </div>
         <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
           <div class="message-body">
+            ' . (int) t3lib_div::_GP( 'type' ) . ' <br />
             ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_no_ts_template') . '
           </div>
         </div>
