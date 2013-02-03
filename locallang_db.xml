@@ -21,7 +21,7 @@
       <label index="sheetFlipit_evaluate_ok_swftools">SWFTOOLS are installed. SWF files can rendered automatically.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">For further information you can take a look into the <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! in the TYPO3 repository" target="_blank">online manual</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warning: You have to fix this bug! Only then the plugin check will check other bugs.</label>
-      <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">TypoScript warning: prefixLocalAnchors is set. Fancybox won't run!</label>
+      <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">TypoScript warning: prefixLocalAnchors is set. The fancybox won't run proper!</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warning: There isn't any TypoScript template for this plugin. Flip it! won't have any effect. You can ...</label>
       <label index="sheetFlipit_evaluate_warn_swftools">SWFTOOLS aren't installed. SWF files can't rendered automatically. You can render SWF files by your own. See more in the <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! in the TYPO3 repository" target="_blank">online manual</a>]]>.</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
@@ -63,7 +63,7 @@
       <label index="sheetFlipit_evaluate_ok_swftools">Die SWFTOOLS sind installiert. SWF-Dateien k<![CDATA[&ouml;]]>nnen automatisch generiert werden.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Weitere Informationen findest Du im <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! im TYPO3-Repository" target="_blank">Online-Handbuch</a>]]> werfen.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>
-      <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">TypoScript-Warnung: prefixLocalAnchors werden verwendet. Die Fancybox wird nicht funktionieren.</label>
+      <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">TypoScript-Warnung: prefixLocalAnchors werden verwendet. Die Fancybox wird nicht richtig funktionieren.</label>
       <label index="sheetFlipit_evaluate_warn_swftools">Die SWFTOOLS sind nicht installiert. SWF-Dateien k<![CDATA[&ouml;]]>nnen automatisch generiert werden. Du kannst diese selbst erstellen. Siehe mehr im <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! im TYPO3-Repository" target="_blank">Online-Handbuch</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
