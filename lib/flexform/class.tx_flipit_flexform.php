@@ -400,7 +400,7 @@ class tx_flipit_flexform
 
     switch( true )
     {
-      case( $setup[$nameOfPageObject]['config.']['prefixLocalAnchors'] ):
+      case( $setup[$nameOfPageObject . '.']['config.']['prefixLocalAnchors'] ):
       case( $setup['config.']['prefixLocalAnchors'] ):
         $str_prompt = $str_prompt . '
           <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
@@ -413,7 +413,7 @@ class tx_flipit_flexform
     }
     switch( true )
     {
-      case( $setup[$nameOfPageObject]['config.']['prefixLocalAnchors'] ):
+      case( $setup[$nameOfPageObject . '.']['config.']['prefixLocalAnchors'] ):
         $str_prompt = $str_prompt . '
           <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
