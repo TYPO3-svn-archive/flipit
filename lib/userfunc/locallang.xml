@@ -103,7 +103,7 @@
         SWFTOOLS for Windows aren't supported now.
       ]]></label>
       <label index="promptEvaluatorTYPO3version45smaller">Your are using a TYPO3 version smaller than 4.5. Flip it! isn't tested in this version. Try it!</label>
-      <label index="promptEvaluatorIncludeCss4-6">Please iclude the static template [+Flip it!: Basis for TYPO3 < 4.7 (obligate!)]</label>
+      <label index="promptEvaluatorIncludeCss4-6">Please iclude the static template "+Flip it!: Basis for TYPO3 < 4.7 (obligate!)"</label>
       <label index="promptEvaluatorTYPO3version46smaller">You are using TYPO3 4.5. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version47smaller">You are using TYPO3 4.6. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version48smaller">You are using TYPO3 4.7. This is perfect!</label>
@@ -231,8 +231,8 @@
         SWFTOOLS f&uuml;r Windows werden unterst&uuml;tzt.
       ]]></label>
       <label index="promptEvaluatorSWFtools">Pardon, die SWF-Tools werden nicht noch nicht gepr<![CDATA[&auml;]]>ft.</label>
-      <label index="promptEvaluatorTYPO3version45smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.5. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. M<![CDATA[&ouml;]]>glicherweise bekommst Du unerwartete Ergebnisse. Probier es einfach aus!</label>
-      <label index="promptEvaluatorIncludeCss4-6">Du musst das Static Template [+Flip it!: Basis fuer TYPO3 < 4.7] einbinden.</label>
+      <label index="promptEvaluatorTYPO3version45smaller">Du verwendest eine TYPO3-Version, die kleiner ist als 4.5. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
+      <label index="promptEvaluatorIncludeCss4-6">Du musst das Static Template "+Flip it!: Basis fuer TYPO3 < 4.7" einbinden.</label>
       <label index="promptEvaluatorTYPO3version46smaller">Du verwendest TYPO3 4.5.x. Das ist perfekt.</label>
       <label index="promptEvaluatorTYPO3version47smaller">Du verwendest TYPO3 4.6.x. Das ist perfekt.</label>
       <label index="promptEvaluatorTYPO3version48smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
