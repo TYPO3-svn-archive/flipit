@@ -683,8 +683,8 @@ plugin.tx_flipit {
               // swf
             10 = COA
             10 {
-              10 = COA
-              10 {
+              xx10 = COA
+              xx10 {
                 if {
                   isTrue {
                     field = tx_flipit_swf_files
@@ -707,8 +707,8 @@ plugin.tx_flipit {
                     field = tx_flipit_swf_files
                   }
                 }
-                xx9 = COA
-                xx9 {
+                9 = COA
+                9 {
                   if {
                     isTrue {
                       field = tx_flipit_swf_files
@@ -720,6 +720,7 @@ plugin.tx_flipit {
                   20 < plugin.tx_flipit.master_templates.flipitSwf
                     // Fancybox enabled 2/2: end
                   30 < plugin.tx_flipit.master_templates.fancybox.end
+// #45120
 //                  wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
                   wrap = |
                 }
@@ -754,8 +755,8 @@ plugin.tx_flipit {
               }
             }
 // #45120
-            wrap = <tr class="tx_flipit_layout_01">|</tr>
 //            wrap = <tr class="tx_flipit_layout_01">|</tr>
+            wrap = |
           }
             // DRS - for reporting only
           drs = 
