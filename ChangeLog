@@ -4,6 +4,13 @@
   * #i0006: Initial release of the manual
   Feature
   * #45120: TypoScript for TYPO3 4.7
+            Effected files:
+            * static
+              * 4.6
+                * constants.txt     (new)
+                * setup.txt         (new)
+              * setup.txt
+            * ext_tables.php
 
   Improvement
   * #45114: t3jquery.txt

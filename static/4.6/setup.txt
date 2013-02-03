@@ -16,16 +16,27 @@ tt_content.uploads {
   20 {
 //    outerWrap = <table>|</table>
     itemRendering {
-//      layout_00 {
-//        userFunc {
-//          content {
-//            10 {
-//              wrap = <span class="csc-uploads-flipit">|</span>
-//            }
-//          }
-//        }
-//      }
       layout_01 {
+        userFunc {
+          content {
+            10 {
+              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
+            }
+            wrap = <tr class="tx_flipit_layout_01">|</tr>
+          }
+        }
+      }
+      layout_02 {
+        userFunc {
+          content {
+            10 {
+              wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
+            }
+            wrap = <tr class="tx_flipit_layout_01">|</tr>
+          }
+        }
+      }
+      layout_03 {
         userFunc {
           content {
             10 {
