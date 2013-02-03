@@ -52,7 +52,7 @@ plugin.tx_flipit {
   fancybox.overlayShow = true
   # cat=Flip it! - fancybox/dims/215;       type=double;                label= overlayOpacity:Opacity of the overlay (from 0 to 1. default: 0.3)
   fancybox.overlayOpacity = 0.2
-  # cat=Flip it! - fancybox/dims/216;       type=string;                label= overlayColor:Color of the overlay
+  # cat=Flip it! - fancybox/dims/216;       type=color;                 label= overlayColor:Color of the overlay
   fancybox.overlayColor = #666
   # cat=Flip it! - fancybox/dims/217;       type=string;                label= title:Forces title. Take a field of the current record.
   fancybox.title = header
@@ -83,7 +83,7 @@ plugin.tx_flipit {
   html.height = 95%
   # cat=Flip it! - html/dims/102;      type=string;   label= Width: Width with em, per cent or pixel
   html.width = 100%
-  # cat=Flip it! - html/dims/103;      type=string;   label= Background colour
+  # cat=Flip it! - html/dims/103;      type=color;    label= Background colour
   html.color.background = #cccccc
   # cat=Flip it! - html/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   html.externalLinks = Click me!
