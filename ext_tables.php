@@ -63,8 +63,9 @@ $confArr  = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['flipit'])
 
   // Language for labels of static templates and page tsConfig
 $beLanguage = $confArr['beLanguage'];
-switch($beLanguage) {
-  case($beLanguage == 'German'):
+switch( $beLanguage )
+{
+  case( 'German'):
     $beLanguage = 'de';
     break;
   default:
