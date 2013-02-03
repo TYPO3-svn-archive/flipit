@@ -391,7 +391,8 @@ class tx_flipit_flexform
         ';
       //return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
     }
-        //$typeNum = (int) t3lib_div::_GP( 'type' );
+
+    $str_prompt = (int) t3lib_div::_GP( 'type' );
 
     return $str_prompt;
   }
