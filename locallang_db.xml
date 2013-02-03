@@ -51,6 +51,7 @@
       <label index="palette_tx_flipit_fancybox">Lightbox</label>
       <label index="palette_tx_flipit_files">Dateien</label>
       <label index="palette_tx_flipit_properties">Einstellungen</label>
+      <label index="phrase_remove">Bitte entferne</label>
       <label index="sheetFlipit_evaluate_drs_disabled">Im <![CDATA[<a href="/typo3/mod.php?M=tools_em" title="Link zum TYPO3 Extension-Manager" target="_blank">Extension Manager</a>]]> kannst Du weitere Einstellungen pr<![CDATA[&uuml;]]>fen und das DRS - das Development Reporting System - aktivieren. Das DRS zeigt Dir den gesamten Arbeitsprozess an.</label>
       <label index="sheetFlipit_evaluate_drs_enabled">Warnung: Das DRS - Development Reporting System - ist aktiviert. Das kostet Performance und ist ein Sicherheitsrisiko f<![CDATA[&uuml;]]>r jedes operative System. Du kannst das DRS im <![CDATA[<a href="/typo3/mod.php?M=tools_em" title="Link zum TYPO3 Extension-Manager" target="_blank">Extension Manager</a>]]> deaktivieren. Status: %status%.</label>
       <label index="sheetFlipit_evaluate_error_saved_never">Fehler: Das Plugin wurde noch nicht gespeichert.</label>
@@ -62,6 +63,7 @@
       <label index="sheetFlipit_evaluate_ok_swftools">Die SWFTOOLS sind installiert. SWF-Dateien k<![CDATA[&ouml;]]>nnen automatisch generiert werden.</label>
       <label index="sheetFlipit_evaluate_ok_tutorialAndForum">Weitere Informationen findest Du im <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! im TYPO3-Repository" target="_blank">Online-Handbuch</a>]]> werfen.</label>
       <label index="sheetFlipit_evaluate_warn_fixThisBug">Warnung: Behebe den Fehler! Danach pr<![CDATA[&uuml;]]>ft das Plugin weitere Fehler.</label>
+      <label index="sheetFlipit_evaluate_warn_prefixLocalAnchors">Warnung: prefixLocalAnchors werden verwendet.</label>
       <label index="sheetFlipit_evaluate_warn_swftools">Die SWFTOOLS sind nicht installiert. SWF-Dateien k<![CDATA[&ouml;]]>nnen automatisch generiert werden. Du kannst diese selbst erstellen. Siehe mehr im <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! im TYPO3-Repository" target="_blank">Online-Handbuch</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
