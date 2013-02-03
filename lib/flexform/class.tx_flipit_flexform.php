@@ -212,25 +212,9 @@ class tx_flipit_flexform
 //    }
 //      // RETURN plugin isn't never saved
 
-      // RETURN TypoScript static template isn't included
-    if( ! is_array ( $this->obj_TypoScript->setup['plugin.']['tx_flipit.'] ) )
-    {
-      $str_prompt = '
-        <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
-          <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_no_ts_template') . '
-          </div>
-        </div>
-        <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
-          <div class="message-body">
-            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_no_ts_template') . '
-          </div>
-        </div>
-        ';
-      //return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
-    }
-      // RETURN TypoScript static template isn't included
+    $str_prompt = $this->evaluate_promptTyposcript( );
 
+      // RETURN TypoScript static template isn't included
     if( $str_prompt || $str_promptDrsEnabled )
     {
       $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
@@ -262,19 +246,12 @@ class tx_flipit_flexform
     return $str_prompt;
   }
 
-
-
-
-
-
 /**
  * evaluate_plugin: Evaluates the plugin, flexform, TypoScript
  *                  Returns a HTML report
  *
  * Tab [evaluate]
  *
- * @param	array		$arr_pluginConf:  Current plugin/flexform configuration
- * @param	array		$obj_TCEform:     Current TCE form object
  * @return	string		$str_prompt: HTML prompt
  * @version 1.0.1
  * @since 1.0.1
@@ -381,6 +358,43 @@ class tx_flipit_flexform
     return $this->objUserfunc->promptEvaluatorTYPO3version( );
   }
   
+
+/**
+ * evaluate_promptTyposcript: 
+ *
+ * @return	string		$str_prompt: HTML prompt
+ * @version 1.0.1
+ * @since 1.0.1
+ */
+  private function evaluate_promptTyposcript( )
+  {
+      //.message-notice
+      //.message-information
+      //.message-ok
+      //.message-warning
+      //.message-error
+
+      // RETURN TypoScript static template isn't included
+    if( ! is_array ( $this->obj_TypoScript->setup['plugin.']['tx_flipit.'] ) )
+    {
+      $str_prompt = '
+        <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+          <div class="message-body">
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_warn_no_ts_template') . '
+          </div>
+        </div>
+        <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
+          <div class="message-body">
+            ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_no_ts_template') . '
+          </div>
+        </div>
+        ';
+      //return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
+    }
+        //$typeNum = (int) t3lib_div::_GP( 'type' );
+
+    return $str_prompt;
+  }
   
   /***********************************************
   *
