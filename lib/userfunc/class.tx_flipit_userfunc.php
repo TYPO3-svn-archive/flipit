@@ -64,6 +64,13 @@ class tx_flipit_userfunc
   private $arr_extConf = null;
   
  /**
+  * Max width of div tags
+  *
+  * @var string
+  */
+  private $maxWidth = "600px";
+  
+ /**
   * Status of operating system: linux, unix, windows, unsupported, undefined
   *
   * @var string
@@ -145,7 +152,7 @@ class tx_flipit_userfunc
 //.message-error
 
     $prompt = $prompt . '
-<div class="typo3-message message-notice">
+<div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorDetectionBug'). '
   </div>
@@ -181,7 +188,7 @@ class tx_flipit_userfunc
       case( 'unix' ):
       case( 'windows' ):
         $prompt = $prompt . '
-<div class="typo3-message message-ok">
+<div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorOSsupported'). '
   </div>
@@ -189,7 +196,7 @@ class tx_flipit_userfunc
         break;
       case( 'unsupported' ):
         $prompt = $prompt . '
-<div class="typo3-message message-warning">
+<div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorOSunsupported'). '
   </div>
@@ -198,7 +205,7 @@ class tx_flipit_userfunc
       case( 'undefined' ):
       default:
         $prompt = $prompt . '
-<div class="typo3-message message-warning">
+<div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorOSundefined'). '
   </div>
@@ -239,7 +246,7 @@ class tx_flipit_userfunc
     ' . $arr_return['error']['prompt'] . '
   </div>
 </div>
-<div class="typo3-message message-warning">
+<div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtoolsBugfix'). '
   </div>
@@ -257,7 +264,7 @@ class tx_flipit_userfunc
     {
       case( 'installed' ):
         $prompt = $prompt . '
-<div class="typo3-message message-ok">
+<div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtoolsInstalled'). '<br />
     <br />
@@ -272,7 +279,7 @@ class tx_flipit_userfunc
       case( 'notInstalled' ):
       default:
         $prompt = $prompt . '
-<div class="typo3-message message-warning">
+<div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtoolsNotInstalled'). '<br />
     <br />
@@ -301,7 +308,7 @@ class tx_flipit_userfunc
           case( 'linux'):
           case( 'unix'):
             $prompt = $prompt . '
-<div class="typo3-message message-information">
+<div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtools4Linux'). '
   </div>
@@ -309,7 +316,7 @@ class tx_flipit_userfunc
             break;
           case( 'windows'):
             $prompt = $prompt . '
-<div class="typo3-message message-information">
+<div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorSWFtools4Windows'). '
   </div>
@@ -327,7 +334,7 @@ class tx_flipit_userfunc
         break;
       case( 'windows'):
         $prompt = $prompt . '
-<div class="typo3-message message-information">
+<div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorWindowsConf'). '
   </div>
@@ -364,14 +371,14 @@ class tx_flipit_userfunc
       case( $this->typo3Version < 4005000 ):
           // Smaller than 4.5
         $prompt = $prompt . '
-          <div class="typo3-message message-warning">
+          <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version45smaller'). '
             </div>
           </div>
           ';
         $prompt = $prompt . '
-          <div class="typo3-message message-information">
+          <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorIncludeCss4-6'). '
             </div>
@@ -381,14 +388,14 @@ class tx_flipit_userfunc
       case( $this->typo3Version < 4006000 ):
           // Greater than 4.7
         $prompt = $prompt . '
-          <div class="typo3-message message-ok">
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version46smaller'). '
             </div>
           </div>
           ';
         $prompt = $prompt . '
-          <div class="typo3-message message-information">
+          <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorIncludeCss4-6'). '
             </div>
@@ -398,14 +405,14 @@ class tx_flipit_userfunc
       case( $this->typo3Version < 4007000 ):
           // Greater than 4.7
         $prompt = $prompt . '
-          <div class="typo3-message message-ok">
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version47smaller'). '
             </div>
           </div>
           ';
         $prompt = $prompt . '
-          <div class="typo3-message message-information">
+          <div class="typo3-message message-information" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorIncludeCss4-6'). '
             </div>
@@ -415,7 +422,7 @@ class tx_flipit_userfunc
       case( $this->typo3Version < 4008000 ):
           // Greater than 4.7
         $prompt = $prompt . '
-          <div class="typo3-message message-ok">
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version48smaller'). '
             </div>
@@ -426,7 +433,7 @@ class tx_flipit_userfunc
       default:
           // Equal to 4.6
         $prompt = $prompt . '
-          <div class="typo3-message message-ok">
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
               ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version48orGreater'). '
             </div>
