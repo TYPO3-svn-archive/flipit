@@ -392,11 +392,11 @@ class tx_flipit_flexform
       //return $str_prompt . $str_prompt_inCaseOfAnError . $str_prompt_info_tutorialAndForum;
     }
 
-    $str_prompt = (int) t3lib_div::_GP( 'type' );
-    if( empty ( $str_prompt ) )
-    {
-      $str_prompt = "0";
-    }
+//    $str_prompt = (int) t3lib_div::_GP( 'type' );
+//    if( empty ( $str_prompt ) )
+//    {
+//      $str_prompt = "0";
+//    }
 
     return $str_prompt;
   }
