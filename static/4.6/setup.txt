@@ -1,0 +1,20 @@
+
+
+  ////////////////////////////////////////
+  //
+  // INDEX
+  //
+  // @internal: #45120
+
+
+
+  ///////////////////////////////////////////////////////////////
+  //
+  // tt_content.uploads
+
+tt_content.uploads {
+  20 {
+//    outerWrap = <table>|</table>
+  }
+}
+  // tt_content.uploads

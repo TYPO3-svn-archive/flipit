@@ -2,6 +2,9 @@
   13-02-03
   Manual
   * #i0006: Initial release of the manual
+  Feature
+  * #45120: TypoScript for TYPO3 4.7
+
   Improvement
   * #45114: t3jquery.txt
 
