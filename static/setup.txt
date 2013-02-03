@@ -513,6 +513,7 @@ plugin.tx_flipit {
                     width   = {$plugin.tx_flipit.thumbnails.flipit.width}
                   }
                   align = r,b
+                  offset  = -5,-5
                 }
               }
               wrap = |<br />
