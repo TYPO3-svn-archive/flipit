@@ -720,6 +720,7 @@ plugin.tx_flipit {
                   // Fancybox enabled 2/2: end
                 30 < plugin.tx_flipit.master_templates.fancybox.end
 //                wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
+                wrap = |
               }
                 10 {
                   if {
