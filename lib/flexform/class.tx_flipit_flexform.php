@@ -152,6 +152,14 @@ class tx_flipit_flexform
       </div>
       ';
 
+    $str_promptUnexpectedResult = '
+      <div class="typo3-message message-notice" style="max-width:' . $this->maxWidth . ';">
+        <div class="message-body">
+          ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/locallang_db.xml:sheetFlipit_evaluate_ok_unexpectedResult') . '
+        </div>
+      </div>
+      ';
+
 //    $str_prompt_inCaseOfAnError = '
 //      <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
 //        <div class="message-body">
@@ -219,6 +227,7 @@ class tx_flipit_flexform
     {
       $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
       $str_prompt = $str_prompt . $this->evaluate_promptTYPO3version( );
+      $str_prompt = $str_prompt . $str_promptUnexpectedResult;
       $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
       $str_prompt = $str_prompt . $str_promptPdfOnly;
       $str_prompt = $str_prompt . $this->evaluate_promptConstantEditor( );
@@ -239,6 +248,7 @@ class tx_flipit_flexform
       // Check the plugin
     $str_prompt = $str_prompt . $this->evaluate_promptSwftools( );
     $str_prompt = $str_prompt . $this->evaluate_promptTYPO3version( );
+    $str_prompt = $str_prompt . $str_promptUnexpectedResult;
     $str_prompt = $str_prompt . $str_promptDrsEnabled . $str_promptDrsDisabled;
     $str_prompt = $str_prompt . $str_promptPdfOnly;
     $str_prompt = $str_prompt . $this->evaluate_promptConstantEditor( );

@@ -9,7 +9,7 @@ evaluatorDetectionBug  = Undefined error: Evaluation failed!
   # cat=evaluator/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 evaluatorExternalLinks = 1
 
-  # cat=windows/others/100;            type=string; label= Windows: Path to SWFTOOLS.
+  # cat=windows/others/100;            type=string; label= Windows: Path to SWFTOOLS (without an ending backslash)
 windowsPathToSwftools = C:\Program Files (x86)\SWFTools
   # cat=windows/others/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 windowsExternalLinks = 1
