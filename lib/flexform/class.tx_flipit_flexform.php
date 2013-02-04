@@ -433,15 +433,6 @@ class tx_flipit_flexform
         break;
     }
 
-        $str_prompt = $str_prompt . '
-          <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
-            <div class="message-body">
-              ' . $nameOfPageObject . '.config.prefixLocalAnchors<br />
-              
-            </div>
-          </div>
-          ';
-
     return $str_prompt;
   }
   
