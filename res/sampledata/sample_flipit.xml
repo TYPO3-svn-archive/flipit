@@ -1,0 +1,14 @@
+<content 
+  width           = '592'
+  height          = '842'
+  buttoncolor     = '5D5D61'
+  panelcolor      = '5D5D61'
+  textcolor       = 'FFFFFF'
+  backgroundcolor = 'CCCCCC'
+  hcover          = 'false'
+  gotolabel       = 'Goto'>
+  <page src='uploads/tx_flipit/sample_flipit_1.swf'/>
+  <page src='uploads/tx_flipit/sample_flipit_2.swf'/>
+  <page src='uploads/tx_flipit/sample_flipit_3.swf'/>
+  <page src='uploads/tx_flipit/sample_flipit_4.swf'/>
+</content>
