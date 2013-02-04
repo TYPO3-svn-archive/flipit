@@ -396,7 +396,7 @@ class tx_flipit_flexform
     }
     
       // Get name of current page object
-    $nameOfPageObject = $setup['type.'][(int) t3lib_div::_GP( 'type' )];   
+    $nameOfPageObject = $setup['types.'][(int) t3lib_div::_GP( 'type' )];   
 
     switch( true )
     {
@@ -436,7 +436,8 @@ class tx_flipit_flexform
         $str_prompt = $str_prompt . '
           <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
-              ' . $nameOfPageObject . '.config.prefixLocalAnchors
+              ' . $nameOfPageObject . '.config.prefixLocalAnchors<br />
+              
             </div>
           </div>
           ';
