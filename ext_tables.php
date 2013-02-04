@@ -95,7 +95,7 @@ switch( true )
         t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', '+Flip it!: Basis fuer TYPO3 < 4.7 (NICHT einbinden!)');
         break;
     }
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox disabled');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox abgeschaltet');
     break;
   default:
       // English
@@ -109,7 +109,7 @@ switch( true )
         t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', '+Flip it!: Basis for TYPO3 < 4.7 (don\'t use it!)');
         break;
     }
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox abgeschaltet');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox disabled');
     break;
 }
   // Case $beLanguage
