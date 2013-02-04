@@ -396,7 +396,7 @@ class tx_flipit_flexform
     }
     
       // Get name of current page object
-    $nameOfPageObject = $setup['config.'][(int) t3lib_div::_GP( 'type' )];   
+    $nameOfPageObject = $setup['type.'][(int) t3lib_div::_GP( 'type' )];   
 
     switch( true )
     {
