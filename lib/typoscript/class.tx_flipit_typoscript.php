@@ -1294,8 +1294,8 @@ var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );
     {
       case( $this->pdfMaxWidth > 0 ):
       case( $this->pdfMaxHeight > 0 ):
-        $arrContentParams['width']  = 'width=' . $this->pdfMaxWidth;
-        $arrContentParams['height'] = 'height=' . $this->pdfMaxHeight;
+        $arrContentParams['width']  = "width='" . $this->pdfMaxWidth . "'";
+        $arrContentParams['height'] = "height='" . $this->pdfMaxHeight . "'";
           // DRS
         if( $this->b_drs_updateSwfXml )
         {
