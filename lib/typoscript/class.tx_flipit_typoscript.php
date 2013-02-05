@@ -1025,7 +1025,7 @@ class tx_flipit_typoscript
         $infos[$counter][$key] = $value;
       }
         // LOOP : elements
-var_dump( __METHOD__, __LINE__, $infos[$counter] );      
+//var_dump( __METHOD__, __LINE__, $infos[$counter] );      
         // SWITCH : width and height
       switch( true )
       {
@@ -1045,7 +1045,7 @@ var_dump( __METHOD__, __LINE__, $infos[$counter] );
       
       $counter = $counter + 1;
     }
-var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );      
+//var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );      
       // LOOP : each PDF page
       
       // DRS  : PDF info
