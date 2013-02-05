@@ -28,7 +28,7 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    flipit
-* @version  1.0.0
+* @version  1.0.4
 * @since    0.0.1
 */
 
@@ -97,6 +97,21 @@ class tx_flipit_typoscript
   * @var integer
   */
   private $tstamp;
+  
+ /**
+  * Width of the PDF page with the biggest size
+  *
+  * @var integer
+  */
+  private $pdfMaxWidth  = null;
+
+ /**
+  * Height of the PDF page with the biggest size
+  *
+  * @var integer
+  */
+  private $pdfMaxHeight = null;
+  
   
  /**
   * Backup of cObj->data
@@ -834,27 +849,9 @@ class tx_flipit_typoscript
         break;
     }
     
-      // DRS  : PDF info
-    if( $this->b_drs_pdf )
-    {    
-      switch( true )
-      {
-        case( $this->objUserfunc->os == 'windows' ):
-          $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" -I ' . $pdffileWiPath;
-          break;
-        default:
-          $exec   = 'pdf2swf -I ' . $pdffileWiPath;
-          break;
-      }
-      $lines  = $this->zz_exec( $exec );
-        //    pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf
-        // $lines:
-        //    page = 1 width = 595.00 height = 842.00
-        //    page = 2 width = 595.00 height = 842.00
-        //    ...
-        //    page = 14 width = 595.00 height = 842.00
-    }
-      // DRS  : PDF info
+      // #45170, 130205, dwildt
+      // Set the PDF info array
+    $this->updateSwfFilesRenderPdfSetInfo( $pdffileWiPath );
     
       // Render PDF to SWF
     switch( true )
@@ -949,6 +946,122 @@ class tx_flipit_typoscript
 
       // RETURN : swf files without path
     return $arrReturn;
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfSetInfo( )
+  *
+  * @param    string    $pdfFileWiPath : full path
+  * @return   array     $arrReturn  : rendered swf files
+  * @internal #45170
+  * @access   private
+  * @version  1.0.4
+  * @since    1.0.4
+  */
+  private function updateSwfFilesRenderPdfSetInfo( $pdffileWiPath )
+  {
+    $pathToSwftools = $this->objUserfunc->pathToSwfTools;
+
+    $maxWidth  = 0;
+    $maxHeight = 0;
+
+      // SWITCH : OS
+    switch( true )
+    {
+      case( $this->objUserfunc->os == 'windows' ):
+        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" -I ' . $pdffileWiPath;
+        break;
+      default:
+        $exec   = 'pdf2swf -I ' . $pdffileWiPath;
+        break;
+    }
+      // SWITCH : OS
+
+      // exec( pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf ) 
+    $lines  = $this->zz_exec( $exec );
+
+      // $lines:
+      //    page = 1 width = 595.00 height = 842.00
+      //    page = 2 width = 595.00 height = 842.00
+      //    ...
+      //    page = 14 width = 595.00 height = 842.00
+
+    $this->updateSwfFilesRenderPdfSetMaxSize( $lines );
+
+      // DRS  : PDF info
+    if( $this->b_drs_pdf )
+    {    
+    }
+      // DRS  : PDF info
+    
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfSetMaxSize( $pages )
+  *
+  * @param    array    $pages : Array with informationen for each PDF page
+  * @internal #45170
+  * @access   private
+  * @version  1.0.4
+  * @since    1.0.4
+  */
+  private function updateSwfFilesRenderPdfSetMaxSize( $pages )
+  {
+    $infos    = array( );
+    $counter  = 0;
+    
+      // LOOP : each PDF page
+    foreach( ( array ) $pages as $page )
+    {
+        // LOOP : elements
+      $elements = explode( ' ', $page );
+      foreach( $elements as $element )
+      {
+        list( $key, $value ) = explode( '=', $element );
+        $infos[$counter][$key] = $value;
+      }
+        // LOOP : elements
+var_dump( __METHOD__, __LINE__, $infos );      
+        // SWITCH : width and height
+      switch( true )
+      {
+        case( $infos['width'] >= $this->pdfMaxWidth ):
+          $this->pdfMaxWidth  = ( int ) $infos['width'];
+          $this->pdfMaxHeight = ( int ) $infos['height'];
+          break;
+        case( $infos['height'] >= $this->pdfMaxHeight ):
+          $this->pdfMaxWidth  = ( int ) $infos['width'];
+          $this->pdfMaxHeight = ( int ) $infos['height'];
+          break;
+        default:
+            // Do nothing
+          break;
+      }
+        // SWITCH : width and height
+      
+      $counter = $counter + 1;
+    }
+var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );      
+      // LOOP : each PDF page
+      
+      // DRS  : PDF info
+    if( $this->b_drs_error )
+    {
+      switch( true )
+      {
+        case( $this->pdfMaxWidth <= 0 ):
+        case( $this->pdfMaxHeight <= 0 ):
+          $prompt = 'Size of PDF page is null!';
+          t3lib_div::devlog( '[WARN/SWF+XML] ' . $prompt, $this->extKey, 2 );
+          break;
+      }
+    }
+      // DRS  : PDF info
+    
   }
 
   
@@ -1148,6 +1261,8 @@ class tx_flipit_typoscript
     $conf = $this->conf;
     
     $contentParams    = null;
+    $defaultWidth     = null;
+    $defaultHeight    = null;
     $arrContentParams = array( );
     
       // Content parameters from TypoScript
@@ -1168,10 +1283,40 @@ class tx_flipit_typoscript
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
       //$value      = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
       
-      $arrContentParams[] = $param . " = '" . $value . "'";
+      $arrContentParams[$param] = $param . " = '" . $value . "'";
       
     }
       // FOREACH :  content param from TypoScript
+    
+      // #45170, 130205, dwildt, +
+      // Set document size
+    if( $this->pdfMaxWidth > 0 )
+    {
+      $defaultWidth               = $arrContentParams['width'];
+      $arrContentParams['width']  = $this->pdfMaxWidth;
+    }
+    if( $this->pdfMaxHeight > 0 )
+    {
+      $defaultHeight              = $arrContentParams['height'];
+      $arrContentParams['height'] = $this->pdfMaxHeight;
+    }
+      // Set document size
+    
+      // DRS
+    if( $this->b_drs_updateSwfXml )
+    {
+      switch( true )
+      {
+        case( $defaultWidth   != $arrContentParams['width'] ):
+        case( $defaultHeight  != $arrContentParams['height'] ):
+          $prompt = 'Default size is overriden from ' . $defaultWidth . 'x' . $defaultHeight . ' ' .
+                    ' to ' . $this->pdfMaxWidth . 'x' . $this->pdfMaxHeight;
+          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
+          break;
+      }
+    }
+      // DRS
+    
 
       // Move array to string
     $contentParams = implode( PHP_EOL . '  ', $arrContentParams );
@@ -1248,6 +1393,51 @@ class tx_flipit_typoscript
 
       // RETURN
     return $xmlFile;
+  }
+
+
+
+/**
+ * drs_debugTrail( ): Returns class, method and line of the call of this method.
+ *                    The calling method is a debug method - if it is called by another
+ *                    method, please set the level in the calling method to 2.
+ *
+ * @param    integer        $level: ...
+ * @return    array        $arr_return : with elements class, method, line and prompt
+ * @internal  #45174
+ * @version 1.0.4
+ * @since   1.0.4
+ */
+  public function drs_debugTrail( $level = 1 )
+  {
+    $arr_return = null; 
+    
+      // Get the debug trail
+    $debugTrail_str = t3lib_utility_Debug::debugTrail( );
+
+      // Get debug trail elements
+    $debugTrail_arr = explode( '//', $debugTrail_str );
+
+      // Get class, method
+    $classMethodLine        = $debugTrail_arr[ count( $debugTrail_arr) - ( $level + 2 )];
+    list( $classMethod )    = explode ( '#', $classMethodLine );
+    list($class, $method )  = explode( '->', $classMethod );
+      // Get class, method
+
+      // Get line
+    $classMethodLine      = $debugTrail_arr[ count( $debugTrail_arr) - ( $level + 1 )];
+    list( $dummy, $line ) = explode ( '#', $classMethodLine );
+    unset( $dummy );
+      // Get line
+
+      // RETURN content
+    $arr_return['class']  = trim( $class );
+    $arr_return['method'] = trim( $method );
+    $arr_return['line']   = trim( $line );
+    $arr_return['prompt'] = $arr_return['class'] . '::' . $arr_return['method'] . ' (' . $arr_return['line'] . ')';
+
+    return $arr_return;
+      // RETURN content
   }
 
   
@@ -2245,8 +2435,13 @@ class tx_flipit_typoscript
       // DRS
     if( $this->b_drs_php )
     {
+        // #45174, 130205, dwildt
+      $debugTrailLevel  = 1;
+      $debugTrail       = $this->drs_debugTrail( $debugTrailLevel );
+      $debugTrailPrompt = $debugTrail['prompt'];
+      
       $prompt = $exec;
-      t3lib_div::devlog( '[INFO/PHP] exec: ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[INFO/PHP] ' . $debugTrailPrompt . ' -> exec: ' . $prompt, $this->extKey, 0 );
     }
       // DRS
 

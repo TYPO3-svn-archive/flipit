@@ -341,9 +341,9 @@ plugin.tx_flipit {
       // Category xml
     xml =
     xml {
-        // Document width : Width in pixel (if autodetection failes)
+        // Document width : Width in points (if autodetection failes)
       width = {$plugin.tx_flipit.xml.width}
-        // Document height : Height in pixel (if autodetection failes)
+        // Document height : Height in points (if autodetection failes)
       height = {$plugin.tx_flipit.xml.height}
         // Colour of buttons:
       buttoncolor = {$plugin.tx_flipit.xml.buttoncolor}
