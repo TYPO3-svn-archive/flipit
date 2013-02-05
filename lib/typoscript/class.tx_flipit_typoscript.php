@@ -1029,13 +1029,13 @@ var_dump( __METHOD__, __LINE__, $infos[$counter] );
         // SWITCH : width and height
       switch( true )
       {
-        case( ( int) $infos['width'] >= $this->pdfMaxWidth ):
-          $this->pdfMaxWidth  = ( int ) $infos['width'];
-          $this->pdfMaxHeight = ( int ) $infos['height'];
+        case( ( int) $infos[$counter]['width'] >= $this->pdfMaxWidth ):
+          $this->pdfMaxWidth  = ( int ) $infos[$counter]['width'];
+          $this->pdfMaxHeight = ( int ) $infos[$counter]['height'];
           break;
-        case( ( int) $infos['height'] >= $this->pdfMaxHeight ):
-          $this->pdfMaxWidth  = ( int ) $infos['width'];
-          $this->pdfMaxHeight = ( int ) $infos['height'];
+        case( ( int) $infos[$counter]['height'] >= $this->pdfMaxHeight ):
+          $this->pdfMaxWidth  = ( int ) $infos[$counter]['width'];
+          $this->pdfMaxHeight = ( int ) $infos[$counter]['height'];
           break;
         default:
             // Do nothing
