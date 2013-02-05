@@ -1289,33 +1289,23 @@ var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );
       // FOREACH :  content param from TypoScript
     
       // #45170, 130205, dwildt, +
-      // Set document size
-    if( $this->pdfMaxWidth > 0 )
+      // Override document size
+    switch( true )
     {
-      $defaultWidth               = $arrContentParams['width'];
-      $arrContentParams['width']  = $this->pdfMaxWidth;
-    }
-    if( $this->pdfMaxHeight > 0 )
-    {
-      $defaultHeight              = $arrContentParams['height'];
-      $arrContentParams['height'] = $this->pdfMaxHeight;
-    }
-      // Set document size
-    
-      // DRS
-    if( $this->b_drs_updateSwfXml )
-    {
-      switch( true )
-      {
-        case( $defaultWidth   != $arrContentParams['width'] ):
-        case( $defaultHeight  != $arrContentParams['height'] ):
-          $prompt = 'Default size is overriden from ' . $defaultWidth . 'x' . $defaultHeight . ' ' .
-                    ' to ' . $this->pdfMaxWidth . 'x' . $this->pdfMaxHeight;
+      case( $this->pdfMaxWidth > 0 ):
+      case( $this->pdfMaxHeight > 0 ):
+        $arrContentParams['width']  = 'width=' . $this->pdfMaxWidth;
+        $arrContentParams['height'] = 'height=' . $this->pdfMaxHeight;
+          // DRS
+        if( $this->b_drs_updateSwfXml )
+        {
+          $prompt = 'Default size is set to ' . $this->pdfMaxWidth . 'x' . $this->pdfMaxHeight;
           t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
           break;
-      }
+        }
+          // DRS
     }
-      // DRS
+      // Override document size
     
 
       // Move array to string
