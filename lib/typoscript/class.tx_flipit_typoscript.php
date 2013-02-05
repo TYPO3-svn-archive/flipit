@@ -1299,7 +1299,7 @@ var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );
           // DRS
         if( $this->b_drs_updateSwfXml )
         {
-          $prompt = 'Default size is set to ' . $this->pdfMaxWidth . 'x' . $this->pdfMaxHeight;
+          $prompt = 'Size of SWF files is not the default and is overriden to ' . $this->pdfMaxWidth . 'x' . $this->pdfMaxHeight . ' points.';
           t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
           break;
         }
