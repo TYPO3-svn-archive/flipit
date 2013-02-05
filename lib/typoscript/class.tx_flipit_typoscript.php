@@ -1025,15 +1025,15 @@ class tx_flipit_typoscript
         $infos[$counter][$key] = $value;
       }
         // LOOP : elements
-var_dump( __METHOD__, __LINE__, $infos );      
+var_dump( __METHOD__, __LINE__, $infos[$counter] );      
         // SWITCH : width and height
       switch( true )
       {
-        case( $infos['width'] >= $this->pdfMaxWidth ):
+        case( ( int) $infos['width'] >= $this->pdfMaxWidth ):
           $this->pdfMaxWidth  = ( int ) $infos['width'];
           $this->pdfMaxHeight = ( int ) $infos['height'];
           break;
-        case( $infos['height'] >= $this->pdfMaxHeight ):
+        case( ( int) $infos['height'] >= $this->pdfMaxHeight ):
           $this->pdfMaxWidth  = ( int ) $infos['width'];
           $this->pdfMaxHeight = ( int ) $infos['height'];
           break;
