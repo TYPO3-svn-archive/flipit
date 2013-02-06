@@ -258,7 +258,7 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'],
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
         //$this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
-        $this->cObj->data = array_merge( $this->cObj->data, $GLOBALS['TSFE']->tx_browser_pi1->cObj->data );
+        $this->cObj->data = array_merge( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data, $this->cObj->data );
         break;
       default:
           // Do nothing: $this->cObj->data is set by the TYPO3 core
