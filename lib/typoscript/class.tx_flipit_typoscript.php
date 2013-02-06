@@ -173,6 +173,8 @@ class tx_flipit_typoscript
   {
 //// #i0008
 //var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
+// #00002
+var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
     unset( $content );
     
       // Current TypoScript configuration
