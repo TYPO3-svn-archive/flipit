@@ -646,6 +646,8 @@ plugin.tx_flipit {
             isPositive {
 // 130206, dwildt, 1-
 //              field = {$plugin.tx_flipit.database.field.layout}
+// 130206, dwildt, 1+
+              field = layout
             }
           }
         }
@@ -654,6 +656,8 @@ plugin.tx_flipit {
             isTrue {
 // 130206, dwildt, 1-
 //              field = {$plugin.tx_flipit.database.field.filelink_size}
+// 130206, dwildt, 1+
+              field = filelink_size
             }
           }
         }
