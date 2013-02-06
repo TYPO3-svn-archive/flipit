@@ -250,14 +250,16 @@ class tx_flipit_typoscript
 //var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
 //        $this->cObj->data['tx_flipit_layout'], 
 //        $this->cObj->data['tx_org_downloads.documentssize'] );
-var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
-        $this->cObj->data['tx_flipit_layout'], 
-        $this->cObj->data['tx_org_downloads.documentssize'] );
+//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
+//        $this->cObj->data['tx_flipit_layout'], 
+//        $this->cObj->data['tx_org_downloads.documentssize'] );
       // SWITCH : Set cObj->data
     switch( true ) 
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
+          // #i0008, 13-02-06, dwildt, 1-
         //$this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
+          // #i0008, 13-02-06, dwildt, 1+
         $this->cObj->data = array_merge( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data, $this->cObj->data );
         break;
       default:
@@ -267,9 +269,9 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'],
       // SWITCH : Set cObj->data
     
 // #i0008
-var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
-        $this->cObj->data['tx_flipit_layout'], 
-        $this->cObj->data['tx_org_downloads.documentssize'] );
+//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
+//        $this->cObj->data['tx_flipit_layout'], 
+//        $this->cObj->data['tx_org_downloads.documentssize'] );
       // Add to the header field
     if( $this->fieldLabelForTitle )
     {
