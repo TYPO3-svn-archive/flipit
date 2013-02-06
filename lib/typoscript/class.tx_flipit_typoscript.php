@@ -1627,8 +1627,19 @@ class tx_flipit_typoscript
   private function initFieldLabels( )
   {
     $conf = $this->conf;
-    $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['media'];
-    $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['title'];
+
+      // #i0007
+    switch( $this->table )
+    {
+      case( 'tt_content' ):
+        $this->fieldLabelForMedia   = 'media';
+        $this->fieldLabelForTitle   = 'header';
+        break;
+      default:
+        $this->fieldLabelForMedia   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['media'];
+        $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['title'];
+        break;
+    }
     $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
   }
   
@@ -2539,8 +2550,6 @@ class tx_flipit_typoscript
       if ( ! $uploadFolder )
       {
         $prompt = '$GLOBALS[TCA][' . $this->table . '][columns][' . $field . '][config][uploadfolder] is empty! ';
-        t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
-        $prompt = $uploadFolder;
         t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
       }
     }

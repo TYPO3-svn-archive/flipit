@@ -1,3 +1,8 @@
+1.0.5
+  13-02-06
+  Bugfix
+  * #i0007: Don't take filed labels from Constant Editot in case of tt_content
+
 1.0.4
   13-02-05
   Features
