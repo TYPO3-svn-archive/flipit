@@ -247,7 +247,9 @@ class tx_flipit_typoscript
     $this->cObjDataBackup( );
     
 // #i0008
-var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
+var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
+        $this->cObj->data['tx_flipit_layout'], 
+        $this->cObj->data['tx_org_downloads.documentssize'] );
       // SWITCH : Set cObj->data
     switch( true ) 
     {
@@ -261,7 +263,9 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj-
       // SWITCH : Set cObj->data
     
 // #i0008
-var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
+var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
+        $this->cObj->data['tx_flipit_layout'], 
+        $this->cObj->data['tx_org_downloads.documentssize'] );
       // Add to the header field
     if( $this->fieldLabelForTitle )
     {
