@@ -247,6 +247,9 @@ class tx_flipit_typoscript
     $this->cObjDataBackup( );
     
 // #i0008
+//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
+//        $this->cObj->data['tx_flipit_layout'], 
+//        $this->cObj->data['tx_org_downloads.documentssize'] );
 var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
         $this->cObj->data['tx_flipit_layout'], 
         $this->cObj->data['tx_org_downloads.documentssize'] );
@@ -254,7 +257,8 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'],
     switch( true ) 
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
-        $this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
+        //$this->cObj->data = $GLOBALS['TSFE']->tx_browser_pi1->cObj->data;
+        $this->cObj->data = array_merge( $this->cObj->data, $GLOBALS['TSFE']->tx_browser_pi1->cObj->data );
         break;
       default:
           // Do nothing: $this->cObj->data is set by the TYPO3 core
