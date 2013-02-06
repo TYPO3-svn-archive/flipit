@@ -644,14 +644,16 @@ plugin.tx_flipit {
         10 {
           if {
             isPositive {
-              field = {$plugin.tx_flipit.database.field.layout}
+// 130206, dwildt, 1-
+//              field = {$plugin.tx_flipit.database.field.layout}
             }
           }
         }
         30 {
           if {
             isTrue {
-              field = {$plugin.tx_flipit.database.field.filelink_size}
+// 130206, dwildt, 1-
+//              field = {$plugin.tx_flipit.database.field.filelink_size}
             }
           }
         }
@@ -792,10 +794,11 @@ plugin.tx_flipit {
                   field = {$plugin.tx_flipit.database.field.layout}
                 }
               }
-              file {
-                height  = {$plugin.tx_flipit.thumbnails.download.height}
-                width   = {$plugin.tx_flipit.thumbnails.download.width}
-              }
+// 130206, dwildt, 4-
+//              file {
+//                height  = {$plugin.tx_flipit.thumbnails.download.height}
+//                width   = {$plugin.tx_flipit.thumbnails.download.width}
+//              }
             }
               // download link, description
             30 < tt_content.uploads.20.itemRendering.20
