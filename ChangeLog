@@ -1,7 +1,13 @@
 1.0.5
   13-02-06
+  Feature
+  * #i0008: Wrap cObjData fields
+            Effected files:
+            * lib/typoscript/class.tx_flipit_typoscript.php
   Bugfix
-  * #i0007: Don't take filed labels from Constant Editot in case of tt_content
+  * #i0007: Don't take field labels from Constant Editot in case of tt_content
+            Effected files:
+            * lib/typoscript/class.tx_flipit_typoscript.php
 
 1.0.4
   13-02-05
