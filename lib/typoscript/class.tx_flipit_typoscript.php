@@ -173,7 +173,7 @@ class tx_flipit_typoscript
   {
 //// #i0008
 //var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
-// #00002
+// #i0008
 var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
     unset( $content );
     
@@ -223,6 +223,8 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj-
       // Generate and check SWF and XML files
     $this->update( );   
 
+// #i0008
+var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
       // Return the content
     $content =  $this->content( $conf );    
     $this->cObjDataReset( );
