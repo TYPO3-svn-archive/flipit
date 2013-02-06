@@ -171,10 +171,6 @@ class tx_flipit_typoscript
   */
   public function main( $content, $conf )
   {
-//// #i0008
-//var_dump( __METHOD__, __LINE__, $GLOBALS['TSFE']->register );
-// #i0008
-var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
     unset( $content );
     
       // Current TypoScript configuration
@@ -223,8 +219,6 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj-
       // Generate and check SWF and XML files
     $this->update( );   
 
-// #i0008
-var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
       // Return the content
     $content =  $this->content( $conf );    
     $this->cObjDataReset( );
@@ -252,6 +246,8 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj-
       // Backup data, which will changed below
     $this->cObjDataBackup( );
     
+// #i0008
+var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
       // SWITCH : Set cObj->data
     switch( true ) 
     {
@@ -264,6 +260,8 @@ var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj-
     }
       // SWITCH : Set cObj->data
     
+// #i0008
+var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], $this->cObj->data['tx_org_downloads.documentssize'] );
       // Add to the header field
     if( $this->fieldLabelForTitle )
     {
