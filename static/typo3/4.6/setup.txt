@@ -38,7 +38,7 @@ tt_content.uploads {
               }
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
-            wrap = <tr class="tx_flipit_layout_01">|</tr>
+            wrap = <tr class="tx_flipit_layout_02">|</tr>
           }
         }
       }
@@ -51,7 +51,7 @@ tt_content.uploads {
               }
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
-            wrap = <tr class="tx_flipit_layout_01">|</tr>
+            wrap = <tr class="tx_flipit_layout_03">|</tr>
           }
         }
       }
