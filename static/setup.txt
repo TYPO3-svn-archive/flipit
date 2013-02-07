@@ -516,25 +516,6 @@ plugin.tx_flipit {
                   offset  = -5,-5
                 }
               }
-              wrap = |<br />
-            }
-              // field:header
-            40 = TEXT
-            40 {
-              value (
-
-                  Flip it!
-)
-              lang {
-                de (
-
-                  Online bl&auml;ttern!
-)
-                en (
-
-                  Flip it!
-)
-              }
             }
               // A tag 2/2, begin
             50 = TEXT
