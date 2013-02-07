@@ -14,12 +14,15 @@
 
 tt_content.uploads {
   20 {
-//    outerWrap = <table>|</table>
+    outerWrap = <table>|</table>
     itemRendering {
       layout_01 {
         userFunc {
           content {
             10 {
+              10 {
+                wrap >
+              }
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
@@ -30,6 +33,9 @@ tt_content.uploads {
         userFunc {
           content {
             10 {
+              10 {
+                wrap >
+              }
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
@@ -40,6 +46,9 @@ tt_content.uploads {
         userFunc {
           content {
             10 {
+              10 {
+                wrap >
+              }
               wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
             }
             wrap = <tr class="tx_flipit_layout_01">|</tr>
