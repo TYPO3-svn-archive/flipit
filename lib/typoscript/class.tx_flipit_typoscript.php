@@ -1039,13 +1039,13 @@ class tx_flipit_typoscript
       // SWITCH : $quality
     switch( true )
     {
-      case( empty( $this->quality ) ):
       case( $this->quality == 'low' ):
-        $paramsQuality = ' ';
+        $paramsQuality = '--set bitmap --set zoom=144 ';
         return $paramsQuality;
         break;
+      case( empty( $this->quality ) ):
       default:
-        $paramsQuality = '--set bitmap --set zoom=144 ';
+        $paramsQuality = ' ';
         return $paramsQuality;
         break;
     }
@@ -1353,9 +1353,9 @@ class tx_flipit_typoscript
         {
           $prompt = 'Size of SWF files is not the default and is overriden to ' . $this->pdfMaxWidth . 'x' . $this->pdfMaxHeight . ' points.';
           t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
-          break;
         }
           // DRS
+        break;
     }
       // Override document size
     
@@ -1376,12 +1376,12 @@ class tx_flipit_typoscript
           t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
           $prompt = 'Quality is low. Document height will set from ' . $height . ' pts to ' . ( $height * 2 ) . ' pts.';
           t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
-          break;
         }
           // DRS
 
         $arrContentParams['width']  = "width='" . ( $width * 2 ) . "'";
         $arrContentParams['height'] = "height='" . ( $height * 2 ) . "'";
+        break;
     }
       // Double document size
 
