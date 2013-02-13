@@ -85,6 +85,14 @@ class tx_flipit_typoscript
   private $files;
   
  /**
+  * Quality: high, low
+  * 
+  * @internal #45471
+  * @var string
+  */
+  private $quality;  
+  
+ /**
   * Current table: tt_content, tx_org_downloads
   *
   * @var string
@@ -474,7 +482,6 @@ class tx_flipit_typoscript
 
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml.'];
-//    $updateSwfXml  = $this->cObj->cObjGetSingle( $coa_name, $coa_conf );
     $updateSwfXml  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
     
     switch( $updateSwfXml )
@@ -511,8 +518,7 @@ class tx_flipit_typoscript
     }
 
       // RETURN : default is false;
-    return false;
-    
+    return false;    
   }
 
   
@@ -837,12 +843,14 @@ class tx_flipit_typoscript
   * @param    string    $fileWiPath : full path
   * @return   array     $arrReturn  : rendered swf files
   * @access   private
-  * @version  1.0.7
+  * @version  1.0.8
   * @since    0.0.3
   */
   private function updateSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
   {
-    $arrReturn = null;
+    $arrReturn      = null;
+      // #45471, 130214, dwildt, 1+
+    $paramsQuality  = null;
     
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
 
@@ -867,14 +875,23 @@ class tx_flipit_typoscript
       // Set the PDF info array
     $this->updateSwfFilesRenderPdfSetInfo( $pdffileWiPath );
     
+      // #45471, 130214, dwildt, 1+
+    $paramsQuality = updateSwfFilesRenderPdfSetQuality( );
+
       // Render PDF to SWF
     switch( true )
     {
       case( $this->objUserfunc->os == 'windows' ):
-        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $pdffileWiPath . ' ' . $swfPathToFile;
+          // #45471, 130214, dwildt, 1-
+//        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $pdffileWiPath . ' ' . $swfPathToFile;
+          // #45471, 130214, dwildt, 1+
+        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $paramsQuality . $pdffileWiPath . ' ' . $swfPathToFile;
         break;
       default:
-        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPathToFile;
+          // #45471, 130214, dwildt, 1-
+//        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPathToFile;
+          // #45471, 130214, dwildt, 1+
+        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $paramsQuality . $swfPathToFile;
         break;
     }
     $lines  = $this->zz_exec( $exec );
@@ -979,9 +996,6 @@ class tx_flipit_typoscript
   {
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
 
-    $maxWidth  = 0;
-    $maxHeight = 0;
-
       // SWITCH : OS
     switch( true )
     {
@@ -1004,13 +1018,38 @@ class tx_flipit_typoscript
       //    page = 14 width = 595.00 height = 842.00
 
     $this->updateSwfFilesRenderPdfSetMaxSize( $lines );
-
-      // DRS  : PDF info
-    if( $this->b_drs_pdf )
-    {    
-    }
-      // DRS  : PDF info
     
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfSetQuality( )
+  *
+  * @return   string     $paramsQuality
+  * @internal #45171
+  * @access   private
+  * @version  1.0.8
+  * @since    1.0.8
+  */
+  private function updateSwfFilesRenderPdfSetQuality( )
+  {
+    $paramsQuality = null;
+
+      // SWITCH : $quality
+    switch( true )
+    {
+      case( empty( $this->quality ) ):
+      case( $this->quality == 'low' ):
+        $paramsQuality = ' ';
+        return $paramsQuality;
+        break;
+      default:
+        $paramsQuality = '--set bitmap --set zoom=144 ';
+        return $paramsQuality;
+        break;
+    }
+      // SWITCH : $quality
   }
 
   
@@ -1276,8 +1315,6 @@ class tx_flipit_typoscript
     $conf = $this->conf;
     
     $contentParams    = null;
-    $defaultWidth     = null;
-    $defaultHeight    = null;
     $arrContentParams = array( );
     
       // Content parameters from TypoScript
@@ -1322,6 +1359,31 @@ class tx_flipit_typoscript
     }
       // Override document size
     
+      // #45471, 130214, dwildt, +
+      // Double document size
+    switch( true )
+    {
+      case( $this->quality == 'low' ):
+        list( $width )  = explode('=', $arrContentParams['width'] );
+        $width          = trim( $width, "'" );
+        list( $height ) = explode('=', $arrContentParams['height'] );
+        $height         = trim( $height, "'" );
+
+          // DRS
+        if( $this->b_drs_updateSwfXml )
+        {
+          $prompt = 'Quality is low. Document width will set from ' . $width . ' pts to ' . ( $width * 2 ) . ' pts.';
+          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
+          $prompt = 'Quality is low. Document height will set from ' . $height . ' pts to ' . ( $height * 2 ) . ' pts.';
+          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
+          break;
+        }
+          // DRS
+
+        $arrContentParams['width']  = "width='" . ( $width * 2 ) . "'";
+        $arrContentParams['height'] = "height='" . ( $height * 2 ) . "'";
+    }
+      // Double document size
 
       // Move array to string
     $contentParams = implode( PHP_EOL . '  ', $arrContentParams );
@@ -1491,6 +1553,9 @@ class tx_flipit_typoscript
     }
       // RETURN :
 
+      // #45471, 130214, dwildt, 1+
+    $this->initQuality( );
+    
       // Require class userfunc
     $this->initClasses( );
 
@@ -1823,6 +1888,63 @@ class tx_flipit_typoscript
 
     return $arr_return;
     
+  }
+
+  
+  
+ /**
+  * initQuality( ):
+  *
+  * @return   void
+  * @access   private
+  * @internal #45471
+  * @version  1.0.8
+  * @since    1.0.8
+  */
+  private function initQuality( )
+  {
+    $conf = $this->conf;
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['quality'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['quality.'];
+    $this->quality  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    switch( $this->quality )
+    {
+      case( null ):
+      case( 'high' ):
+        $this->quality = 'high';
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Quality: ' . $this->quality;
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        return;
+        break;
+      case( 'low' ):
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Quality: ' . $this->quality;
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+        }
+        return;
+        break;
+      case( 'error' ):
+      default:
+        if( $this->b_drs_init )
+        {
+          $prompt = 'Undefined: ' . "['userFunc.']['constant_editor.']['configuration.']['quality']" .
+                    ' is ' . $this->quality;
+          t3lib_div::devlog( '[ERROR/INIT] ' . $prompt, $this->extKey, 3 );
+          $prompt = 'Quality is set to high.';
+          t3lib_div::devlog( '[WARN/INIT] ' . $prompt, $this->extKey, 2 );
+        }
+        $this->quality = 'high';
+        return;
+        break;
+    }
+
+    return;
   }
   
  /**
@@ -2724,9 +2846,6 @@ class tx_flipit_typoscript
   */
   private function zz_tstampRecord( )
   {
-    $conf   = $this->conf;
-    $table  = $this->table;
-    
     if( ! ( $this->tstampRecord === null ) )
     {
       return;

@@ -7,6 +7,7 @@
             * ext_tables.php
             * ext_tables.sql
             * locallang_db.xml
+            * lib/typoscript/class.tx_flipit_typoscript.php
             * static
               * constants.txt
               * setup.txt
