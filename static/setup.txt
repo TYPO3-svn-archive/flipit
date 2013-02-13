@@ -169,6 +169,61 @@ plugin.tx_flipit {
           }
         }
       }
+        // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
+      quality = COA
+      quality {
+          // Error prompt, if enabled mode isn't an element of the list high,low,ts
+        10 = TEXT
+        10 {
+            // IF field:tx_flipit_quality is not in list of 'high,low,ts'
+          if = 
+          if {
+              // Be aware of the first comma!
+            value = ,high,low,ts
+            isInList {
+              field = tx_flipit_quality
+            }
+            negate = 1
+          }
+          value = error
+        }
+          // RETURNS high,low
+        20 = COA
+        20 {
+            // IF field:tx_flipit_quality is in list of 'high,low,ts'
+          if = 
+          if {
+              // Be aware of the first comma!
+            value = ,high,low,ts
+            isInList {
+              field = tx_flipit_quality
+            }
+          }
+            // high,low
+          10 = TEXT
+          10 {
+            if {
+              value = high,low
+              isInList {
+                field = tx_flipit_quality
+              }
+            }
+            field = tx_flipit_quality
+          }
+            // null, ts
+          20 = TEXT
+          20 {
+            if {
+                // Be aware of the first comma!
+              value = ,ts
+              isInList {
+                field = tx_flipit_quality
+              }
+            }
+            value = {$plugin.tx_flipit.configuration.quality}
+          }
+        }
+      }
         // RETURNS disabled or enabled
       updateSwfXml = COA
       updateSwfXml {

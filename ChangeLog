@@ -7,6 +7,9 @@
             * ext_tables.php
             * ext_tables.sql
             * locallang_db.xml
+            * static
+              * constants.txt
+              * setup.txt
 
 1.0.7
   13-02-13

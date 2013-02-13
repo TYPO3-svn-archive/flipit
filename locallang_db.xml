@@ -85,8 +85,8 @@
       <label index="tcaLabel_tx_flipit_layout_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_quality">Qualit<![CDATA[&auml;]]>t</label>
       <label index="tcaLabel_tx_flipit_quality_item_high">Hoch: Vektor-Datei</label>
-      <label index="tcaLabel_tx_flipit_quality_item_low">Wert vom Konstanten-Editor (empfohlen)</label>
-      <label index="tcaLabel_tx_flipit_quality_item_ts">Value from the Constant Editor (recommended)</label>
+      <label index="tcaLabel_tx_flipit_quality_item_low">Niedrig: Bitmap-Datei (beste Performance)</label>
+      <label index="tcaLabel_tx_flipit_quality_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">SWF-Dateien und XML-Datei automatisch erzeugen</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind gesch<![CDATA[&uuml;]]>tzt)</label>
