@@ -876,7 +876,7 @@ class tx_flipit_typoscript
     $this->updateSwfFilesRenderPdfSetInfo( $pdffileWiPath );
     
       // #45471, 130214, dwildt, 1+
-    $paramsQuality = updateSwfFilesRenderPdfSetQuality( );
+    $paramsQuality = $this->updateSwfFilesRenderPdfSetQuality( );
 
       // Render PDF to SWF
     switch( true )
