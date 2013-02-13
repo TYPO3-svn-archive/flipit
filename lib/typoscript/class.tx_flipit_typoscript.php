@@ -1368,7 +1368,7 @@ class tx_flipit_typoscript
         $width          = trim( $width, "'" );
         list( $param, $height ) = explode('=', $arrContentParams['height'] );
         $height         = trim( $height, "'" );
-        unyet( $param );
+        unset( $param );
 
           // DRS
         if( $this->b_drs_updateSwfXml )
