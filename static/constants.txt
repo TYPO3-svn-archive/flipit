@@ -2,7 +2,7 @@ plugin.tx_flipit {
 
   # cat=Flip it! - configuration/enable/101;    type=options[layout_00,layout_01,layout_02,layout_03];   label= Layout: layout_00: tt_content default (without Flip it!). layout_01: Flip it! only. layout_02: Flip it! and tt_content default but download link. layout_03: Flip it! and tt_content default.
   configuration.layout = layout_00
-  # cat=Flip it! - configuration/enable/102;    type=options[high,low];           label= Quality: high: vector file. low: bitmap file (best performance)
+  # cat=Flip it! - configuration/enable/102;    type=options[high,low];           label= Quality: high: vector file (best quality). low: bitmap file (best performance)
   configuration.quality = high
   # cat=Flip it! - configuration/enable/103;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
   configuration.enableFancybox = enabled

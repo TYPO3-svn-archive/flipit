@@ -39,7 +39,7 @@
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and tt_content default</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_quality">Quality</label>
-      <label index="tcaLabel_tx_flipit_quality_item_high">High: vector file</label>
+      <label index="tcaLabel_tx_flipit_quality_item_high">High: vector file (best quality)</label>
       <label index="tcaLabel_tx_flipit_quality_item_low">Low: bitmap file (best performance)</label>
       <label index="tcaLabel_tx_flipit_quality_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
@@ -84,7 +84,7 @@
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! und tt_content-Standard</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_quality">Qualit<![CDATA[&auml;]]>t</label>
-      <label index="tcaLabel_tx_flipit_quality_item_high">Hoch: Vektor-Datei</label>
+      <label index="tcaLabel_tx_flipit_quality_item_high">Hoch: Vektor-Datei (beste Qualit<![CDATA[&auml;]]>t)</label>
       <label index="tcaLabel_tx_flipit_quality_item_low">Niedrig: Bitmap-Datei (beste Performance)</label>
       <label index="tcaLabel_tx_flipit_quality_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
