@@ -1364,11 +1364,13 @@ class tx_flipit_typoscript
     switch( true )
     {
       case( $this->quality == 'low' ):
+var_dump( __METHOD__, __LINE__, $arrContentParams );
         list( $param, $width )  = explode('=', $arrContentParams['width'] );
         $width          = trim( $width, "'" );
         list( $param, $height ) = explode('=', $arrContentParams['height'] );
         $height         = trim( $height, "'" );
         unset( $param );
+var_dump( __METHOD__, __LINE__, $width, $height );
 
           // DRS
         if( $this->b_drs_updateSwfXml )
