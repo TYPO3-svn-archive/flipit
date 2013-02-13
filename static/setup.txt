@@ -114,7 +114,7 @@ plugin.tx_flipit {
           }
         }
       }
-        // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
+        // Checks, if Flip it! is enabled. Returns layout_00, layout_01, layout_02, layout_03 or an error message
       layout = COA
       layout {
           // Error prompt, if enabled mode isn't an element of the list layout_00,layout_01,layout_02,layout_03,ts
@@ -169,7 +169,7 @@ plugin.tx_flipit {
           }
         }
       }
-        // Checks, if Flip it! is enabled. Returns disabled or enabled or an error message
+        // Checks quality. Returns high, low or an error message
       quality = COA
       quality {
           // Error prompt, if enabled mode isn't an element of the list high,low,ts
