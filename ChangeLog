@@ -1,3 +1,20 @@
+1.0.8
+  13-02-13
+  Feature
+  * #45471: Property: Rendering a PDF as a bitmap
+            Effected files:
+            * ext_emconf.php
+            * ext_tables.php
+            * ext_tables.sql
+            * locallang_db.xml
+
+1.0.7
+  13-02-13
+  Bugfix
+  * #45470: SWF files had wrong order in case of a Windows server
+            Effected files:
+            * lib/typoscript/class.tx_flipit_typoscript.php
+
 1.0.6
   13-02-07
   Bugfix

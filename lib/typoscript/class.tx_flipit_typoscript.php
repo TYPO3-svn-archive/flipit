@@ -28,7 +28,7 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    flipit
-* @version  1.0.4
+* @version  1.0.7
 * @since    0.0.1
 */
 
@@ -837,7 +837,7 @@ class tx_flipit_typoscript
   * @param    string    $fileWiPath : full path
   * @return   array     $arrReturn  : rendered swf files
   * @access   private
-  * @version  0.0.3
+  * @version  1.0.7
   * @since    0.0.3
   */
   private function updateSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
@@ -911,7 +911,8 @@ class tx_flipit_typoscript
     {
       case( $this->objUserfunc->os == 'windows' ):
         $swfPathToFile = str_replace('/', '\\', $swfPathToFile );
-        $exec   = 'dir '. $swfPathToFile . ' /s';
+          // #45470, 130213, dwildt
+        $exec   = 'dir /OD '. $swfPathToFile . ' /s';
         break;
       default:
         $exec   = 'ls -t ' . $swfPathToFile;

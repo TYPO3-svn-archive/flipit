@@ -26,6 +26,7 @@
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warning: There isn't any TypoScript template for this plugin. Flip it! won't have any effect. You can ...</label>
       <label index="sheetFlipit_evaluate_warn_swftools">SWFTOOLS aren't installed. SWF files can't rendered automatically. You can render SWF files by your own. See more in the <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! in the TYPO3 repository" target="_blank">online manual</a>]]>.</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_evaluate">Plugin Check</label>
       <label index="tcaLabel_tx_flipit_externalLinks">Powered by</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_disabled">disabled</label>
@@ -37,11 +38,11 @@
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! and tt_content default but download link</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! and tt_content default</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Value from the Constant Editor (recommended)</label>
+      <label index="tcaLabel_tx_flipit_quality">Quality</label>
+      <label index="tcaLabel_tx_flipit_quality_item_high">High: vector file</label>
+      <label index="tcaLabel_tx_flipit_quality_item_low">Low: bitmap file (best performance)</label>
+      <label index="tcaLabel_tx_flipit_quality_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Converted SWF files</label>
-      <label index="tcaLabel_tx_flipit_evaluate">Plugin Check</label>
-      <label index="tcaLabel_tx_flipit_evaluate_item_disabled">disabled</label>
-      <label index="tcaLabel_tx_flipit_evaluate_item_enabled">enabled</label>
-      <label index="tcaLabel_tx_flipit_evaluate_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">Update SWF files and XML file automatically</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">no (protects manually uploaded files)</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_enabled">yes</label>
@@ -69,6 +70,7 @@
       <label index="sheetFlipit_evaluate_warn_swftools">Die SWFTOOLS sind nicht installiert. SWF-Dateien k<![CDATA[&ouml;]]>nnen automatisch generiert werden. Du kannst diese selbst erstellen. Siehe mehr im <![CDATA[<a href="http://typo3.org/extensions/repository/view/flipit/" title="Flip it! im TYPO3-Repository" target="_blank">Online-Handbuch</a>]]>.</label>
       <label index="sheetFlipit_evaluate_warn_no_ts_template">Warnung: Es gibt kein TypoScript-Template. Flip it! hat keinen Effekt. Wenn Du ...</label>
       <label index="tcaLabel_tt_content_div_tx_flipit">Flip it!</label>
+      <label index="tcaLabel_tx_flipit_evaluate">Plugin-Check</label>
       <label index="tcaLabel_tx_flipit_externalLinks">Powered by</label>
       <label index="tcaLabel_tx_flipit_fancybox">Fancybox</label>
       <label index="tcaLabel_tx_flipit_fancybox_item_0">aktiviert</label>
@@ -81,10 +83,10 @@
       <label index="tcaLabel_tx_flipit_layout_item_02">2: Flip it! und tt_content-Standard ohne Download-Link</label>
       <label index="tcaLabel_tx_flipit_layout_item_03">3: Flip it! und tt_content-Standard</label>
       <label index="tcaLabel_tx_flipit_layout_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
-      <label index="tcaLabel_tx_flipit_evaluate">Plugin-Check</label>
-      <label index="tcaLabel_tx_flipit_evaluate_item_disabled">deaktiviert</label>
-      <label index="tcaLabel_tx_flipit_evaluate_item_enabled">aktiviert</label>
-      <label index="tcaLabel_tx_flipit_evaluate_item_ts">Wert vom Konstanten-Editor (empfohlen)</label>
+      <label index="tcaLabel_tx_flipit_quality">Qualit<![CDATA[&auml;]]>t</label>
+      <label index="tcaLabel_tx_flipit_quality_item_high">Hoch: Vektor-Datei</label>
+      <label index="tcaLabel_tx_flipit_quality_item_low">Wert vom Konstanten-Editor (empfohlen)</label>
+      <label index="tcaLabel_tx_flipit_quality_item_ts">Value from the Constant Editor (recommended)</label>
       <label index="tcaLabel_tx_flipit_swf_files">Konvertierte SWF-Dateien</label>
       <label index="tcaLabel_tx_flipit_updateswfxml">SWF-Dateien und XML-Datei automatisch erzeugen</label>
       <label index="tcaLabel_tx_flipit_updateswfxml_item_disabled">Nein (manuell hochgeladene Dateien sind gesch<![CDATA[&uuml;]]>tzt)</label>
