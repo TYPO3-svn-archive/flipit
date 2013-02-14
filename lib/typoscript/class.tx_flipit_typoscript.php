@@ -1307,7 +1307,7 @@ class tx_flipit_typoscript
   *
   * @return    string        $contentParams  : Contente parameters
   * @access   private
-  * @version  0.0.3
+  * @version  1.0.8
   * @since    0.0.2
   */
   private function updateXmlFileRenderItParams( )
@@ -1364,13 +1364,11 @@ class tx_flipit_typoscript
     switch( true )
     {
       case( $this->quality == 'low' ):
-var_dump( __METHOD__, __LINE__, $arrContentParams );
         list( $param, $width )  = explode('=', $arrContentParams['width'] );
         $width          = trim( $width, "'" );
         list( $param, $height ) = explode('=', $arrContentParams['height'] );
         $height         = trim( $height, "'" );
         unset( $param );
-var_dump( __METHOD__, __LINE__, $width, $height );
 
           // DRS
         if( $this->b_drs_updateSwfXml )
