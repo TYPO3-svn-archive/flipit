@@ -1005,28 +1005,34 @@ class tx_flipit_typoscript
   {
     $strPdf2swfReport = implode( null, $pdf2swfReport );
     
-      // RETURN : PDF file doesn't contain shaded fills
-    $pos = strpos( $strPdf2swfReport, 'shaded fills' );
-    if( $pos === false )
+    switch( true )
     {
-        // DRS
-      if( $this->b_drs_ok )
-      {
-        $prompt = 'SWF files are proper: They don\'t contain shaded fills.';
-        t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, -1 );
-      }
-        // DRS
-      return;
+      case( strpos( $strPdf2swfReport, 'forms' ) ):
+      case( strpos( $strPdf2swfReport, 'shaded fills' ) ):
+      case( strpos( $strPdf2swfReport, 'transparency groups' ) ):
+          // DRS
+        if( $this->b_drs_warn )
+        {
+          $prompt = 'SWF files are unproper: They contain forms, shaded fills or transparency groups.';
+          t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
+        }
+          // DRS
+        break;
+      default:
+          // RETURN : PDF file doesn't contain shaded fills
+          // DRS
+        if( $this->b_drs_ok )
+        {
+          $prompt = 'SWF files are proper: They don\'t contain forms, shaded fills or transparency groups.';
+          t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, -1 );
+        }
+          // DRS
+        return;
+        break;
+          // RETURN : PDF file doesn't contain shaded fills
     }
-      // RETURN : PDF file doesn't contain shaded fills
+    unset( $strPdf2swfReport );
       
-      // DRS
-    if( $this->b_drs_warn )
-    {
-      $prompt = 'SWF files are unproper: They contain shaded fills.';
-      t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
-    }
-      // DRS
     
     $pageCounter        = 0;
     $pagesWiShadedFills = null;
@@ -1037,9 +1043,16 @@ class tx_flipit_typoscript
       {
         $pageCounter = $pageCounter + 1;
       }
-      if( strpos( $line, 'shaded fills' ) )
+      switch( true )
       {
-        $pagesWiShadedFills[] = $pageCounter;
+        case( strpos( $strPdf2swfReport, 'forms' ) ):
+        case( strpos( $strPdf2swfReport, 'shaded fills' ) ):
+        case( strpos( $strPdf2swfReport, 'transparency groups' ) ):
+          $pagesWiShadedFills[] = $pageCounter;
+          break;
+        default:
+          // Do nothing
+          break;
       }
     }
     $pagesWiShadedFills = array_unique( ( array) $pagesWiShadedFills );
@@ -1047,7 +1060,7 @@ class tx_flipit_typoscript
       // DRS
     if( $this->b_drs_warn )
     {
-      $prompt = 'pages with shaded fills are ' . implode( ', ', ( array ) $pagesWiShadedFills );
+      $prompt = 'pages with forms, shaded fills or transparency groups are ' . implode( ', ', ( array ) $pagesWiShadedFills );
       t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
       $prompt = 'pages will rendered as bitmap SWF files.';
       t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
