@@ -1027,6 +1027,30 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, 2 );
     }
       // DRS
+    
+    $pageCounter        = 0;
+    $pagesWiShadedFills = null;
+    
+    foreach( $pdf2swfReport as $line )
+    {
+      if( strpos( $line, 'processing PDF page' ) )
+      {
+        $pageCounter = $pageCounter + 1;
+      }
+      if( strpos( $line, 'shaed fills' ) )
+      {
+        $pagesWiShadedFills[] = $pageCounter;
+      }
+    }
+    
+      // DRS
+    if( $this->b_drs_warn )
+    {
+      $prompt = 'pages with shaded fills are ' . implode( ', ', ( array ) $pagesWiShadedFills );
+      t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, 2 );
+    }
+      // DRS
+    
   }
 
   
