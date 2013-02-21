@@ -159,7 +159,7 @@ t3lib_div::loadTCA( 'tt_content' );
 
   // Add fields to interface
 $showRecordFieldList = $TCA['tt_content']['interface']['showRecordFieldList'];
-$showRecordFieldList = $showRecordFieldList.',tx_flipit_layout,tx_flipit_quality,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox,tx_flipit_evaluate,tx_flipit_externalLinks';
+$showRecordFieldList = $showRecordFieldList.',tx_flipit_layout,tx_flipit_quality,tx_flipit_pagelist,tx_flipit_updateswfxml,tx_flipit_swf_files,tx_flipit_xml_file,tx_flipit_fancybox,tx_flipit_evaluate,tx_flipit_externalLinks';
 $TCA['tt_content']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to interface
 
@@ -324,7 +324,7 @@ foreach( $arr_showitem as $key => $value )
       $arr_new_showitem[$key] = '' . 
         'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, ' . 
           'tx_flipit_layout,' .
-          'tx_flipit_quality,' .
+          '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_quality;tx_flipit_quality,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_files;tx_flipit_files,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_fancybox;tx_flipit_fancybox,' .
           'tx_flipit_evaluate,' .
@@ -353,6 +353,10 @@ $TCA['tt_content']['palettes']['tx_flipit_files']['showitem'] =
   'tx_flipit_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files'; 
 $TCA['tt_content']['palettes']['tx_flipit_files']['canNotCollapse'] = 1;
 
+$TCA['tt_content']['palettes']['tx_flipit_quality']['showitem'] = 
+  'tx_flipit_quality;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_quality,' .
+  'tx_flipit_pagelist;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_pagelist'; 
+$TCA['tt_content']['palettes']['tx_flipit_quality']['canNotCollapse'] = 1;
   // Insert palettes
 
   // TCA for tt_content

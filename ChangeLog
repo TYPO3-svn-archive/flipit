@@ -4,6 +4,9 @@
   * #45712: Handle PDF > 1.3
             Pages with shaded fills should rendered as bitmap
             Effected files:
+            * ext_tables.php
+            * ext_tables.sql
+            * locallang_db.xml
             * lib/typoscript/class.tx_flipit_typoscript.php
             * static
               * constants.txt
@@ -14,7 +17,6 @@
   Feature
   * #45471: Property: Rendering a PDF as a bitmap
             Effected files:
-            * ext_emconf.php
             * ext_tables.php
             * ext_tables.sql
             * locallang_db.xml
