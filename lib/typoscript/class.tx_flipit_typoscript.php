@@ -1037,7 +1037,7 @@ class tx_flipit_typoscript
       {
         $pageCounter = $pageCounter + 1;
       }
-      if( strpos( $line, 'shaed fills' ) )
+      if( strpos( $line, 'shaded fills' ) )
       {
         $pagesWiShadedFills[] = $pageCounter;
       }
