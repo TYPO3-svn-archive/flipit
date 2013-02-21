@@ -1030,7 +1030,8 @@ class tx_flipit_typoscript
       // DRS
     
       // Render PDF to bitmap SWF
-    $pages = explode( ',', $csvPageList );
+    $params = $params . '--set bitmap ';
+    $pages  = explode( ',', $csvPageList );
     foreach( $pages  as $page )
     { 
       $currParams = '--pages ' . trim( $page ) . ' ' . $params;
