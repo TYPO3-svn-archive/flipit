@@ -501,7 +501,7 @@ class tx_flipit_typoscript
         if( $this->b_drs_init )
         {
           $prompt = 'Auto-update of SWF files and XML files is disabled.';
-          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
+          t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 2 );
         }
         return false;
         break;
@@ -850,9 +850,9 @@ class tx_flipit_typoscript
   */
   private function updateSwfFilesRenderPdf( $pdffileWiPath, $filesCounter )
   {
-    $arrReturn      = null;
-      // #45471, 130214, dwildt, 1+
-    $paramsQuality  = null;
+    $arrReturn  = null;
+      // #45712, 130221, dwildt, 1+
+    $params     = null;
     
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
 
@@ -873,13 +873,13 @@ class tx_flipit_typoscript
         break;
     }
     
+      // #45712, 130221, dwildt, 1+
+    $params = $this->updateSwfFilesRenderPdfSetParams( );
+    
       // #45170, 130205, dwildt
       // Set the PDF info array
-    $this->updateSwfFilesRenderPdfSetInfo( $pdffileWiPath );
+    $this->updateSwfFilesRenderPdfSetInfo( $pdffileWiPath, $params );
     
-      // #45471, 130214, dwildt, 1+
-    $paramsQuality = $this->updateSwfFilesRenderPdfSetQuality( );
-
       // Render PDF to SWF
     switch( true )
     {
@@ -887,16 +887,16 @@ class tx_flipit_typoscript
           // #45471, 130214, dwildt, 1-
 //        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $pdffileWiPath . ' ' . $swfPathToFile;
           // #45471, 130214, dwildt, 1+
-        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $paramsQuality . $pdffileWiPath . ' ' . $swfPathToFile;
+        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $params . $pdffileWiPath . ' ' . $swfPathToFile;
         break;
       default:
           // #45471, 130214, dwildt, 1-
 //        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPathToFile;
           // #45471, 130214, dwildt, 1+
-        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $paramsQuality . $swfPathToFile;
+        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $params . $swfPathToFile;
         break;
     }
-    $lines  = $this->zz_exec( $exec );
+    $pdf2swfReport = $this->zz_exec( $exec );
       //    pdf2swf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/tx_flipit/tt_content_1589_%.swf
       // $lines:
       //    NOTICE outputting one file per page
@@ -921,11 +921,12 @@ class tx_flipit_typoscript
     }
       // DRS
     
-      // get list of rendered swf files
+      // get list of ordered rendered swf files
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] .
                 '_doc_' . $filesCounter . '_part_*.swf';
     $swfPathToFile = $swfPath . '/' . $swfFile;
 
+      // order swf files by time
     switch( true )
     {
       case( $this->objUserfunc->os == 'windows' ):
@@ -937,9 +938,10 @@ class tx_flipit_typoscript
         $exec   = 'ls -t ' . $swfPathToFile;
         break;
     }
+      // order swf files by time
     
     $lines  = $this->zz_exec( $exec );
-      // get list of rendered swf files
+      // get list of ordered rendered swf files
                                      
       // 130117, dwildt
     foreach( $lines as $key => $line )
@@ -957,7 +959,7 @@ class tx_flipit_typoscript
       $lines[$key] = $arrLine[ count( $arrLine ) - 1 ];
     }
     
-          
+      // OS depending ordering
     switch( true )
     {
       case( $this->objUserfunc->os == 'windows' ):
@@ -968,6 +970,7 @@ class tx_flipit_typoscript
         krsort( $lines );
         break;
     }
+      // OS depending ordering
 
       // FOREACH  : swfFile
     foreach( $lines as $swfFileWiPath )
@@ -978,8 +981,52 @@ class tx_flipit_typoscript
     }
       // FOREACH  : swfFile
 
+      // #45712, 130221, dwildt, 1+
+    $this->updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport );
+    
       // RETURN : swf files without path
     return $arrReturn;
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfPagesWithFillsAsBitmap( ): PDF pages, which contains shaded fills 
+  *                                                   should rendered as bitmap swf 
+  *
+  * @param    array    $pdf2swfReport
+  * @return   void
+  * @internal #45712
+  * @access   private
+  * @version  1.0.9
+  * @since    1.0.9
+  */
+  private function updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport )
+  {
+    $strPdf2swfReport = implode( null, $pdf2swfReport );
+    
+      // RETURN : PDF file doesn't contain shaded fills
+    $pos = strpos( $strPdf2swfReport, 'shaded fills' );
+    if( $pos !== false )
+    {
+        // DRS
+      if( $this->b_drs_ok )
+      {
+        $prompt = 'PDF file is proper: It doesn\'t contain shaded fills.';
+        t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, -1 );
+      }
+        // DRS
+      return;
+    }
+      // RETURN : PDF file doesn't contain shaded fills
+      
+      // DRS
+    if( $this->b_drs_warn )
+    {
+      $prompt = 'PDF file is unproper: It contains shaded fills.';
+      t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, 2 );
+    }
+      // DRS
   }
 
   
@@ -988,13 +1035,14 @@ class tx_flipit_typoscript
   * updateSwfFilesRenderPdfSetInfo( )
   *
   * @param    string    $pdfFileWiPath : full path
+  * @param    string    $params
   * @return   array     $arrReturn  : rendered swf files
-  * @internal #45170
+  * @internal #45170, #45712
   * @access   private
-  * @version  1.0.4
-  * @since    1.0.4
+  * @version  1.0.9
+  * @since    1.0.9
   */
-  private function updateSwfFilesRenderPdfSetInfo( $pdffileWiPath )
+  private function updateSwfFilesRenderPdfSetInfo( $pdffileWiPath, $params )
   {
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
 
@@ -1002,10 +1050,10 @@ class tx_flipit_typoscript
     switch( true )
     {
       case( $this->objUserfunc->os == 'windows' ):
-        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" -I ' . $pdffileWiPath;
+        $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" -I ' . $params . $pdffileWiPath;
         break;
       default:
-        $exec   = 'pdf2swf -I ' . $pdffileWiPath;
+        $exec   = 'pdf2swf -I ' . $params . $pdffileWiPath;
         break;
     }
       // SWITCH : OS
@@ -1026,32 +1074,84 @@ class tx_flipit_typoscript
   
   
  /**
-  * updateSwfFilesRenderPdfSetQuality( )
+  * updateSwfFilesRenderPdfSetParams( )
   *
-  * @return   string     $paramsQuality
+  * @return   string     $params
+  * @internal #45712
+  * @access   private
+  * @version  1.0.9
+  * @since    1.0.9
+  */
+  private function updateSwfFilesRenderPdfSetParams( )
+  {
+    $params = null;
+
+      // #45471, 130214, dwildt, 1+
+    $paramBitmap = $this->updateSwfFilesRenderPdfSetParamsBitmap( );
+      // #45712, 130221, dwildt, 2+
+    $paramZoom  = $this->updateSwfFilesRenderPdfSetParamsDpi( );
+    $params     = $paramBitmap . $paramZoom;
+    
+    return $params;
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfSetParamsBitmap( )
+  *
+  * @return   string     $param
   * @internal #45171
   * @access   private
   * @version  1.0.8
   * @since    1.0.8
   */
-  private function updateSwfFilesRenderPdfSetQuality( )
+  private function updateSwfFilesRenderPdfSetParamsBitmap( )
   {
-    $paramsQuality = null;
+    $param = null;
 
       // SWITCH : $quality
     switch( true )
     {
       case( $this->quality == 'low' ):
-        $paramsQuality = '--set bitmap --set zoom=144 ';
-        return $paramsQuality;
+        $param = '--set bitmap ';
+        return $param;
         break;
       case( empty( $this->quality ) ):
       default:
-        $paramsQuality = ' ';
-        return $paramsQuality;
+        return $param;
         break;
     }
       // SWITCH : $quality
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfSetParamsDpi( )
+  *
+  * @return   string     $param
+  * @internal #45712
+  * @access   private
+  * @version  1.0.9
+  * @since    1.0.9
+  */
+  private function updateSwfFilesRenderPdfSetParamsDpi( )
+  {
+    $conf   = $this->conf;
+    $param  = null;
+
+    $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['dpi'];
+    $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['dpi.'];
+    $dpi      = ( int ) $this->zz_cObjGetSingle( $coa_name, $coa_conf );
+    
+    if( ! $dpi )
+    {
+      $dpi = 144;
+    }
+    
+    $param = '--set zoom=' . $dpi . ' ';
+    return $param;
   }
 
   
@@ -1081,16 +1181,14 @@ class tx_flipit_typoscript
         $infos[$counter][$key] = $value;
       }
         // LOOP : elements
-//var_dump( __METHOD__, __LINE__, $infos[$counter] );      
+        
         // SWITCH : width and height
       switch( true )
       {
         case( ( int) $infos[$counter]['width'] > $this->pdfMaxWidth ):
           $this->pdfMaxWidth  = ( int ) $infos[$counter]['width'];
-//          $this->pdfMaxHeight = ( int ) $infos[$counter]['height'];
           break;
         case( ( int) $infos[$counter]['height'] > $this->pdfMaxHeight ):
-//          $this->pdfMaxWidth  = ( int ) $infos[$counter]['width'];
           $this->pdfMaxHeight = ( int ) $infos[$counter]['height'];
           break;
         default:
@@ -1101,7 +1199,6 @@ class tx_flipit_typoscript
       
       $counter = $counter + 1;
     }
-//var_dump( __METHOD__, __LINE__, $this->pdfMaxWidth, $this->pdfMaxHeight );      
       // LOOP : each PDF page
       
       // DRS  : PDF info
@@ -1117,7 +1214,6 @@ class tx_flipit_typoscript
       }
     }
       // DRS  : PDF info
-    
   }
 
   
@@ -1361,32 +1457,34 @@ class tx_flipit_typoscript
     }
       // Override document size
     
-      // #45471, 130214, dwildt, +
-      // Double document size
-    switch( true )
-    {
-      case( $this->quality == 'low' ):
-        list( $param, $width )  = explode('=', $arrContentParams['width'] );
-        $width          = trim( $width, "'" );
-        list( $param, $height ) = explode('=', $arrContentParams['height'] );
-        $height         = trim( $height, "'" );
-        unset( $param );
-
-          // DRS
-        if( $this->b_drs_updateSwfXml )
-        {
-          $prompt = 'Quality is low. Document width will set from ' . $width . ' pts to ' . ( $width * 2 ) . ' pts.';
-          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
-          $prompt = 'Quality is low. Document height will set from ' . $height . ' pts to ' . ( $height * 2 ) . ' pts.';
-          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
-        }
-          // DRS
-
-        $arrContentParams['width']  = "width='" . ( $width * 2 ) . "'";
-        $arrContentParams['height'] = "height='" . ( $height * 2 ) . "'";
-        break;
-    }
-      // Double document size
+      // #45712, 130221, dwildt, -
+//      // #45471, 130214, dwildt, +
+//      // Double document size
+//    switch( true )
+//    {
+//      case( $this->quality == 'low' ):
+//        list( $param, $width )  = explode('=', $arrContentParams['width'] );
+//        $width          = trim( $width, "'" );
+//        list( $param, $height ) = explode('=', $arrContentParams['height'] );
+//        $height         = trim( $height, "'" );
+//        unset( $param );
+//
+//          // DRS
+//        if( $this->b_drs_updateSwfXml )
+//        {
+//          $prompt = 'Quality is low. Document width will set from ' . $width . ' pts to ' . ( $width * 2 ) . ' pts.';
+//          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
+//          $prompt = 'Quality is low. Document height will set from ' . $height . ' pts to ' . ( $height * 2 ) . ' pts.';
+//          t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
+//        }
+//          // DRS
+//
+//        $arrContentParams['width']  = "width='" . ( $width * 2 ) . "'";
+//        $arrContentParams['height'] = "height='" . ( $height * 2 ) . "'";
+//        break;
+//    }
+//      // Double document size
+      // #45712, 130221, dwildt, -
 
       // Move array to string
     $contentParams = implode( PHP_EOL . '  ', $arrContentParams );
@@ -1681,18 +1779,18 @@ class tx_flipit_typoscript
         die( $prompt );
     }
 
-    $this->b_drs_error  = true;
-    $this->b_drs_warn   = true;
-    $this->b_drs_info   = true;
-    $this->b_drs_ok     = true;
-    $this->b_drs_flipit = true;
-    $this->b_drs_init   = true;
-    $this->b_drs_jquery = true;
-    $this->b_drs_php    = true;
-    $this->b_drs_pdf    = true;
-    $this->b_drs_sql    = true;
-    $this->b_drs_updateSwfXml    = true;
-    $this->b_drs_todo   = true;
+    $this->b_drs_error        = true;
+    $this->b_drs_warn         = true;
+    $this->b_drs_info         = true;
+    $this->b_drs_ok           = true;
+    $this->b_drs_exec         = true;
+    $this->b_drs_flipit       = true;
+    $this->b_drs_init         = true;
+    $this->b_drs_jquery       = true;
+    $this->b_drs_pdf          = true;
+    $this->b_drs_sql          = true;
+    $this->b_drs_updateSwfXml = true;
+    $this->b_drs_todo         = true;
     $prompt = 'The DRS - Development Reporting System is enabled: ' . $this->arr_extConf['debuggingDrs'];
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
@@ -2574,7 +2672,7 @@ class tx_flipit_typoscript
       // DIE  : function exec doesn't exist
     
       // DRS
-    if( $this->b_drs_php )
+    if( $this->b_drs_exec )
     {
         // #45174, 130205, dwildt
       $debugTrailLevel  = 1;
@@ -2590,7 +2688,7 @@ class tx_flipit_typoscript
     exec( $exec, $lines );
     
       // DRS
-    if( $this->b_drs_php )
+    if( $this->b_drs_exec )
     {
       $prompt = var_export( $lines, true );
       t3lib_div::devlog( '[INFO/PHP] lines: ' . $prompt, $this->extKey, 0 );

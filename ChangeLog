@@ -4,6 +4,7 @@
   * #45712: Handle PDF > 1.3
             Pages with shaded fills should rendered as bitmap
             Effected files:
+            * lib/typoscript/class.tx_flipit_typoscript.php
             * static
               * constants.txt
               * setup.txt
