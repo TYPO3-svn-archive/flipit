@@ -1007,12 +1007,12 @@ class tx_flipit_typoscript
     
       // RETURN : PDF file doesn't contain shaded fills
     $pos = strpos( $strPdf2swfReport, 'shaded fills' );
-    if( $pos !== false )
+    if( $pos === false )
     {
         // DRS
       if( $this->b_drs_ok )
       {
-        $prompt = 'PDF file is proper: It doesn\'t contain shaded fills.';
+        $prompt = 'SWF files are proper: They don\'t contain shaded fills.';
         t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, -1 );
       }
         // DRS
@@ -1023,7 +1023,7 @@ class tx_flipit_typoscript
       // DRS
     if( $this->b_drs_warn )
     {
-      $prompt = 'PDF file is unproper: It contains shaded fills.';
+      $prompt = 'SWF files are unproper: They contain shaded fills.';
       t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, 2 );
     }
       // DRS
