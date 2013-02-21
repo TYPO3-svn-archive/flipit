@@ -4,11 +4,13 @@ plugin.tx_flipit {
   configuration.layout = layout_00
   # cat=Flip it! - configuration/enable/102;    type=options[high,low];           label= Quality: high: vector file (best quality). low: bitmap file (best performance)
   configuration.quality = high
-  # cat=Flip it! - configuration/enable/103;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
+  # cat=Flip it! - configuration/enable/103;    type=int+;                        label= DPI: dots per inch. Has an effect for bitmaps only. 
+  configuration.dpi = 144
+  # cat=Flip it! - configuration/enable/104;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
   configuration.enableFancybox = enabled
-  # cat=Flip it! - configuration/enable/104;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
+  # cat=Flip it! - configuration/enable/105;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
   configuration.updateswfxml = enabled
-  # cat=Flip it! - configuration/enable/105;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png
+  # cat=Flip it! - configuration/enable/106;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png. No effect in the current version! 
   configuration.filetypes = jpg,pdf,png
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   configuration.externalLinks = Click me!

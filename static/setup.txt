@@ -224,11 +224,13 @@ plugin.tx_flipit {
           }
         }
       }
+        // DPI: dots per inch. Has an effect for bitmaps only. 
+      dpi = {$plugin.tx_flipit.configuration.dpi}
         // RETURNS disabled or enabled
       updateSwfXml = COA
       updateSwfXml {
-            // IF field:tx_flipit_updateswfxml is in list of ',disabled,enabled,ts'
-          if = 
+          // IF field:tx_flipit_updateswfxml is in list of ',disabled,enabled,ts'
+        if = 
         if {
             // Be aware of the first comma!
           value = ,disabled,enabled,ts

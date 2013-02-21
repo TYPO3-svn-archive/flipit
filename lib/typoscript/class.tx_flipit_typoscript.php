@@ -319,6 +319,8 @@ class tx_flipit_typoscript
       $prompt = 'cObj->data are set (overriden).';
       t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
       $prompt = var_export( $this->cObj->data, true );
+      $prompt = str_replace( ',', ', ', $prompt );
+      $prompt = str_replace( ',  ', ', ', $prompt );
       t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
