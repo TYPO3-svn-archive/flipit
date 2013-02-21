@@ -922,20 +922,20 @@ class tx_flipit_typoscript
       // DRS
     
       // get list of ordered rendered swf files
-    $swfFile =  $this->table . '_' . $this->cObj->data['uid'] .
+    $swfFiles =  $this->table . '_' . $this->cObj->data['uid'] .
                 '_doc_' . $filesCounter . '_part_*.swf';
-    $swfPathToFile = $swfPath . '/' . $swfFile;
+    $swfPathToFiles = $swfPath . '/' . $swfFiles;
 
       // order swf files by time
     switch( true )
     {
       case( $this->objUserfunc->os == 'windows' ):
-        $swfPathToFile = str_replace('/', '\\', $swfPathToFile );
+        $swfPathToFiles = str_replace('/', '\\', $swfPathToFiles );
           // #45470, 130213, dwildt
-        $exec   = 'dir /OD '. $swfPathToFile . ' /s';
+        $exec   = 'dir /OD '. $swfPathToFiles . ' /s';
         break;
       default:
-        $exec   = 'ls -t ' . $swfPathToFile;
+        $exec   = 'ls -t ' . $swfPathToFiles;
         break;
     }
       // order swf files by time
@@ -1052,7 +1052,7 @@ class tx_flipit_typoscript
       $prompt = 'pages will rendered as bitmap SWF files.';
       t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
       $prompt = 'You can avoid this effect: save your PDF in version 1.3 and upload it!';
-      t3lib_div::devlog( '[INFO/PDF] ' . $prompt, $this->extKey, 0 );
+      t3lib_div::devlog( '[HELP/PDF] ' . $prompt, $this->extKey, 1 );
     }
       // DRS
     
