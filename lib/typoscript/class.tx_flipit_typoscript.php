@@ -1031,15 +1031,19 @@ class tx_flipit_typoscript
     $pageCounter        = 0;
     $pagesWiShadedFills = null;
     
+var_dump( __METHOD__, __LINE__);
     foreach( $pdf2swfReport as $line )
     {
+var_dump( $line );
       if( strpos( $line, 'processing PDF page' ) )
       {
         $pageCounter = $pageCounter + 1;
+var_dump( $pageCounter );
       }
       if( strpos( $line, 'shaded fills' ) )
       {
         $pagesWiShadedFills[] = $pageCounter;
+var_dump( $pagesWiShadedFills );
       }
     }
     
