@@ -1045,9 +1045,9 @@ class tx_flipit_typoscript
       }
       switch( true )
       {
-        case( strpos( $strPdf2swfReport, 'forms' ) ):
-        case( strpos( $strPdf2swfReport, 'shaded fills' ) ):
-        case( strpos( $strPdf2swfReport, 'transparency groups' ) ):
+        case( strpos( $line, 'forms' ) ):
+        case( strpos( $line, 'shaded fills' ) ):
+        case( strpos( $line, 'transparency groups' ) ):
           $pagesWiShadedFills[] = $pageCounter;
           break;
         default:
