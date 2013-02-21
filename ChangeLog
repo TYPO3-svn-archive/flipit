@@ -2,7 +2,7 @@
   13-02-21
   Feature
   * #45712: Handle PDF > 1.3
-            Pages with shaded fills should rendered as bitmap
+            Pages with forms, shaded fills or transparency groups should rendered as bitmap
             Effected files:
             * ext_tables.php
             * ext_tables.sql

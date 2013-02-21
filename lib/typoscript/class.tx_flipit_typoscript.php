@@ -982,7 +982,10 @@ class tx_flipit_typoscript
       // FOREACH  : swfFile
 
       // #45712, 130221, dwildt, 1+
-    $this->updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile );
+    $this->updateSwfFilesRenderPdfUnproperAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile );
+    
+      // #45712, 130221, dwildt, 1+
+    $this->updateSwfFilesRenderPdfPagelistAsBitmap( $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile );
     
       // RETURN : swf files without path
     return $arrReturn;
@@ -991,8 +994,7 @@ class tx_flipit_typoscript
   
   
  /**
-  * updateSwfFilesRenderPdfPagesWithFillsAsBitmap( ): PDF pages, which contains shaded fills 
-  *                                                   should rendered as bitmap swf 
+  * updateSwfFilesRenderPdfPagelistAsBitmap( ): 
   *
   * @param    array    $pdf2swfReport
   * @return   void
@@ -1001,7 +1003,70 @@ class tx_flipit_typoscript
   * @version  1.0.9
   * @since    1.0.9
   */
-  private function updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile )
+  private function updateSwfFilesRenderPdfPagelistAsBitmap( $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile )
+  {
+    $pdf2swfReport  = null;
+    $csvPageList    = $this->cObj->data['tx_flipit_pagelist'];
+    
+      // RETURN : tx_flipit_pagelist is empty
+    if( empty ( $csvPageList ) )
+    {
+        // DRS
+      if( $this->b_drs_pdf )
+      {
+        $prompt = 'tx_flipit_pagelist is empty. Any page won\'t rendered as bitmap.';
+        t3lib_div::devlog( '[INFO/PDF] ' . $prompt, $this->extKey, 0 );
+      }
+      return;
+    }
+      // RETURN : tx_flipit_pagelist is empty
+      
+      // DRS
+    if( $this->b_drs_pdf )
+    {
+      $prompt = 'tx_flipit_pagelist is ' . $csvPageList . '. These pages will rendered as bitmap.';
+      t3lib_div::devlog( '[INFO/PDF] ' . $prompt, $this->extKey, 0 );
+    }
+      // DRS
+    
+      // Render PDF to bitmap SWF
+    $pages = explode( ',', $csvPageList );
+    foreach( $pages  as $page )
+    { 
+      $currParams = '--pages ' . trim( $page ) . ' ' . $params;
+      switch( true )
+      {
+        case( $this->objUserfunc->os == 'windows' ):
+          $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $currParams . $pdffileWiPath . ' ' . $swfPathToFile;
+          break;
+        default:
+          $exec   = 'pdf2swf ' . $currParams . $pdffileWiPath . ' ' . $swfPathToFile;
+          break;
+      }
+      $pdf2swfReport = $this->zz_exec( $exec );    
+    }
+    unset( $pdf2swfReport );
+      // Render PDF to bitmap SWF
+    
+  }
+
+  
+  
+ /**
+  * updateSwfFilesRenderPdfUnproperAsBitmap( ): PDF pages, which contains 
+  *                                               * forms
+  *                                               * shaded fills
+  *                                               * transparency groups
+  *                                             should rendered as bitmap swf 
+  *
+  * @param    array    $pdf2swfReport
+  * @return   void
+  * @internal #45712
+  * @access   private
+  * @version  1.0.9
+  * @since    1.0.9
+  */
+  private function updateSwfFilesRenderPdfUnproperAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile )
   {
     $strPdf2swfReport = implode( null, $pdf2swfReport );
     
@@ -1021,7 +1086,7 @@ class tx_flipit_typoscript
       default:
           // RETURN : PDF file doesn't contain shaded fills
           // DRS
-        if( $this->b_drs_ok )
+        if( $this->b_drs_pdf )
         {
           $prompt = 'SWF files are proper: They don\'t contain forms, shaded fills or transparency groups.';
           t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, -1 );
