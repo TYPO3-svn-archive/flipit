@@ -893,7 +893,7 @@ class tx_flipit_typoscript
           // #45471, 130214, dwildt, 1-
 //        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $swfPathToFile;
           // #45471, 130214, dwildt, 1+
-        $exec   = 'pdf2swf ' . $pdffileWiPath . ' ' . $params . $swfPathToFile;
+        $exec   = 'pdf2swf ' . $params . $pdffileWiPath . ' ' . $swfPathToFile;
         break;
     }
     $pdf2swfReport = $this->zz_exec( $exec );
@@ -982,7 +982,7 @@ class tx_flipit_typoscript
       // FOREACH  : swfFile
 
       // #45712, 130221, dwildt, 1+
-    $this->updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport );
+    $this->updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile );
     
       // RETURN : swf files without path
     return $arrReturn;
@@ -1001,7 +1001,7 @@ class tx_flipit_typoscript
   * @version  1.0.9
   * @since    1.0.9
   */
-  private function updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport )
+  private function updateSwfFilesRenderPdfPagesWithFillsAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile )
   {
     $strPdf2swfReport = implode( null, $pdf2swfReport );
     
@@ -1024,36 +1024,55 @@ class tx_flipit_typoscript
     if( $this->b_drs_warn )
     {
       $prompt = 'SWF files are unproper: They contain shaded fills.';
-      t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
     }
       // DRS
     
     $pageCounter        = 0;
     $pagesWiShadedFills = null;
     
-var_dump( __METHOD__, __LINE__);
     foreach( $pdf2swfReport as $line )
     {
-var_dump( $line );
       if( strpos( $line, 'processing PDF page' ) )
       {
         $pageCounter = $pageCounter + 1;
-var_dump( $pageCounter );
       }
       if( strpos( $line, 'shaded fills' ) )
       {
         $pagesWiShadedFills[] = $pageCounter;
-var_dump( $pagesWiShadedFills );
       }
     }
+    $pagesWiShadedFills = array_unique( ( array) $pagesWiShadedFills );
     
       // DRS
     if( $this->b_drs_warn )
     {
       $prompt = 'pages with shaded fills are ' . implode( ', ', ( array ) $pagesWiShadedFills );
-      t3lib_div::devlog( '[OK/PDF] ' . $prompt, $this->extKey, 2 );
+      t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
+      $prompt = 'pages will rendered as bitmap SWF files.';
+      t3lib_div::devlog( '[WARN/PDF] ' . $prompt, $this->extKey, 2 );
+      $prompt = 'You can avoid this effect: save your PDF in version 1.3 and upload it!';
+      t3lib_div::devlog( '[INFO/PDF] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
+    
+      // Render PDF to bitmap SWF
+    $params = $params . '--set bitmap ';
+    foreach( ( array ) $pagesWiShadedFills as $page )
+    { 
+      $currParams = '--pages ' . $page . ' ' . $params;
+      switch( true )
+      {
+        case( $this->objUserfunc->os == 'windows' ):
+          $exec   = '"'. $pathToSwftools . 'pdf2swf.exe" ' . $currParams . $pdffileWiPath . ' ' . $swfPathToFile;
+          break;
+        default:
+          $exec   = 'pdf2swf ' . $currParams . $pdffileWiPath . ' ' . $swfPathToFile;
+          break;
+      }
+      $pdf2swfReport = $this->zz_exec( $exec );    
+    }
+      // Render PDF to bitmap SWF
     
   }
 
