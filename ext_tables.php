@@ -216,6 +216,17 @@ $TCA['tt_content']['columns']['tx_flipit_quality'] = array (
     'default' => 'ts',
   ),
 );
+$TCA['tt_content']['columns']['tx_flipit_pagelist'] = array (
+  'exclude' => 0,
+  'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_pagelist',
+  'config'  => array (
+    'type'      => 'input',
+    'size'      => '40',
+    'max'       => '256',
+    'checkbox'  => '',
+    'eval'      => 'trim',
+  ),
+);
 $TCA['tt_content']['columns']['tx_flipit_updateswfxml'] = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml',
