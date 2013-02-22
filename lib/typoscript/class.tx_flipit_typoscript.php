@@ -853,12 +853,15 @@ class tx_flipit_typoscript
     $arrReturn  = null;
       // #45712, 130221, dwildt, 1+
     $params     = null;
+      // #45763, 130222, dwildt, 1+
+    $tstamp     = time( );
     
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
 
       // SWF output file
+      // #45763, 130222, dwildt
     $swfFile =  $this->table . '_' . $this->cObj->data['uid'] .
-                '_doc_' . $filesCounter . '_part_%.swf';
+                '_doc_' . $filesCounter . '_part_%_' . $tstamp . '.swf';
     $field   = 'tx_flipit_swf_files';
     $swfPath = $this->zz_getPath( $field );
     $swfPathToFile = $swfPath . '/' . $swfFile;
@@ -922,8 +925,9 @@ class tx_flipit_typoscript
       // DRS
     
       // get list of ordered rendered swf files
+      // #45763, 130222, dwildt
     $swfFiles =  $this->table . '_' . $this->cObj->data['uid'] .
-                '_doc_' . $filesCounter . '_part_*.swf';
+                '_doc_' . $filesCounter . '_part_*_' . $tstamp . '.swf';
     $swfPathToFiles = $swfPath . '/' . $swfFiles;
 
       // order swf files by time

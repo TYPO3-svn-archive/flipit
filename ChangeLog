@@ -1,6 +1,9 @@
 1.0.10
   13-02-22
-  Feature
+  Features
+  * #45763: File names with timestamp
+            Effected files:
+            * lib/typoscript/class.tx_flipit_typoscript.php
   * #45712: Handle PDF > 1.3
             Pages with shaded fills only should rendered as bitmap
             Effected files:
