@@ -148,6 +148,7 @@ t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-flipit', '../typo3conf/ex
   // #i0004, 130130, dwildt, 1+
 require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/flexform/class.tx_flipit_flexform.php');
 require_once(t3lib_extMgm::extPath($_EXTKEY).'lib/userfunc/class.tx_flipit_userfunc.php');
+  // Methods for backend workflows
 
 
 
