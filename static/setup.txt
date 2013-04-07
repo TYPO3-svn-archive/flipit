@@ -23,6 +23,41 @@ includeLibs {
 
 
 
+  ////////////////////////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_browser_pi1 - SEO
+
+plugin.tx_browser_pi1 {
+
+  general_stdWrap >
+
+  displayList {
+    seo {
+      htmlHead {
+      title = 1
+        meta {
+          description = 1
+          keywords    = 1
+        }
+      }
+    }
+  }
+  displaySingle {
+    seo {
+      htmlHead {
+      title = 1
+        meta {
+          description = 1
+          keywords    = 1
+        }
+      }
+    }
+  }
+}
+  // plugin.tx_browser_pi1 - SEO
+
+
+
   ///////////////////////////////////////////////////////////////
   //
   // plugin.tx_flipit.constant_editor
