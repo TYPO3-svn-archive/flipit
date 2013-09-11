@@ -1640,8 +1640,14 @@ class tx_flipit_typoscript
   */
   private function updateXmlFileRenderItWriteFile( $xmlContent )
   {
+      // #46991, 130912, dwildt, 2-
       // xml output file
-    $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '.xml';
+    //$xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '.xml';
+
+      // #46991, 130912, dwildt, 3+
+      // xml output file
+    $tstamp  = time( );
+    $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '_' . $tstamp . '.xml';
       
       // xml output path
     $field   = 'tx_flipit_xml_file';
