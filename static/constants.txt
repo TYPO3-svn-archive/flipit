@@ -1,16 +1,18 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/flipit/static/includes/typo3_45/tt_content/uploads/constants.ts">
+
 plugin.tx_flipit {
 
   # cat=Flip it! - configuration/enable/101;    type=options[layout_00,layout_01,layout_02,layout_03];   label= Layout: layout_00: tt_content default (without Flip it!). layout_01: Flip it! only. layout_02: Flip it! and tt_content default but download link. layout_03: Flip it! and tt_content default.
   configuration.layout = layout_00
   # cat=Flip it! - configuration/enable/102;    type=options[high,low];           label= Quality: high: vector file (best quality). low: bitmap file (best performance)
   configuration.quality = high
-  # cat=Flip it! - configuration/enable/103;    type=int+;                        label= DPI: dots per inch. Has an effect for bitmaps only. 
+  # cat=Flip it! - configuration/enable/103;    type=int+;                        label= DPI: dots per inch. Has an effect for bitmaps only.
   configuration.dpi = 144
   # cat=Flip it! - configuration/enable/104;    type=options[disabled,enabled];   label= Fancybox:Disable it, if you don't want to use Flip it! in a fancybox by default.
   configuration.enableFancybox = enabled
   # cat=Flip it! - configuration/enable/105;    type=options[disabled,enabled];   label= Update files: Update SWF files and XML file autmatically. If enabled and if SWFTOOLS are installed, Flip it! will render SWF files and XML file automatically. This is recommended.
   configuration.updateswfxml = enabled
-  # cat=Flip it! - configuration/enable/106;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png. No effect in the current version! 
+  # cat=Flip it! - configuration/enable/106;    type=string;  label= File types: Comma separated list of file types for SWF conversion. Possible types: jpg, pdf, png. No effect in the current version!
   configuration.filetypes = jpg,pdf,png
   # cat=Flip it! - configuration/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   configuration.externalLinks = Click me!
@@ -37,12 +39,12 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/dims/205;       type=options[true,false];   label= cyclic:When true, galleries will be cyclic, allowing you to keep pressing next/back.
   fancybox.cyclic = false
   # cat=Flip it! - fancybox/dims/206;       type=options[auto,yes,no];  label= scrolling:Set the overflow CSS property to create or hide scrollbars. Can be set to 'auto', 'yes', or 'no'
-  fancybox.scrolling = auto     
+  fancybox.scrolling = auto
   # cat=Flip it! - fancybox/dims/207;       type=string;                  label= width:Width for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
   fancybox.width = 100%
   # cat=Flip it! - fancybox/dims/208;       type=string;                  label= height:Height for content types 'iframe' and 'swf'. Also set for inline content if 'autoDimensions' is set to 'false'
-  fancybox.height = 100% 
-  # cat=Flip it! - fancybox/dims/209;       type=options[true,false];   label= autoScale:If true, FancyBox is scaled to fit in viewport 
+  fancybox.height = 100%
+  # cat=Flip it! - fancybox/dims/209;       type=options[true,false];   label= autoScale:If true, FancyBox is scaled to fit in viewport
   fancybox.autoScale = true
   # cat=Flip it! - fancybox/dims/210;       type=options[true,false];   label= autoDimensions:For inline and ajax views, resizes the view to the element recieves. Make sure it has dimensions otherwise this will give unexpected results
   fancybox.autoDimensions = false
@@ -63,7 +65,7 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/dims/218;       type=options[true,false];   label= titleShow:Toggle title
   fancybox.titleShow = true
   # cat=Flip it! - fancybox/dims/219;       type=options[,outside,inside,over];   label= titlePosition:The position of title. Can be set to 'outside', 'inside' or 'over'
-  fancybox.titlePosition = 
+  fancybox.titlePosition =
   # cat=Flip it! - fancybox/dims/220;       type=options[elastic,fade,none];   label= transitionIn:The transition type. Can be set to 'elastic', 'fade' or 'none'
   fancybox.transitionIn = elastic
   # cat=Flip it! - fancybox/dims/221;       type=options[elastic,fade,none];   label= transitionOut:The transition type. Can be set to 'elastic', 'fade' or 'none'
@@ -79,7 +81,7 @@ plugin.tx_flipit {
   # cat=Flip it! - fancybox/dims/226;       type=options[true,false];   label= enableEscapeButton:Toggle if pressing Esc button closes FancyBox
   fancybox.enableEscapeButton = true
   # cat=Flip it! - fancybox/dims/227;       type=options[,ajax,iframe,image,inline,swf];   label= type:Forces content type. Can be set to 'image', 'ajax', 'iframe', 'swf' or 'inline'
-  fancybox.type = 
+  fancybox.type =
   # cat=Flip it! - fancybox/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de
   fancybox.externalLinks = Click me!
 
@@ -111,17 +113,17 @@ plugin.tx_flipit {
 
 
   # cat=Flip it! - thumbnails/dims/101;      type=int+;     label= Download height: height of the thumbnail, which is linked with the file for download
-  thumbnails.download.height = 
+  thumbnails.download.height =
   # cat=Flip it! - thumbnails/dims/102;      type=int+;     label= Download width: width of the thumbnail, which is linked with the file for download
   thumbnails.download.width = 150
   # cat=Flip it! - thumbnails/dims/103;      type=int+;     label= Flip it! height: height of the thumbnail, which is linked with the fancybox
-  thumbnails.fancybox.height = 
+  thumbnails.fancybox.height =
   # cat=Flip it! - thumbnails/dims/104;      type=int+;     label= Flip it! height: height of the thumbnail, which is linked with the fancybox
   thumbnails.fancybox.width = 150
   # cat=Flip it! - thumbnails/dims/106;      type=int+;     label= Flip it! icon height: height of the icon at the right bottom corner of the Flip it! thumbnail
-  thumbnails.flipit.height = 
+  thumbnails.flipit.height =
   # cat=Flip it! - thumbnails/dims/107;      type=int+;     label= Flip it! icon width: width of the icon at the right bottom corner of the Flip it! thumbnail
-  thumbnails.flipit.width = 
+  thumbnails.flipit.width =
   # cat=Flip it! - thumbnails/others/108;    type=string;   label= Flip it! icon file: The path to the Flip it! icon. The Flip it! icon is placed at the right bottom corner of a thumbnail.
   thumbnails.flipit.icon = EXT:flipit/res/icons/flipit_link_icon_41x41.gif
   # cat=Flip it! - thumbnails/others/999;    type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by:die-netzmacher.de

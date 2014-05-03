@@ -1,3 +1,4 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/flipit/static/includes/typo3_45/tt_content/uploads/setup.ts">
 
   ///////////////////////////////////////////////////////////////
   //
@@ -42,7 +43,7 @@ plugin.tx_flipit {
         10 = TEXT
         10 {
             // IF field:tx_flipit_fancybox is not in list of ',enabled,disabled,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,disabled,enabled,ts
@@ -81,7 +82,7 @@ plugin.tx_flipit {
         20 = COA
         20 {
             // IF field:tx_flipit_fancybox is in list of ',enabled,disabled,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,disabled,enabled,ts
@@ -121,7 +122,7 @@ plugin.tx_flipit {
         10 = TEXT
         10 {
             // IF field:tx_flipit_layout is not in list of 'layout_00,layout_01,layout_02,layout_03,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,layout_00,layout_01,layout_02,layout_03,ts
@@ -136,7 +137,7 @@ plugin.tx_flipit {
         20 = COA
         20 {
             // IF field:tx_flipit_layout is in list of 'layout_00,layout_01,layout_02,layout_03,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,layout_00,layout_01,layout_02,layout_03,ts
@@ -176,7 +177,7 @@ plugin.tx_flipit {
         10 = TEXT
         10 {
             // IF field:tx_flipit_quality is not in list of 'high,low,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,high,low,ts
@@ -191,7 +192,7 @@ plugin.tx_flipit {
         20 = COA
         20 {
             // IF field:tx_flipit_quality is in list of 'high,low,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,high,low,ts
@@ -224,13 +225,13 @@ plugin.tx_flipit {
           }
         }
       }
-        // DPI: dots per inch. Has an effect for bitmaps only. 
+        // DPI: dots per inch. Has an effect for bitmaps only.
       dpi = {$plugin.tx_flipit.configuration.dpi}
         // RETURNS disabled or enabled
       updateSwfXml = COA
       updateSwfXml {
           // IF field:tx_flipit_updateswfxml is in list of ',disabled,enabled,ts'
-        if = 
+        if =
         if {
             // Be aware of the first comma!
           value = ,disabled,enabled,ts
@@ -259,24 +260,24 @@ plugin.tx_flipit {
               field = tx_flipit_updateswfxml
             }
           }
-          value = {$plugin.tx_flipit.configuration.updateswfxml} 
+          value = {$plugin.tx_flipit.configuration.updateswfxml}
         }
       }
     }
       // Category database
-    database = 
+    database =
     database {
       fields {
           // Title field : Label of the field, which contains the title. Examples: header, tx_org_downloads.title
-        title = {$plugin.tx_flipit.database.field.title} 
+        title = {$plugin.tx_flipit.database.field.title}
           // Media field : Label of the field, which contains the files for converting to SWF / Flash
-        media = {$plugin.tx_flipit.database.field.media} 
+        media = {$plugin.tx_flipit.database.field.media}
           // Layout field : Label of the field, which contains the number of the selected layout. Examples: layout, tx_org_downloads.documentslayout
         layout = {$plugin.tx_flipit.database.field.layout}
       }
     }
       // Category fancybox
-    fancybox = 
+    fancybox =
     fancybox {
         // padding : Space between FancyBox wrapper and content
       padding = {$plugin.tx_flipit.fancybox.padding}
@@ -306,7 +307,7 @@ plugin.tx_flipit {
         value = {$plugin.tx_flipit.fancybox.height}
         wrap  = '|'
       }
-        // autoScale : If true, FancyBox is scaled to fit in viewport 
+        // autoScale : If true, FancyBox is scaled to fit in viewport
       autoScale = {$plugin.tx_flipit.fancybox.autoScale}
         // autoDimensions : For inline and ajax views, resizes the view to the element recieves. Make sure it has dimensions otherwise this will give unexpected results
       autoDimensions = {$plugin.tx_flipit.fancybox.autoDimensions}
@@ -370,7 +371,7 @@ plugin.tx_flipit {
       }
     }
       // Category html
-    html = 
+    html =
     html {
         // Height : Height with em, per cent or pixel
       height = {$plugin.tx_flipit.html.height}
@@ -380,7 +381,7 @@ plugin.tx_flipit {
       background = {$plugin.tx_flipit.html.color.background}
     }
       // Category jquery
-    jquery = 
+    jquery =
     jquery {
         // Fancybox: Include the jQuery fancybox library (1.3.4) and CSS provided by Flip it! If you are using another fancybox library and CSS, please set this option to "disabled"
       fancybox = {$plugin.tx_flipit.jquery.fancybox}
@@ -447,7 +448,7 @@ plugin.tx_flipit {
         10 = TEXT
         10 {
             // IF field:tx_flipit_fancybox is not in list of 'enabled,disabeld,ts'
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,enabled,disabled,ts
@@ -486,7 +487,7 @@ plugin.tx_flipit {
         20 = COA
         20 {
             // IF constant_editor.configuration.enableFancybox = enabled || null
-          if = 
+          if =
           if {
               // Be aware of the first comma!
             value = ,enabled
@@ -505,7 +506,7 @@ plugin.tx_flipit {
                 // HTML space left for fancybox parameters - for a nice HTML code only
               paramsSpaceLeft = 22
                 // Variables for the javascript
-              variables = 
+              variables =
               variables {
                   // field:uid
                 uid = TEXT
@@ -513,14 +514,14 @@ plugin.tx_flipit {
                   value       = {field:uid}
                   insertData  = 1
                 }
-              } 
+              }
                 // Script
               javascript (
 
                 <script type="text/javascript">
                   $(document).ready(function() {
                     $("#c%uid%_flipit_link").fancybox({
-                      %params%                         
+                      %params%
                     });
                   });
                 </script>
@@ -555,7 +556,8 @@ plugin.tx_flipit {
               file = GIFBUILDER
               file {
                 XY = [10.w],[10.h]
-                10 < tt_content.uploads.20.linkProc.iconCObject
+                //10 < tt_content.uploads.20.linkProc.iconCObject
+                10 < plugin.tx_flipit.tt_content.uploads.20.linkProc.iconCObject
                 10 {
                   file {
                     height  = {$plugin.tx_flipit.thumbnails.fancybox.height}
@@ -577,7 +579,7 @@ plugin.tx_flipit {
               // A tag 2/2, begin
             50 = TEXT
             50 {
-              value = </a>              
+              value = </a>
             }
           }
             // DIV "display:none" 1/2: begin
@@ -594,14 +596,14 @@ plugin.tx_flipit {
       end = TEXT
       end {
           // IF constant_editor.configuration.enableFancybox = enabled
-        if = 
+        if =
         if {
           value = enabled
           equals {
             cObject < plugin.tx_flipit.constant_editor.configuration.enableFancybox
           }
         }
-        value ( 
+        value (
 
               </div>
 
@@ -611,7 +613,7 @@ plugin.tx_flipit {
       // The swf code of Flip it!
     flipitSwf = TEXT
     flipitSwf {
-      value ( 
+      value (
 
                   <script src="typo3conf/ext/flipit/res/js/swfobjects_1.4.4/swfobject.js" type="text/javascript"></script>
                   <div id="c{field:uid}_flipit" style="width:{$plugin.tx_flipit.html.width}; height:{$plugin.tx_flipit.html.height};overflow:hidden;">
@@ -677,7 +679,8 @@ plugin.tx_flipit {
         insertData = 1
       }
         // layout_00: default tt_content.uploads.20 layout (without Flip it!)
-      layout_00 < tt_content.uploads.20.itemRendering
+      //layout_00 < tt_content.uploads.20.itemRendering
+      layout_00 < plugin.tx_flipit.tt_content.uploads.20.itemRendering
       layout_00 {
           // DRS - for reporting only
         40 = USER
@@ -686,13 +689,13 @@ plugin.tx_flipit {
           userFunc = tx_flipit_typoscript->main
           userFunc {
               // DRS - for reporting only
-            drs = 
+            drs =
             drs {
                 // Current layout. Don't change it!
               layout = layout_00
             }
           }
-        } 
+        }
       }
         // layout_01: Flip it! only
       layout_01 = USER
@@ -716,16 +719,18 @@ plugin.tx_flipit {
                 }
                   // Fancybox enabled 1/2: begin
                 10 < plugin.tx_flipit.master_templates.fancybox.begin
-                  // SWF code: Flip it! 
+                  // SWF code: Flip it!
                 20 < plugin.tx_flipit.master_templates.flipitSwf
                   // Fancybox enabled 2/2: end
                 30 < plugin.tx_flipit.master_templates.fancybox.end
 // #45120
 //                wrap = <td class="tx_flipit_layout tx_flipit_layout_swf">|</td>
-                wrap < tt_content.uploads.20.itemRendering.wrap
+                //wrap < tt_content.uploads.20.itemRendering.wrap
+                wrap < plugin.tx_flipit.tt_content.uploads.20.itemRendering.wrap
               }
                 // layout_00: default tt_content.uploads.20 layout (without Flip it!)
-              20  < tt_content.uploads.20.itemRendering
+              //20 < tt_content.uploads.20.itemRendering
+              20 < plugin.tx_flipit.tt_content.uploads.20.itemRendering
               20 {
                 if {
                   isFalse {
@@ -739,13 +744,13 @@ plugin.tx_flipit {
                   userFunc = tx_flipit_typoscript->main
                   userFunc {
                       // DRS - for reporting only
-                    drs = 
+                    drs =
                     drs {
                         // Current layout. Don't change it!
                       layout = layout_00
                     }
                   }
-                } 
+                }
               }
             }
 // #45120
@@ -753,7 +758,7 @@ plugin.tx_flipit {
             wrap = |
           }
             // DRS - for reporting only
-          drs = 
+          drs =
           drs {
               // Current layout. Don't change it!
             layout = layout_01
@@ -774,14 +779,16 @@ plugin.tx_flipit {
             value = <script src="{$plugin.tx_flipit.jquery.sourceLibrary}" type="text/javascript"></script>
           }
         }
-      } 
+      }
         // layout_02: Flip it! and tt_content default but download link
       layout_02 < .layout_01
       layout_02 {
         userFunc {
           content {
-            30 < tt_content.uploads.20.itemRendering.20
-            40 < tt_content.uploads.20.itemRendering.30
+            //30 < tt_content.uploads.20.itemRendering.20
+            30 < plugin.tx_flipit.tt_content.uploads.20.itemRendering.20
+            //40 < tt_content.uploads.20.itemRendering.30
+            40 < plugin.tx_flipit.tt_content.uploads.20.itemRendering.30
             wrap = <tr class="tx_flipit_layout_02">|</tr>
           }
           drs {
@@ -795,11 +802,14 @@ plugin.tx_flipit {
         userFunc {
           content {
               // linked thumbnail
-            20 < tt_content.uploads.20.itemRendering.10
+            //20 < tt_content.uploads.20.itemRendering.10
+            20 < plugin.tx_flipit.tt_content.uploads.20.itemRendering.10
               // download link, description
-            30 < tt_content.uploads.20.itemRendering.20
+            //30 < tt_content.uploads.20.itemRendering.20
+            30 < plugin.tx_flipit.tt_content.uploads.20.itemRendering.20
               // file size
-            40 < tt_content.uploads.20.itemRendering.30
+            //40 < tt_content.uploads.20.itemRendering.30
+            40 < plugin.tx_flipit.tt_content.uploads.20.itemRendering.30
             40 {
               if {
                 isTrue {

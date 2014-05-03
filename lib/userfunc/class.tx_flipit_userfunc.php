@@ -48,7 +48,7 @@
  */
 class tx_flipit_userfunc
 {
-  
+
  /**
   * Extension key
   *
@@ -62,14 +62,14 @@ class tx_flipit_userfunc
   * @var array
   */
   private $arr_extConf = null;
-  
+
  /**
   * Max width of div tags
   *
   * @var string
   */
   private $maxWidth = "600px";
-  
+
  /**
   * Status of operating system: linux, unix, windows, unsupported, undefined
   *
@@ -83,14 +83,14 @@ class tx_flipit_userfunc
   * @var string
   */
   public $swfTools = null;
-  
+
  /**
   * Path to SWFTOOLS - relevant for Windows
   *
   * @var string
   */
   public $pathToSwfTools = null;
-  
+
  /**
   * Version of TYPO3 (sample: 4.7.7 -> 4007007)
   *
@@ -125,7 +125,7 @@ class tx_flipit_userfunc
 //    /* Pull the current fieldname and value from constants */
 //    $fieldName  = $params['fieldName'];
 //    $fieldValue = $params['fieldValue'];
-//    
+//
 //    $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
 //
 //    /* @todo     Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */
@@ -134,8 +134,8 @@ class tx_flipit_userfunc
 //    return $input.$wizard;
 //  }
 
-  
-  
+
+
   /**
    * promptEvaluatorDetectionBug(): Displays the quick start message.
    *
@@ -161,8 +161,8 @@ class tx_flipit_userfunc
     return $prompt;
   }
 
-  
-  
+
+
   /**
    * promptEvaluatorOS(): Displays the quick start message.
    *
@@ -179,7 +179,7 @@ class tx_flipit_userfunc
 //.message-error
 
     $this->set_os( );
-    
+
     $prompt = null;
 
     switch( $this->os )
@@ -212,13 +212,13 @@ class tx_flipit_userfunc
 </div>';
         break;
     }
-    $prompt = str_replace( '%OS%', PHP_OS, $prompt );  
+    $prompt = str_replace( '%OS%', PHP_OS, $prompt );
 
     return $prompt;
   }
 
-  
-  
+
+
   /**
    * promptEvaluatorSWFtools(): Displays the quick start message.
    *
@@ -237,7 +237,7 @@ class tx_flipit_userfunc
     $prompt = null;
 
     $arr_return = $this->set_swfTools( );
-    
+
     if( $arr_return['error']['status'] )
     {
       $prompt = $prompt . '
@@ -253,13 +253,13 @@ class tx_flipit_userfunc
 </div>';
       return $prompt;
     }
-    
+
     $exec   = $arr_return['data']['exec'];
     $lines  = $arr_return['data']['lines'];
     $result = implode( '<br />', $lines );
     $result = htmlspecialchars( $result );
     $result = str_replace( '&lt;br /&gt;', '<br />', $result );
-    
+
     switch( $this->swfTools )
     {
       case( 'installed' ):
@@ -345,8 +345,8 @@ class tx_flipit_userfunc
     return $prompt;
   }
 
-  
-  
+
+
   /**
    * promptEvaluatorTYPO3version(): Displays the quick start message.
    *
@@ -365,7 +365,7 @@ class tx_flipit_userfunc
     $prompt = null;
 
     $this->set_TYPO3Version( );
-    
+
     switch( true )
     {
       case( $this->typo3Version < 4005000 ):
@@ -386,7 +386,7 @@ class tx_flipit_userfunc
           ';
         break;
       case( $this->typo3Version < 4006000 ):
-          // Greater than 4.7
+          // Smaller than 4.6
         $prompt = $prompt . '
           <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
@@ -403,7 +403,7 @@ class tx_flipit_userfunc
           ';
         break;
       case( $this->typo3Version < 4007000 ):
-          // Greater than 4.7
+          // Smaller than 4.7
         $prompt = $prompt . '
           <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
@@ -419,33 +419,63 @@ class tx_flipit_userfunc
           </div>
           ';
         break;
-      case( $this->typo3Version < 4008000 ):
-          // Greater than 4.7
+      case( $this->typo3Version < 6000000 ):
+          // Smaller than 6.0
         $prompt = $prompt . '
           <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version48smaller'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version60smaller'). '
             </div>
           </div>
           ';
         break;
-//      case( ( $this->typo3Version >= 4006000 ) && ( $this->typo3Version < 4007000 ) ):
-      default:
-          // Equal to 4.6
+      case( $this->typo3Version < 6001000 ):
+          // Smaller than 6.1
         $prompt = $prompt . '
           <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version48orGreater'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version61smaller'). '
             </div>
+          </div>
+          <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version6xWarnFancybox'). '
+            </div>
+          </div>
+          ';
+        break;
+      case( $this->typo3Version < 6002000 ):
+          // Smaller than 6.2
+        $prompt = $prompt . '
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version62smaller'). '
+            </div>
+          </div>
+          <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version6xWarnFancybox'). '
+            </div>
+          </div>
+          ';
+        break;
+      default:
+          // Equal to 6.2 or greater
+        $prompt = $prompt . '
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version62orGreater'). '
+            </div>
+          </div>
           ';
         break;
     }
-        
+
     return $prompt;
   }
 
-  
-  
+
+
   /**
    * promptExternalLinks(): Displays the quick start message.
    *
@@ -470,9 +500,9 @@ class tx_flipit_userfunc
 
     return $prompt;
   }
-  
-  
-  
+
+
+
 /**
  * set_os( ):
  *
@@ -488,7 +518,7 @@ class tx_flipit_userfunc
       return;
     }
       // RETURN  : $this->os was set before
-    
+
       // SWITCH PHP_OS  : set os
     switch( true )
     {
@@ -517,9 +547,9 @@ class tx_flipit_userfunc
     }
       // SWITCH PHP_OS  : set os
   }
-  
-  
-  
+
+
+
 /**
  * set_swfTools( ):
  *
@@ -530,7 +560,7 @@ class tx_flipit_userfunc
   public function set_swfTools( )
   {
     $pathToSwfTools = null;
-    
+
       // RETURN  : $this->swfTools was set before
     if( ! ( $this->swfTools === null ) )
     {
@@ -539,14 +569,14 @@ class tx_flipit_userfunc
       // RETURN  : $this->swfTools was set before
 
     $this->set_os( );
-    
+
       // Init extension configuration array
     if( $this->arr_extConf === null )
     {
       $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
     }
       // Init extension configuration array
-    
+
       // Get windows path to SWFTOOLS
     $windowsPathToSwftools = $this->arr_extConf['windowsPathToSwftools'];
     if( empty ( $windowsPathToSwftools ) )
@@ -577,28 +607,28 @@ class tx_flipit_userfunc
         break;
       default:
         break;
-      
+
     }
-    
+
     if( $arr_return['error']['status'] )
     {
       return $arr_return;
     }
 
     $lines = $arr_return['data']['lines'];
-    
+
     if( empty ( $lines ) )
     {
       $this->swfTools = 'notInstalled';
       return $arr_return;
     }
-      
+
     $this->swfTools = 'installed';
     return $arr_return;
   }
-  
-  
-  
+
+
+
 /**
  * set_TYPO3Version( ):
  *
@@ -614,7 +644,7 @@ class tx_flipit_userfunc
       return;
     }
       // RETURN : typo3Version is set
-    
+
       // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
     list( $main, $sub, $bugfix ) = explode( '.', TYPO3_version );
     $version = ( ( int ) $main ) * 1000000;
@@ -642,9 +672,9 @@ class tx_flipit_userfunc
       die ( $prompt );
     }
   }
-  
-  
-  
+
+
+
 /**
  * set_allParams( ):
  *
@@ -657,9 +687,9 @@ class tx_flipit_userfunc
     $this->set_TYPO3Version( );
     $this->set_swfTools( );     // set_swfTools sets os too
   }
-  
-  
-  
+
+
+
 /**
  * zz_exec( ):
  *
@@ -671,9 +701,9 @@ class tx_flipit_userfunc
   {
     $arr_return = null;
     $lines      = null;
-    
+
       // RETURN : function exec doesn't exist
-    if( ! ( function_exists( 'exec' ) ) )  
+    if( ! ( function_exists( 'exec' ) ) )
     {
       $arr_return['error']['status'] = true;
       $arr_return['error']['prompt'] =
@@ -681,11 +711,11 @@ class tx_flipit_userfunc
       return $arr_return;
     }
       // RETURN : function exec doesn't exist
-    
+
     exec( $exec, $lines);
     $arr_return['data']['exec']   = $exec;
     $arr_return['data']['lines']  = $lines;
-    
+
     return $arr_return;
   }
 

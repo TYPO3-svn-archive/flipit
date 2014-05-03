@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Flip it! enables you to run over pages in PDF documents like in a real magazine. Flip it! offers lovely and smooth page flip transitions. The visitor of your website does not need any PDF plugin but a Flash plugin. Flip it! can convert PDF documents to SWF files automatically.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.2.0',
+	'version' => '2.0.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,6 +34,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
+			'typo3' => '4.5.0-6.1.99',
 		),
 		'conflicts' => array(
 		),

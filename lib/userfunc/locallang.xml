@@ -8,7 +8,7 @@
     <languageKey index="default" type="array">
       <label index="promptEvaluatorDetectionBug"><![CDATA[
         If the detection of the operating system, SWFTOOLS or TYPO3 version isn't proper, please send a mail to
-        <a href="http://wildt.at.die-netzmacher.de/" 
+        <a href="http://wildt.at.die-netzmacher.de/"
           alt="wildt.at.die-netzmacher.de"
           title="wildt.at.die-netzmacher.de"
           target="_blank">
@@ -33,7 +33,7 @@
           </li>
           <li style="margin-bottom:0;">
             But you can
-            <a href="http://wildt.at.die-netzmacher.de/" 
+            <a href="http://wildt.at.die-netzmacher.de/"
               alt="Convert PDF files to SWF / Flash files manually"
               title="Convert PDF files to SWF / Flash files manually"
               target="_blank">
@@ -49,7 +49,7 @@
           </li>
           <li style="margin-bottom:0;">
             But you can
-            <a href="http://wildt.at.die-netzmacher.de/" 
+            <a href="http://wildt.at.die-netzmacher.de/"
               alt="Convert PDF files to SWF / Flash files manually"
               title="Convert PDF files to SWF / Flash files manually"
               target="_blank">
@@ -71,7 +71,7 @@
         </ul>
       ]]></label>
       <label index="promptEvaluatorSWFtoolsBugfix"><![CDATA[
-        Please fix the bug. SWFTOOLS won't run without fixing. You don't need SFWTOOLS, 
+        Please fix the bug. SWFTOOLS won't run without fixing. You don't need SFWTOOLS,
         but than you have to convert PDF files to SWF / Flash files manually.
       ]]></label>
       <label index="promptEvaluatorSWFtoolsInstalled"><![CDATA[
@@ -80,12 +80,12 @@
       <label index="promptEvaluatorSWFtoolsNotInstalled"><![CDATA[
         SWFTOOLS aren't installed.<br />
         <br />
-        Please install SWFTOOLS. If you don't install SFWTOOLS, 
+        Please install SWFTOOLS. If you don't install SFWTOOLS,
         you have to convert PDF files to SWF / Flash files manually.
       ]]></label>
       <label index="promptEvaluatorSWFtools4Linux"><![CDATA[
         Download SWFTOOLS for Linux from the TYPO3 TER. See
-        <a href="http://typo3.org/extensions/repository/view/swftools4linux" 
+        <a href="http://typo3.org/extensions/repository/view/swftools4linux"
           alt="SWFTOOLS for Linux"
           title="SWFTOOLS for Linux"
           target="_blank">
@@ -93,7 +93,7 @@
       ]]></label>
       <label index="promptEvaluatorSWFtools4Windows"><![CDATA[
         Download SWFTOOLS for Windows from the TYPO3 TER. See
-        <a href="http://typo3.org/extensions/repository/view/swftools4windows" 
+        <a href="http://typo3.org/extensions/repository/view/swftools4windows"
           alt="SWFTOOLS for Windows"
           title="SWFTOOLS for Windows"
           target="_blank">
@@ -106,23 +106,26 @@
       <label index="promptEvaluatorIncludeCss4-6"><![CDATA[Please iclude the static template [+Flip it!: Basis for TYPO3 < 4.7 (obligate!)]]]></label>
       <label index="promptEvaluatorTYPO3version46smaller">You are using TYPO3 4.5. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version47smaller">You are using TYPO3 4.6. This is perfect!</label>
-      <label index="promptEvaluatorTYPO3version48smaller">You are using TYPO3 4.7. This is perfect!</label>
-      <label index="promptEvaluatorTYPO3version48orGreater">You are using TYPO3 greater than 4.7. Flip it! isn't tested in this version. Try it!</label>
-      
+      <label index="promptEvaluatorTYPO3version60smaller">You are using TYPO3 4.7. This is perfect!</label>
+      <label index="promptEvaluatorTYPO3version61smaller">You are using TYPO3 6.0. This is nearly perfect. See warning below.</label>
+      <label index="promptEvaluatorTYPO3version62smaller">You are using TYPO3 6.1. This is nearly perfect. See warning below.</label>
+      <label index="promptEvaluatorTYPO3version62orGreater">You are using TYPO3 greater than TYPO3 6.1. Flip it! isn't tested in this version. Try it!</label>
+      <label index="promptEvaluatorTYPO3version6xWarnFancybox">Please don't use the fancybox. It doesn't work in the current TYPO3 version!</label>
+
       <label index="promptEvaluatorWindowsConf"><![CDATA[
         You are configuring the path to the SWFTOOLS in this Extension Manager. Category [Windows]
       ]]></label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
-          <a href="http://die-netzmacher.de/" 
+          <a href="http://die-netzmacher.de/"
             alt="die-netzmacher.de"
             title="die-netzmacher.de"
             target="_blank">
             <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
-              width="130" 
-              height="130" 
+              width="130"
+              height="130"
               alt="die-netzmacher.de" /></a><br />
-          <a href="http://die-netzmacher.de/" 
+          <a href="http://die-netzmacher.de/"
             alt="die-netzmacher.de"
             title="die-netzmacher.de"
             target="_blank">
@@ -135,7 +138,7 @@
     <languageKey index="de" type="array">
       <label index="promptEvaluatorDetectionBug"><![CDATA[
         Falls Flip it! das Betriebssystem, die SWFTOOLS oder TYPO3 nicht korrekt erkennt, sende bitte eine Mail an
-        <a href="http://wildt.at.die-netzmacher.de/" 
+        <a href="http://wildt.at.die-netzmacher.de/"
           alt="wildt.at.die-netzmacher.de"
           title="wildt.at.die-netzmacher.de"
           target="_blank">
@@ -160,7 +163,7 @@
           </li>
           <li style="margin-bottom:0;">
             Aber Du kannst
-            <a href="http://wildt.at.die-netzmacher.de/" 
+            <a href="http://wildt.at.die-netzmacher.de/"
               alt="Convert PDF files to SWF / Flash files manually"
               title="Convert PDF files to SWF / Flash files manually"
               target="_blank">
@@ -176,7 +179,7 @@
           </li>
           <li style="margin-bottom:0;">
             Aber Du kannst
-            <a href="http://wildt.at.die-netzmacher.de/" 
+            <a href="http://wildt.at.die-netzmacher.de/"
               alt="Convert PDF files to SWF / Flash files manually"
               title="Convert PDF files to SWF / Flash files manually"
               target="_blank">
@@ -198,7 +201,7 @@
         </ul>
       ]]></label>
       <label index="promptEvaluatorSWFtoolsBugfix"><![CDATA[
-        Bitte behebe den Fehler. SWFTOOLS funktionieren sonst nicht. Du kannst Flip it! auch 
+        Bitte behebe den Fehler. SWFTOOLS funktionieren sonst nicht. Du kannst Flip it! auch
         ohne SWFTOOLS nutzen, PDF-Dateien musst Du aber dann manuell in SWF-/Flash-Dateien
         konvertieren.
       ]]></label>
@@ -208,20 +211,20 @@
       <label index="promptEvaluatorSWFtoolsNotInstalled"><![CDATA[
         SWFTOOLS sind nicht installiert.<br />
         <br />
-        Bitte installiere SWFTOOLS. Du kannst Flip it! zwar auch ohne SWFTOOLS nutzen, 
+        Bitte installiere SWFTOOLS. Du kannst Flip it! zwar auch ohne SWFTOOLS nutzen,
         Du musst PDF-Dateien dann aber manuell in SWF-/Flash-Dateien konvertieren.
       ]]></label>
       <label index="promptEvaluatorSWFtools4Linux"><![CDATA[
-        Du kannst SWFTOOLS f&uuml;r Linux aus dem TYPO3 TER herunterladen. Siehe 
-        <a href="http://typo3.org/extensions/repository/view/swftools4linux" 
+        Du kannst SWFTOOLS f&uuml;r Linux aus dem TYPO3 TER herunterladen. Siehe
+        <a href="http://typo3.org/extensions/repository/view/swftools4linux"
           alt="SWFTOOLS for Linux"
           title="SWFTOOLS for Linux"
           target="_blank">
           SWFTOOLS for Linux</a>
       ]]></label>
       <label index="promptEvaluatorSWFtools4Windows"><![CDATA[
-        Du kannst SWFTOOLS f&uuml;r Windows aus dem TYPO3 TER herunterladen. Siehe 
-        <a href="http://typo3.org/extensions/repository/view/swftools4windows" 
+        Du kannst SWFTOOLS f&uuml;r Windows aus dem TYPO3 TER herunterladen. Siehe
+        <a href="http://typo3.org/extensions/repository/view/swftools4windows"
           alt="SWFTOOLS for Windows"
           title="SWFTOOLS for Windows"
           target="_blank">
@@ -235,22 +238,25 @@
       <label index="promptEvaluatorIncludeCss4-6"><![CDATA[Du musst das Static Template [+Flip it!: Basis fuer TYPO3 < 4.7 einbinden.]]]></label>
       <label index="promptEvaluatorTYPO3version46smaller">Du verwendest TYPO3 4.5.x. Das ist perfekt.</label>
       <label index="promptEvaluatorTYPO3version47smaller">Du verwendest TYPO3 4.6.x. Das ist perfekt.</label>
-      <label index="promptEvaluatorTYPO3version48smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
-      <label index="promptEvaluatorTYPO3version48orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als 4.7. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
+      <label index="promptEvaluatorTYPO3version60smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
+      <label index="promptEvaluatorTYPO3version61smaller">Du verwendest TYPO3 6.0.x. Das ist fast perfekt. Beachte den Warnhinweis.</label>
+      <label index="promptEvaluatorTYPO3version62smaller">Du verwendest TYPO3 6.1.x. Das ist fast perfekt. Beachte den Warnhinweis.</label>
+      <label index="promptEvaluatorTYPO3version62orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als TYPO3 6.1. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
+      <label index="promptEvaluatorTYPO3version6xWarnFancybox">Bitte verzichte auf die Fancybox. Sie funktioniert nicht in der aktuellen TYPO3-Version!</label>
       <label index="promptEvaluatorWindowsConf"><![CDATA[
           Den Pfad zu den SWFTOOLS konfigurierst Du hier im Extension Manager. Kategorie [Windows]
       ]]></label>
       <label index="promptExternalLinksBody"><![CDATA[
         <div>
-          <a href="http://die-netzmacher.de/" 
+          <a href="http://die-netzmacher.de/"
             alt="die-netzmacher.de"
             title="die-netzmacher.de"
             target="_blank">
             <img src="../../../../typo3conf/ext/flipit/lib/icons/die-netzmacher-logo-quadrat.png"
-              width="130" 
-              height="130" 
+              width="130"
+              height="130"
               alt="die-netzmacher.de" /></a><br />
-          <a href="http://die-netzmacher.de/" 
+          <a href="http://die-netzmacher.de/"
             alt="die-netzmacher.de"
             title="die-netzmacher.de"
             target="_blank">

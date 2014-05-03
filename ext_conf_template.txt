@@ -1,25 +1,27 @@
-  # cat=evaluator/enable/100;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorOS]; label= Operating System: Linux, Unix and Windows are supported.
-evaluatorOS            = Undefined error: Evaluation failed!
-  # cat=evaluator/enable/101;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorSWFtools]; label= SWFTOOLS: If PDF files should converted to SWF / Flash files automatically, you need SWFTOOLS on your server.
-evaluatorSWFtools      = Undefined error: Evaluation failed!
-  # cat=evaluator/enable/103;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorTYPO3version]; label= TYPO3 version
-evaluatorTYPO3version  = Undefined error: Evaluation failed!
-  # cat=evaluator/enable/198;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorDetectionBug]; label= Detection bug?
-evaluatorDetectionBug  = Undefined error: Evaluation failed!
-  # cat=evaluator/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
-evaluatorExternalLinks = 1
-
-  # cat=windows/others/100;            type=string; label= Windows: Path to SWFTOOLS (without an ending backslash)
-windowsPathToSwftools = C:\Program Files (x86)\SWFTools
-  # cat=windows/others/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
-windowsExternalLinks = 1
-
-  # cat=language/enable/100;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
+  # cat=language/100;            type=options[English,German]; label= Backend Langauge: Language for special backend labels like TypoScript static templates. Property has an effect in the backend only.
 beLanguage = English
-  # cat=language/others/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
+  # cat=language/199;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 beLanguageExternalLinks = 1
 
-  # cat=debugging/enable/100;              type=options[Disabled,Enabled (for debugging only!)]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
+  # cat=debugging/100;              type=options[Disabled,Enabled (for debugging only!)]; label= DRS - Development Reporting System: Messages will be written to DevLog (you need the extension devlog).
 debuggingDrs            = Disabled
-  # cat=debugging/others/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
+  # cat=debugging/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
 debuggingExternalLinks = 1
+
+  # cat=windows/200;            type=string; label= Windows: Path to SWFTOOLS (without an ending backslash)
+windowsPathToSwftools = C:\Program Files (x86)\SWFTools
+  # cat=windows/200;            type=string; label= Windows: Path to SWFTOOLS (without an ending backslash) for OS Windows
+windowsPathToSwftools = C:\Program Files (x86)\SWFTools
+  # cat=windows/299;            type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
+windowsExternalLinks = 1
+
+  # cat=evaluator/100;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorOS]; label= Operating System: Linux, Unix and Windows are supported.
+evaluatorOS            = Undefined error: Evaluation failed!
+  # cat=evaluator/101;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorSWFtools]; label= SWFTOOLS: If PDF files should converted to SWF / Flash files automatically, you need SWFTOOLS on your server.
+evaluatorSWFtools      = Undefined error: Evaluation failed!
+  # cat=evaluator/103;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorTYPO3version]; label= TYPO3 version
+evaluatorTYPO3version  = Undefined error: Evaluation failed!
+  # cat=evaluator/104;              type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptEvaluatorDetectionBug]; label= Detection bug?
+evaluatorDetectionBug  = Undefined error: Evaluation failed!
+  # cat=evaluator/199;           type=user[EXT:flipit/lib/userfunc/class.tx_flipit_userfunc.php:tx_flipit_userfunc->promptExternalLinks]; label=Powered by
+evaluatorExternalLinks = 1

@@ -1,3 +1,9 @@
+2.0.0
+  14-04-30
+  Feature
+  * #51909: Upgrade for TYPO3 6.1
+            * Bug: Fancybox doesn't work
+
 1.2.0
   13-09-12
   Feature
