@@ -12,7 +12,11 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Flip it!',
-	'description' => 'Flip it! enables you to run over pages in PDF documents like in a real magazine. Flip it! offers lovely and smooth page flip transitions. The visitor of your website does not need any PDF plugin but a Flash plugin. Flip it! can convert PDF documents to SWF files automatically.',
+	'description' => 'Flip it! enables you to run over pages in PDF documents like in a real magazine. '
+  . 'Flip it! offers lovely and smooth page flip transitions. '
+  . 'The visitor of your website does not need any PDF plugin but a Flash plugin. '
+  . 'Flip it! can convert PDF documents to SWF files automatically. '
+  . 'See: http://typo3-flipit.de/',
 	'category' => 'plugin',
 	'shy' => 0,
 	'version' => '2.0.0',
