@@ -48,7 +48,7 @@
  */
 class tx_flipit_typoscript
 {
-  
+
  /**
   * Extension key
   *
@@ -62,50 +62,50 @@ class tx_flipit_typoscript
   * @var string
   */
   public $prefixId = 'tx_flipit_typoscript';
- 
+
  /**
   * Path to this script
   *
   * @var string
   */
   public $scriptRelPath = 'lib/typoscript/class.tx_flipit_typoscript.php';
-  
+
  /**
   * Current TypoScript configuration
   *
   * @var array
   */
   private $conf;
-  
+
  /**
   * Array with current files from media, tx_flipit_swf_files, tx_flipit_xml_file
   *
   * @var array
   */
   private $files;
-  
+
  /**
   * Quality: high, low
-  * 
+  *
   * @internal #45471
   * @var string
   */
-  private $quality;  
-  
+  private $quality;
+
  /**
   * Current table: tt_content, tx_org_downloads
   *
   * @var string
   */
   private $table;
-  
+
  /**
   * Global tstamp for updates. It must be older than the tstamp of generated files
   *
   * @var integer
   */
   private $tstamp;
-  
+
  /**
   * Width of the PDF page with the biggest size
   *
@@ -119,29 +119,29 @@ class tx_flipit_typoscript
   * @var integer
   */
   private $pdfMaxHeight = null;
-  
-  
+
+
  /**
   * Backup of cObj->data
   *
   * @var array
   */
   private $bakCObjData = null;
-//  
+//
 // /**
 //  * Backup of $GLOBALS['TSFE']->currentRecord
 //  *
 //  * @var array
 //  */
 //  private $bakCurrRecord = null;
-//  
+//
 // /**
 //  * Backup of $GLOBALS['TSFE']->cObj->data
 //  *
 //  * @var array
 //  */
 //  private $bakTsfeData = null;
-  
+
  /**
   * Current record in table:uid syntax like tt_content:25
   *
@@ -162,11 +162,11 @@ class tx_flipit_typoscript
     'tx_flipit_updateswfxml',
     'tx_flipit_xml_file'
   );
-    
 
 
-  
-  
+
+
+
  /**
   * main( ):
   *
@@ -180,10 +180,10 @@ class tx_flipit_typoscript
   public function main( $content, $conf )
   {
     unset( $content );
-    
+
       // Current TypoScript configuration
     $this->conf = $conf;
-    
+
       // Get the global TCA
       /* BACKGROUND : t3lib_div::loadTCA($table) loads for the frontend
        * only 'ctrl' and 'feInterface' parts.
@@ -199,42 +199,42 @@ class tx_flipit_typoscript
       $content = $arr_return['content'];
       if( empty( $content ) )
       {
-        $content =  $this->content( $conf );    
+        $content =  $this->content( $conf );
       }
       $this->cObjDataReset( );
       return $content;
     }
       // IF return  : return with an error prompt
-    
+
 
       // RETURN : no media files
     if( empty ( $this->cObj->data[$this->fieldLabelForMedia] ) )
     {
       if( $this->b_drs_flipit )
-      {    
+      {
         $prompt = $this->table . '.' . $field . ' is empty. Nothing todo. Return!';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
-      $content =  $this->content( $conf );    
+      $content =  $this->content( $conf );
       $this->cObjDataReset( );
       return;
     }
       // RETURN : no media files
 
       // ...
-    $this->jquery( );   
+    $this->jquery( );
 
       // Generate and check SWF and XML files
-    $this->update( );   
+    $this->update( );
 
       // Return the content
-    $content =  $this->content( $conf );    
+    $content =  $this->content( $conf );
     $this->cObjDataReset( );
-    return $content;    
+    return $content;
   }
-  
-  
-  
+
+
+
   /***********************************************
   *
   * cObjData
@@ -242,7 +242,7 @@ class tx_flipit_typoscript
   **********************************************/
 
 /**
- * cObjDataSet( ): 
+ * cObjDataSet( ):
  *
  * @return    void
  * @internal  #44896
@@ -250,19 +250,19 @@ class tx_flipit_typoscript
  * @since   1.0.0
  */
   private function cObjDataSet(  )
-  { 
+  {
       // Backup data, which will changed below
     $this->cObjDataBackup( );
-    
+
 // #i0008
-//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
-//        $this->cObj->data['tx_flipit_layout'], 
+//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'],
+//        $this->cObj->data['tx_flipit_layout'],
 //        $this->cObj->data['tx_org_downloads.documentssize'] );
-//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
-//        $this->cObj->data['tx_flipit_layout'], 
+//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'],
+//        $this->cObj->data['tx_flipit_layout'],
 //        $this->cObj->data['tx_org_downloads.documentssize'] );
       // SWITCH : Set cObj->data
-    switch( true ) 
+    switch( true )
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
           // #i0008, 13-02-06, dwildt, 1-
@@ -275,10 +275,10 @@ class tx_flipit_typoscript
         break;
     }
       // SWITCH : Set cObj->data
-    
+
 // #i0008
-//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'], 
-//        $this->cObj->data['tx_flipit_layout'], 
+//var_dump( __METHOD__, __LINE__, $this->cObj->data['filelink_size'],
+//        $this->cObj->data['tx_flipit_layout'],
 //        $this->cObj->data['tx_org_downloads.documentssize'] );
       // Add to the header field
     if( $this->fieldLabelForTitle )
@@ -299,7 +299,7 @@ class tx_flipit_typoscript
       }
     }
       // Add to the header field
-    
+
       // FOREACH  : Add all fields of the current table with table.field syntax without table
     foreach( array_keys( $this->cObj->data ) as $tableField )
     {
@@ -312,7 +312,7 @@ class tx_flipit_typoscript
     }
       // FOREACH  : Add all fields of the current table with table.field syntax without table
 //    $GLOBALS['TSFE']->cObj->data = $this->cObj->data;
-    
+
       // DRS
     if( $this->b_drs_init )
     {
@@ -326,7 +326,7 @@ class tx_flipit_typoscript
       // DRS
 
       // SWITCH : set current record in table:uid syntax
-    switch( true ) 
+    switch( true )
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
         $this->currentRecord = $GLOBALS['TSFE']->tx_browser_pi1->currentRecord;
@@ -336,7 +336,7 @@ class tx_flipit_typoscript
         break;
     }
       // SWITCH : set current record in table:uid syntax
-    
+
       // DRS
     if( $this->b_drs_init )
     {
@@ -345,9 +345,9 @@ class tx_flipit_typoscript
     }
       // DRS
   }
-  
+
 /**
- * cObjDataBackup( ): 
+ * cObjDataBackup( ):
  *
  * @return    void
  * @internal  #44896
@@ -360,7 +360,7 @@ class tx_flipit_typoscript
     {
       return;
     }
-//  // #44858 
+//  // #44858
 //$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 //if ( ! ( $pos === false ) )
 //{
@@ -372,9 +372,9 @@ class tx_flipit_typoscript
 //    $this->bakCurrRecord  = $GLOBALS['TSFE']->currentRecord;
 //    $this->bakTsfeData = $GLOBALS['TSFE']->cObj->data;
   }
-  
+
 /**
- * cObjDataReset( ): 
+ * cObjDataReset( ):
  *
  * @return    void
  * @internal  #44896
@@ -399,15 +399,15 @@ class tx_flipit_typoscript
     }
       // DRS
   }
-  
-  
-  
+
+
+
   /***********************************************
   *
   * Content
   *
   **********************************************/
- 
+
  /**
   * content( ):
   *
@@ -424,7 +424,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['content'];
     $coa_conf = $conf['userFunc.']['content.'];
     $content  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     if( $this->b_drs_flipit )
     {
       switch( $content )
@@ -442,11 +442,11 @@ class tx_flipit_typoscript
     }
 
     return $content;
-    
+
   }
 
-  
-  
+
+
  /**
   * update( ):
   *
@@ -463,17 +463,17 @@ class tx_flipit_typoscript
       return;
     }
       // Generate and check SWF
-    $this->updateSwf( );   
+    $this->updateSwf( );
       // Generate and check XML
-    $this->updateXml( );   
+    $this->updateXml( );
   }
 
-  
-  
+
+
  /**
   * updateEnabled( ):
   *
-  * @return    boolean        
+  * @return    boolean
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -485,7 +485,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['updateSwfXml.'];
     $updateSwfXml  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $updateSwfXml )
     {
       case( 'enabled' ):
@@ -520,11 +520,11 @@ class tx_flipit_typoscript
     }
 
       // RETURN : default is false;
-    return false;    
+    return false;
   }
 
-  
-  
+
+
  /**
   * updateSwf( ):
   *
@@ -537,7 +537,7 @@ class tx_flipit_typoscript
   private function updateSwf( )
   {
     $swfFilesAreDeprecated = false;
-    
+
       // Render SWF files if they are deprecated or if there isn't any SWF file
     $swfFilesAreDeprecated = $this->updateSwfFilesAreDeprecated( );
     if( $swfFilesAreDeprecated )
@@ -547,12 +547,12 @@ class tx_flipit_typoscript
       // Render SWF files if they are deprecated or if there isn't any SWF file
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesAreDeprecated( ):
   *
-  * @return   boolean        
+  * @return   boolean
   * @access   private
   * @version  0.0.2
   * @since    0.0.2
@@ -563,12 +563,12 @@ class tx_flipit_typoscript
     $tx_flipit_swf_files  = $this->cObj->data['tx_flipit_swf_files'];
     $arr_swfFiles         = explode( ',', $tx_flipit_swf_files );
       // Get swf files
-    
+
       // RETURN true : there isn't any SWF file
     if( empty ( $arr_swfFiles ) )
     {
       if( $this->b_drs_updateSwfXml )
-      {    
+      {
         $prompt = 'There isn\'t any SWF file.';
         t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
@@ -580,27 +580,27 @@ class tx_flipit_typoscript
     $this->zz_tstampMedia( );
     $this->zz_tstampSwf( );
       // Set timestamps
-    
+
       // RETURN true  : SWF files are deprecated
     if( $this->tstampMedia > $this->tstampSwf )
     {
       if( $this->b_drs_updateSwfXml )
-      {    
+      {
         $prompt = 'A media file is newer than the last swf file.';
         t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
       // RETURN true  : SWF files are deprecated
-    
+
       // Set timestamp for the current record
     $this->zz_tstampRecord( );
-    
+
       // RETURN true  : SWF files are deprecated
     if( $this->tstampRecord > $this->tstampSwf )
     {
       if( $this->b_drs_updateSwfXml )
-      {    
+      {
         $prompt = 'Record is newer than the swf file.';
         t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
@@ -610,7 +610,7 @@ class tx_flipit_typoscript
 
       // RETURN false : SWF files are up to date
     if( $this->b_drs_updateSwfXml )
-    {    
+    {
       $prompt = 'SWF files are up to date.';
       t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
@@ -618,8 +618,8 @@ class tx_flipit_typoscript
       // RETURN false : SWF files are up to date
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRemove( ):
   *
@@ -632,7 +632,7 @@ class tx_flipit_typoscript
   {
     $table        = $this->table;
     $fieldFiles   = 'tx_flipit_swf_files';
-    
+
     $arrExec      = array( );
 
       // RETURN : no swf files, any swf file can't remove
@@ -640,34 +640,34 @@ class tx_flipit_typoscript
     {
 //        // DRS
 //      if( $this->b_drs_updateSwfXml )
-//      {    
+//      {
 //        $prompt = 'Unexpected result: no SWF file!';
 //        t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 3 );
 //      }
 //        // DRS
       return;
 //      if( $this->b_drs_error )
-//      {    
+//      {
 //        $prompt = 'Unexpected result: no SWF file!';
 //        t3lib_div::devlog( '[ERROR/SWF+XML] ' . $prompt, $this->extKey, 3 );
 //      }
     }
       // RETURN : no swf files, any swf file can't remove
-    
+
       // FOREACH files  : get exec command
     foreach( $this->files[$fieldFiles] as $swffileWiPath )
     {
       $arrExec[] = 'rm ' . $swffileWiPath;
-      
+
     }
       // FOREACH files  : get exec command
-    
+
       // Remove swf files
     $exec = implode( ';' . PHP_EOL, ( array ) $arrExec );
     $lines = $this->zz_exec( $exec );
     unset( $lines );
       // Remove swf files
-    
+
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
@@ -676,7 +676,7 @@ class tx_flipit_typoscript
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
-    {    
+    {
       $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
       t3lib_div::devlog( '[INFO/SQL+SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
@@ -691,8 +691,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderAll( ):
   *
@@ -708,14 +708,14 @@ class tx_flipit_typoscript
 
       // filesCounter is needed for unique filenames
     $filesCounter = 0;
-    
+
       // Remove all swfFiles
     $this->updateSwfFilesRemove( );
-    
+
       // SWITCH : extension
       // jpeg, pdf, png
     $swfFiles = array( );
-    
+
       // FOREACH  : file
     foreach( $this->files[$this->fieldLabelForMedia] as $fileWiPath )
     {
@@ -737,7 +737,7 @@ class tx_flipit_typoscript
           break;
         default:
           if( $this->b_drs_updateSwfXml )
-          {    
+          {
             $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' can not converted to SWF.';
             t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
           }
@@ -745,7 +745,7 @@ class tx_flipit_typoscript
       }
     }
       // FOREACH  : file
-    
+
       // FOREACH  : remove empty element
     foreach( $swfFiles as $key => $value )
     {
@@ -758,7 +758,7 @@ class tx_flipit_typoscript
 
       // DRS
     if( $this->b_drs_updateSwfXml )
-    {    
+    {
       if( ! ( empty ( $swfFiles ) ) )
       {
         $prompt = 'Rendered SWF files: ' . var_export( $swfFiles, true );
@@ -766,12 +766,12 @@ class tx_flipit_typoscript
       }
     }
       // DRS
-    
+
       // RETURN : there isn't any SWF file
     if( empty ( $swfFiles ) )
     {
       if( $this->b_drs_error )
-      {    
+      {
         $prompt = 'There isn\'t any SWF file!';
         t3lib_div::devlog( '[ERROR/SWF+XML] ' . $prompt, $this->extKey, 3 );
       }
@@ -787,7 +787,7 @@ class tx_flipit_typoscript
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
-    {    
+    {
       $fields_valuesWiSpace = str_replace(',', ', ', $fields_values );
       $prompt = '"," is replaced with ", " for prompting only! ' . $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_valuesWiSpace );
       t3lib_div::devlog( '[INFO/SQL+SWF+XML] ' . $prompt, $this->extKey, 0 );
@@ -795,14 +795,14 @@ class tx_flipit_typoscript
       // DRS
     $GLOBALS['TYPO3_DB']->exec_UPDATEquery( $table, $where, $fields_values );
       // Update database
-    
+
       // Update cObj->data
     $this->cObj->data[$this->fieldLabelForTstamp] = $this->tstamp;
     $this->cObj->data[$fieldFiles]                = implode( ',', $swfFiles );
 
     // Reset tstamp for swf files
     $this->tstampSwf = null;
-    
+
     $this->cObj->data[$fieldFiles] = implode( ',', $swfFiles );
       // Init files again
     $this->initFiles( );
@@ -811,8 +811,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderJpg( ):
   *
@@ -825,20 +825,20 @@ class tx_flipit_typoscript
   private function updateSwfFilesRenderJpg( $fileWiPath, $filesCounter )
   {
     $arrReturn = null;
-    
+
     if( $this->b_drs_updateSwfXml )
-    {    
+    {
       $pathParts = pathinfo( $fileWiPath );
       $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
       t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
     }
-    
+
     unset( $filesCounter );
     return $arrReturn;
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPdf( ):
   *
@@ -855,7 +855,7 @@ class tx_flipit_typoscript
     $params     = null;
       // #45763, 130222, dwildt, 1+
     $tstamp     = time( );
-    
+
     $pathToSwftools = $this->objUserfunc->pathToSwfTools;
 
       // SWF output file
@@ -865,7 +865,7 @@ class tx_flipit_typoscript
     $field   = 'tx_flipit_swf_files';
     $swfPath = $this->zz_getPath( $field );
     $swfPathToFile = $swfPath . '/' . $swfFile;
-    
+
     switch( true )
     {
       case( $this->objUserfunc->os == 'windows' ):
@@ -875,14 +875,14 @@ class tx_flipit_typoscript
       default:
         break;
     }
-    
+
       // #45712, 130221, dwildt, 1+
     $params = $this->updateSwfFilesRenderPdfSetParams( );
-    
+
       // #45170, 130205, dwildt
       // Set the PDF info array
     $this->updateSwfFilesRenderPdfSetInfo( $pdffileWiPath, $params );
-    
+
       // Render PDF to SWF
     switch( true )
     {
@@ -908,7 +908,7 @@ class tx_flipit_typoscript
       //    NOTICE File contains jpeg pictures
       //    NOTICE File contains pbm pictures
       //    FATAL Could not create "1589_1.swf".
-    
+
       // DRS
     if( $this->b_drs_error )
     {
@@ -923,7 +923,7 @@ class tx_flipit_typoscript
       }
     }
       // DRS
-    
+
       // get list of ordered rendered swf files
       // #45763, 130222, dwildt
     $swfFiles =  $this->table . '_' . $this->cObj->data['uid'] .
@@ -943,10 +943,10 @@ class tx_flipit_typoscript
         break;
     }
       // order swf files by time
-    
+
     $lines  = $this->zz_exec( $exec );
       // get list of ordered rendered swf files
-                                     
+
       // 130117, dwildt
     foreach( $lines as $key => $line )
     {
@@ -962,7 +962,7 @@ class tx_flipit_typoscript
       $arrLine = explode( ' ', $line );
       $lines[$key] = $arrLine[ count( $arrLine ) - 1 ];
     }
-    
+
       // OS depending ordering
     switch( true )
     {
@@ -981,24 +981,24 @@ class tx_flipit_typoscript
     {
       $pathParts    = pathinfo( $swfFileWiPath );
       $arrReturn[]  = $pathParts['basename'];
-      
+
     }
       // FOREACH  : swfFile
 
       // #45712, 130221, dwildt, 1+
     $this->updateSwfFilesRenderPdfUnproperAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile );
-    
+
       // #45712, 130221, dwildt, 1+
     $this->updateSwfFilesRenderPdfPagelistAsBitmap( $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile );
-    
+
       // RETURN : swf files without path
     return $arrReturn;
   }
 
-  
-  
+
+
  /**
-  * updateSwfFilesRenderPdfPagelistAsBitmap( ): 
+  * updateSwfFilesRenderPdfPagelistAsBitmap( ):
   *
   * @param    array    $pdf2swfReport
   * @return   void
@@ -1011,7 +1011,7 @@ class tx_flipit_typoscript
   {
     $pdf2swfReport  = null;
     $csvPageList    = $this->cObj->data['tx_flipit_pagelist'];
-    
+
       // RETURN : tx_flipit_pagelist is empty
     if( empty ( $csvPageList ) )
     {
@@ -1024,7 +1024,7 @@ class tx_flipit_typoscript
       return;
     }
       // RETURN : tx_flipit_pagelist is empty
-      
+
       // DRS
     if( $this->b_drs_pdf )
     {
@@ -1032,12 +1032,12 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/PDF] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
-    
+
       // Render PDF to bitmap SWF
     $params = $params . '--set bitmap ';
     $pages  = explode( ',', $csvPageList );
     foreach( $pages  as $page )
-    { 
+    {
       $currParams = '--pages ' . trim( $page ) . ' ' . $params;
       switch( true )
       {
@@ -1048,21 +1048,21 @@ class tx_flipit_typoscript
           $exec   = 'pdf2swf ' . $currParams . $pdffileWiPath . ' ' . $swfPathToFile;
           break;
       }
-      $pdf2swfReport = $this->zz_exec( $exec );    
+      $pdf2swfReport = $this->zz_exec( $exec );
     }
     unset( $pdf2swfReport );
       // Render PDF to bitmap SWF
-    
+
   }
 
-  
-  
+
+
  /**
-  * updateSwfFilesRenderPdfUnproperAsBitmap( ): PDF pages, which contains 
+  * updateSwfFilesRenderPdfUnproperAsBitmap( ): PDF pages, which contains
   *                                               //* forms
   *                                               * shaded fills
   *                                               //* transparency groups
-  *                                             should rendered as bitmap swf 
+  *                                             should rendered as bitmap swf
   *
   * @param    array    $pdf2swfReport
   * @return   void
@@ -1074,7 +1074,7 @@ class tx_flipit_typoscript
   private function updateSwfFilesRenderPdfUnproperAsBitmap( $pdf2swfReport, $pathToSwftools, $params, $pdffileWiPath, $swfPathToFile )
   {
     $strPdf2swfReport = implode( null, $pdf2swfReport );
-    
+
     switch( true )
     {
 //      case( strpos( $strPdf2swfReport, 'forms' ) ):
@@ -1104,11 +1104,11 @@ class tx_flipit_typoscript
           // RETURN : PDF file doesn't contain shaded fills
     }
     unset( $strPdf2swfReport );
-      
-    
+
+
     $pageCounter        = 0;
     $pagesWiShadedFills = null;
-    
+
     foreach( $pdf2swfReport as $line )
     {
       if( strpos( $line, 'processing PDF page' ) )
@@ -1128,7 +1128,7 @@ class tx_flipit_typoscript
       }
     }
     $pagesWiShadedFills = array_unique( ( array) $pagesWiShadedFills );
-    
+
       // DRS
     if( $this->b_drs_warn )
     {
@@ -1141,11 +1141,11 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[HELP/PDF] ' . $prompt, $this->extKey, 1 );
     }
       // DRS
-    
+
       // Render PDF to bitmap SWF
     $params = $params . '--set bitmap ';
     foreach( ( array ) $pagesWiShadedFills as $page )
-    { 
+    {
       $currParams = '--pages ' . $page . ' ' . $params;
       switch( true )
       {
@@ -1156,14 +1156,14 @@ class tx_flipit_typoscript
           $exec   = 'pdf2swf ' . $currParams . $pdffileWiPath . ' ' . $swfPathToFile;
           break;
       }
-      $pdf2swfReport = $this->zz_exec( $exec );    
+      $pdf2swfReport = $this->zz_exec( $exec );
     }
       // Render PDF to bitmap SWF
-    
+
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPdfSetInfo( )
   *
@@ -1191,7 +1191,7 @@ class tx_flipit_typoscript
     }
       // SWITCH : OS
 
-      // exec( pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf ) 
+      // exec( pdf2swf -I /home/www/htdocs/www.typo3-browser-forum.de/typo3/uploads/media/manual.pdf )
     $lines  = $this->zz_exec( $exec );
 
       // $lines:
@@ -1201,11 +1201,11 @@ class tx_flipit_typoscript
       //    page = 14 width = 595.00 height = 842.00
 
     $this->updateSwfFilesRenderPdfSetMaxSize( $lines );
-    
+
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPdfSetParams( )
   *
@@ -1224,12 +1224,12 @@ class tx_flipit_typoscript
       // #45712, 130221, dwildt, 2+
     $paramZoom  = $this->updateSwfFilesRenderPdfSetParamsDpi( );
     $params     = $paramBitmap . $paramZoom;
-    
+
     return $params;
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPdfSetParamsBitmap( )
   *
@@ -1258,8 +1258,8 @@ class tx_flipit_typoscript
       // SWITCH : $quality
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPdfSetParamsDpi( )
   *
@@ -1277,18 +1277,18 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['dpi'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['dpi.'];
     $dpi      = ( int ) $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     if( ! $dpi )
     {
       $dpi = 144;
     }
-    
+
     $param = '--set zoom=' . $dpi . ' ';
     return $param;
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPdfSetMaxSize( $pages )
   *
@@ -1302,7 +1302,7 @@ class tx_flipit_typoscript
   {
     $infos    = array( );
     $counter  = 0;
-    
+
       // LOOP : each PDF page
     foreach( ( array ) $pages as $page )
     {
@@ -1314,7 +1314,7 @@ class tx_flipit_typoscript
         $infos[$counter][$key] = $value;
       }
         // LOOP : elements
-        
+
         // SWITCH : width and height
       switch( true )
       {
@@ -1329,11 +1329,11 @@ class tx_flipit_typoscript
           break;
       }
         // SWITCH : width and height
-      
+
       $counter = $counter + 1;
     }
       // LOOP : each PDF page
-      
+
       // DRS  : PDF info
     if( $this->b_drs_error )
     {
@@ -1349,8 +1349,8 @@ class tx_flipit_typoscript
       // DRS  : PDF info
   }
 
-  
-  
+
+
  /**
   * updateSwfFilesRenderPng( ):
   *
@@ -1363,9 +1363,9 @@ class tx_flipit_typoscript
   private function updateSwfFilesRenderPng( $fileWiPath, $filesCounter )
   {
     $arrReturn = null;
-    
+
     if( $this->b_drs_updateSwfXml )
-    {    
+    {
       $pathParts = pathinfo( $fileWiPath );
       $prompt = $pathParts['basename'] . ': ' . $pathParts['extension'] . ' is not supported now.';
       t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 2 );
@@ -1375,8 +1375,8 @@ class tx_flipit_typoscript
     return $arrReturn;
   }
 
-  
-  
+
+
  /**
   * updateXml( ):
   *
@@ -1389,7 +1389,7 @@ class tx_flipit_typoscript
   private function updateXml( )
   {
     $xmlFileIsDeprecated = false;
-    
+
       // Render SWF files if they are deprecated or if there isn't any SWF file
     $xmlFileIsDeprecated = $this->updateXmlFileIsDeprecated( );
     if( $xmlFileIsDeprecated )
@@ -1399,8 +1399,8 @@ class tx_flipit_typoscript
       // Render SWF files if they are deprecated or if there isn't any SWF file
   }
 
-  
-  
+
+
  /**
   * updateXmlFileIsDeprecated( ):
   *
@@ -1415,12 +1415,12 @@ class tx_flipit_typoscript
       // Get xml file
     $arr_xmlFiles = array( );
     $arr_xmlFiles[0] = $this->cObj->data['tx_flipit_xml_file'];
-    
+
       // RETURN true : there isn't any XML file
     if( empty ( $arr_xmlFiles ) )
     {
       if( $this->b_drs_updateSwfXml )
-      {    
+      {
         $prompt = 'There isn\'t any XML file.';
         t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
@@ -1432,37 +1432,37 @@ class tx_flipit_typoscript
     $this->zz_tstampSwf( );
     $this->zz_tstampXml( );
       // Set timestamps
-    
+
       // RETURN true  : XML file is deprecated
     if( $this->tstampSwf >= $this->tstampXml )
     {
       if( $this->b_drs_updateSwfXml )
-      {    
+      {
         $prompt = 'Swf files are newer than the xml file or there isn\'t any xml file.';
         t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
       // RETURN true  : XML file is deprecated
-    
+
       // Set timestamp
     $this->zz_tstampRecord( );
-    
+
       // RETURN true  : XML file is deprecated
     if( $this->tstampRecord >= $this->tstampXml )
     {
       if( $this->b_drs_updateSwfXml )
-      {    
+      {
         $prompt = 'Record is newer than the xml file.';
         t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
       }
       return true;
     }
       // RETURN true  : XML file is deprecated
-    
+
       // RETURN false : XML file is up to date
     if( $this->b_drs_updateSwfXml )
-    {    
+    {
       $prompt = 'XML file is up to date.';
       t3lib_div::devlog( '[INFO/SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
@@ -1470,8 +1470,8 @@ class tx_flipit_typoscript
       // RETURN false : XML file is up to date
   }
 
-  
-  
+
+
  /**
   * updateXmlFileRenderIt( ):
   *
@@ -1492,12 +1492,12 @@ class tx_flipit_typoscript
     $pages    = implode( "'/>" . PHP_EOL . "  <page src='", ( array ) $this->files['tx_flipit_swf_files'] );
     $pages    = "  <page src='" . $pages . "'/>";
       // Get pages
-    
+
       // pages: replace absolute path with relative path
     $uploads  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' ) . '/';
     $pages    = str_replace( $uploads, null, $pages );
       // pages: replace absolute path with relative path
-    
+
       // Set xml content and write xml file
     $xmlContent = '' .
 '<content %contentParams%>
@@ -1507,7 +1507,7 @@ class tx_flipit_typoscript
     $xmlContent = str_replace( '%pages%',          $pages,         $xmlContent );
     $xmlFile    = $this->updateXmlFileRenderItWriteFile( $xmlContent );
       // Set xml content and write xml file
-    
+
       // Update database
     $where = "uid = " . $this->cObj->data['uid'];
     $fields_values = array(
@@ -1516,7 +1516,7 @@ class tx_flipit_typoscript
     );
       // DRS
     if( $this->b_drs_sql || $this->b_drs_updateSwfXml )
-    {    
+    {
       $prompt = $GLOBALS['TYPO3_DB']->UPDATEquery( $table, $where, $fields_values );
       t3lib_div::devlog( '[INFO/SQL+SWF+XML] ' . $prompt, $this->extKey, 0 );
     }
@@ -1531,8 +1531,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * updateXmlFileRenderIt( ):
   *
@@ -1544,13 +1544,13 @@ class tx_flipit_typoscript
   private function updateXmlFileRenderItParams( )
   {
     $conf = $this->conf;
-    
+
     $contentParams    = null;
     $arrContentParams = array( );
-    
+
       // Content parameters from TypoScript
     $confXml = $conf['userFunc.']['constant_editor.']['xml.'];
-    
+
       // FOREACH :  content param from TypoScript
     foreach( array_keys ( ( array ) $confXml ) as $param )
     {
@@ -1565,12 +1565,12 @@ class tx_flipit_typoscript
       $cObj_conf  = $conf['userFunc.']['constant_editor.']['xml.'][$param . '.'];
       $value      = $this->zz_cObjGetSingle( $cObj_name, $cObj_conf );
       //$value      = $this->cObj->cObjGetSingle($cObj_name, $cObj_conf);
-      
+
       $arrContentParams[$param] = $param . " = '" . $value . "'";
-      
+
     }
       // FOREACH :  content param from TypoScript
-    
+
       // #45170, 130205, dwildt, +
       // Override document size
     switch( true )
@@ -1589,7 +1589,7 @@ class tx_flipit_typoscript
         break;
     }
       // Override document size
-    
+
       // #45712, 130221, dwildt, -
 //      // #45471, 130214, dwildt, +
 //      // Double document size
@@ -1628,8 +1628,8 @@ class tx_flipit_typoscript
     return $contentParams;
   }
 
-  
-  
+
+
  /**
   * updateXmlFileRenderItWriteFile( ):
   *
@@ -1648,14 +1648,14 @@ class tx_flipit_typoscript
       // xml output file
     $tstamp  = time( );
     $xmlFile =  $this->table . '_' . $this->cObj->data['uid'] . '_' . $tstamp . '.xml';
-      
+
       // xml output path
     $field   = 'tx_flipit_xml_file';
     $xmlPath = $this->zz_getPath( $field );
 
       // xml file with path
     $xmlFileWiPath =  $xmlPath . '/' . $xmlFile;
-    
+
       // DIE  : file can't open
     if( ! ( $handle = fopen( $xmlFileWiPath, 'wb' ) ) )
     {
@@ -1692,7 +1692,7 @@ class tx_flipit_typoscript
 
       // DRS
     if( $this->b_drs_updateSwfXml )
-    {    
+    {
       $prompt = $xmlFileWiPath . ' is written.';
       t3lib_div::devlog( '[OK/SWF+XML] ' . $prompt, $this->extKey, -1 );
     }
@@ -1717,8 +1717,8 @@ class tx_flipit_typoscript
  */
   public function drs_debugTrail( $level = 1 )
   {
-    $arr_return = null; 
-    
+    $arr_return = null;
+
       // Get the debug trail
     $debugTrail_str = t3lib_utility_Debug::debugTrail( );
 
@@ -1747,8 +1747,8 @@ class tx_flipit_typoscript
       // RETURN content
   }
 
-  
-  
+
+
  /**
   * init( ):
   *
@@ -1761,22 +1761,22 @@ class tx_flipit_typoscript
   {
       //  #44896, 130129, dwildt, 1-
 //    $conf = $this->conf;
-    
+
       // Init extension configuration array
     $this->arr_extConf = unserialize( $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey] );
-    
+
       // Init the DRS
     $this->initDrs( );
-    
+
       // Init table
     $this->initTable( );
-    
+
       // Init field labels
     $this->initFieldLabels( );
-    
+
       // Init table
     $this->initCObj( );
-    
+
       // RETURN :
     $arr_return = $this->initRequiredFields( );
     if( $arr_return['return'] )
@@ -1795,7 +1795,7 @@ class tx_flipit_typoscript
 
       // #45471, 130214, dwildt, 1+
     $this->initQuality( );
-    
+
       // Require class userfunc
     $this->initClasses( );
 
@@ -1808,7 +1808,7 @@ class tx_flipit_typoscript
 
       // DRS
     if( $this->b_drs_flipit )
-    {    
+    {
       $prompt =  'current record is ' . $this->table . ' ( uid = ' . $this->cObj->data['uid'] . ' )';
       t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
     }
@@ -1816,7 +1816,7 @@ class tx_flipit_typoscript
 
       // Init file lists
     $this->initFiles( );
-    
+
       // RETURN : $firstFile != $currentFile
     $arr_return = $this->initIfFirstFileOnly( );
     if( $arr_return['return'] )
@@ -1827,9 +1827,9 @@ class tx_flipit_typoscript
 
     return;
   }
-  
-  
-  
+
+
+
 /**
  * initClasses( ): Init the DRS - Development Reportinmg System
  *
@@ -1839,9 +1839,12 @@ class tx_flipit_typoscript
   private function initClasses( )
   {
       // Include class userfunc
-    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
-    $pathToUserfunc       = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
-    require_once( $pathToUserfunc );
+    // #47370, 140916, dwildt, 3-
+//    $typo3_document_root  = t3lib_div::getIndpEnv( 'TYPO3_DOCUMENT_ROOT' );
+//    $pathToUserfunc       = $typo3_document_root . '/typo3conf/ext/flipit/lib/userfunc/class.tx_flipit_userfunc.php';
+//    require_once( $pathToUserfunc );
+    // #47370, 140916, dwildt, 1+
+    require_once (t3lib_extMgm::extPath( 'flipit' ) . 'lib/userfunc/class.tx_flipit_userfunc.php');
     $this->objUserfunc = new tx_flipit_userfunc( $this );
     $this->objUserfunc->set_allParams( );
       // Include class userfunc
@@ -1854,11 +1857,11 @@ class tx_flipit_typoscript
       $prompt = 'SWFTOOLS: ' . $this->objUserfunc->swfTools;
       t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
       $prompt = 'TYPO3 version: ' . $this->objUserfunc->typo3Version;
-      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );    
+      t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
     }
       // DRS
   }
-  
+
  /**
   * initCObj( ):
   *
@@ -1870,7 +1873,7 @@ class tx_flipit_typoscript
   private function initCObj( )
   {
 
-// #44858 
+// #44858
 //$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 //if ( ! ( $pos === false ) )
 //{
@@ -1890,7 +1893,7 @@ class tx_flipit_typoscript
         break;
     }
   }
-  
+
 /**
  * initDrs( ): Init the DRS - Development Reportinmg System
  *
@@ -1899,7 +1902,7 @@ class tx_flipit_typoscript
  */
   private function initDrs( )
   {
-    
+
       // Enable the DRS by TypoScript
     switch( $this->arr_extConf['debuggingDrs'] )
     {
@@ -1934,12 +1937,12 @@ class tx_flipit_typoscript
     t3lib_div::devlog( '[INFO/DRS] ' . $prompt, $this->extKey, 0 );
   }
 
-  
-  
+
+
  /**
   * initFieldLables( ):
   *
-  * @return    
+  * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -1960,14 +1963,14 @@ class tx_flipit_typoscript
         $this->fieldLabelForTitle   = $conf['userFunc.']['constant_editor.']['database.']['fields.']['title'];
         break;
     }
-    $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];   
+    $this->fieldLabelForTstamp  = $GLOBALS['TCA'][$this->table]['ctrl']['tstamp'];
   }
-  
-  
+
+
  /**
   * initFiles( ):
   *
-  * @return    
+  * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -2004,8 +2007,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * initIfFirstFileOnly( ):
   *
@@ -2024,7 +2027,7 @@ class tx_flipit_typoscript
     $firstkey         = key( ( array ) $this->files[$field] );
     $firstFileWiPath  = $this->files[$field][$firstkey];
 //var_dump( __METHOD__, __LINE__, $this->files, $GLOBALS['TSFE']->register );
-    
+
       // RETURN : There isn't any file
     if( empty( $firstFileWiPath ) )
     {
@@ -2035,17 +2038,17 @@ class tx_flipit_typoscript
       }
       $arr_return['return']   = true;
       $arr_return['content']  = null;
-      return $arr_return;    
+      return $arr_return;
     }
       // RETURN : There isn't any file
 
     $pathParts        = pathinfo( $firstFileWiPath );
     $firstFile        = $pathParts['basename'];
       // Get first file from media
-  
+
       // Get current file
     $currentFile = $GLOBALS['TSFE']->register['filename'];
-    
+
       // SWITCH : $firstFile == $currentFile
     switch( true )
     {
@@ -2061,7 +2064,7 @@ class tx_flipit_typoscript
       default:
         if( $this->b_drs_init )
         {
-          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. ' . 
+          $prompt = 'The current file ' . $currentFile . ' isn\'t the first file ' . $firstFile . '. ' .
                     'Flip it! won\'t run. This is OK.';
           t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
         }
@@ -2070,16 +2073,16 @@ class tx_flipit_typoscript
         break;
     }
       // SWITCH : $firstFile == $currentFile
-    
+
     unset( $firstFile );
     unset( $currentFile );
 
     return $arr_return;
-    
+
   }
 
-  
-  
+
+
  /**
   * initLayout( ):
   *
@@ -2095,11 +2098,11 @@ class tx_flipit_typoscript
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
-    
+
     $coa_name = $conf['userFunc.']['drs.']['layout'];
     $coa_conf = $conf['userFunc.']['drs.']['layout.'];
     $layout   = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $layout )
     {
       case( 'layout_00' ):
@@ -2127,11 +2130,11 @@ class tx_flipit_typoscript
     }
 
     return $arr_return;
-    
+
   }
 
-  
-  
+
+
  /**
   * initQuality( ):
   *
@@ -2148,7 +2151,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['quality'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['quality.'];
     $this->quality  = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $this->quality )
     {
       case( null ):
@@ -2186,7 +2189,7 @@ class tx_flipit_typoscript
 
     return;
   }
-  
+
  /**
   * initRequiredFields( ):
   *
@@ -2198,7 +2201,7 @@ class tx_flipit_typoscript
   private function initRequiredFields( )
   {
 
-// #44858 
+// #44858
 //$pos = strpos( '87.177.65.251', t3lib_div :: getIndpEnv( 'REMOTE_ADDR' ) );
 //if ( ! ( $pos === false ) )
 //{
@@ -2211,9 +2214,9 @@ class tx_flipit_typoscript
     $arr_return = array( );
     $arr_return['content']  = null;
     $arr_return['return']   = false;
-    
+
       // SWITCH : add required fields for title and media
-    switch( true ) 
+    switch( true )
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->cObj->data ) ):
           // Add to the global $arrRequiredFields the title field
@@ -2235,7 +2238,7 @@ class tx_flipit_typoscript
 
     $this->arrRequiredFields = array_unique( $this->arrRequiredFields );
       // Add to the global $arrRequiredFields the media field
-      
+
       // FOREACH : required field
     foreach( $this->arrRequiredFields as $requiredField )
     {
@@ -2262,7 +2265,7 @@ class tx_flipit_typoscript
           </pre>
         </p>
         <p>
-          ' . __METHOD__ . ' (line ' . __LINE__ . ') 
+          ' . __METHOD__ . ' (line ' . __LINE__ . ')
         </p>
         <p>
           TYPO3 extension Flip it!
@@ -2274,14 +2277,14 @@ class tx_flipit_typoscript
       return $arr_return;
     }
       // FOREACH : required field
-    
+
       // RETURN : no DRS
     if( ! $this->b_drs_flipit )
-    { 
+    {
       return $arr_return;
     }
       // RETURN : no DRS
-    
+
       // DRS
     switch( $this->table )
     {
@@ -2306,7 +2309,7 @@ class tx_flipit_typoscript
 //  *                               * set global $table to the given table
 //  *                               * return true
 //  *
-//  * @return   boolean             
+//  * @return   boolean
 //  * @access   private
 //  * @version  1.0.0
 //  * @since    1.0.0
@@ -2325,15 +2328,15 @@ class tx_flipit_typoscript
 //      return true;
 //    }
 //      // FOREACH  : cObj->data in TSFE
-//    
+//
 //    return false;
 //  }
-  
-  
+
+
  /**
-  * initTable( ) : 
+  * initTable( ) :
   *
-  * @return   void             
+  * @return   void
   * @access   private
   * @version  1.0.0
   * @since    1.0.0
@@ -2344,8 +2347,8 @@ class tx_flipit_typoscript
     {
       return;
     }
-    
-    switch( true ) 
+
+    switch( true )
     {
       case( ! empty ( $GLOBALS['TSFE']->tx_browser_pi1->currentRecord ) ):
         list( $this->table ) = explode( ':', $GLOBALS['TSFE']->tx_browser_pi1->currentRecord );
@@ -2360,12 +2363,12 @@ class tx_flipit_typoscript
       $prompt = 'table is set to ' . $this->table;
       t3lib_div::devlog( '[INFO/INIT] ' . $prompt, $this->extKey, 0 );
     }
-    
+
   }
 
 
-  
-  
+
+
  /**
   * javascriptFancyboxScript( ):
   *
@@ -2379,14 +2382,14 @@ class tx_flipit_typoscript
   public function javascriptFancyboxScript( $content, $conf )
   {
     unset( $content );
-    
+
       // Current TypoScript configuration
     $this->conf = $conf;
-    
+
     $spaceLeft  = $conf['userFunc.']['paramsSpaceLeft'];
     $javascript = $conf['userFunc.']['javascript'];
     $params     = array( );
-    $strParams  = null;   
+    $strParams  = null;
     $variables  = array( );
 
       // params
@@ -2457,7 +2460,7 @@ class tx_flipit_typoscript
     }
     $strParams = implode( ',' . PHP_EOL . str_repeat( ' ', $spaceLeft ), ( array ) $params );
       // params
-       
+
       // variables
     foreach( array_keys ( ( array ) $conf['userFunc.']['variables.'] ) as $variable )
     {
@@ -2476,12 +2479,12 @@ class tx_flipit_typoscript
 
     $javascript = str_replace( '%params%', $strParams, $javascript );
     $javascript = str_replace( array_keys( $variables ), $variables, $javascript );
-    
-    return $javascript;    
+
+    return $javascript;
   }
 
-  
-  
+
+
  /**
   * jquery( ):
   *
@@ -2492,12 +2495,12 @@ class tx_flipit_typoscript
   */
   private function jquery( )
   {
-    $this->jquerySource( );   
-    $this->jqueryFancybox( );   
+    $this->jquerySource( );
+    $this->jqueryFancybox( );
   }
 
-  
-  
+
+
  /**
   * jquerySource( ):
   *
@@ -2513,7 +2516,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['source'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['source.'];
     $source = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $source )
     {
       case( 'enabled' ):
@@ -2544,11 +2547,11 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['sourcePosition'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['sourcePosition.'];
     $sourcePosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     $coa_name = $conf['userFunc.']['sourceJs'];
     $coa_conf = $conf['userFunc.']['sourceJs.'];
     $sourceLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $sourcePosition )
     {
       case( 'top' ):
@@ -2584,8 +2587,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * jqueryFancybox( ):
   *
@@ -2601,7 +2604,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['configuration.']['enableFancybox'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['configuration.']['enableFancybox.'];
     $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $fancybox )
     {
       case( 'enabled' ):
@@ -2636,8 +2639,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * jqueryFancyboxInclude( ):
   *
@@ -2653,7 +2656,7 @@ class tx_flipit_typoscript
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancybox.'];
     $fancybox = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $fancybox )
     {
       case( 'enabled' ):
@@ -2690,16 +2693,16 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/JQUERY] ' . $prompt, $this->extKey, 0 );
     }
     $GLOBALS['TSFE']->additionalHeaderData['flipit.fancybox.css'] = $fancyboxCss;
-    
+
 
     $coa_name = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition'];
     $coa_conf = $conf['userFunc.']['constant_editor.']['jquery.']['fancyboxPosition.'];
     $fancyboxPosition = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     $coa_name = $conf['userFunc.']['fancyboxJs'];
     $coa_conf = $conf['userFunc.']['fancyboxJs.'];
     $fancyboxLibrary = $this->zz_cObjGetSingle( $coa_name, $coa_conf );
-    
+
     switch( $fancyboxPosition )
     {
       case( 'top' ):
@@ -2735,8 +2738,8 @@ class tx_flipit_typoscript
     return;
   }
 
-  
-  
+
+
  /**
   * zz_cObjGetSingle( ):
   *
@@ -2757,12 +2760,12 @@ class tx_flipit_typoscript
         $value = $cObj_name;
         break;
     }
-      
+
     return $value;
   }
-  
-  
-  
+
+
+
 /**
  * zz_exec( ):
  *
@@ -2773,9 +2776,9 @@ class tx_flipit_typoscript
   private function zz_exec( $exec )
   {
     $lines = null;
-    
+
       // DIE  : function exec doesn't exist
-    if( ! ( function_exists('exec') ) )  
+    if( ! ( function_exists('exec') ) )
     {
       $prompt = '
         <h1>
@@ -2809,7 +2812,7 @@ class tx_flipit_typoscript
       die( $prompt );
     }
       // DIE  : function exec doesn't exist
-    
+
       // DRS
     if( $this->b_drs_exec )
     {
@@ -2817,7 +2820,7 @@ class tx_flipit_typoscript
       $debugTrailLevel  = 1;
       $debugTrail       = $this->drs_debugTrail( $debugTrailLevel );
       $debugTrailPrompt = $debugTrail['prompt'];
-      
+
       $prompt = $exec;
       t3lib_div::devlog( '[INFO/PHP] ' . $debugTrailPrompt . ' -> exec: ' . $prompt, $this->extKey, 0 );
     }
@@ -2825,7 +2828,7 @@ class tx_flipit_typoscript
 
       // Execute!
     exec( $exec, $lines );
-    
+
       // DRS
     if( $this->b_drs_exec )
     {
@@ -2833,16 +2836,16 @@ class tx_flipit_typoscript
       t3lib_div::devlog( '[INFO/PHP] lines: ' . $prompt, $this->extKey, 0 );
     }
       // DRS
-   
+
       // RETURN : lines
     return $lines;
   }
-  
-  
+
+
  /**
   * zzFieldWoTable( ):
   *
-  * @return    
+  * @return
   * @access   private
   * @version  1.0.0
   * @since    1.0.0
@@ -2850,7 +2853,7 @@ class tx_flipit_typoscript
   private function zzFieldWoTable( $tableField )
   {
     list( $table, $field ) = explode( '.', $tableField );
-    
+
     if( $field )
     {
       return $field;
@@ -2859,15 +2862,15 @@ class tx_flipit_typoscript
     {
       return $table;
     }
-      
+
   }
 
-  
-  
+
+
  /**
   * zz_getFilesWiPath( ):
   *
-  * @return    
+  * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -2875,7 +2878,7 @@ class tx_flipit_typoscript
   private function zz_getFilesWiPath( $files, $path )
   {
     $arr_return = null;
-    
+
       // FOREACH  : files
     foreach( ( array ) $files as $file )
     {
@@ -2901,12 +2904,12 @@ class tx_flipit_typoscript
       // RETURN : filesWiPath
     return $arr_return;
   }
-  
-  
+
+
  /**
   * zz_getPath( ):
   *
-  * @return    
+  * @return
   * @access   private
   * @version  0.0.3
   * @since    0.0.3
@@ -2914,7 +2917,7 @@ class tx_flipit_typoscript
   private function zz_getPath( $field )
   {
     $field = $this->zzFieldWoTable( $field );
-    
+
       // Get path
     $this->zz_TCAload( $this->table );
     $uploadFolder         = $GLOBALS['TCA'][$this->table]['columns'][$field]['config']['uploadfolder'];
@@ -2954,7 +2957,7 @@ class tx_flipit_typoscript
       return;
     }
       // RETURN : TCA is loaded
-    
+
       // Load the TCA
     t3lib_div::loadTCA( $this->table );
 
@@ -2968,8 +2971,8 @@ class tx_flipit_typoscript
 
   }
 
-  
-  
+
+
  /**
   * zz_tstampLatest( ): Get the latest timestamp of the given files
   *
@@ -2983,21 +2986,21 @@ class tx_flipit_typoscript
   {
       // Get files
     $files = $this->files[$field];
-    
+
       // Get files
-    
+
       // RETURN null : there isn't any file
     if( empty ( $files ) )
     {
       if( $this->b_drs_flipit )
-      {    
+      {
         $prompt = $this->table. '.' . $field . ' doesn\'t contain any file.';
         t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
       }
       return null;
     }
       // RETURN null : there isn't any file
-    
+
     $tstampLatest = null;
     $tstampFirst  = null;
     foreach( ( array ) $files as $file )
@@ -3029,12 +3032,12 @@ class tx_flipit_typoscript
           break;
       }
     }
-    
+
     switch( $latest )
     {
       case( true ):
         if( $this->b_drs_flipit )
-        {    
+        {
           $prompt = 'latest ' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampLatest );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
@@ -3043,7 +3046,7 @@ class tx_flipit_typoscript
       case( false ):
       default:
         if( $this->b_drs_flipit )
-        {    
+        {
           $prompt = 'first ' . $field . ': ' . date ( 'Y-m-d H:i:s.', $tstampFirst );
           t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
         }
@@ -3052,8 +3055,8 @@ class tx_flipit_typoscript
     }
   }
 
-  
-  
+
+
  /**
   * zz_tstampMedia( ):
   *
@@ -3068,14 +3071,14 @@ class tx_flipit_typoscript
     {
       return;
     }
-    
+
       // Get latest timestamp of files in given field
     $latest = true;
     $this->tstampMedia = $this->zz_tstampLatest( $this->fieldLabelForMedia, $latest );
   }
 
-  
-  
+
+
  /**
   * zz_tstampRecord( ):
   *
@@ -3090,20 +3093,20 @@ class tx_flipit_typoscript
     {
       return;
     }
-    
+
       // Get timestamp of current record
     $this->tstampRecord = $this->cObj->data[$this->fieldLabelForTstamp];
 
     if( $this->b_drs_flipit )
-    {    
+    {
       $prompt = $this->fieldLabelForTstamp . ': ' . date ( 'Y-m-d H:i:s.', $this->tstampRecord );
       t3lib_div::devlog( '[INFO/FLIPIT] ' . $prompt, $this->extKey, 0 );
     }
-    
+
   }
 
-  
-  
+
+
  /**
   * zz_tstampSwf( ):
   *
@@ -3118,14 +3121,14 @@ class tx_flipit_typoscript
     {
       return;
     }
-    
+
       // Get latest timestamp of files in given field
     $latest = false;
     $this->tstampSwf = $this->zz_tstampLatest( 'tx_flipit_swf_files', $latest );
   }
 
-  
-  
+
+
  /**
   * zz_tstampXml( ):
   *
@@ -3144,7 +3147,7 @@ class tx_flipit_typoscript
     $latest = true;
     $this->tstampXml = $this->zz_tstampLatest( 'tx_flipit_xml_file', $latest );
   }
-  
+
 
 
 }

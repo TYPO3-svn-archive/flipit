@@ -33,7 +33,7 @@ $version = $version + ( ( int ) $bugfix ) * 1;
 $typo3Version = $version;
   // Set TYPO3 version as integer (sample: 4.7.7 -> 4007007)
 
-if( $typo3Version < 3000000 ) 
+if( $typo3Version < 3000000 )
 {
   $prompt = '<h1>ERROR</h1>
     <h2>Unproper TYPO3 version</h2>
@@ -53,7 +53,7 @@ if( $typo3Version < 3000000 )
 }
   // Set TYPO3 version
 
-    
+
 
   ////////////////////////////////////////////////////////////////////////////
   //
@@ -81,40 +81,40 @@ switch( $beLanguage )
   // Enables the Include Static Templates
 
   // Case $beLanguage
-switch( true ) 
+switch( true )
 {
   case( $beLanguage == 'de' ):
       // German
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (immer einbinden!)');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/',               'Flip it! [1] Basis');
     switch( true )
     {
       case( $typo3Version < 4007000 ):
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', '+Flip it!: Basis fuer TYPO3 < 4.7 (einbinden!)');
+        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', 'Flip it! [1.1] + Basis fuer TYPO3 < 4.7 (einbinden!)');
         break;
       default:
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', '+Flip it!: Basis fuer TYPO3 < 4.7 (NICHT einbinden!)');
+        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', 'Flip it! [1.1] + Basis fuer TYPO3 < 4.7 (NICHT einbinden!)');
         break;
     }
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox abgeschaltet');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/',    'Flip it! [2] + Fancybox abgeschaltet');
     break;
   default:
       // English
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Flip it!: Basis (obligate!)');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/',               'Flip it! [1] Basis (obligate!)');
     switch( true )
     {
       case( $typo3Version < 4007000 ):
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', '+Flip it!: Basis for TYPO3 < 4.7 (obligate!)');
+        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', 'Flip it! [1.1] + Basis for TYPO3 < 4.7 (obligate!)');
         break;
       default:
-        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', '+Flip it!: Basis for TYPO3 < 4.7 (don\'t use it!)');
+        t3lib_extMgm::addStaticFile($_EXTKEY,'static/typo3/4.6/', 'Flip it! [1.1] + Basis for TYPO3 < 4.7 (don\'t use it!)');
         break;
     }
-    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/', '+Flip it!: Fancybox disabled');
+    t3lib_extMgm::addStaticFile($_EXTKEY,'static/woFancybox/',    'Flip it! [2] + Fancybox disabled');
     break;
 }
   // Case $beLanguage
   // Enables the Include Static Templates
-  
+
 
 
   ////////////////////////////////////////////////////////////////////////////
@@ -333,8 +333,8 @@ foreach( $arr_showitem as $key => $value )
       $arr_new_showitem[$key] = $value;
       break;
     case($key == $int_div_position):
-      $arr_new_showitem[$key] = '' . 
-        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, ' . 
+      $arr_new_showitem[$key] = '' .
+        'LLL:EXT:flipit/locallang_db.xml:tcaLabel_tt_content_div_tx_flipit, ' .
           'tx_flipit_layout,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_quality;tx_flipit_quality,' .
           '--palette--;LLL:EXT:flipit/locallang_db.xml:palette_tx_flipit_files;tx_flipit_files,' .
@@ -353,21 +353,21 @@ $str_showitem = implode( '--div--;', $arr_new_showitem );
 $TCA['tt_content']['types']['uploads']['showitem'] = $str_showitem;
 unset( $int_div_position );
   // Insert div [flipit] at position $int_div_position
-   
+
   // Insert palettes
-$TCA['tt_content']['palettes']['tx_flipit_fancybox']['showitem'] = 
+$TCA['tt_content']['palettes']['tx_flipit_fancybox']['showitem'] =
   'tx_flipit_fancybox;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_fancybox';
 $TCA['tt_content']['palettes']['tx_flipit_fancybox']['canNotCollapse'] = 1;
 
-$TCA['tt_content']['palettes']['tx_flipit_files']['showitem'] = 
+$TCA['tt_content']['palettes']['tx_flipit_files']['showitem'] =
   'tx_flipit_updateswfxml;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_updateswfxml, --linebreak--,' .
   'tx_flipit_xml_file;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_xml_file, --linebreak--,' .
-  'tx_flipit_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files'; 
+  'tx_flipit_swf_files;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_swf_files';
 $TCA['tt_content']['palettes']['tx_flipit_files']['canNotCollapse'] = 1;
 
-$TCA['tt_content']['palettes']['tx_flipit_quality']['showitem'] = 
+$TCA['tt_content']['palettes']['tx_flipit_quality']['showitem'] =
   'tx_flipit_quality;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_quality,' .
-  'tx_flipit_pagelist;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_pagelist'; 
+  'tx_flipit_pagelist;LLL:EXT:flipit/locallang_db.xml:tcaLabel_tx_flipit_pagelist';
 $TCA['tt_content']['palettes']['tx_flipit_quality']['canNotCollapse'] = 1;
   // Insert palettes
 

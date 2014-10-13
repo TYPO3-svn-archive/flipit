@@ -1,3 +1,10 @@
+6.0.0
+  14-09-16
+  Major Feature
+  * #61643: Upgrade TYPO3 6.2
+            * #61644: Replace the static method t3lib_div::intInRange
+            * #61645: Remove constant path PATH_t3lib
+
 2.0.0
   14-04-30
   Feature

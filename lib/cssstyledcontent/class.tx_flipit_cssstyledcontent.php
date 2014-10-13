@@ -2,6 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
+*  (c) 2012-2014 Dirk Wildt, Die Netzmacher <http://wildt.at.die-netzmacher.de>
 *  (c) 1999-2011 Kasper Skårhøj (kasperYYYY@typo3.com)
 *  All rights reserved
 *
@@ -59,6 +60,7 @@
  * @author	Kasper Skårhøj <kasperYYYY@typo3.com>
  * @package TYPO3
  * @subpackage tx_cssstyledcontent
+ * @version 6.0.0
  */
 class tx_flipit_cssstyledcontent extends tslib_pibase {
 
@@ -177,7 +179,10 @@ class tx_flipit_cssstyledcontent extends tslib_pibase {
 			reset($rows);
 
 				// Find number of columns to render:
-			$cols = t3lib_div::intInRange($this->cObj->data['cols']?$this->cObj->data['cols']:count(explode($delimiter,current($rows))),0,100);
+      // #61644, dwildt, 1-
+			//$cols = t3lib_div::intInRange($this->cObj->data['cols']?$this->cObj->data['cols']:count(explode($delimiter,current($rows))),0,100);
+      // #61644, dwildt, 1+
+			$cols = t3lib_utility_Math::forceIntegerInRange($this->cObj->data['cols']?$this->cObj->data['cols']:count(explode($delimiter,current($rows))),0,100);
 
 				// Traverse rows (rendering the table here)
 			$rCount = count($rows);
@@ -523,7 +528,10 @@ class tx_flipit_cssstyledcontent extends tslib_pibase {
 		$imgCount = count($imgs) - $imgStart;
 		$imgMax = intval($this->cObj->stdWrap($conf['imgMax'], $conf['imgMax.']));
 		if ($imgMax)	{
-			$imgCount = t3lib_div::intInRange($imgCount, 0, $imgMax);	// reduce the number of images.
+      // #61644, dwildt, 1-
+			//$imgCount = t3lib_div::intInRange($imgCount, 0, $imgMax);	// reduce the number of images.
+      // #61644, dwildt, 1+
+			$imgCount = t3lib_utility_Math::forceIntegerInRange($imgCount, 0, $imgMax);	// reduce the number of images.
 		}
 
 		$imgPath = $this->cObj->stdWrap($conf['imgPath'], $conf['imgPath.']);
