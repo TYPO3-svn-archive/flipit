@@ -459,12 +459,27 @@ class tx_flipit_userfunc
           </div>
           ';
         break;
-      default:
-          // Equal to 6.2 or greater
+      case( $this->typo3Version < 6003000 ):
+          // Smaller than 6.3
         $prompt = $prompt . '
           <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
             <div class="message-body">
-              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version62orGreater'). '
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version63smaller'). '
+            </div>
+          </div>
+          <div class="typo3-message message-warning" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version6xWarnFancybox'). '
+            </div>
+          </div>
+          ';
+        break;
+      default:
+          // Equal to 6.3 or greater
+        $prompt = $prompt . '
+          <div class="typo3-message message-ok" style="max-width:' . $this->maxWidth . ';">
+            <div class="message-body">
+              ' . $GLOBALS['LANG']->sL('LLL:EXT:flipit/lib/userfunc/locallang.xml:promptEvaluatorTYPO3version63orGreater'). '
             </div>
           </div>
           ';

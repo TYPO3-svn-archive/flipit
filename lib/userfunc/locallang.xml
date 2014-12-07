@@ -109,7 +109,8 @@
       <label index="promptEvaluatorTYPO3version60smaller">You are using TYPO3 4.7. This is perfect!</label>
       <label index="promptEvaluatorTYPO3version61smaller">You are using TYPO3 6.0. This is nearly perfect. See warning below.</label>
       <label index="promptEvaluatorTYPO3version62smaller">You are using TYPO3 6.1. This is nearly perfect. See warning below.</label>
-      <label index="promptEvaluatorTYPO3version62orGreater">You are using TYPO3 greater than TYPO3 6.1. Flip it! isn't tested in this version. Try it!</label>
+      <label index="promptEvaluatorTYPO3version63smaller">You are using TYPO3 6.2. This is nearly perfect. See warning below.</label>
+      <label index="promptEvaluatorTYPO3version63orGreater">You are using TYPO3 greater than TYPO3 6.2. Flip it! isn't tested in this version. Try it!</label>
       <label index="promptEvaluatorTYPO3version6xWarnFancybox">Please don't use the fancybox. It doesn't work in the current TYPO3 version!</label>
 
       <label index="promptEvaluatorWindowsConf"><![CDATA[
@@ -241,7 +242,8 @@
       <label index="promptEvaluatorTYPO3version60smaller">Du verwendest TYPO3 4.7.x. Das ist perfekt.</label>
       <label index="promptEvaluatorTYPO3version61smaller">Du verwendest TYPO3 6.0.x. Das ist fast perfekt. Beachte den Warnhinweis.</label>
       <label index="promptEvaluatorTYPO3version62smaller">Du verwendest TYPO3 6.1.x. Das ist fast perfekt. Beachte den Warnhinweis.</label>
-      <label index="promptEvaluatorTYPO3version62orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als TYPO3 6.1. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
+      <label index="promptEvaluatorTYPO3version63smaller">Du verwendest TYPO3 6.2.x. Das ist fast perfekt. Beachte den Warnhinweis.</label>
+      <label index="promptEvaluatorTYPO3version63orGreater">Du verwendest eine TYPO3 Version, die gr<![CDATA[&ouml;]]><![CDATA[&szlig;]]>er ist als TYPO3 6.2. Flip it! ist f<![CDATA[&uuml;]]>r diese Version nicht getestet. Aber probier es einfach aus!</label>
       <label index="promptEvaluatorTYPO3version6xWarnFancybox">Bitte verzichte auf die Fancybox. Sie funktioniert nicht in der aktuellen TYPO3-Version!</label>
       <label index="promptEvaluatorWindowsConf"><![CDATA[
           Den Pfad zu den SWFTOOLS konfigurierst Du hier im Extension Manager. Kategorie [Windows]
