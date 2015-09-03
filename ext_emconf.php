@@ -19,7 +19,7 @@ $EM_CONF[$_EXTKEY] = array(
   . 'See: http://typo3-flipit.de/',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '6.0.1',
+	'version' => '6.0.2',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',

@@ -1,3 +1,8 @@
+6.0.2
+  15-09-03
+  Improvement
+  * #i0014:  PHP Warning: Missing argument 1 for tx_flipit_flexform::__construct(), called in lib/flexform/class.tx_flipit_flexform.php line 93
+
 6.0.1
   14-12-06
   Improvement

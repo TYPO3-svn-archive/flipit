@@ -90,10 +90,11 @@ class tx_flipit_flexform
    * @param    object        The parent object
    * @return    void
    */
-  function __construct( $pObj )
-  {
-    $this->pObj = $pObj;
-  }
+  // #i0014, 150903, dwildt, 4-
+//  function __construct( $pObj )
+//  {
+//    $this->pObj = $pObj;
+//  }
 
   /**
    * evaluate_plugin: Evaluates the plugin, flexform, TypoScript
